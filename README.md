@@ -5,6 +5,8 @@ Each of the 16 modules summarizes one textbook chapter with key ideas, diagrams,
 
 **Live site:** https://jalee9.github.io/cts115/
 
+Developed by **Jennifer Lee**, Professor, Wake Technical Community College, for CTS 115: Information Systems Business Concepts.
+
 > This guide summarizes ideas in plain language. It doesn't replace the course textbook,
 > *Information Systems: A Manager's Guide to Harnessing Technology* (FlatWorld), which has the full readings, cases, and videos.
 

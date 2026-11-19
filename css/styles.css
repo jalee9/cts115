@@ -1026,6 +1026,18 @@ mark { background: #ffe39b; color: inherit; padding: 0 2px; border-radius: 3px; 
 }
 .site-footer a { color: var(--gold); }
 .site-footer p { max-width: 80ch; }
+/* The author credit: <address> is italic by default, so we reset it */
+.site-footer__credit {
+  font-style: normal;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.6;
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+.site-footer__credit strong { color: var(--gold); }
+.site-footer__copy { font-size: 0.82rem; color: #9fb3cc; margin-bottom: 0; }
 
 
 /* ---------------------------------------------------------------------
