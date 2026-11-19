@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<!-- The DOCTYPE tells the browser this is a modern HTML5 document. -->
+<!-- lang="en" helps screen readers pronounce words correctly. -->
+<html lang="en">
+<head>
+  <!-- charset: lets the page show any character (é, —, “ ”) correctly -->
+  <meta charset="UTF-8">
+  <!-- viewport: makes the page fit phone screens instead of zooming out -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The description often appears under the link in search results -->
+  <meta name="description" content="Module 11: Data vs. information, relational databases, data sources, warehouses and lakes, BI tools, data mining, and Walmart.">
+  <title>Module 11: Data & Competitive Advantage | CTS 115 Study Guide</title>
+
+  <!-- Google Fonts: "preconnect" starts the connection early so the font loads faster -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Our one stylesheet. "../" moves up a folder when needed. -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head><body>
+  <!-- Skip link: the first thing a keyboard user reaches with Tab -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- <header> is a "landmark": screen readers can jump straight to it -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../index.html">CTS <span>115</span> Study Guide</a>
+
+      <!-- aria-label names this navigation for screen-reader users -->
+      <nav class="site-nav" aria-label="Main">
+        <!-- aria-expanded tells assistive tech whether the menu is open.
+             aria-controls points to the id of the list it opens. -->
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <ul id="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#modules" aria-current="page">Modules</a></li>
+          <li><a href="../glossary.html">Glossary</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== MODULE BANNER =====
+       Same look as the course banners, built with HTML + CSS
+       (see section 5 of styles.css). -->
+  <div class="hero hero--module">
+    <div class="hero__inner">
+      <p class="module-badge">
+        <span class="module-badge__label">MODULE</span>
+        <span class="module-badge__num">11</span>
+      </p>
+      <div>
+        <!-- Each page has exactly ONE <h1>: the main topic of the page -->
+        <h1>Data &amp; Competitive Advantage</h1>
+        <p class="hero__subtitle">Chapter 11: Data and Competitive Advantage: Databases, Analytics, and Prepping Data for Use with AI</p>
+        <ul class="chips" aria-label="About this module">
+          <li>≈ 30 min read</li>
+          <li>26 key terms</li>
+          <li>5-question self-check</li>
+        </ul>
+      </div>
+      <svg class="hero__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="24" cy="10" rx="15" ry="5"/><path d="M9 10v28c0 3 7 5 15 5s15-2 15-5V10M9 19c0 3 7 5 15 5s15-2 15-5M9 28c0 3 7 5 15 5s15-2 15-5"/></svg>
+    </div>
+  </div>
+
+  <!-- ===== PAGE LAYOUT: sidebar + content (CSS Grid, section 6) ===== -->
+  <div class="page">
+
+    <!-- "On this page" sidebar. It's a <nav> because it's a set of links. -->
+    <nav class="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <ol>
+          <li><a href="#big-picture">The Big Picture</a></li>
+          <li><a href="#goals">What You’ll Learn</a></li>
+          <li><a href="#data-age">A New Age of Decisions</a></li>
+          <li><a href="#dik">Data, Information, Knowledge</a></li>
+          <li><a href="#sources">Where Data Comes From</a></li>
+          <li><a href="#data-poor">Data Rich, Info Poor</a></li>
+          <li><a href="#warehouses">Warehouses &amp; Lakes</a></li>
+          <li><a href="#bi-toolkit">The BI Toolkit</a></li>
+          <li><a href="#walmart">Case: Walmart</a></li>
+          <li><a href="#key-terms">Key Terms</a></li>
+          <li><a href="#flashcards">Flashcards</a></li>
+          <li><a href="#quick-check">Quick Check</a></li>
+      </ol>
+    </nav>
+
+    <!-- <main> holds the page's unique content. id="main" is where the
+         skip link jumps to. tabindex="-1" lets it receive that focus. -->
+    <main id="main" class="content" tabindex="-1">
+
+      <!-- ===== THE BIG PICTURE: the whole module in a few bullets ===== -->
+      <section id="big-picture" aria-labelledby="big-picture-h">
+        <span class="eyebrow">Start here</span>
+        <h2 id="big-picture-h">The Big Picture</h2>
+        <div class="big-picture">
+          <ul>
+          <li><strong>Data</strong> are raw facts. <strong>Information</strong> is data in context that answers a question. <strong>Knowledge</strong> is insight from experience.</li>
+          <li>Most business data lives in <strong>relational databases</strong>: tables of rows and columns linked by keys and queried with <strong>SQL</strong>.</li>
+          <li>Data comes from <strong>transaction systems</strong>, loyalty programs, enterprise software, surveys, and outside <strong>data aggregators</strong>.</li>
+          <li>Many firms are “data rich, information poor.” <strong>Data warehouses, data lakes, and ETL</strong> pull scattered data together so it can be analyzed.</li>
+          <li><strong>BI tools, dashboards, and data mining</strong> turn data into decisions. Walmart shows how a data-driven value chain built the world's largest retailer.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== LEARNING GOALS ===== -->
+      <section id="goals" aria-labelledby="goals-h">
+        <span class="eyebrow">Your goals</span>
+        <h2 id="goals-h">What You’ll Learn</h2>
+        <p>By the end of this module, you should be able to:</p>
+        <ul class="goals">
+          <li>Tell the difference between data, information, and knowledge.</li>
+          <li>Define key database terms: table, record, field, key, relational database, DBMS, and SQL.</li>
+          <li>Identify internal and external sources of business data, and the issues with buying outside data.</li>
+          <li>Explain why firms are often “data rich, information poor.”</li>
+          <li>Describe data warehouses, data marts, data lakes, and ETL.</li>
+          <li>Describe BI tools and data mining, and explain when analytical models can fail.</li>
+          <li>Explain how Walmart uses data to compete.</li>
+        </ul>
+      </section>
+
+      <!-- ===== LESSON SECTION: A New Age of Decisions ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "A New Age of Decisions, region". -->
+      <section id="data-age" aria-labelledby="data-age-h">
+        <span class="eyebrow">Section 11.1</span>
+        <h2 id="data-age-h">Data and a New Age of Decision-Making</h2>
+<p>Cheap storage, fast computers, standardized data, and easier software mean managers can now make decisions based on
+          facts, not just gut feel. <strong>Analytics</strong> uses data, statistics, and models to drive decisions. Firms collect
+          <strong>Big Data</strong>, datasets too large and messy for ordinary tools.</p>
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · Dynamic pricing for shows and games</span>
+          <p>Broadway theaters and sports teams use data to change ticket prices in real time based on demand, the opponent,
+            the weather, and how fast seats are selling. That's <strong>dynamic pricing</strong>. Stores also use Bluetooth
+            <strong>beacons</strong> to detect shoppers' phones and send location-based offers.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Data, Information, Knowledge ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Data, Information, Knowledge, region". -->
+      <section id="dik" aria-labelledby="dik-h">
+        <span class="eyebrow">Section 11.2</span>
+        <h2 id="dik-h">Data, Information &amp; Knowledge</h2>
+<figure class="diagram">
+          <svg viewBox="0 0 760 300" role="img" aria-labelledby="dk-title dk-desc">
+            <title id="dk-title">From data to knowledge</title>
+            <desc id="dk-desc">A three-level pyramid. The base is data: raw facts, such as "Sold 42 umbrellas." The middle is
+              information: data in context, such as "Umbrella sales triple on rainy days." The top is knowledge: insight
+              from experience, such as "Stock umbrellas by the door when rain is forecast."</desc>
+            <polygon points="380,20 500,110 260,110" fill="#fbc04a"/>
+            <polygon points="260,110 500,110 590,200 170,200" fill="#29a9e0"/>
+            <polygon points="170,200 590,200 680,290 80,290" fill="#0b2f5b"/>
+            <g text-anchor="middle">
+              <text x="380" y="88" class="svg-label">Knowledge</text>
+              <text x="380" y="162" class="svg-label">Information</text>
+              <text x="380" y="252" class="svg-label" style="fill:#fff">Data</text>
+            </g>
+            <text x="520" y="60" class="svg-small">“Stock umbrellas by the door</text>
+            <text x="520" y="78" class="svg-small">when rain is forecast.”</text>
+            <text x="605" y="150" class="svg-small">“Umbrella sales triple</text>
+            <text x="605" y="168" class="svg-small">on rainy days.”</text>
+            <text x="20" y="245" class="svg-small">“Sold 42</text>
+            <text x="20" y="263" class="svg-small">umbrellas.”</text>
+          </svg>
+          <figcaption>Raw data becomes useful information in context, and experience turns information into knowledge.</figcaption>
+        </figure>
+
+        <h3>How data is organized</h3>
+        <p>A <strong>database</strong> is a table or a set of related tables, managed by a <strong>DBMS</strong>. In a
+          <strong>relational database</strong>, tables are linked by shared <strong>keys</strong>.</p>
+        <div class="table-wrap">
+          <table>
+            <caption>A “Students” table. Each row is a record, and each column is a field.</caption>
+            <thead><tr><th scope="col">STUDENT_ID (key)</th><th scope="col">First name</th><th scope="col">Last name</th><th scope="col">Major</th></tr></thead>
+            <tbody>
+              <tr><td>1001</td><td>Ana</td><td>Rivera</td><td>Business</td></tr>
+              <tr><td>1002</td><td>Jordan</td><td>Lee</td><td>Networking</td></tr>
+              <tr><td>1003</td><td>Sam</td><td>Patel</td><td>Web Development</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="callout callout--why" aria-label="Key idea">
+          <span class="callout__title">Why use an ID instead of a name?</span>
+          <p>Two students can share a last name, but each has exactly one <strong>STUDENT_ID</strong>. A unique key (the
+            <strong>primary key</strong>) lets an “Enrollment” table point back to the right student. When it appears in that other table, it's
+            called a <strong>foreign key</strong>.</p>
+        </aside>
+        <aside class="callout callout--example" aria-label="Example">
+          <span class="callout__title">What SQL looks like</span>
+          <p><strong>SQL</strong> (Structured Query Language) is the standard way to ask a database questions:</p>
+<pre><code>SELECT first_name, last_name
+FROM Students
+WHERE major = 'Business';</code></pre>
+          <p>A <strong>database administrator (DBA)</strong> designs, secures, backs up, and maintains databases.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Where Data Comes From ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Where Data Comes From, region". -->
+      <section id="sources" aria-labelledby="sources-h">
+        <span class="eyebrow">Section 11.3</span>
+        <h2 id="sources-h">Where Does Data Come From?</h2>
+<div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Internal</span><h3>Transaction processing systems</h3><p>A <strong>TPS</strong> records every <strong>transaction</strong>, such as a cash register sale, an ATM withdrawal, or a return.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Internal</span><h3>Loyalty programs</h3><p>Rewards in exchange for tracking. Your purchases get linked to <em>you</em>.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Internal</span><h3>Enterprise software</h3><p>CRM, SCM, and ERP systems capture data across the value chain.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Internal</span><h3>Surveys</h3><p>Ask customers directly, although people don't always do what they say.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">External</span><h3>Data aggregators</h3><p>Firms that collect and resell data, such as credit histories or demographics. If rivals can buy the same data, it isn't an advantage.</p></article>
+        </div>
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · The Starbucks app</span>
+          <p>The Starbucks Rewards app combines payment, ordering ahead, and rewards. It gives Starbucks detailed data on what each
+            customer buys, when, and where. Starbucks uses that data for personalized offers and smarter store planning.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Data Rich, Info Poor ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Data Rich, Info Poor, region". -->
+      <section id="data-poor" aria-labelledby="data-poor-h">
+        <span class="eyebrow">Section 11.4</span>
+        <h2 id="data-poor-h">Data Rich, Information Poor</h2>
+<p>Many firms have mountains of data but still can't answer basic questions. Why?</p>
+        <ol class="steps">
+          <li><strong>Incompatible systems</strong>Different departments use different software that can't easily share data.</li>
+          <li><strong>Legacy systems</strong>Older systems are hard to connect to new technology. They can trap valuable data like a prison.</li>
+          <li><strong>Operational databases are busy</strong>Running heavy analysis on the live sales database could slow down checkout for customers.</li>
+          <li><strong>Privacy laws</strong>Rules limit how some data can be used, shared, or kept.</li>
+        </ol>
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · Airbnb</span>
+          <p>Airbnb studies millions of bookings to suggest prices to hosts based on location, season, and local events.
+            Hosts earn more, and Airbnb's marketplace works better.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Warehouses &amp;amp; Lakes ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Warehouses &amp;amp; Lakes, region". -->
+      <section id="warehouses" aria-labelledby="warehouses-h">
+        <span class="eyebrow">Section 11.5</span>
+        <h2 id="warehouses-h">Data Warehouses, Data Marts &amp; Data Lakes</h2>
+<figure class="diagram">
+          <svg viewBox="0 0 760 270" role="img" aria-labelledby="wh-title wh-desc">
+            <title id="wh-title">From scattered data to decisions</title>
+            <desc id="wh-desc">Data from sales, CRM, the website, and outside sources flows through ETL (extract,
+              transform, load) into a data warehouse or data lake, which feeds BI tools and dashboards used by managers.</desc>
+            <defs><marker id="wh-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#0a6a9c"/></marker></defs>
+            <g text-anchor="middle">
+              <rect x="10" y="20"  width="140" height="44" rx="8" fill="#e3edf8"/><text x="80" y="47" class="svg-label">Sales (TPS)</text>
+              <rect x="10" y="78"  width="140" height="44" rx="8" fill="#e3edf8"/><text x="80" y="105" class="svg-label">CRM / ERP</text>
+              <rect x="10" y="136" width="140" height="44" rx="8" fill="#e3edf8"/><text x="80" y="163" class="svg-label">Website &amp; app</text>
+              <rect x="10" y="194" width="140" height="44" rx="8" fill="#e3edf8"/><text x="80" y="221" class="svg-label">Outside data</text>
+              <rect x="215" y="95" width="120" height="70" rx="10" fill="#fbc04a"/><text x="275" y="127" class="svg-label">ETL</text><text x="275" y="147" class="svg-small">clean &amp; combine</text>
+              <rect x="400" y="80" width="160" height="100" rx="10" fill="#0b2f5b"/><text x="480" y="122" class="svg-label" style="fill:#fff">Data warehouse</text><text x="480" y="144" class="svg-label" style="fill:#fff">or data lake</text>
+              <rect x="620" y="80" width="130" height="100" rx="10" fill="#29a9e0"/><text x="685" y="122" class="svg-label">BI tools &amp;</text><text x="685" y="144" class="svg-label">dashboards</text>
+            </g>
+            <g stroke="#0a6a9c" stroke-width="2.5" fill="none" marker-end="url(#wh-arrow)">
+              <path d="M152 42 L212 115"/><path d="M152 100 L212 122"/><path d="M152 158 L212 138"/><path d="M152 216 L212 148"/>
+              <path d="M337 130 L396 130"/><path d="M562 130 L616 130"/>
+            </g>
+          </svg>
+          <figcaption>ETL pulls data from many systems, cleans it into one format, and loads it where analysts can use it safely.</figcaption>
+        </figure>
+        <div class="table-wrap">
+          <table>
+            <caption>Storage for analysis</caption>
+            <thead><tr><th scope="col">Term</th><th scope="col">What it is</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Data warehouse</th><td>Combined, cleaned databases built to support decisions across the whole firm</td></tr>
+              <tr><th scope="row">Data mart</th><td>A smaller warehouse focused on one problem or department, like marketing</td></tr>
+              <tr><th scope="row">Data lake</th><td>Stores structured <em>and</em> raw, unstructured data (text, images, logs) for flexible Big Data analysis. Tools like <strong>Hadoop</strong> help manage it.</td></tr>
+              <tr><th scope="row">Data cloud</th><td>A cloud service (like Snowflake) that combines data from many sources for analysis</td></tr>
+              <tr><th scope="row">OLAP / data cube</th><td>Pre-summarized data that allows very fast “slice and dice” reporting</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="callout callout--why" aria-label="Why it matters to you">
+          <span class="callout__title">Why it matters to you · Data careers</span>
+          <p>Firms struggle to find people who can clean, analyze, and explain data. Data science and analytics skills are in high demand, and
+            they matter just as much for preparing clean data to train AI.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: The BI Toolkit ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "The BI Toolkit, region". -->
+      <section id="bi-toolkit" aria-labelledby="bi-toolkit-h">
+        <span class="eyebrow">Section 11.6</span>
+        <h2 id="bi-toolkit-h">The Business Intelligence Toolkit</h2>
+<div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Reports</span><h3>Canned vs. ad hoc</h3><p><strong>Canned reports</strong> arrive on a regular schedule in a fixed format. <strong>Ad hoc</strong> tools let you build custom reports when you need them.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Visuals</span><h3>Dashboards</h3><p>A heads-up display of key metrics, like a car's dashboard for a business, built with <strong>data visualization</strong>.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Code</span><h3>Python, R &amp; SQL</h3><p>Programming languages that analysts use to query, model, and chart data.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">AI</span><h3>Data mining &amp; machine learning</h3><p>Computers search large datasets for hidden patterns and build predictive models.</p></article>
+        </div>
+        <p>Data mining is used for customer segmentation, fraud detection, market basket analysis (what's bought together),
+          predicting which customers will leave, and personalizing <strong>omnichannel</strong> experiences.</p>
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · When models fail</span>
+          <p>Models can mislead when the data is biased or dirty, when the world changes and the past no longer predicts the future,
+            or when the model is <strong>over-engineered</strong> (fit so tightly to old data that it fails on new data). Correlation isn't
+            causation.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Case: Walmart ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Case: Walmart, region". -->
+      <section id="walmart" aria-labelledby="walmart-h">
+        <span class="eyebrow">Section 11.7 · Case</span>
+        <h2 id="walmart-h">Case: Data and the Rise of Walmart</h2>
+<p>Walmart became the world's largest retailer by running an incredibly efficient, <strong>data-driven value chain</strong>.</p>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Data</span><h3>Sharing with suppliers</h3><p>Walmart's Retail Link system shows suppliers their sales at each store, so they can restock exactly what's needed.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Data</span><h3>Mining prowess</h3><p>Walmart famously found that before hurricanes, sales jump for flashlights, and also for strawberry Pop-Tarts.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Tech</span><h3>Robots &amp; VR</h3><p>Automated distribution centers, shelf-scanning robots, and VR training for employees.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Growth</span><h3>E-commerce &amp; ads</h3><p>Walmart is betting big on online sales and a fast-growing advertising business powered by its shopper data.</p></article>
+        </div>
+        <aside class="callout callout--watch" aria-label="Challenges">
+          <span class="callout__title">Challenges ahead</span>
+          <p>Walmart faces Amazon online, discount rivals in stores, and pressure over wages and working conditions. It also keeps
+            some data secret: it stopped selling its data to outside aggregators to protect its advantage.</p>
+        </aside>
+      </section>
+
+      <!-- ===== KEY TERMS =====
+           A <dl> (description list) is the right HTML element for
+           term + definition pairs: <dt> = term, <dd> = definition. -->
+      <section id="key-terms" aria-labelledby="key-terms-h">
+        <span class="eyebrow">Vocabulary</span>
+        <h2 id="key-terms-h">Key Terms</h2>
+        <p>Want every term from every module in one place? Try the <a href="../glossary.html">searchable glossary</a>.</p>
+        <dl class="terms">
+          <div>
+            <dt>Big Data</dt>
+            <dd>Huge, often unstructured datasets too large for traditional tools to handle easily.</dd>
+          </div>
+          <div>
+            <dt>Analytics</dt>
+            <dd>Using data, statistics, and models to drive decisions and actions.</dd>
+          </div>
+          <div>
+            <dt>Business intelligence (BI)</dt>
+            <dd>Reporting, data exploration, queries, and analysis that support decisions.</dd>
+          </div>
+          <div>
+            <dt>Data</dt>
+            <dd>Raw facts and figures.</dd>
+          </div>
+          <div>
+            <dt>Information</dt>
+            <dd>Data in context that answers a question or supports a decision.</dd>
+          </div>
+          <div>
+            <dt>Knowledge</dt>
+            <dd>Insight gained from experience and expertise.</dd>
+          </div>
+          <div>
+            <dt>Database</dt>
+            <dd>A single table or a collection of related tables.</dd>
+          </div>
+          <div>
+            <dt>Table (file)</dt>
+            <dd>A list of data arranged in columns (fields) and rows (records).</dd>
+          </div>
+          <div>
+            <dt>Field (column)</dt>
+            <dd>One category of data in a table, like last name or date of birth.</dd>
+          </div>
+          <div>
+            <dt>Record (row)</dt>
+            <dd>One instance of whatever a table tracks, like one student or one sale.</dd>
+          </div>
+          <div>
+            <dt>Relational database</dt>
+            <dd>The most common database type, where tables are linked through shared keys.</dd>
+          </div>
+          <div>
+            <dt>Primary key</dt>
+            <dd>A field that uniquely identifies each record in a table.</dd>
+          </div>
+          <div>
+            <dt>SQL</dt>
+            <dd>Structured Query Language: the standard language for creating and querying databases.</dd>
+          </div>
+          <div>
+            <dt>Database administrator (DBA)</dt>
+            <dd>The person responsible for designing, securing, backing up, and maintaining databases.</dd>
+          </div>
+          <div>
+            <dt>Transaction processing system (TPS)</dt>
+            <dd>A system that records business transactions like sales, withdrawals, or returns.</dd>
+          </div>
+          <div>
+            <dt>Loyalty program</dt>
+            <dd>Rewards that encourage repeat purchases and let a firm track customer activity.</dd>
+          </div>
+          <div>
+            <dt>Data aggregator</dt>
+            <dd>A firm that collects data and resells it.</dd>
+          </div>
+          <div>
+            <dt>Legacy system</dt>
+            <dd>An older system that's often incompatible with newer technology.</dd>
+          </div>
+          <div>
+            <dt>Data warehouse</dt>
+            <dd>A set of databases combined and cleaned to support decision-making.</dd>
+          </div>
+          <div>
+            <dt>Data mart</dt>
+            <dd>A smaller data warehouse focused on one department or problem.</dd>
+          </div>
+          <div>
+            <dt>Data lake</dt>
+            <dd>Storage that holds both structured and raw, unstructured data for Big Data analysis.</dd>
+          </div>
+          <div>
+            <dt>ETL</dt>
+            <dd>Extract, transform, load: pulling data from many sources, cleaning it, and loading it into one place.</dd>
+          </div>
+          <div>
+            <dt>Dashboard</dt>
+            <dd>A visual display of key metrics for a quick read on performance.</dd>
+          </div>
+          <div>
+            <dt>Data mining</dt>
+            <dd>Using computers to find hidden patterns and build models from large datasets.</dd>
+          </div>
+          <div>
+            <dt>Over-engineering</dt>
+            <dd>Building a model so tightly fit to old data that it fails on new data.</dd>
+          </div>
+          <div>
+            <dt>Dynamic pricing</dt>
+            <dd>Changing prices in real time based on demand and other conditions.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- ===== FLASHCARDS =====
+           Each card is a <button>, so it works with a mouse, a touch
+           screen, AND a keyboard. main.js flips it (section 3). -->
+      <section id="flashcards" aria-labelledby="flashcards-h">
+        <span class="eyebrow">Practice</span>
+        <h2 id="flashcards-h">Flashcards</h2>
+        <p>Say the definition out loud, then flip the card to check yourself. Testing yourself like this
+          (called <strong>retrieval practice</strong>) helps you remember more than rereading does.</p>
+        <button class="btn btn--ghost" type="button" data-shuffle>Shuffle cards</button>
+        <ul class="flashcards">
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Big Data<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Huge, often unstructured datasets too large for traditional tools to handle easily.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Analytics<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Using data, statistics, and models to drive decisions and actions.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Business intelligence (BI)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Reporting, data exploration, queries, and analysis that support decisions.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Data<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Raw facts and figures.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Information<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Data in context that answers a question or supports a decision.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Knowledge<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Insight gained from experience and expertise.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Database<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A single table or a collection of related tables.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Table (file)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A list of data arranged in columns (fields) and rows (records).</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Field (column)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">One category of data in a table, like last name or date of birth.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Record (row)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">One instance of whatever a table tracks, like one student or one sale.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Relational database<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The most common database type, where tables are linked through shared keys.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Primary key<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A field that uniquely identifies each record in a table.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">SQL<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Structured Query Language: the standard language for creating and querying databases.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Database administrator (DBA)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The person responsible for designing, securing, backing up, and maintaining databases.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Transaction processing system (TPS)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A system that records business transactions like sales, withdrawals, or returns.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Loyalty program<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Rewards that encourage repeat purchases and let a firm track customer activity.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Data aggregator<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A firm that collects data and resells it.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Legacy system<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">An older system that's often incompatible with newer technology.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Data warehouse<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A set of databases combined and cleaned to support decision-making.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Data mart<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A smaller data warehouse focused on one department or problem.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Data lake<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Storage that holds both structured and raw, unstructured data for Big Data analysis.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">ETL<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Extract, transform, load: pulling data from many sources, cleaning it, and loading it into one place.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Dashboard<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A visual display of key metrics for a quick read on performance.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Data mining<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Using computers to find hidden patterns and build models from large datasets.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Over-engineering<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Building a model so tightly fit to old data that it fails on new data.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Dynamic pricing<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Changing prices in real time based on demand and other conditions.</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===== QUICK CHECK QUIZ =====
+           A <form> with <fieldset>/<legend> groups each question with
+           its choices — screen readers read the question with each option.
+           main.js grades it (section 4). Practice only — not graded. -->
+      <section id="quick-check" aria-labelledby="quick-check-h">
+        <span class="eyebrow">Self-check · Not graded</span>
+        <h2 id="quick-check-h">Quick Check</h2>
+        <form class="quiz" data-quiz>
+          <fieldset data-answer="b" data-explain="It&#x27;s data put in context to answer a question, which makes it information.">
+            <legend>1. “Sales of hot chocolate rise 40% when the temperature drops below 40°F.” This is an example of…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="a">
+              <span>Raw data</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="b">
+              <span>Information</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="c">
+              <span>A primary key</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="d">
+              <span>A legacy system</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Rows are records. Columns are fields.">
+            <legend>2. In a database table of customers, one complete row for one customer is called a…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="a">
+              <span>Field</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="b">
+              <span>Record</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="c">
+              <span>Query</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="d">
+              <span>Data mart</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Warehouses combine cleaned data from many systems and keep analysis from bogging down operational systems.">
+            <legend>3. Why do firms copy data into a separate data warehouse instead of analyzing the live sales database?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="a">
+              <span>Warehouses are cheaper to delete</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="b">
+              <span>Heavy analysis could slow down day-to-day operations, and data from different systems needs to be combined</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="c">
+              <span>Live databases can't store numbers</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="d">
+              <span>It's required by law</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="ETL pulls data from sources, cleans it into a common format, and loads it for analysis.">
+            <legend>4. What does ETL stand for?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="a">
+              <span>Enter, Test, Launch</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="b">
+              <span>Extract, Transform, Load</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="c">
+              <span>Evaluate, Track, Log</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="d">
+              <span>Encrypt, Transfer, Lock</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="a" data-explain="An over-engineered model fits old data too closely and doesn&#x27;t generalize to new data.">
+            <legend>5. A model predicts last year's sales perfectly but fails badly on this year's data. It was probably…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="a">
+              <span>Over-engineered</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="b">
+              <span>Using SQL</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="c">
+              <span>A canned report</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="d">
+              <span>Stored in a data lake</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <div class="quiz__actions">
+            <button class="btn" type="submit">Check my answers</button>
+            <button class="btn btn--ghost" type="reset">Try again</button>
+            <p class="quiz__score" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+
+      <!-- ===== MARK COMPLETE (saved in your browser by main.js, section 5) ===== -->
+      <div class="complete-panel">
+        <div>
+          <h2>Finished Module 11?</h2>
+          <p>Track your progress — it shows up on the home page.</p>
+        </div>
+        <!-- aria-pressed makes this a "toggle button" for screen readers -->
+        <button class="btn btn--gold" type="button" data-complete="11" aria-pressed="false">Mark module complete</button>
+      </div>
+
+      <!-- ===== PREVIOUS / NEXT ===== -->
+      <nav class="pager" aria-label="Module navigation">
+        <a href="module-10.html" rel="prev"><span class="pager__dir">← Previous</span>Module 10: The Changing Software Landscape</a>
+        <a class="pager__next" href="module-12.html" rel="next"><span class="pager__dir">Next →</span>Module 12: Artificial Intelligence in Business</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p><strong>CTS 115: Information Systems Business Concepts</strong> — a student study companion.</p>
+      <p>This site summarizes key ideas in plain language. It does not replace your textbook,
+        <em>Information Systems: A Manager’s Guide to Harnessing Technology</em> (FlatWorld),
+        which has the full readings, cases, and videos. Always check Blackboard for due dates and assignments.</p>
+      <p>Built with plain HTML, CSS, and JavaScript. Curious how it works? Right-click anywhere and choose
+        “View Page Source” — the code is full of comments written for learners.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts go at the END of the body so the HTML loads first.
+       (You could also use the "defer" attribute in the <head>.) -->
+  <script src="../js/main.js"></script>
+</body>
+</html>

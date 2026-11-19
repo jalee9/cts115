@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!-- The DOCTYPE tells the browser this is a modern HTML5 document. -->
+<!-- lang="en" helps screen readers pronounce words correctly. -->
+<html lang="en">
+<head>
+  <!-- charset: lets the page show any character (é, —, “ ”) correctly -->
+  <meta charset="UTF-8">
+  <!-- viewport: makes the page fit phone screens instead of zooming out -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The description often appears under the link in search results -->
+  <meta name="description" content="Searchable glossary of every key term in CTS 115.">
+  <title>Glossary | CTS 115 Study Guide</title>
+
+  <!-- Google Fonts: "preconnect" starts the connection early so the font loads faster -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Our one stylesheet. "" moves up a folder when needed. -->
+  <link rel="stylesheet" href="css/styles.css">
+</head><body>
+  <!-- Skip link: the first thing a keyboard user reaches with Tab -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- <header> is a "landmark": screen readers can jump straight to it -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="index.html">CTS <span>115</span> Study Guide</a>
+
+      <!-- aria-label names this navigation for screen-reader users -->
+      <nav class="site-nav" aria-label="Main">
+        <!-- aria-expanded tells assistive tech whether the menu is open.
+             aria-controls points to the id of the list it opens. -->
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <ul id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#modules">Modules</a></li>
+          <li><a href="glossary.html" aria-current="page">Glossary</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page page--single">
+    <main id="main" class="content" tabindex="-1">
+      <span class="eyebrow">All modules</span>
+      <h1>Glossary</h1>
+      <p>Type a word to search every term and definition, or filter by module.</p>
+
+      <!-- role="search" marks this as a search landmark for screen readers -->
+      <div class="glossary-tools" role="search">
+        <div class="field">
+          <!-- Every form control needs a <label>. The "for" attribute
+               must match the input's id — that's what links them. -->
+          <label for="glossary-search">Search terms</label>
+          <input id="glossary-search" type="search" placeholder="Try “cloud” or “network effects”" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="glossary-module">Module</label>
+          <select id="glossary-module">
+            <option value="all">All modules</option>
+            <option value="1">Module 1: Technology &amp; the Modern Enterprise</option>
+            <option value="2">Module 2: Technology &amp; Business Strategy</option>
+            <option value="3">Module 3: Computing Power &amp; Innovation</option>
+            <option value="4">Module 4: Disruptive Technology</option>
+            <option value="5">Module 5: Amazon &amp; Digital Business</option>
+            <option value="6">Module 6: Global E-Commerce</option>
+            <option value="7">Module 7: Platforms &amp; Network Effects</option>
+            <option value="8">Module 8: Social Platforms &amp; Privacy</option>
+            <option value="9">Module 9: Understanding Software</option>
+            <option value="10">Module 10: The Changing Software Landscape</option>
+            <option value="11">Module 11: Data &amp; Competitive Advantage</option>
+            <option value="12">Module 12: Artificial Intelligence in Business</option>
+            <option value="13">Module 13: Digital Advertising &amp; Privacy</option>
+            <option value="14">Module 14: Internet &amp; Telecommunications</option>
+            <option value="15">Module 15: Information Security</option>
+            <option value="16">Module 16: Google &amp; the Digital Economy</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- aria-live="polite": when this text changes, screen readers
+           read it out at the next pause — e.g., "12 terms found". -->
+      <p id="glossary-count" class="result-count" aria-live="polite"></p>
+
+      <!-- glossary.js fills this list in -->
+      <ul id="glossary-results" class="glossary-list"></ul>
+
+      <noscript><p>The glossary search needs JavaScript. Every term is also listed on its module page under “Key Terms.”</p></noscript>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p><strong>CTS 115: Information Systems Business Concepts</strong> — a student study companion.</p>
+      <p>This site summarizes key ideas in plain language. It does not replace your textbook,
+        <em>Information Systems: A Manager’s Guide to Harnessing Technology</em> (FlatWorld),
+        which has the full readings, cases, and videos. Always check Blackboard for due dates and assignments.</p>
+      <p>Built with plain HTML, CSS, and JavaScript. Curious how it works? Right-click anywhere and choose
+        “View Page Source” — the code is full of comments written for learners.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts go at the END of the body so the HTML loads first.
+       (You could also use the "defer" attribute in the <head>.) -->
+  <script src="js/main.js"></script>
+  <!-- The data file must load BEFORE the script that uses it -->
+  <script src="js/glossary-data.js"></script>
+  <script src="js/glossary.js"></script>
+</body>
+</html>

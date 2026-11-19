@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<!-- The DOCTYPE tells the browser this is a modern HTML5 document. -->
+<!-- lang="en" helps screen readers pronounce words correctly. -->
+<html lang="en">
+<head>
+  <!-- charset: lets the page show any character (é, —, “ ”) correctly -->
+  <meta charset="UTF-8">
+  <!-- viewport: makes the page fit phone screens instead of zooming out -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The description often appears under the link in search results -->
+  <meta name="description" content="Module 6: How Shein and Temu used data, AI, software-coordinated suppliers, and trade rules to grow globally.">
+  <title>Module 6: Global E-Commerce | CTS 115 Study Guide</title>
+
+  <!-- Google Fonts: "preconnect" starts the connection early so the font loads faster -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Our one stylesheet. "../" moves up a folder when needed. -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head><body>
+  <!-- Skip link: the first thing a keyboard user reaches with Tab -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- <header> is a "landmark": screen readers can jump straight to it -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../index.html">CTS <span>115</span> Study Guide</a>
+
+      <!-- aria-label names this navigation for screen-reader users -->
+      <nav class="site-nav" aria-label="Main">
+        <!-- aria-expanded tells assistive tech whether the menu is open.
+             aria-controls points to the id of the list it opens. -->
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <ul id="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#modules" aria-current="page">Modules</a></li>
+          <li><a href="../glossary.html">Glossary</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== MODULE BANNER =====
+       Same look as the course banners, built with HTML + CSS
+       (see section 5 of styles.css). -->
+  <div class="hero hero--module">
+    <div class="hero__inner">
+      <p class="module-badge">
+        <span class="module-badge__label">MODULE</span>
+        <span class="module-badge__num">6</span>
+      </p>
+      <div>
+        <!-- Each page has exactly ONE <h1>: the main topic of the page -->
+        <h1>Global E-Commerce</h1>
+        <p class="hero__subtitle">Chapter 6: Shein and Temu: E-commerce Giants from Asia Grow Globally</p>
+        <ul class="chips" aria-label="About this module">
+          <li>≈ 20 min read</li>
+          <li>11 key terms</li>
+          <li>5-question self-check</li>
+        </ul>
+      </div>
+      <svg class="hero__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="20" cy="27" r="15"/><ellipse cx="20" cy="27" rx="6" ry="15"/><path d="M5 27h30"/><path d="M36 20s-7-7-7-12a7 7 0 0 1 14 0c0 5-7 12-7 12z"/><circle cx="36" cy="8" r="2.2"/></svg>
+    </div>
+  </div>
+
+  <!-- ===== PAGE LAYOUT: sidebar + content (CSS Grid, section 6) ===== -->
+  <div class="page">
+
+    <!-- "On this page" sidebar. It's a <nav> because it's a set of links. -->
+    <nav class="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <ol>
+          <li><a href="#big-picture">The Big Picture</a></li>
+          <li><a href="#goals">What You’ll Learn</a></li>
+          <li><a href="#overnight-giant">The Overnight Giant</a></li>
+          <li><a href="#shein-model">The Shein Model</a></li>
+          <li><a href="#challenges">Challenges &amp; Criticism</a></li>
+          <li><a href="#future">Shein’s Future &amp; Temu</a></li>
+          <li><a href="#key-terms">Key Terms</a></li>
+          <li><a href="#flashcards">Flashcards</a></li>
+          <li><a href="#quick-check">Quick Check</a></li>
+      </ol>
+    </nav>
+
+    <!-- <main> holds the page's unique content. id="main" is where the
+         skip link jumps to. tabindex="-1" lets it receive that focus. -->
+    <main id="main" class="content" tabindex="-1">
+
+      <!-- ===== THE BIG PICTURE: the whole module in a few bullets ===== -->
+      <section id="big-picture" aria-labelledby="big-picture-h">
+        <span class="eyebrow">Start here</span>
+        <h2 id="big-picture-h">The Big Picture</h2>
+        <div class="big-picture">
+          <ul>
+          <li><strong>Shein</strong> grew from a little-known startup into a global fast-fashion giant, out-“Zara-ing” Zara with speed, selection, and rock-bottom prices.</li>
+          <li>Its engine: <strong>data and AI</strong> spot trends, thousands of small suppliers make <strong>tiny test batches</strong>, and software reorders only the hits.</li>
+          <li>Shipping cheap packages directly to shoppers relied on the U.S. <strong>de minimis</strong> rule, which the U.S. ended in 2025.</li>
+          <li>Shein faces serious criticism over <strong>labor conditions, copied designs, unsafe products, and environmental harm</strong>.</li>
+          <li>Rival <strong>Temu</strong> grew even faster with heavy ads, gamified shopping, and an Amazon-like marketplace.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== LEARNING GOALS ===== -->
+      <section id="goals" aria-labelledby="goals-h">
+        <span class="eyebrow">Your goals</span>
+        <h2 id="goals-h">What You’ll Learn</h2>
+        <p>By the end of this module, you should be able to:</p>
+        <ul class="goals">
+          <li>Explain how Shein's business model differs from traditional fast-fashion firms like Zara (owned by Inditex).</li>
+          <li>Describe how data and AI guide Shein's product design, and the risks of that approach.</li>
+          <li>Explain how information systems coordinate thousands of suppliers to ship directly to consumers.</li>
+          <li>Define the de minimis provision and explain why it mattered.</li>
+          <li>Identify the major ethical, legal, and environmental challenges Shein faces.</li>
+          <li>Compare Shein's growth strategies with competitors like Temu.</li>
+        </ul>
+      </section>
+
+      <!-- ===== LESSON SECTION: The Overnight Giant ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "The Overnight Giant, region". -->
+      <section id="overnight-giant" aria-labelledby="overnight-giant-h">
+        <span class="eyebrow">Section 6.1</span>
+        <h2 id="overnight-giant-h">The Overnight Fashion Giant</h2>
+<p>Shein, founded in China and now based in Singapore, rarely sold to Chinese shoppers. Instead, it targeted young shoppers in the
+          U.S., Europe, and beyond, almost entirely through its app and social media. Within a few years it became one of
+          the world's largest fashion retailers. Fellow upstart <strong>Temu</strong>, owned by China's PDD Holdings, followed with a
+          “sell-everything-cheap” marketplace.</p>
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · Fast growth ≠ profit</span>
+          <p>Both firms grew quickly, but profitability and valuation have been uncertain. Shein's value has dropped in
+            some investment rounds (a <strong>down-round</strong>). Growth bought with heavy spending isn't the same as a
+            lasting advantage.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: The Shein Model ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "The Shein Model, region". -->
+      <section id="shein-model" aria-labelledby="shein-model-h">
+        <span class="eyebrow">Section 6.2</span>
+        <h2 id="shein-model-h">Shein’s Model: Data, Tiny Batches, and Speed</h2>
+<p>Zara (owned by Inditex) changed fashion by getting new styles to stores in weeks instead of months. Shein went further: it uses
+          no physical stores, offers far more styles, and decides what to produce based on real-time data.</p>
+
+        <figure class="diagram">
+          <svg viewBox="0 0 760 330" role="img" aria-labelledby="sh-title sh-desc">
+            <title id="sh-title">Shein's test-and-repeat loop</title>
+            <desc id="sh-desc">A four-step cycle. One: data and AI spot trends from searches, social media, and app
+              behavior. Two: suppliers make a tiny test batch of a few hundred items. Three: the item goes live in the
+              app and sales are tracked. Four: winners are reordered at scale and losers are dropped. Then the cycle
+              repeats.</desc>
+            <defs><marker id="sh-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#0a6a9c"/></marker></defs>
+            <g stroke="#0a6a9c" stroke-width="3" fill="none" marker-end="url(#sh-arrow)">
+              <path d="M300 70 L455 70"/><path d="M600 110 L600 210"/><path d="M455 260 L300 260"/><path d="M160 210 L160 110"/>
+            </g>
+            <g text-anchor="middle">
+              <rect x="40" y="30" width="250" height="80" rx="12" fill="#0b2f5b"/><text x="165" y="62" class="svg-label" style="fill:#fbc04a">1. Spot trends</text><text x="165" y="86" class="svg-small" style="fill:#fff">AI mines searches, social, app data</text>
+              <rect x="470" y="30" width="260" height="80" rx="12" fill="#0b2f5b"/><text x="600" y="62" class="svg-label" style="fill:#fbc04a">2. Make a tiny batch</text><text x="600" y="86" class="svg-small" style="fill:#fff">A few hundred pieces per design</text>
+              <rect x="470" y="220" width="260" height="80" rx="12" fill="#0b2f5b"/><text x="600" y="252" class="svg-label" style="fill:#fbc04a">3. Test in the app</text><text x="600" y="276" class="svg-small" style="fill:#fff">Track clicks, carts, and sales</text>
+              <rect x="40" y="220" width="250" height="80" rx="12" fill="#0b2f5b"/><text x="165" y="252" class="svg-label" style="fill:#fbc04a">4. Scale or drop</text><text x="165" y="276" class="svg-small" style="fill:#fff">Reorder winners, cut losers</text>
+            </g>
+            <text x="380" y="170" text-anchor="middle" class="svg-title">Repeat thousands</text>
+            <text x="380" y="192" text-anchor="middle" class="svg-title">of times a week</text>
+          </svg>
+          <figcaption>Shein's loop works like a giant A/B test for clothing: produce a little, measure, then scale only the hits.</figcaption>
+        </figure>
+
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Data</span><h3>“Data is greater than Vogue”</h3><p>Instead of relying on a few expert designers' instincts, Shein follows what shoppers actually search, click, and buy.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Suppliers</span><h3>Software-coordinated factories</h3><p>Thousands of small contract manufacturers, mostly in southern China, receive orders through Shein's software. That's close to <strong>just-in-time manufacturing</strong>.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Marketing</span><h3>Influencers &amp; FOMO</h3><p>Influencer “hauls,” flash deals, and constant new arrivals create <strong>FOMO</strong> (fear of missing out) and keep users opening the app.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Shipping</span><h3>Direct to consumer</h3><p>Packages ship straight from China to shoppers' doors. No stores, no middlemen. That's the <strong>DTC</strong> model.</p></article>
+        </div>
+
+        <aside class="callout callout--example" aria-label="Key concept">
+          <span class="callout__title">Key concept · The de minimis rule (and its end)</span>
+          <p>The U.S. <strong>de minimis</strong> provision let packages worth $800 or less enter without import duties. Shipping
+            millions of small packages directly to shoppers let Shein and Temu skip tariffs that store-based rivals paid.
+            <strong>Update:</strong> the U.S. ended the exemption for China and Hong Kong in May 2025 and for all countries in
+            August 2025, a big hit to this cost advantage.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Challenges &amp;amp; Criticism ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Challenges &amp;amp; Criticism, region". -->
+      <section id="challenges" aria-labelledby="challenges-h">
+        <span class="eyebrow">Section 6.3</span>
+        <h2 id="challenges-h">Big Challenges and Blistering Criticism</h2>
+<div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Labor</span><h3>Supplier working conditions</h3><p>Investigations reported very long hours at some supplier factories. Contract manufacturing is flexible, but a firm can lose sight of how its partners treat workers.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Legal</span><h3>Knock-offs &amp; IP</h3><p>Independent designers and big brands have accused Shein of copying their designs. Some AI-picked products were also offensive.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Safety</span><h3>Dangerous products</h3><p>Tests have found harmful chemicals in some ultra-cheap items.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Planet</span><h3>Environmental toll</h3><p>Fast fashion is one of the most polluting industries. Cheap clothes worn a few times end up in landfills, and new laws may force changes.</p></article>
+        </div>
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · The influencer trip backlash</span>
+          <p>Shein flew influencers to tour a model factory, and their glowing videos sparked a massive backlash from viewers who
+            felt they were being used for PR. Lesson: audiences can spot staged authenticity.</p>
+        </aside>
+        <aside class="callout callout--why" aria-label="Why it matters">
+          <span class="callout__title">Think like a manager · AI picks aren't always smart picks</span>
+          <p>AI is great at spotting patterns in what's popular. But it can't judge whether a design is copied, offensive,
+            or unsafe. Humans still need to review what the algorithm suggests.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Shein’s Future &amp;amp; Temu ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Shein’s Future &amp;amp; Temu, region". -->
+      <section id="future" aria-labelledby="future-h">
+        <span class="eyebrow">Section 6.4</span>
+        <h2 id="future-h">Shein’s Future: Marketplaces, Stores, and Temu</h2>
+<ul class="goals">
+          <li><strong>Marketplace strategy:</strong> Shein now lets outside sellers list products, becoming less like Zara and more like Amazon.</li>
+          <li><strong>Into “meatspace”:</strong> Shein invested in the parent company of Forever 21 and has run pop-up shops in the physical world.</li>
+          <li><strong>Global expansion:</strong> Shein is adding warehouses and production outside China to deliver faster and reduce trade risk.</li>
+        </ul>
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Competitor · Temu</span>
+          <p>Temu offers nearly everything at ultra-low prices. It grew with huge ad budgets (including Super Bowl ads),
+            game-like app features, and rewards for recruiting friends, an approach called <strong>social shopping</strong>.
+            Temu cares less about profit on each sale and more about getting you to install the app and keep coming back.</p>
+        </aside>
+      </section>
+
+      <!-- ===== KEY TERMS =====
+           A <dl> (description list) is the right HTML element for
+           term + definition pairs: <dt> = term, <dd> = definition. -->
+      <section id="key-terms" aria-labelledby="key-terms-h">
+        <span class="eyebrow">Vocabulary</span>
+        <h2 id="key-terms-h">Key Terms</h2>
+        <p>Want every term from every module in one place? Try the <a href="../glossary.html">searchable glossary</a>.</p>
+        <dl class="terms">
+          <div>
+            <dt>Down-round</dt>
+            <dd>Raising money at a lower company valuation than in a previous funding round.</dd>
+          </div>
+          <div>
+            <dt>Fast fashion</dt>
+            <dd>Quickly turning runway and street trends into cheap clothing available in stores or online within weeks.</dd>
+          </div>
+          <div>
+            <dt>Just-in-time manufacturing</dt>
+            <dd>Producing goods in response to actual orders or demand instead of building large inventories in advance.</dd>
+          </div>
+          <div>
+            <dt>FOMO</dt>
+            <dd>Fear of missing out. Marketers use it to push quick purchases.</dd>
+          </div>
+          <div>
+            <dt>De minimis</dt>
+            <dd>A U.S. trade provision that let packages worth $800 or less enter duty-free. It ended for all countries in 2025.</dd>
+          </div>
+          <div>
+            <dt>DTC (direct-to-consumer)</dt>
+            <dd>Selling directly to customers without stores or other middlemen.</dd>
+          </div>
+          <div>
+            <dt>Contract manufacturing</dt>
+            <dd>Hiring outside factories to make your products.</dd>
+          </div>
+          <div>
+            <dt>Marketplace</dt>
+            <dd>A platform where outside sellers list and sell their products to the platform's customers.</dd>
+          </div>
+          <div>
+            <dt>Meatspace</dt>
+            <dd>Slang for the physical world, as opposed to online.</dd>
+          </div>
+          <div>
+            <dt>Ghost kitchen</dt>
+            <dd>A kitchen that prepares meals only for delivery, with no sit-down restaurant.</dd>
+          </div>
+          <div>
+            <dt>Social shopping</dt>
+            <dd>Shopping that uses social features like sharing, group deals, and referral rewards to drive sales.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- ===== FLASHCARDS =====
+           Each card is a <button>, so it works with a mouse, a touch
+           screen, AND a keyboard. main.js flips it (section 3). -->
+      <section id="flashcards" aria-labelledby="flashcards-h">
+        <span class="eyebrow">Practice</span>
+        <h2 id="flashcards-h">Flashcards</h2>
+        <p>Say the definition out loud, then flip the card to check yourself. Testing yourself like this
+          (called <strong>retrieval practice</strong>) helps you remember more than rereading does.</p>
+        <button class="btn btn--ghost" type="button" data-shuffle>Shuffle cards</button>
+        <ul class="flashcards">
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Down-round<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Raising money at a lower company valuation than in a previous funding round.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Fast fashion<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Quickly turning runway and street trends into cheap clothing available in stores or online within weeks.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Just-in-time manufacturing<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Producing goods in response to actual orders or demand instead of building large inventories in advance.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">FOMO<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Fear of missing out. Marketers use it to push quick purchases.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">De minimis<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A U.S. trade provision that let packages worth $800 or less enter duty-free. It ended for all countries in 2025.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">DTC (direct-to-consumer)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Selling directly to customers without stores or other middlemen.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Contract manufacturing<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Hiring outside factories to make your products.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Marketplace<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A platform where outside sellers list and sell their products to the platform's customers.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Meatspace<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Slang for the physical world, as opposed to online.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Ghost kitchen<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A kitchen that prepares meals only for delivery, with no sit-down restaurant.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Social shopping<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Shopping that uses social features like sharing, group deals, and referral rewards to drive sales.</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===== QUICK CHECK QUIZ =====
+           A <form> with <fieldset>/<legend> groups each question with
+           its choices — screen readers read the question with each option.
+           main.js grades it (section 4). Practice only — not graded. -->
+      <section id="quick-check" aria-labelledby="quick-check-h">
+        <span class="eyebrow">Self-check · Not graded</span>
+        <h2 id="quick-check-h">Quick Check</h2>
+        <form class="quiz" data-quiz>
+          <fieldset data-answer="b" data-explain="Small batches let Shein test designs cheaply, then reorder only the proven winners.">
+            <legend>1. What's the main purpose of Shein's tiny test batches?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="a">
+              <span>To save on shipping</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="b">
+              <span>To measure real demand before producing at scale</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="c">
+              <span>To avoid using data</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="d">
+              <span>To supply physical stores</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="a" data-explain="Packages worth $800 or less avoided duties. That advantage ended when the U.S. suspended the rule in 2025.">
+            <legend>2. Before 2025, the de minimis provision helped Shein and Temu by…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="a">
+              <span>Letting low-value packages enter the U.S. without import duties</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="b">
+              <span>Giving them government grants</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="c">
+              <span>Banning competitors</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="d">
+              <span>Requiring stores in every state</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="AI finds popular patterns but can&#x27;t judge legality, ethics, or safety, so human review is still needed.">
+            <legend>3. Shein's AI-driven design approach is risky mainly because…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="a">
+              <span>AI is always slower than humans</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="b">
+              <span>AI can recommend copied, offensive, or unsafe products without understanding them</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="c">
+              <span>AI can't read sales data</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="d">
+              <span>It requires physical stores</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="a" data-explain="Hosting third-party sellers makes Shein more like Amazon&#x27;s Marketplace.">
+            <legend>4. Shein letting outside sellers list products on its site is an example of…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="a">
+              <span>A marketplace strategy</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="b">
+              <span>A down-round</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="c">
+              <span>Just-in-time manufacturing</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="d">
+              <span>Meatspace</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Temu spent heavily on ads and social and gamified shopping features to grow its user base quickly.">
+            <legend>5. Which describes Temu's growth approach?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="a">
+              <span>Few ads and slow growth</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="b">
+              <span>Heavy advertising, gamified app features, and referral rewards</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="c">
+              <span>Only selling luxury goods</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="d">
+              <span>Physical stores only</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <div class="quiz__actions">
+            <button class="btn" type="submit">Check my answers</button>
+            <button class="btn btn--ghost" type="reset">Try again</button>
+            <p class="quiz__score" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+
+      <!-- ===== MARK COMPLETE (saved in your browser by main.js, section 5) ===== -->
+      <div class="complete-panel">
+        <div>
+          <h2>Finished Module 6?</h2>
+          <p>Track your progress — it shows up on the home page.</p>
+        </div>
+        <!-- aria-pressed makes this a "toggle button" for screen readers -->
+        <button class="btn btn--gold" type="button" data-complete="6" aria-pressed="false">Mark module complete</button>
+      </div>
+
+      <!-- ===== PREVIOUS / NEXT ===== -->
+      <nav class="pager" aria-label="Module navigation">
+        <a href="module-05.html" rel="prev"><span class="pager__dir">← Previous</span>Module 5: Amazon &amp; Digital Business</a>
+        <a class="pager__next" href="module-07.html" rel="next"><span class="pager__dir">Next →</span>Module 7: Platforms &amp; Network Effects</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p><strong>CTS 115: Information Systems Business Concepts</strong> — a student study companion.</p>
+      <p>This site summarizes key ideas in plain language. It does not replace your textbook,
+        <em>Information Systems: A Manager’s Guide to Harnessing Technology</em> (FlatWorld),
+        which has the full readings, cases, and videos. Always check Blackboard for due dates and assignments.</p>
+      <p>Built with plain HTML, CSS, and JavaScript. Curious how it works? Right-click anywhere and choose
+        “View Page Source” — the code is full of comments written for learners.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts go at the END of the body so the HTML loads first.
+       (You could also use the "defer" attribute in the <head>.) -->
+  <script src="../js/main.js"></script>
+</body>
+</html>

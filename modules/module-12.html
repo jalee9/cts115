@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<!-- The DOCTYPE tells the browser this is a modern HTML5 document. -->
+<!-- lang="en" helps screen readers pronounce words correctly. -->
+<html lang="en">
+<head>
+  <!-- charset: lets the page show any character (é, —, “ ”) correctly -->
+  <meta charset="UTF-8">
+  <!-- viewport: makes the page fit phone screens instead of zooming out -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The description often appears under the link in search results -->
+  <meta name="description" content="Module 12: What AI and generative AI are, how LLMs work, how AI is changing work, the risks, and building responsible AI.">
+  <title>Module 12: Artificial Intelligence in Business | CTS 115 Study Guide</title>
+
+  <!-- Google Fonts: "preconnect" starts the connection early so the font loads faster -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Our one stylesheet. "../" moves up a folder when needed. -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head><body>
+  <!-- Skip link: the first thing a keyboard user reaches with Tab -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- <header> is a "landmark": screen readers can jump straight to it -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../index.html">CTS <span>115</span> Study Guide</a>
+
+      <!-- aria-label names this navigation for screen-reader users -->
+      <nav class="site-nav" aria-label="Main">
+        <!-- aria-expanded tells assistive tech whether the menu is open.
+             aria-controls points to the id of the list it opens. -->
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <ul id="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#modules" aria-current="page">Modules</a></li>
+          <li><a href="../glossary.html">Glossary</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== MODULE BANNER =====
+       Same look as the course banners, built with HTML + CSS
+       (see section 5 of styles.css). -->
+  <div class="hero hero--module">
+    <div class="hero__inner">
+      <p class="module-badge">
+        <span class="module-badge__label">MODULE</span>
+        <span class="module-badge__num">12</span>
+      </p>
+      <div>
+        <!-- Each page has exactly ONE <h1>: the main topic of the page -->
+        <h1>Artificial Intelligence in Business</h1>
+        <p class="hero__subtitle">Chapter 12: AI—The Tech Impacting Nearly Every Industry</p>
+        <ul class="chips" aria-label="About this module">
+          <li>≈ 30 min read</li>
+          <li>25 key terms</li>
+          <li>5-question self-check</li>
+        </ul>
+      </div>
+      <svg class="hero__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 8a6 6 0 0 0-11 3 6 6 0 0 0-4 10 6 6 0 0 0 2 10 6 6 0 0 0 6 8 6 6 0 0 0 7 1zM26 8a6 6 0 0 1 11 3 6 6 0 0 1 4 10 6 6 0 0 1-2 10 6 6 0 0 1-6 8 6 6 0 0 1-7 1z"/><path d="M22 8v32M26 8v32M14 18h5M29 30h5M15 30l4-3M33 18l-4 3"/></svg>
+    </div>
+  </div>
+
+  <!-- ===== PAGE LAYOUT: sidebar + content (CSS Grid, section 6) ===== -->
+  <div class="page">
+
+    <!-- "On this page" sidebar. It's a <nav> because it's a set of links. -->
+    <nav class="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <ol>
+          <li><a href="#big-picture">The Big Picture</a></li>
+          <li><a href="#goals">What You’ll Learn</a></li>
+          <li><a href="#genai">What Is GenAI?</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#work">AI &amp; the Future of Work</a></li>
+          <li><a href="#risks">AI Risks</a></li>
+          <li><a href="#responsible">Responsible AI</a></li>
+          <li><a href="#spotify">Case: Spotify</a></li>
+          <li><a href="#key-terms">Key Terms</a></li>
+          <li><a href="#flashcards">Flashcards</a></li>
+          <li><a href="#quick-check">Quick Check</a></li>
+      </ol>
+    </nav>
+
+    <!-- <main> holds the page's unique content. id="main" is where the
+         skip link jumps to. tabindex="-1" lets it receive that focus. -->
+    <main id="main" class="content" tabindex="-1">
+
+      <!-- ===== THE BIG PICTURE: the whole module in a few bullets ===== -->
+      <section id="big-picture" aria-labelledby="big-picture-h">
+        <span class="eyebrow">Start here</span>
+        <h2 id="big-picture-h">The Big Picture</h2>
+        <div class="big-picture">
+          <ul>
+          <li><strong>Artificial intelligence</strong> is software that can do tasks that normally take human intelligence. <strong>Generative AI</strong> creates new text, images, audio, and video from a prompt.</li>
+          <li><strong>Large language models</strong> learn patterns from a huge training <strong>corpus</strong>. They predict likely next words, which makes them powerful and also able to <strong>hallucinate</strong>.</li>
+          <li>GenAI is changing nearly every job, from coding and design to accounting and law. <strong>Agentic AI</strong> can now plan and take actions on its own.</li>
+          <li>Real risks today include <strong>bias, deepfakes, security attacks, copyright questions, job shocks, and energy use</strong>.</li>
+          <li>Responsible AI takes <strong>testing, oversight, red teams, and clear policies</strong>, plus managers who ask hard questions.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== LEARNING GOALS ===== -->
+      <section id="goals" aria-labelledby="goals-h">
+        <span class="eyebrow">Your goals</span>
+        <h2 id="goals-h">What You’ll Learn</h2>
+        <p>By the end of this module, you should be able to:</p>
+        <ul class="goals">
+          <li>Define AI and generative AI, and explain the difference between GenAI, GPT, and ChatGPT.</li>
+          <li>Explain how LLMs are built, using terms like corpus, foundation model, parameters, and neural network.</li>
+          <li>Tell the difference between AI, machine learning, and deep learning, and describe supervised and self-supervised learning.</li>
+          <li>Give examples of how GenAI is changing work, and the trade-offs of building vs. licensing AI.</li>
+          <li>Identify current AI risks, including hallucinations, bias, prompt injection, data poisoning, deepfakes, and copyright.</li>
+          <li>Describe steps firms take to build more ethical, less risky AI systems.</li>
+        </ul>
+      </section>
+
+      <!-- ===== LESSON SECTION: What Is GenAI? ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "What Is GenAI?, region". -->
+      <section id="genai" aria-labelledby="genai-h">
+        <span class="eyebrow">Sections 12.1–12.2</span>
+        <h2 id="genai-h">Generative AI: This Is Something Different</h2>
+<p>AI has been around since the 1950s, with bursts of hype followed by <strong>AI winters</strong>, periods when interest and
+          funding dried up. Then, in late 2022, OpenAI's <strong>ChatGPT</strong> reached millions of users within days. For the first
+          time, anyone could type a <strong>prompt</strong> and get a fluent essay, code, or image.</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Untangling the names</caption>
+            <thead><tr><th scope="col">Term</th><th scope="col">What it is</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Generative AI</th><td>The <em>category</em>: AI that creates new media (text, images, audio, video)</td></tr>
+              <tr><th scope="row">GPT</th><td>OpenAI's family of <em>models</em> (Generative Pre-trained Transformer)</td></tr>
+              <tr><th scope="row">ChatGPT</th><td>The <em>product</em>: a chat app built on GPT models</td></tr>
+              <tr><th scope="row">Others</th><td>Google Gemini, Anthropic Claude, Meta Llama, Microsoft Copilot (which uses OpenAI models), DeepSeek, and more</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · Microsoft's big bet</span>
+          <p>Microsoft invested billions in OpenAI and built its models into Bing, Windows, and Office as “Copilot,” bringing
+            GenAI to hundreds of millions of workers.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: How It Works ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "How It Works, region". -->
+      <section id="how-it-works" aria-labelledby="how-it-works-h">
+        <span class="eyebrow">Section 12.3</span>
+        <h2 id="how-it-works-h">How Does This Stuff Really Work?</h2>
+<figure class="diagram">
+          <svg viewBox="0 0 760 340" role="img" aria-labelledby="ai-title ai-desc">
+            <title id="ai-title">AI, machine learning, deep learning, and generative AI</title>
+            <desc id="ai-desc">Four nested boxes. The outer one is artificial intelligence. Inside it is machine learning.
+              Inside that is deep learning, which uses neural networks. Inside that is generative AI, including large
+              language models.</desc>
+            <rect x="10" y="10" width="740" height="320" rx="24" fill="#e3edf8"/>
+            <rect x="40" y="80" width="680" height="240" rx="20" fill="#bfe3f5"/>
+            <rect x="70" y="150" width="620" height="160" rx="16" fill="#0a6a9c"/>
+            <rect x="100" y="222" width="560" height="78" rx="12" fill="#0b2f5b"/>
+            <text x="30" y="42" class="svg-label">Artificial intelligence</text>
+            <text x="30" y="64" class="svg-small">Software that mimics human thinking</text>
+            <text x="60" y="110" class="svg-label">Machine learning</text>
+            <text x="60" y="132" class="svg-small">Learns patterns from data</text>
+            <text x="90" y="180" class="svg-label" style="fill:#fff">Deep learning</text>
+            <text x="90" y="202" class="svg-small" style="fill:#fff">Layered neural networks</text>
+            <text x="380" y="256" text-anchor="middle" class="svg-label" style="fill:#fbc04a">Generative AI</text>
+            <text x="380" y="280" text-anchor="middle" class="svg-small" style="fill:#fff">LLMs, image and video models</text>
+          </svg>
+          <figcaption>Each box is a subset of the one around it. All GenAI is AI, but not all AI is generative.</figcaption>
+        </figure>
+
+        <h3>How a large language model is built</h3>
+        <ol class="steps">
+          <li><strong>Gather a corpus</strong>Collect a massive amount of training text from books, websites, code, and more.</li>
+          <li><strong>Train a foundation model</strong>A <strong>neural network</strong> learns patterns in how words relate, stored as billions of <strong>parameters</strong>. Google's 2017 “Transformer” design made this possible.</li>
+          <li><strong>Refine it</strong>Humans rate answers to tune the model's behavior (<strong>RLHF</strong>), or the model is trained to follow written principles (<strong>constitutional AI</strong>).</li>
+          <li><strong>Prompt it</strong>Users type requests. The model predicts the most likely next words, one piece at a time.</li>
+        </ol>
+
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Learning type</span><h3>Supervised</h3><p>Trained on labeled examples, like “this email is spam” and “this one isn't.”</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Learning type</span><h3>Self-supervised</h3><p>Finds patterns in unlabeled data on its own. LLMs learn this way by predicting missing or next words.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Older AI</span><h3>Expert systems</h3><p>Hand-written rules that mimic an expert's decisions, like early medical diagnosis tools.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Future?</span><h3>AGI</h3><p>Artificial general intelligence: AI that could learn any task like a human. It doesn't exist yet, and experts disagree on when or whether it will.</p></article>
+        </div>
+
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · Hallucinations</span>
+          <p>LLMs predict what <em>sounds</em> right, not what <em>is</em> right. They can confidently invent facts, sources, or
+            legal cases. Those are <strong>hallucinations</strong>. Always verify important outputs.</p>
+        </aside>
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · DeepSeek</span>
+          <p>In early 2025, Chinese startup DeepSeek released a model that rivaled top U.S. models and was reportedly trained
+            at a fraction of the cost. It shook assumptions that only firms with the biggest budgets could compete.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: AI &amp;amp; the Future of Work ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "AI &amp;amp; the Future of Work, region". -->
+      <section id="work" aria-labelledby="work-h">
+        <span class="eyebrow">Section 12.4</span>
+        <h2 id="work-h">GenAI: Changing Products and Work Itself</h2>
+<div class="table-wrap">
+          <table>
+            <caption>GenAI across the workplace</caption>
+            <thead><tr><th scope="col">Area</th><th scope="col">What's changing</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Office work</th><td>AI drafts emails, summarizes meetings, builds slides, and analyzes spreadsheets.</td></tr>
+              <tr><th scope="row">Programming</th><td>Tools like GitHub Copilot act like a <strong>pair programmer</strong>. “<strong>Vibe coding</strong>” means building apps by prompting AI, often without a formal plan.</td></tr>
+              <tr><th scope="row">Design</th><td>Adobe Firefly and similar tools generate and edit images from text.</td></tr>
+              <tr><th scope="row">Accounting &amp; law</th><td>AI reviews documents, extracts data (with tools like <strong>OCR</strong>), and drafts first versions.</td></tr>
+              <tr><th scope="row">Customer service</th><td>Chatbots answer questions, but poorly designed bots can frustrate customers and damage a brand.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="callout callout--why" aria-label="Key idea">
+          <span class="callout__title">Key idea · Agentic AI</span>
+          <p><strong>Agentic AI</strong> doesn't just answer. It can plan steps, use tools, and take actions toward a goal with
+            little human oversight, like booking travel or fixing code. That's powerful, and mistakes can now have real consequences.</p>
+        </aside>
+        <aside class="callout callout--why" aria-label="Think like a manager">
+          <span class="callout__title">Think like a manager · Build or license?</span>
+          <p>Licensing a model from OpenAI, Google, or Anthropic is fast and powerful. Building or customizing your own, often from
+            open models like Llama, gives you more control over data and costs, but it takes talent and computing power.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: AI Risks ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "AI Risks, region". -->
+      <section id="risks" aria-labelledby="risks-h">
+        <span class="eyebrow">Sections 12.5–12.6</span>
+        <h2 id="risks-h">Understanding AI Risks (Today, Not Sci-Fi)</h2>
+<div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Security</span><h3>Prompt injection</h3><p>Tricking an AI with crafted prompts so it ignores its rules or leaks data.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Security</span><h3>Data poisoning</h3><p>Feeding bad training data on purpose so the AI produces wrong results.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Fairness</span><h3>Bias</h3><p>AI learns from human-created data, so it can repeat stereotypes, like a translator that assumes doctors are “he.”</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Deception</span><h3>Deepfakes</h3><p>Realistic fake audio and video. Scammers clone voices to impersonate family members.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Legal</span><h3>Copyright</h3><p>Authors and artists are suing over whether training on their work without permission is legal. It's still unsettled.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Society</span><h3>Jobs, power &amp; energy</h3><p>Job disruption, a few giant firms gaining power, and data centers that use enormous amounts of electricity and water.</p></article>
+        </div>
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · The black box</span>
+          <p>Neural networks make decisions through billions of connections, and even their creators can't fully explain a given answer.
+            That's a problem when AI is used for loans, hiring, or medical decisions.</p>
+        </aside>
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · Hollywood strikes</span>
+          <p>In 2023, Hollywood writers and actors went on strike partly over AI. They won limits on how studios can use AI to
+            write scripts or copy actors' likenesses. Industries with strong unions and hard-to-replace talent have more power to push back.</p>
+        </aside>
+        <p>Even when AI works, adopting it is hard. Firms need clean data, skilled people, and <strong>change management</strong>
+          to help employees adapt to new ways of working.</p>
+      </section>
+      <!-- ===== LESSON SECTION: Responsible AI ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Responsible AI, region". -->
+      <section id="responsible" aria-labelledby="responsible-h">
+        <span class="eyebrow">Section 12.7</span>
+        <h2 id="responsible-h">Building More Responsible AI</h2>
+<ol class="steps">
+          <li><strong>Set standards</strong>Create clear AI policies, and use governance frameworks like <strong>COBIT</strong> and <strong>ITIL</strong>.</li>
+          <li><strong>Check the data</strong>Audit training data for bias, gaps, and privacy problems.</li>
+          <li><strong>Red team it</strong>Have an independent team try to break or misuse the system before launch.</li>
+          <li><strong>Keep humans in the loop</strong>Require human review for high-stakes decisions.</li>
+          <li><strong>Monitor and improve</strong>Keep testing after launch. Let users report problems.</li>
+        </ol>
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · Big data catches a killer</span>
+          <p>Investigators identified the “Golden State Killer” decades later by matching crime-scene DNA with relatives' profiles on a
+            public genealogy site. It shows the promise of big data, and the privacy questions it raises when data is used in ways people never expected.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Case: Spotify ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Case: Spotify, region". -->
+      <section id="spotify" aria-labelledby="spotify-h">
+        <span class="eyebrow">Section 12.8 · Case</span>
+        <h2 id="spotify-h">Case: AI as Your DJ at Spotify</h2>
+<p>Spotify bought the music-data firm <strong>The Echo Nest</strong> in 2014 to strengthen its recommendation skills. Its AI combines
+          several kinds of data:</p>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Data 1</span><h3>Listening behavior</h3><p>What you play, skip, save, and add to playlists, compared with millions of similar listeners.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Data 2</span><h3>The audio itself</h3><p>Tempo, energy, “danceability,” and other features analyzed from each track.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Data 3</span><h3>What people write</h3><p>Blogs, reviews, and playlist titles that describe songs and artists.</p></article>
+        </div>
+        <p>The result is personalized features like Discover Weekly and an AI DJ that talks to you between songs. Personalization is a big reason
+          listeners stay. Every play makes the recommendations better, which makes the service harder to leave.</p>
+      </section>
+
+      <!-- ===== KEY TERMS =====
+           A <dl> (description list) is the right HTML element for
+           term + definition pairs: <dt> = term, <dd> = definition. -->
+      <section id="key-terms" aria-labelledby="key-terms-h">
+        <span class="eyebrow">Vocabulary</span>
+        <h2 id="key-terms-h">Key Terms</h2>
+        <p>Want every term from every module in one place? Try the <a href="../glossary.html">searchable glossary</a>.</p>
+        <dl class="terms">
+          <div>
+            <dt>Artificial intelligence (AI)</dt>
+            <dd>Software that can perform or improve on tasks that normally require human intelligence.</dd>
+          </div>
+          <div>
+            <dt>AI winter</dt>
+            <dd>A period when AI interest and funding dropped after the technology failed to live up to the hype.</dd>
+          </div>
+          <div>
+            <dt>Generative AI</dt>
+            <dd>AI that creates new content like text, images, audio, or video in response to a prompt.</dd>
+          </div>
+          <div>
+            <dt>Prompt</dt>
+            <dd>The request a user types or speaks to a generative AI system.</dd>
+          </div>
+          <div>
+            <dt>Prompt engineering</dt>
+            <dd>Designing prompts that get the best results from generative AI.</dd>
+          </div>
+          <div>
+            <dt>Hallucination</dt>
+            <dd>An incorrect or made-up answer that an AI presents as fact.</dd>
+          </div>
+          <div>
+            <dt>Corpus</dt>
+            <dd>The body of data used to train an AI model.</dd>
+          </div>
+          <div>
+            <dt>Parameters</dt>
+            <dd>The values a model learns during training that shape how it generates output.</dd>
+          </div>
+          <div>
+            <dt>Neural network</dt>
+            <dd>A statistical technique, loosely inspired by the brain, that finds patterns through layers of connections.</dd>
+          </div>
+          <div>
+            <dt>Machine learning (ML)</dt>
+            <dd>AI that improves its predictions by learning from data instead of being explicitly programmed.</dd>
+          </div>
+          <div>
+            <dt>Deep learning</dt>
+            <dd>Machine learning that uses many-layered neural networks.</dd>
+          </div>
+          <div>
+            <dt>Large language model (LLM)</dt>
+            <dd>AI trained on huge amounts of text to understand and generate language.</dd>
+          </div>
+          <div>
+            <dt>Foundation model</dt>
+            <dd>A general-purpose model that can be adapted for many specific tasks.</dd>
+          </div>
+          <div>
+            <dt>AGI</dt>
+            <dd>Artificial general intelligence: hypothetical AI that could learn any task the way a human can.</dd>
+          </div>
+          <div>
+            <dt>Turing test</dt>
+            <dd>The idea of testing whether a computer's behavior is indistinguishable from a human's.</dd>
+          </div>
+          <div>
+            <dt>Supervised learning</dt>
+            <dd>Machine learning trained on labeled examples of the right answers.</dd>
+          </div>
+          <div>
+            <dt>Self-supervised learning</dt>
+            <dd>Machine learning that finds patterns in unlabeled data on its own.</dd>
+          </div>
+          <div>
+            <dt>RLHF</dt>
+            <dd>Reinforcement learning from human feedback: tuning a model using human ratings of its answers.</dd>
+          </div>
+          <div>
+            <dt>Constitutional AI</dt>
+            <dd>Training an AI to follow a written set of principles for safer, more aligned behavior.</dd>
+          </div>
+          <div>
+            <dt>Agentic AI</dt>
+            <dd>AI that can independently plan, decide, and take actions toward a goal with little human oversight.</dd>
+          </div>
+          <div>
+            <dt>Vibe coding</dt>
+            <dd>Building software by repeatedly prompting AI, often without a formal plan or spec.</dd>
+          </div>
+          <div>
+            <dt>Prompt injection</dt>
+            <dd>An attack that uses crafted prompts to make an AI ignore its rules or leak data.</dd>
+          </div>
+          <div>
+            <dt>Data poisoning</dt>
+            <dd>Deliberately feeding bad data to an AI so it produces wrong results.</dd>
+          </div>
+          <div>
+            <dt>Deepfake</dt>
+            <dd>Realistic AI-generated audio, images, or video that imitate real people or events.</dd>
+          </div>
+          <div>
+            <dt>Change management</dt>
+            <dd>Techniques that help people and organizations adapt to new systems and ways of working.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- ===== FLASHCARDS =====
+           Each card is a <button>, so it works with a mouse, a touch
+           screen, AND a keyboard. main.js flips it (section 3). -->
+      <section id="flashcards" aria-labelledby="flashcards-h">
+        <span class="eyebrow">Practice</span>
+        <h2 id="flashcards-h">Flashcards</h2>
+        <p>Say the definition out loud, then flip the card to check yourself. Testing yourself like this
+          (called <strong>retrieval practice</strong>) helps you remember more than rereading does.</p>
+        <button class="btn btn--ghost" type="button" data-shuffle>Shuffle cards</button>
+        <ul class="flashcards">
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Artificial intelligence (AI)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Software that can perform or improve on tasks that normally require human intelligence.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">AI winter<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A period when AI interest and funding dropped after the technology failed to live up to the hype.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Generative AI<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">AI that creates new content like text, images, audio, or video in response to a prompt.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Prompt<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The request a user types or speaks to a generative AI system.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Prompt engineering<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Designing prompts that get the best results from generative AI.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Hallucination<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">An incorrect or made-up answer that an AI presents as fact.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Corpus<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The body of data used to train an AI model.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Parameters<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The values a model learns during training that shape how it generates output.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Neural network<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A statistical technique, loosely inspired by the brain, that finds patterns through layers of connections.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Machine learning (ML)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">AI that improves its predictions by learning from data instead of being explicitly programmed.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Deep learning<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Machine learning that uses many-layered neural networks.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Large language model (LLM)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">AI trained on huge amounts of text to understand and generate language.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Foundation model<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A general-purpose model that can be adapted for many specific tasks.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">AGI<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Artificial general intelligence: hypothetical AI that could learn any task the way a human can.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Turing test<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The idea of testing whether a computer's behavior is indistinguishable from a human's.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Supervised learning<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Machine learning trained on labeled examples of the right answers.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Self-supervised learning<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Machine learning that finds patterns in unlabeled data on its own.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">RLHF<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Reinforcement learning from human feedback: tuning a model using human ratings of its answers.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Constitutional AI<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Training an AI to follow a written set of principles for safer, more aligned behavior.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Agentic AI<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">AI that can independently plan, decide, and take actions toward a goal with little human oversight.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Vibe coding<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Building software by repeatedly prompting AI, often without a formal plan or spec.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Prompt injection<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">An attack that uses crafted prompts to make an AI ignore its rules or leak data.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Data poisoning<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Deliberately feeding bad data to an AI so it produces wrong results.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Deepfake<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Realistic AI-generated audio, images, or video that imitate real people or events.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Change management<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Techniques that help people and organizations adapt to new systems and ways of working.</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===== QUICK CHECK QUIZ =====
+           A <form> with <fieldset>/<legend> groups each question with
+           its choices — screen readers read the question with each option.
+           main.js grades it (section 4). Practice only — not graded. -->
+      <section id="quick-check" aria-labelledby="quick-check-h">
+        <span class="eyebrow">Self-check · Not graded</span>
+        <h2 id="quick-check-h">Quick Check</h2>
+        <form class="quiz" data-quiz>
+          <fieldset data-answer="b" data-explain="Generative AI is the broad category. GPT models power the ChatGPT app.">
+            <legend>1. Which statement about ChatGPT, GPT, and generative AI is correct?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="a">
+              <span>They're three names for the same thing</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="b">
+              <span>GenAI is the category, GPT is a model family, and ChatGPT is a product</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="c">
+              <span>ChatGPT is the category of all AI</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="d">
+              <span>GPT is a type of database</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Hallucinations are confident but false outputs. LLMs predict plausible text, not verified facts.">
+            <legend>2. An AI chatbot cites a court case that doesn't exist. This is called a…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="a">
+              <span>Deepfake</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="b">
+              <span>Hallucination</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="c">
+              <span>Data poisoning attack</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="d">
+              <span>Parameter</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="a" data-explain="Supervised learning uses labeled examples of the correct answers.">
+            <legend>3. Training an email filter with thousands of messages already labeled “spam” or “not spam” is…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="a">
+              <span>Supervised learning</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="b">
+              <span>Self-supervised learning</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="c">
+              <span>An expert system</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="d">
+              <span>A Turing test</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Prompt injection manipulates an AI with crafted inputs so it behaves in unintended ways.">
+            <legend>4. A user hides instructions in a document that make a company's AI assistant reveal confidential data. This is…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="a">
+              <span>RLHF</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="b">
+              <span>Prompt injection</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="c">
+              <span>Change management</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="d">
+              <span>Vibe coding</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Red teams find weaknesses before real attackers or users do.">
+            <legend>5. Which is the BEST step to reduce AI risk before launch?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="a">
+              <span>Skip testing to launch faster</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="b">
+              <span>Have an independent red team try to break or misuse the system</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="c">
+              <span>Remove all human review</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="d">
+              <span>Train only on unchecked data</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <div class="quiz__actions">
+            <button class="btn" type="submit">Check my answers</button>
+            <button class="btn btn--ghost" type="reset">Try again</button>
+            <p class="quiz__score" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+
+      <!-- ===== MARK COMPLETE (saved in your browser by main.js, section 5) ===== -->
+      <div class="complete-panel">
+        <div>
+          <h2>Finished Module 12?</h2>
+          <p>Track your progress — it shows up on the home page.</p>
+        </div>
+        <!-- aria-pressed makes this a "toggle button" for screen readers -->
+        <button class="btn btn--gold" type="button" data-complete="12" aria-pressed="false">Mark module complete</button>
+      </div>
+
+      <!-- ===== PREVIOUS / NEXT ===== -->
+      <nav class="pager" aria-label="Module navigation">
+        <a href="module-11.html" rel="prev"><span class="pager__dir">← Previous</span>Module 11: Data &amp; Competitive Advantage</a>
+        <a class="pager__next" href="module-13.html" rel="next"><span class="pager__dir">Next →</span>Module 13: Digital Advertising &amp; Privacy</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p><strong>CTS 115: Information Systems Business Concepts</strong> — a student study companion.</p>
+      <p>This site summarizes key ideas in plain language. It does not replace your textbook,
+        <em>Information Systems: A Manager’s Guide to Harnessing Technology</em> (FlatWorld),
+        which has the full readings, cases, and videos. Always check Blackboard for due dates and assignments.</p>
+      <p>Built with plain HTML, CSS, and JavaScript. Curious how it works? Right-click anywhere and choose
+        “View Page Source” — the code is full of comments written for learners.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts go at the END of the body so the HTML loads first.
+       (You could also use the "defer" attribute in the <head>.) -->
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<!-- The DOCTYPE tells the browser this is a modern HTML5 document. -->
+<!-- lang="en" helps screen readers pronounce words correctly. -->
+<html lang="en">
+<head>
+  <!-- charset: lets the page show any character (é, —, “ ”) correctly -->
+  <meta charset="UTF-8">
+  <!-- viewport: makes the page fit phone screens instead of zooming out -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The description often appears under the link in search results -->
+  <meta name="description" content="Module 8: Meta&#x27;s social graph, acquisitions, metaverse bets, AI, platform lessons, privacy, and misinformation.">
+  <title>Module 8: Social Platforms & Privacy | CTS 115 Study Guide</title>
+
+  <!-- Google Fonts: "preconnect" starts the connection early so the font loads faster -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Our one stylesheet. "../" moves up a folder when needed. -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head><body>
+  <!-- Skip link: the first thing a keyboard user reaches with Tab -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- <header> is a "landmark": screen readers can jump straight to it -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../index.html">CTS <span>115</span> Study Guide</a>
+
+      <!-- aria-label names this navigation for screen-reader users -->
+      <nav class="site-nav" aria-label="Main">
+        <!-- aria-expanded tells assistive tech whether the menu is open.
+             aria-controls points to the id of the list it opens. -->
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <ul id="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#modules" aria-current="page">Modules</a></li>
+          <li><a href="../glossary.html">Glossary</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== MODULE BANNER =====
+       Same look as the course banners, built with HTML + CSS
+       (see section 5 of styles.css). -->
+  <div class="hero hero--module">
+    <div class="hero__inner">
+      <p class="module-badge">
+        <span class="module-badge__label">MODULE</span>
+        <span class="module-badge__num">8</span>
+      </p>
+      <div>
+        <!-- Each page has exactly ONE <h1>: the main topic of the page -->
+        <h1>Social Platforms &amp; Privacy</h1>
+        <p class="hero__subtitle">Chapter 8: From Facebook to Meta: Platforms, Privacy, and Big Business from the Social Graph</p>
+        <ul class="chips" aria-label="About this module">
+          <li>≈ 25 min read</li>
+          <li>14 key terms</li>
+          <li>5-question self-check</li>
+        </ul>
+      </div>
+      <svg class="hero__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="24" cy="15" r="6"/><circle cx="11" cy="19" r="4.5"/><circle cx="37" cy="19" r="4.5"/><path d="M14 40c0-7 4-13 10-13s10 6 10 13M3 38c0-5 3-10 8-10M45 38c0-5-3-10-8-10"/></svg>
+    </div>
+  </div>
+
+  <!-- ===== PAGE LAYOUT: sidebar + content (CSS Grid, section 6) ===== -->
+  <div class="page">
+
+    <!-- "On this page" sidebar. It's a <nav> because it's a set of links. -->
+    <nav class="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <ol>
+          <li><a href="#big-picture">The Big Picture</a></li>
+          <li><a href="#goals">What You’ll Learn</a></li>
+          <li><a href="#rise">The Rise of Facebook</a></li>
+          <li><a href="#social-graph">The Social Graph</a></li>
+          <li><a href="#mobile">Mobile &amp; Acquisitions</a></li>
+          <li><a href="#metaverse">The Metaverse</a></li>
+          <li><a href="#ai">AI at Meta</a></li>
+          <li><a href="#lessons">Platform Lessons &amp; Privacy</a></li>
+          <li><a href="#key-terms">Key Terms</a></li>
+          <li><a href="#flashcards">Flashcards</a></li>
+          <li><a href="#quick-check">Quick Check</a></li>
+      </ol>
+    </nav>
+
+    <!-- <main> holds the page's unique content. id="main" is where the
+         skip link jumps to. tabindex="-1" lets it receive that focus. -->
+    <main id="main" class="content" tabindex="-1">
+
+      <!-- ===== THE BIG PICTURE: the whole module in a few bullets ===== -->
+      <section id="big-picture" aria-labelledby="big-picture-h">
+        <span class="eyebrow">Start here</span>
+        <h2 id="big-picture-h">The Big Picture</h2>
+        <div class="big-picture">
+          <ul>
+          <li>Facebook grew from a college dorm project into <strong>Meta</strong>, a family of apps used by billions: Facebook, Instagram, WhatsApp, Messenger, and Threads.</li>
+          <li>Its core advantages are <strong>network effects</strong> and <strong>switching costs</strong>, built on the <strong>social graph</strong>: the map of who's connected to whom.</li>
+          <li>To win on mobile, Meta <strong>bought rivals</strong> (Instagram, WhatsApp) and <strong>copied features</strong> (Stories, Reels).</li>
+          <li>Meta is betting billions on the <strong>metaverse</strong>, smart glasses, and <strong>AI</strong>. The losses are large and the payoff isn't certain.</li>
+          <li>Scandals like <strong>Cambridge Analytica</strong> and the spread of <strong>fake news</strong> show how platforms, data, and privacy can go badly wrong.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== LEARNING GOALS ===== -->
+      <section id="goals" aria-labelledby="goals-h">
+        <span class="eyebrow">Your goals</span>
+        <h2 id="goals-h">What You’ll Learn</h2>
+        <p>By the end of this module, you should be able to:</p>
+        <ul class="goals">
+          <li>Describe Facebook's origins, growth, and the businesses that make up Meta today.</li>
+          <li>Explain the social graph and why network effects and switching costs are Meta's key resources.</li>
+          <li>Explain why mobile was harder for Meta and why it acquired Instagram and WhatsApp.</li>
+          <li>Describe the metaverse, Meta's VR and smart-glasses bets, and their challenges.</li>
+          <li>Explain how Meta uses AI, including its Llama models.</li>
+          <li>Analyze platform failures like Beacon and Cambridge Analytica, and the challenge of fake news.</li>
+        </ul>
+      </section>
+
+      <!-- ===== LESSON SECTION: The Rise of Facebook ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "The Rise of Facebook, region". -->
+      <section id="rise" aria-labelledby="rise-h">
+        <span class="eyebrow">Section 8.1</span>
+        <h2 id="rise-h">From Dorm Room to Meta</h2>
+<p>Mark Zuckerberg launched Facebook at Harvard in 2004. It spread to other colleges, then to everyone.
+          Facebook grew so fast that investors competed to fund it, which let Zuckerberg keep voting control of the company.
+          Its 2012 <strong>IPO</strong> (first public stock sale) was rocky, but the company became one of the world's most
+          valuable. In 2021, it renamed itself <strong>Meta</strong> to signal its metaverse ambitions.</p>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">App</span><h3>Facebook</h3><p>The original social network, still with billions of users.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">App</span><h3>Instagram</h3><p>Photo and video sharing, bought in 2012 for about $1 billion.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">App</span><h3>WhatsApp</h3><p>Messaging that's hugely popular worldwide, bought in 2014 for about $19 billion.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">App</span><h3>Messenger &amp; Threads</h3><p>Chat, plus Threads, a text-based rival to X (Twitter) launched in 2023.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Hardware</span><h3>Reality Labs</h3><p>Quest VR headsets and Ray-Ban Meta smart glasses.</p></article>
+        </div>
+      </section>
+      <!-- ===== LESSON SECTION: The Social Graph ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "The Social Graph, region". -->
+      <section id="social-graph" aria-labelledby="social-graph-h">
+        <span class="eyebrow">Section 8.2</span>
+        <h2 id="social-graph-h">Competitive Advantage: The Social Graph</h2>
+<p>The <strong>social graph</strong> is the map of people and organizations and how they're connected. Facebook's is
+          huge and accurate because people use real names and connect with people they actually know.</p>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Resource 1</span><h3>Network effects</h3><p>Your friends and family are all there, so that's where you go too.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Resource 2</span><h3>Switching costs</h3><p>Years of photos, posts, groups, and connections are painful to rebuild somewhere else.</p></article>
+        </div>
+        <p>Features like the <strong>News Feed</strong> spread content virally and keep people coming back. Facebook also used
+          its massive user base to <strong>envelop</strong> other services by adding features like photos, events, and video
+          that once required separate apps. Much of its content sits in the <strong>deep web</strong>, out of reach of search
+          engines like Google.</p>
+        <aside class="callout callout--example" aria-label="Behind the scenes">
+          <span class="callout__title">Behind the scenes · Running at Meta's scale</span>
+          <p>Serving billions of people takes giant data centers, often in cold places like northern Sweden where outside air helps
+            cool the servers. Meta also uses <strong>content delivery networks</strong> to speed up loading and builds much of
+            its infrastructure with <strong>open source software</strong>.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Mobile &amp;amp; Acquisitions ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Mobile &amp;amp; Acquisitions, region". -->
+      <section id="mobile" aria-labelledby="mobile-h">
+        <span class="eyebrow">Section 8.3</span>
+        <h2 id="mobile-h">Meta Goes Mobile and Grows by Acquisition</h2>
+<p>On the desktop, Facebook controlled the experience. On phones, Apple and Google control the operating systems and app
+          stores, and new apps can grow overnight. Meta responded with big bets:</p>
+        <ol class="steps">
+          <li><strong>Buy rising rivals</strong>Instagram and WhatsApp brought in younger users and global messaging before they could become threats.</li>
+          <li><strong>Copy what works</strong>When Snapchat refused to sell, Instagram copied its Stories feature and soon passed Snapchat in Stories users.</li>
+          <li><strong>Fight TikTok with AI</strong>Instagram Reels uses AI recommendations like TikTok does. It's a success, but it hasn't knocked TikTok out.</li>
+        </ol>
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · Regulators noticed</span>
+          <p>U.S. regulators later argued in court that buying Instagram and WhatsApp illegally eliminated competitors. Growth
+            by acquisition can attract antitrust scrutiny.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: The Metaverse ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "The Metaverse, region". -->
+      <section id="metaverse" aria-labelledby="metaverse-h">
+        <span class="eyebrow">Section 8.4</span>
+        <h2 id="metaverse-h">The Metaverse and Meta on Your Face</h2>
+<p>The <strong>metaverse</strong> describes immersive, shared digital worlds. Meta bought VR headset maker
+          <strong>Oculus</strong> in 2014 and renamed the whole company after this vision. Its Reality Labs division has lost
+          tens of billions of dollars so far.</p>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Challenge</span><h3>Comfort &amp; cost</h3><p>Headsets are still bulky and pricey, and many people don't wear them for long.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Challenge</span><h3>Killer apps</h3><p>Gaming and fitness work well. Mainstream reasons to “live” in VR are still unclear.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Bright spot</span><h3>Ray-Ban Meta glasses</h3><p>Normal-looking glasses with a camera, speakers, and AI assistant have sold far better than past smart glasses.</p></article>
+        </div>
+        <aside class="callout callout--why" aria-label="Why it matters">
+          <span class="callout__title">Why Meta cares · Owning the platform</span>
+          <p>Meta depends on Apple's and Google's phone platforms, which can limit what it does (see below). Owning the
+            <em>next</em> computing platform, whether that's headsets or glasses, would put Meta in control.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: AI at Meta ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "AI at Meta, region". -->
+      <section id="ai" aria-labelledby="ai-h">
+        <span class="eyebrow">Section 8.5</span>
+        <h2 id="ai-h">AI: Essential to Meta’s Success</h2>
+<p>AI decides what appears in your feeds, which ads you see, and what content gets removed. Meta has also built:</p>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Language</span><h3>Llama models</h3><p>Large language models that Meta releases openly, so other firms can run and customize them on their own computers instead of paying for a closed model.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Images</span><h3>Emu</h3><p>Image generation that's built into Meta's apps.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Coding</span><h3>CodeCompose</h3><p>An AI coding assistant trained on Meta's own code and used inside its developers' tools (<strong>IDEs</strong>).</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Hardware</span><h3>Custom chips</h3><p>Meta designs its own AI chips and spends heavily on data centers to keep up.</p></article>
+        </div>
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · Red teams</span>
+          <p>Before releasing AI, firms use <strong>red teams</strong>, groups that act like attackers and try to make the system misbehave.
+            Openly released models are powerful, but anyone can misuse them, which makes this testing even more important.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Platform Lessons &amp;amp; Privacy ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Platform Lessons &amp;amp; Privacy, region". -->
+      <section id="lessons" aria-labelledby="lessons-h">
+        <span class="eyebrow">Sections 8.6–8.7</span>
+        <h2 id="lessons-h">Platform Lessons, Privacy Fumbles &amp; Fake News</h2>
+<p>Facebook became a platform when it opened <strong>APIs</strong> to outside developers in 2007. Games like FarmVille boomed.
+          But giving partners access to user data also created big risks.</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Major missteps and their lessons</caption>
+            <thead><tr><th scope="col">Event</th><th scope="col">What happened</th><th scope="col">Lesson</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Beacon (2007)</th><td>Facebook shared users' purchases on partner sites with their friends, by default. Users had to <em>opt out</em>.</td><td>Make sensitive sharing <strong>opt-in</strong>. Test with real users.</td></tr>
+              <tr><th scope="row">Cambridge Analytica (2018)</th><td>A quiz app collected data on up to 87 million users, including friends who never used the app, and it ended up with a political consulting firm.</td><td>A platform is responsible for what partners do with users' data.</td></tr>
+              <tr><th scope="row">Fake news</th><td>False stories spread widely, some written just to earn ad money and some to influence elections.</td><td>Algorithms that reward engagement can reward lies. Fixing it takes people and technology, and it's never perfect.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="callout callout--example" aria-label="Global comparison">
+          <span class="callout__title">Global comparison · WeChat, the “super app”</span>
+          <p>In China, WeChat combines messaging, payments, shopping, and government services in one app. That's a
+            <strong>walled garden</strong>, a closed set of services controlled by one firm. Meta wants Messenger and WhatsApp to grow in
+            this direction.</p>
+        </aside>
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · Living on someone else's platform</span>
+          <p>When Apple let users block app tracking on iPhones, Meta's ad targeting got less precise. Apple also blocked
+            Meta's plans for its own app platform inside iOS. If you build on another firm's platform, it controls your future.</p>
+        </aside>
+      </section>
+
+      <!-- ===== KEY TERMS =====
+           A <dl> (description list) is the right HTML element for
+           term + definition pairs: <dt> = term, <dd> = definition. -->
+      <section id="key-terms" aria-labelledby="key-terms-h">
+        <span class="eyebrow">Vocabulary</span>
+        <h2 id="key-terms-h">Key Terms</h2>
+        <p>Want every term from every module in one place? Try the <a href="../glossary.html">searchable glossary</a>.</p>
+        <dl class="terms">
+          <div>
+            <dt>IPO</dt>
+            <dd>Initial public offering: the first time a company sells shares on a public stock exchange (“going public”).</dd>
+          </div>
+          <div>
+            <dt>Short selling</dt>
+            <dd>Betting a stock will fall by selling borrowed shares and buying them back later at a lower price.</dd>
+          </div>
+          <div>
+            <dt>Social graph</dt>
+            <dd>The map of people and organizations and how they're connected to each other.</dd>
+          </div>
+          <div>
+            <dt>Envelopment</dt>
+            <dd>Adding a rival's product as a feature of your own so users don't need the rival.</dd>
+          </div>
+          <div>
+            <dt>Deep web</dt>
+            <dd>Online content that search engines like Google can't index.</dd>
+          </div>
+          <div>
+            <dt>Content delivery network (CDN)</dt>
+            <dd>Servers spread across the Internet that store copies of content close to users so pages and videos load faster.</dd>
+          </div>
+          <div>
+            <dt>Open source software</dt>
+            <dd>Software that's free and whose code anyone can view and modify.</dd>
+          </div>
+          <div>
+            <dt>Metaverse</dt>
+            <dd>Immersive, computer-generated worlds where people interact with each other.</dd>
+          </div>
+          <div>
+            <dt>Walled garden</dt>
+            <dd>A closed network or set of services controlled by one dominant firm.</dd>
+          </div>
+          <div>
+            <dt>Red team</dt>
+            <dd>A group that plays the attacker to find weaknesses in a system before real bad actors do.</dd>
+          </div>
+          <div>
+            <dt>IDE</dt>
+            <dd>Integrated development environment: software developers use to write, test, and debug code.</dd>
+          </div>
+          <div>
+            <dt>Opt-in</dt>
+            <dd>Users must actively agree before a feature or data sharing is turned on.</dd>
+          </div>
+          <div>
+            <dt>Opt-out</dt>
+            <dd>A feature or data sharing is on by default, and users must act to turn it off.</dd>
+          </div>
+          <div>
+            <dt>Fake news</dt>
+            <dd>False information presented as real news, often spread for profit or influence.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- ===== FLASHCARDS =====
+           Each card is a <button>, so it works with a mouse, a touch
+           screen, AND a keyboard. main.js flips it (section 3). -->
+      <section id="flashcards" aria-labelledby="flashcards-h">
+        <span class="eyebrow">Practice</span>
+        <h2 id="flashcards-h">Flashcards</h2>
+        <p>Say the definition out loud, then flip the card to check yourself. Testing yourself like this
+          (called <strong>retrieval practice</strong>) helps you remember more than rereading does.</p>
+        <button class="btn btn--ghost" type="button" data-shuffle>Shuffle cards</button>
+        <ul class="flashcards">
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">IPO<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Initial public offering: the first time a company sells shares on a public stock exchange (“going public”).</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Short selling<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Betting a stock will fall by selling borrowed shares and buying them back later at a lower price.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Social graph<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The map of people and organizations and how they're connected to each other.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Envelopment<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Adding a rival's product as a feature of your own so users don't need the rival.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Deep web<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Online content that search engines like Google can't index.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Content delivery network (CDN)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Servers spread across the Internet that store copies of content close to users so pages and videos load faster.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Open source software<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Software that's free and whose code anyone can view and modify.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Metaverse<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Immersive, computer-generated worlds where people interact with each other.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Walled garden<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A closed network or set of services controlled by one dominant firm.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Red team<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A group that plays the attacker to find weaknesses in a system before real bad actors do.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">IDE<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Integrated development environment: software developers use to write, test, and debug code.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Opt-in<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Users must actively agree before a feature or data sharing is turned on.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Opt-out<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A feature or data sharing is on by default, and users must act to turn it off.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Fake news<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">False information presented as real news, often spread for profit or influence.</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===== QUICK CHECK QUIZ =====
+           A <form> with <fieldset>/<legend> groups each question with
+           its choices — screen readers read the question with each option.
+           main.js grades it (section 4). Practice only — not graded. -->
+      <section id="quick-check" aria-labelledby="quick-check-h">
+        <span class="eyebrow">Self-check · Not graded</span>
+        <h2 id="quick-check-h">Quick Check</h2>
+        <form class="quiz" data-quiz>
+          <fieldset data-answer="b" data-explain="Friends being there (network effects) plus years of photos and connections (switching costs) keep users loyal.">
+            <legend>1. What two resources are most critical to Facebook's competitive advantage?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="a">
+              <span>Low prices and fast shipping</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="b">
+              <span>Network effects and switching costs</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="c">
+              <span>Patents and brand</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="d">
+              <span>Physical stores and inventory</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Adding a rival&#x27;s core feature to your own large platform makes the rival&#x27;s app less necessary.">
+            <legend>2. Instagram copying Snapchat's Stories feature is an example of…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="a">
+              <span>The Osborne effect</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="b">
+              <span>Envelopment</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="c">
+              <span>Leapfrogging</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="d">
+              <span>Opt-in design</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Sharing sensitive activity by default, without clear permission, upset users.">
+            <legend>3. Why was Facebook's Beacon so controversial?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="a">
+              <span>It was too expensive</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="b">
+              <span>It shared users' purchases with friends by default (opt-out)</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="c">
+              <span>It only worked on mobile</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="d">
+              <span>It used virtual reality</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="The app pulled friends&#x27; data too, affecting up to 87 million people.">
+            <legend>4. In the Cambridge Analytica scandal, data was collected from…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="a">
+              <span>Only users who agreed</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="b">
+              <span>Quiz takers AND their friends who never used the app</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="c">
+              <span>Government databases</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="d">
+              <span>Credit card companies</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Owning the platform gives Meta control over rules, data, and fees that Apple and Google control on phones.">
+            <legend>5. Why does Meta want to own a future platform like smart glasses or VR?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="a">
+              <span>To stop making apps</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="b">
+              <span>So it isn't limited by Apple's and Google's control of phone platforms</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="c">
+              <span>To avoid using AI</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="d">
+              <span>Because phones are illegal</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <div class="quiz__actions">
+            <button class="btn" type="submit">Check my answers</button>
+            <button class="btn btn--ghost" type="reset">Try again</button>
+            <p class="quiz__score" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+
+      <!-- ===== MARK COMPLETE (saved in your browser by main.js, section 5) ===== -->
+      <div class="complete-panel">
+        <div>
+          <h2>Finished Module 8?</h2>
+          <p>Track your progress — it shows up on the home page.</p>
+        </div>
+        <!-- aria-pressed makes this a "toggle button" for screen readers -->
+        <button class="btn btn--gold" type="button" data-complete="8" aria-pressed="false">Mark module complete</button>
+      </div>
+
+      <!-- ===== PREVIOUS / NEXT ===== -->
+      <nav class="pager" aria-label="Module navigation">
+        <a href="module-07.html" rel="prev"><span class="pager__dir">← Previous</span>Module 7: Platforms &amp; Network Effects</a>
+        <a class="pager__next" href="module-09.html" rel="next"><span class="pager__dir">Next →</span>Module 9: Understanding Software</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p><strong>CTS 115: Information Systems Business Concepts</strong> — a student study companion.</p>
+      <p>This site summarizes key ideas in plain language. It does not replace your textbook,
+        <em>Information Systems: A Manager’s Guide to Harnessing Technology</em> (FlatWorld),
+        which has the full readings, cases, and videos. Always check Blackboard for due dates and assignments.</p>
+      <p>Built with plain HTML, CSS, and JavaScript. Curious how it works? Right-click anywhere and choose
+        “View Page Source” — the code is full of comments written for learners.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts go at the END of the body so the HTML loads first.
+       (You could also use the "defer" attribute in the <head>.) -->
+  <script src="../js/main.js"></script>
+</body>
+</html>

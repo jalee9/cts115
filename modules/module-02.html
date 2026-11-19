@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<!-- The DOCTYPE tells the browser this is a modern HTML5 document. -->
+<!-- lang="en" helps screen readers pronounce words correctly. -->
+<html lang="en">
+<head>
+  <!-- charset: lets the page show any character (é, —, “ ”) correctly -->
+  <meta charset="UTF-8">
+  <!-- viewport: makes the page fit phone screens instead of zooming out -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The description often appears under the link in search results -->
+  <meta name="description" content="Module 2: Competitive advantage, the value chain, powerful resources, and Porter&#x27;s Five Forces.">
+  <title>Module 2: Technology & Business Strategy | CTS 115 Study Guide</title>
+
+  <!-- Google Fonts: "preconnect" starts the connection early so the font loads faster -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Our one stylesheet. "../" moves up a folder when needed. -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head><body>
+  <!-- Skip link: the first thing a keyboard user reaches with Tab -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- <header> is a "landmark": screen readers can jump straight to it -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../index.html">CTS <span>115</span> Study Guide</a>
+
+      <!-- aria-label names this navigation for screen-reader users -->
+      <nav class="site-nav" aria-label="Main">
+        <!-- aria-expanded tells assistive tech whether the menu is open.
+             aria-controls points to the id of the list it opens. -->
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <ul id="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#modules" aria-current="page">Modules</a></li>
+          <li><a href="../glossary.html">Glossary</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== MODULE BANNER =====
+       Same look as the course banners, built with HTML + CSS
+       (see section 5 of styles.css). -->
+  <div class="hero hero--module">
+    <div class="hero__inner">
+      <p class="module-badge">
+        <span class="module-badge__label">MODULE</span>
+        <span class="module-badge__num">2</span>
+      </p>
+      <div>
+        <!-- Each page has exactly ONE <h1>: the main topic of the page -->
+        <h1>Technology &amp; Business Strategy</h1>
+        <p class="hero__subtitle">Chapter 2: Strategy and Technology: Concepts and Frameworks for Achieving Success</p>
+        <ul class="chips" aria-label="About this module">
+          <li>≈ 25 min read</li>
+          <li>21 key terms</li>
+          <li>5-question self-check</li>
+        </ul>
+      </div>
+      <svg class="hero__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 40h32"/><rect x="11" y="28" width="6" height="10"/><rect x="21" y="21" width="6" height="17"/><rect x="31" y="14" width="6" height="24"/><path d="M10 22l10-9 7 5 12-10M33 8h6v6"/></svg>
+    </div>
+  </div>
+
+  <!-- ===== PAGE LAYOUT: sidebar + content (CSS Grid, section 6) ===== -->
+  <div class="page">
+
+    <!-- "On this page" sidebar. It's a <nav> because it's a set of links. -->
+    <nav class="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <ol>
+          <li><a href="#big-picture">The Big Picture</a></li>
+          <li><a href="#goals">What You’ll Learn</a></li>
+          <li><a href="#tech-alone">Tech Alone Isn’t Enough</a></li>
+          <li><a href="#value-chain">The Value Chain</a></li>
+          <li><a href="#resources">Powerful Resources</a></li>
+          <li><a href="#timing">Timing &amp; Barriers</a></li>
+          <li><a href="#five-forces">The Five Forces</a></li>
+          <li><a href="#key-terms">Key Terms</a></li>
+          <li><a href="#flashcards">Flashcards</a></li>
+          <li><a href="#quick-check">Quick Check</a></li>
+      </ol>
+    </nav>
+
+    <!-- <main> holds the page's unique content. id="main" is where the
+         skip link jumps to. tabindex="-1" lets it receive that focus. -->
+    <main id="main" class="content" tabindex="-1">
+
+      <!-- ===== THE BIG PICTURE: the whole module in a few bullets ===== -->
+      <section id="big-picture" aria-labelledby="big-picture-h">
+        <span class="eyebrow">Start here</span>
+        <h2 id="big-picture-h">The Big Picture</h2>
+        <div class="big-picture">
+          <ul>
+          <li>Doing the same things better than rivals (<strong>operational effectiveness</strong>) helps, but it's easy to copy, so it rarely lasts.</li>
+          <li>A lasting edge usually comes from <strong>strategic positioning</strong>: doing different things, or doing things differently.</li>
+          <li>Resources that create <strong>sustainable competitive advantage</strong> must be valuable, rare, hard to imitate, and hard to substitute.</li>
+          <li>Powerful resources include <strong>brand, scale, switching costs, data, differentiation, network effects, and distribution channels</strong>. Technology can build every one of them.</li>
+          <li><strong>Porter's Five Forces</strong> shows how attractive an industry is and how technology shifts power between firms, buyers, and suppliers.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== LEARNING GOALS ===== -->
+      <section id="goals" aria-labelledby="goals-h">
+        <span class="eyebrow">Your goals</span>
+        <h2 id="goals-h">What You’ll Learn</h2>
+        <p>By the end of this module, you should be able to:</p>
+        <ul class="goals">
+          <li>Explain the difference between operational effectiveness and strategic positioning.</li>
+          <li>List the four characteristics a resource needs to create sustainable competitive advantage.</li>
+          <li>Use the value chain to compare how firms create and deliver products.</li>
+          <li>Define brand, scale, switching costs, data, differentiation, network effects, and distribution channels, with examples.</li>
+          <li>Explain why being first to market doesn't guarantee winning.</li>
+          <li>Diagram Porter's Five Forces and apply it to an industry.</li>
+        </ul>
+      </section>
+
+      <!-- ===== LESSON SECTION: Tech Alone Isn’t Enough ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Tech Alone Isn’t Enough, region". -->
+      <section id="tech-alone" aria-labelledby="tech-alone-h">
+        <span class="eyebrow">Section 2.1</span>
+        <h2 id="tech-alone-h">Why Technology Alone Isn’t a Strategy</h2>
+<p>Firms want <strong>sustainable competitive advantage</strong>, which means beating the industry's average
+          financial performance year after year. But simply buying the latest technology rarely gets you there.
+          If you can buy it, so can your rivals.</p>
+
+        <!-- A comparison table helps students see two ideas side by side -->
+        <div class="table-wrap">
+          <table>
+            <caption>Two ways to compete</caption>
+            <thead>
+              <tr><th scope="col"></th><th scope="col">Operational effectiveness</th><th scope="col">Strategic positioning</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">What it means</th><td>Doing the <em>same</em> tasks better than rivals</td><td>Doing <em>different</em> tasks, or the same tasks in a different way</td></tr>
+              <tr><th scope="row">Example</th><td>A faster checkout system or cheaper software</td><td>A unique business model that rivals can't easily copy</td></tr>
+              <tr><th scope="row">How long it lasts</th><td>Usually short. Rivals copy best practices and tech quickly.</td><td>Can last for years if it's built on hard-to-copy resources</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · The commodity trap</span>
+          <p>When every rival offers nearly the same thing, the product becomes a <strong>commodity</strong>, like milk
+            or coal. Customers then choose on price alone, and profits shrink. Tech that rivals can buy
+            off the shelf pushes firms toward this trap.</p>
+        </aside>
+
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · TiVo</span>
+          <p>TiVo pioneered the digital video recorder and had a beloved product. But cable companies, other
+            hardware makers, and later streaming services offered similar features, often bundled into services
+            customers already paid for. Being first and having great tech wasn't enough to build a lasting business.
+            That's the <strong>fast follower problem</strong> in action.</p>
+        </aside>
+
+        <h3>The resource-based view: four tests for a lasting advantage</h3>
+        <p>According to the <strong>resource-based view</strong>, a firm keeps its edge only if it controls resources that pass all four of these tests:</p>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">1</span><h3>Valuable</h3><p>It helps the firm earn more or spend less.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">2</span><h3>Rare</h3><p>Few or no rivals have it.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">3</span><h3>Imperfectly imitable</h3><p>It's difficult or expensive for others to copy.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">4</span><h3>Non-substitutable</h3><p>Rivals can't swap in something different that works just as well.</p></article>
+        </div>
+      </section>
+      <!-- ===== LESSON SECTION: The Value Chain ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "The Value Chain, region". -->
+      <section id="value-chain" aria-labelledby="value-chain-h">
+        <span class="eyebrow">Section 2.2</span>
+        <h2 id="value-chain-h">The Value Chain: How a Firm Delivers</h2>
+<p>The <strong>value chain</strong> is the set of activities a firm uses to create a product or service and get it
+          to customers. Comparing value chains shows <em>how</em> firms differ, and where technology can build an
+          <strong>imitation-resistant value chain</strong> that rivals struggle to copy.</p>
+
+        <figure class="diagram">
+          <svg viewBox="0 0 760 330" role="img" aria-labelledby="vc-title vc-desc">
+            <title id="vc-title">The value chain</title>
+            <desc id="vc-desc">Five primary activities flow left to right: inbound logistics, operations, outbound
+              logistics, marketing and sales, and service. Above them, four support activities span the whole
+              chain: firm infrastructure, human resources, technology development, and procurement. Together they
+              produce margin.</desc>
+            <!-- Support activities: four stacked bars -->
+            <g>
+              <rect x="20" y="20" width="620" height="34" rx="6" fill="#e3edf8"/><text x="330" y="42" text-anchor="middle" class="svg-label">Firm infrastructure (management, finance, legal)</text>
+              <rect x="20" y="60" width="620" height="34" rx="6" fill="#e3edf8"/><text x="330" y="82" text-anchor="middle" class="svg-label">Human resources (hiring, training)</text>
+              <rect x="20" y="100" width="620" height="34" rx="6" fill="#e3edf8"/><text x="330" y="122" text-anchor="middle" class="svg-label">Technology development (R&amp;D, IT)</text>
+              <rect x="20" y="140" width="620" height="34" rx="6" fill="#e3edf8"/><text x="330" y="162" text-anchor="middle" class="svg-label">Procurement (buying supplies)</text>
+            </g>
+            <!-- Primary activities: five boxes -->
+            <g text-anchor="middle">
+              <rect x="20" y="190" width="116" height="80" rx="8" fill="#0b2f5b"/>
+              <text x="78" y="225" class="svg-label" style="fill:#fff">Inbound</text><text x="78" y="245" class="svg-label" style="fill:#fff">logistics</text>
+              <rect x="146" y="190" width="116" height="80" rx="8" fill="#0b2f5b"/>
+              <text x="204" y="235" class="svg-label" style="fill:#fff">Operations</text>
+              <rect x="272" y="190" width="116" height="80" rx="8" fill="#0b2f5b"/>
+              <text x="330" y="225" class="svg-label" style="fill:#fff">Outbound</text><text x="330" y="245" class="svg-label" style="fill:#fff">logistics</text>
+              <rect x="398" y="190" width="116" height="80" rx="8" fill="#0b2f5b"/>
+              <text x="456" y="225" class="svg-label" style="fill:#fff">Marketing</text><text x="456" y="245" class="svg-label" style="fill:#fff">&amp; sales</text>
+              <rect x="524" y="190" width="116" height="80" rx="8" fill="#0b2f5b"/>
+              <text x="582" y="235" class="svg-label" style="fill:#fff">Service</text>
+            </g>
+            <!-- Margin arrow -->
+            <path d="M650 20 L740 145 L650 270 Z" fill="#fbc04a"/>
+            <text x="682" y="150" text-anchor="middle" class="svg-label">Margin</text>
+            <text x="20" y="300" class="svg-small">Top bars: support activities. Bottom boxes: primary activities.</text>
+          </svg>
+          <figcaption>The value chain: primary activities move a product to the customer, and support activities help every step.</figcaption>
+        </figure>
+
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · Dell</span>
+          <p>Dell grew by selling PCs directly to customers and building each one to order. That value chain kept
+            inventory low and cash flowing. But when shoppers shifted to laptops bought in stores, and rivals
+            matched Dell's efficiency, the advantage faded. <strong>Nothing lasts forever</strong>, so firms must keep
+            re-examining their value chain.</p>
+        </aside>
+
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · Straddling</span>
+          <p>A firm that tries to occupy two positions at once (for example, low-cost <em>and</em> full-service)
+            often ends up worse than a rival that focuses on just one. This is called <strong>straddling</strong>.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Powerful Resources ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Powerful Resources, region". -->
+      <section id="resources" aria-labelledby="resources-h">
+        <span class="eyebrow">Section 2.2</span>
+        <h2 id="resources-h">Seven Powerful Resources (and How Tech Builds Them)</h2>
+<div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Brand</span><h3>What people think of you</h3>
+            <p>Everything customers associate with a product. Tech firms often build brands through <strong>viral marketing</strong>, where users spread the word.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Scale</span><h3>Bigger can be cheaper</h3>
+            <p><strong>Economies of scale</strong> spread costs over more customers. Software and Internet firms can serve millions more users at little extra cost.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Switching costs</span><h3>Hard to leave</h3>
+            <p>The time, money, or effort it takes to switch products, like learning new software or moving your data and playlists.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Data</span><h3>Knowing customers</h3>
+            <p>Data gathered over time lets a firm personalize, predict, and improve. A newcomer can't easily copy that history.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Differentiation</span><h3>Being different</h3>
+            <p>Offering something customers value that rivals don't, so the firm can compete on more than price.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Network effects</span><h3>More users, more value</h3>
+            <p>The product gets more valuable as more people use it. (Much more in Module 7.)</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Distribution</span><h3>Reaching customers</h3>
+            <p><strong>Distribution channels</strong> are the paths products take to customers. Owning or controlling a channel is a big edge.</p></article>
+        </div>
+
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · OpenTable</span>
+          <p>OpenTable gave restaurants reservation software, then let diners book tables online. More diners attracted
+            more restaurants, and more restaurants attracted more diners. Add the switching cost of a restaurant
+            retraining staff on a new system, and rivals found it very hard to catch up.</p>
+        </aside>
+
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · Google pays to be the default</span>
+          <p>Google pays Apple billions each year to be the default search engine on iPhones and Safari. That's a
+            <strong>distribution channel</strong> deal, and it's so powerful that U.S. regulators challenged it in
+            court as anticompetitive.</p>
+        </aside>
+
+        <p>Other tools firms use: <strong>bundling</strong> (selling products together as one package),
+          <strong>APIs</strong> (published rules that let other programs connect to a service), and patents. Watch out for
+          <strong>non-practicing entities</strong> (“patent trolls”), which make money by suing over patents instead of building products.</p>
+      </section>
+      <!-- ===== LESSON SECTION: Timing &amp;amp; Barriers ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Timing &amp;amp; Barriers, region". -->
+      <section id="timing" aria-labelledby="timing-h">
+        <span class="eyebrow">Section 2.3</span>
+        <h2 id="timing-h">Timing, Technology, and Barriers to Entry</h2>
+<p>Is it better to be first? Not necessarily. <strong>First movers</strong> can build brand, scale, and switching
+          costs early. But <strong>fast followers</strong> can learn from the pioneer's mistakes and enter with a better,
+          cheaper product.</p>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Myth</span><h3>“First mover always wins.”</h3>
+            <p>Google wasn't the first search engine. Facebook wasn't the first social network. Both arrived later and won.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Reality</span><h3>Resources matter more than timing</h3>
+            <p>Timing only helps if the firm uses its head start to build resources that are hard to copy.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Key idea</span><h3>Low barriers ≠ easy wins</h3>
+            <p>If it's cheap and easy for <em>you</em> to start a business, it's cheap and easy for copycats too.</p></article>
+        </div>
+      </section>
+      <!-- ===== LESSON SECTION: The Five Forces ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "The Five Forces, region". -->
+      <section id="five-forces" aria-labelledby="five-forces-h">
+        <span class="eyebrow">Section 2.4</span>
+        <h2 id="five-forces-h">Key Framework: Porter’s Five Forces</h2>
+<p>Michael Porter's <strong>Five Forces</strong> framework sizes up how attractive (profitable) an industry is.
+          The stronger the forces, the harder it is to earn high profits. Technology can strengthen or weaken each force.</p>
+
+        <figure class="diagram">
+          <svg viewBox="0 0 760 420" role="img" aria-labelledby="ff-title ff-desc">
+            <title id="ff-title">Porter's Five Forces</title>
+            <desc id="ff-desc">Rivalry among existing competitors sits in the center. Four forces point toward it:
+              threat of new entrants from the top, threat of substitutes from the bottom, bargaining power of
+              suppliers from the left, and bargaining power of buyers from the right.</desc>
+            <defs>
+              <marker id="ff-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                <path d="M0 0L10 5L0 10z" fill="#0a6a9c"/>
+              </marker>
+            </defs>
+            <!-- Arrows from each outer force toward the center -->
+            <g stroke="#0a6a9c" stroke-width="3" marker-end="url(#ff-arrow)">
+              <line x1="380" y1="95" x2="380" y2="150"/>
+              <line x1="380" y1="325" x2="380" y2="270"/>
+              <line x1="215" y1="210" x2="265" y2="210"/>
+              <line x1="545" y1="210" x2="495" y2="210"/>
+            </g>
+            <!-- Center: rivalry -->
+            <rect x="270" y="155" width="220" height="110" rx="12" fill="#0b2f5b"/>
+            <text x="380" y="200" text-anchor="middle" class="svg-label" style="fill:#fbc04a">Rivalry among</text>
+            <text x="380" y="222" text-anchor="middle" class="svg-label" style="fill:#fbc04a">existing competitors</text>
+            <!-- Outer forces -->
+            <g text-anchor="middle">
+              <rect x="270" y="20" width="220" height="72" rx="12" fill="#e3edf8"/>
+              <text x="380" y="52" class="svg-label">Threat of</text><text x="380" y="72" class="svg-label">new entrants</text>
+              <rect x="270" y="328" width="220" height="72" rx="12" fill="#e3edf8"/>
+              <text x="380" y="360" class="svg-label">Threat of</text><text x="380" y="380" class="svg-label">substitutes</text>
+              <rect x="10" y="174" width="200" height="72" rx="12" fill="#e3edf8"/>
+              <text x="110" y="206" class="svg-label">Bargaining power</text><text x="110" y="226" class="svg-label">of suppliers</text>
+              <rect x="550" y="174" width="200" height="72" rx="12" fill="#e3edf8"/>
+              <text x="650" y="206" class="svg-label">Bargaining power</text><text x="650" y="226" class="svg-label">of buyers</text>
+            </g>
+          </svg>
+          <figcaption>Porter's Five Forces: four outside pressures squeeze the rivalry at the center of an industry.</figcaption>
+        </figure>
+
+        <div class="table-wrap">
+          <table>
+            <caption>How technology can shift each force</caption>
+            <thead><tr><th scope="col">Force</th><th scope="col">The question</th><th scope="col">Tech example</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Rivalry</th><td>How fiercely do current competitors fight, often on price?</td><td>Price-comparison sites make rivals compete harder on price.</td></tr>
+              <tr><th scope="row">New entrants</th><td>How easily can newcomers enter?</td><td>Cloud computing lowers startup costs, so more entrants appear.</td></tr>
+              <tr><th scope="row">Substitutes</th><td>Can customers meet the need a different way?</td><td>Streaming replaced DVDs. GenAI chatbots replace some web searches and help forums.</td></tr>
+              <tr><th scope="row">Supplier power</th><td>Can suppliers raise prices on you?</td><td>Only a few firms make advanced AI chips, so chip suppliers hold a lot of power.</td></tr>
+              <tr><th scope="row">Buyer power</th><td>Can customers push your prices down?</td><td>Online reviews and <strong>price transparency</strong> give shoppers more power.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · ChatGPT vs. Stack Overflow</span>
+          <p>Stack Overflow was the go-to Q&amp;A site for programmers. When AI chatbots began answering coding questions
+            instantly, traffic to the site dropped sharply. A new <strong>substitute</strong> appeared almost overnight.</p>
+        </aside>
+
+        <aside class="callout callout--why" aria-label="Why it matters to you">
+          <span class="callout__title">Why it matters to you</span>
+          <p>The Internet reduces <strong>information asymmetry</strong>, where one side knows more than the other.
+            When you research a car's dealer cost online before you shop, buyer power shifts toward you.</p>
+        </aside>
+      </section>
+
+      <!-- ===== KEY TERMS =====
+           A <dl> (description list) is the right HTML element for
+           term + definition pairs: <dt> = term, <dd> = definition. -->
+      <section id="key-terms" aria-labelledby="key-terms-h">
+        <span class="eyebrow">Vocabulary</span>
+        <h2 id="key-terms-h">Key Terms</h2>
+        <p>Want every term from every module in one place? Try the <a href="../glossary.html">searchable glossary</a>.</p>
+        <dl class="terms">
+          <div>
+            <dt>Sustainable competitive advantage</dt>
+            <dd>Financial performance that consistently beats the industry average over time.</dd>
+          </div>
+          <div>
+            <dt>Operational effectiveness</dt>
+            <dd>Doing the same tasks better than rivals do. Useful, but usually easy to copy.</dd>
+          </div>
+          <div>
+            <dt>Strategic positioning</dt>
+            <dd>Doing different tasks than rivals, or the same tasks in a different way.</dd>
+          </div>
+          <div>
+            <dt>Commodity</dt>
+            <dd>A basic product that's nearly interchangeable with competitors' versions, so buyers choose mostly on price.</dd>
+          </div>
+          <div>
+            <dt>Fast follower problem</dt>
+            <dd>When rivals watch a pioneer, learn from its mistakes, and quickly launch a similar or better product for less.</dd>
+          </div>
+          <div>
+            <dt>Resource-based view</dt>
+            <dd>The idea that lasting advantage comes from controlling resources that are valuable, rare, hard to imitate, and hard to substitute.</dd>
+          </div>
+          <div>
+            <dt>Value chain</dt>
+            <dd>The set of activities a firm uses to create a product or service and deliver it to customers.</dd>
+          </div>
+          <div>
+            <dt>Imitation-resistant value chain</dt>
+            <dd>A way of doing business, often enabled by technology, that competitors find very hard to copy.</dd>
+          </div>
+          <div>
+            <dt>Straddling</dt>
+            <dd>Trying to hold two strategic positions at once and doing worse than a rival focused on just one.</dd>
+          </div>
+          <div>
+            <dt>Brand</dt>
+            <dd>Everything customers know, feel, and associate with a product or company.</dd>
+          </div>
+          <div>
+            <dt>Viral marketing</dt>
+            <dd>Getting customers to promote a product to others, often by word of mouth or social sharing.</dd>
+          </div>
+          <div>
+            <dt>Economies of scale</dt>
+            <dd>When costs are spread over more units or customers, so each one costs less to serve.</dd>
+          </div>
+          <div>
+            <dt>Switching costs</dt>
+            <dd>The money, time, or effort a customer must spend to move from one product to another.</dd>
+          </div>
+          <div>
+            <dt>Network effects</dt>
+            <dd>When a product becomes more valuable as more people use it. Also called Metcalfe's Law.</dd>
+          </div>
+          <div>
+            <dt>Distribution channels</dt>
+            <dd>The paths through which products or services reach customers.</dd>
+          </div>
+          <div>
+            <dt>Bundling</dt>
+            <dd>Selling separate products together as one package.</dd>
+          </div>
+          <div>
+            <dt>API</dt>
+            <dd>A published set of rules that lets other programs connect to and use a service.</dd>
+          </div>
+          <div>
+            <dt>Non-practicing entity</dt>
+            <dd>A “patent troll”: a firm that makes money by acquiring patents and suing others instead of making products.</dd>
+          </div>
+          <div>
+            <dt>Porter's Five Forces</dt>
+            <dd>A framework that judges an industry's attractiveness using rivalry, new entrants, substitutes, supplier power, and buyer power.</dd>
+          </div>
+          <div>
+            <dt>Price transparency</dt>
+            <dd>How much complete price information is available to buyers.</dd>
+          </div>
+          <div>
+            <dt>Information asymmetry</dt>
+            <dd>When one side of a deal knows more, or has better information, than the other.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- ===== FLASHCARDS =====
+           Each card is a <button>, so it works with a mouse, a touch
+           screen, AND a keyboard. main.js flips it (section 3). -->
+      <section id="flashcards" aria-labelledby="flashcards-h">
+        <span class="eyebrow">Practice</span>
+        <h2 id="flashcards-h">Flashcards</h2>
+        <p>Say the definition out loud, then flip the card to check yourself. Testing yourself like this
+          (called <strong>retrieval practice</strong>) helps you remember more than rereading does.</p>
+        <button class="btn btn--ghost" type="button" data-shuffle>Shuffle cards</button>
+        <ul class="flashcards">
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Sustainable competitive advantage<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Financial performance that consistently beats the industry average over time.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Operational effectiveness<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Doing the same tasks better than rivals do. Useful, but usually easy to copy.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Strategic positioning<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Doing different tasks than rivals, or the same tasks in a different way.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Commodity<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A basic product that's nearly interchangeable with competitors' versions, so buyers choose mostly on price.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Fast follower problem<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">When rivals watch a pioneer, learn from its mistakes, and quickly launch a similar or better product for less.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Resource-based view<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The idea that lasting advantage comes from controlling resources that are valuable, rare, hard to imitate, and hard to substitute.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Value chain<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The set of activities a firm uses to create a product or service and deliver it to customers.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Imitation-resistant value chain<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A way of doing business, often enabled by technology, that competitors find very hard to copy.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Straddling<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Trying to hold two strategic positions at once and doing worse than a rival focused on just one.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Brand<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Everything customers know, feel, and associate with a product or company.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Viral marketing<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Getting customers to promote a product to others, often by word of mouth or social sharing.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Economies of scale<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">When costs are spread over more units or customers, so each one costs less to serve.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Switching costs<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The money, time, or effort a customer must spend to move from one product to another.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Network effects<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">When a product becomes more valuable as more people use it. Also called Metcalfe's Law.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Distribution channels<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The paths through which products or services reach customers.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Bundling<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Selling separate products together as one package.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">API<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A published set of rules that lets other programs connect to and use a service.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Non-practicing entity<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A “patent troll”: a firm that makes money by acquiring patents and suing others instead of making products.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Porter's Five Forces<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A framework that judges an industry's attractiveness using rivalry, new entrants, substitutes, supplier power, and buyer power.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Price transparency<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">How much complete price information is available to buyers.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Information asymmetry<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">When one side of a deal knows more, or has better information, than the other.</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===== QUICK CHECK QUIZ =====
+           A <form> with <fieldset>/<legend> groups each question with
+           its choices — screen readers read the question with each option.
+           main.js grades it (section 4). Practice only — not graded. -->
+      <section id="quick-check" aria-labelledby="quick-check-h">
+        <span class="eyebrow">Self-check · Not graded</span>
+        <h2 id="quick-check-h">Quick Check</h2>
+        <form class="quiz" data-quiz>
+          <fieldset data-answer="b" data-explain="Doing the same tasks better than rivals is operational effectiveness, and rivals can buy the same kiosks.">
+            <legend>1. A grocery chain installs the same self-checkout kiosks its rivals use, just faster. This is an example of…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="a">
+              <span>Strategic positioning</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="b">
+              <span>Operational effectiveness</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="c">
+              <span>A network effect</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="d">
+              <span>Straddling</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="c" data-explain="The four are valuable, rare, imperfectly imitable, and non-substitutable. Cost isn&#x27;t one of them.">
+            <legend>2. Which is NOT one of the four characteristics of a resource that can yield sustainable advantage?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="a">
+              <span>Valuable</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="b">
+              <span>Rare</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="c">
+              <span>Inexpensive</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="d">
+              <span>Imperfectly imitable</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="a" data-explain="Switching costs are the time, money, or effort it takes to change products, and they make customers stick.">
+            <legend>3. Moving all your photos, contacts, and purchased apps to a new phone platform feels like a hassle. That hassle is a…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="a">
+              <span>Switching cost</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="b">
+              <span>Economy of scale</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="c">
+              <span>Distribution channel</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="d">
+              <span>Commodity</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="c" data-explain="More price information (price transparency) gives buyers more power to push prices down.">
+            <legend>4. Shoppers use their phones to compare prices across stores while standing in the aisle. Which force gets stronger?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="a">
+              <span>Supplier power</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="b">
+              <span>Threat of new entrants</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="c">
+              <span>Buyer power</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="d">
+              <span>None of them</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Timing alone isn&#x27;t an advantage. A pioneer has to turn its head start into resources rivals can&#x27;t easily match.">
+            <legend>5. What's the main lesson of the fast follower problem?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="a">
+              <span>Never be first to market</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="b">
+              <span>Being first only helps if you use the head start to build hard-to-copy resources</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="c">
+              <span>Followers always win</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="d">
+              <span>Patents prevent all copying</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <div class="quiz__actions">
+            <button class="btn" type="submit">Check my answers</button>
+            <button class="btn btn--ghost" type="reset">Try again</button>
+            <p class="quiz__score" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+
+      <!-- ===== MARK COMPLETE (saved in your browser by main.js, section 5) ===== -->
+      <div class="complete-panel">
+        <div>
+          <h2>Finished Module 2?</h2>
+          <p>Track your progress — it shows up on the home page.</p>
+        </div>
+        <!-- aria-pressed makes this a "toggle button" for screen readers -->
+        <button class="btn btn--gold" type="button" data-complete="2" aria-pressed="false">Mark module complete</button>
+      </div>
+
+      <!-- ===== PREVIOUS / NEXT ===== -->
+      <nav class="pager" aria-label="Module navigation">
+        <a href="module-01.html" rel="prev"><span class="pager__dir">← Previous</span>Module 1: Technology &amp; the Modern Enterprise</a>
+        <a class="pager__next" href="module-03.html" rel="next"><span class="pager__dir">Next →</span>Module 3: Computing Power &amp; Innovation</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p><strong>CTS 115: Information Systems Business Concepts</strong> — a student study companion.</p>
+      <p>This site summarizes key ideas in plain language. It does not replace your textbook,
+        <em>Information Systems: A Manager’s Guide to Harnessing Technology</em> (FlatWorld),
+        which has the full readings, cases, and videos. Always check Blackboard for due dates and assignments.</p>
+      <p>Built with plain HTML, CSS, and JavaScript. Curious how it works? Right-click anywhere and choose
+        “View Page Source” — the code is full of comments written for learners.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts go at the END of the body so the HTML loads first.
+       (You could also use the "defer" attribute in the <head>.) -->
+  <script src="../js/main.js"></script>
+</body>
+</html>

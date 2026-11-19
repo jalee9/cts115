@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<!-- The DOCTYPE tells the browser this is a modern HTML5 document. -->
+<!-- lang="en" helps screen readers pronounce words correctly. -->
+<html lang="en">
+<head>
+  <!-- charset: lets the page show any character (é, —, “ ”) correctly -->
+  <meta charset="UTF-8">
+  <!-- viewport: makes the page fit phone screens instead of zooming out -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The description often appears under the link in search results -->
+  <meta name="description" content="Module 13: How online ads are sold, how cookies and tracking work, app tracking, device profiling, privacy laws, and data governance.">
+  <title>Module 13: Digital Advertising & Privacy | CTS 115 Study Guide</title>
+
+  <!-- Google Fonts: "preconnect" starts the connection early so the font loads faster -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Our one stylesheet. "../" moves up a folder when needed. -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head><body>
+  <!-- Skip link: the first thing a keyboard user reaches with Tab -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- <header> is a "landmark": screen readers can jump straight to it -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../index.html">CTS <span>115</span> Study Guide</a>
+
+      <!-- aria-label names this navigation for screen-reader users -->
+      <nav class="site-nav" aria-label="Main">
+        <!-- aria-expanded tells assistive tech whether the menu is open.
+             aria-controls points to the id of the list it opens. -->
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <ul id="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#modules" aria-current="page">Modules</a></li>
+          <li><a href="../glossary.html">Glossary</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== MODULE BANNER =====
+       Same look as the course banners, built with HTML + CSS
+       (see section 5 of styles.css). -->
+  <div class="hero hero--module">
+    <div class="hero__inner">
+      <p class="module-badge">
+        <span class="module-badge__label">MODULE</span>
+        <span class="module-badge__num">13</span>
+      </p>
+      <div>
+        <!-- Each page has exactly ONE <h1>: the main topic of the page -->
+        <h1>Digital Advertising &amp; Privacy</h1>
+        <p class="hero__subtitle">Chapter 13: Advertising Technologies: Balancing Personalization with Privacy as Technology and Regulation Evolve</p>
+        <ul class="chips" aria-label="About this module">
+          <li>≈ 25 min read</li>
+          <li>28 key terms</li>
+          <li>5-question self-check</li>
+        </ul>
+      </div>
+      <svg class="hero__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 20v8h6l18 10V10L12 20z"/><path d="M12 28l3 12h5l-3-11M36 18a7 7 0 0 1 0 12M40 13l4-3M40 35l4 3"/></svg>
+    </div>
+  </div>
+
+  <!-- ===== PAGE LAYOUT: sidebar + content (CSS Grid, section 6) ===== -->
+  <div class="page">
+
+    <!-- "On this page" sidebar. It's a <nav> because it's a set of links. -->
+    <nav class="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <ol>
+          <li><a href="#big-picture">The Big Picture</a></li>
+          <li><a href="#goals">What You’ll Learn</a></li>
+          <li><a href="#online-ads">Online Advertising 101</a></li>
+          <li><a href="#tracking">Web Tracking</a></li>
+          <li><a href="#app-tracking">Apple vs. Facebook</a></li>
+          <li><a href="#device-profiling">Device Profiling</a></li>
+          <li><a href="#regulation">Privacy Laws &amp; Governance</a></li>
+          <li><a href="#key-terms">Key Terms</a></li>
+          <li><a href="#flashcards">Flashcards</a></li>
+          <li><a href="#quick-check">Quick Check</a></li>
+      </ol>
+    </nav>
+
+    <!-- <main> holds the page's unique content. id="main" is where the
+         skip link jumps to. tabindex="-1" lets it receive that focus. -->
+    <main id="main" class="content" tabindex="-1">
+
+      <!-- ===== THE BIG PICTURE: the whole module in a few bullets ===== -->
+      <section id="big-picture" aria-labelledby="big-picture-h">
+        <span class="eyebrow">Start here</span>
+        <h2 id="big-picture-h">The Big Picture</h2>
+        <div class="big-picture">
+          <ul>
+          <li>Online advertising is booming because it's <strong>targetable, measurable, and cheap to test</strong>, and attention has shifted to screens.</li>
+          <li>Ads are sold by impressions (<strong>CPM</strong>), clicks (<strong>CPC</strong>), or actions (<strong>CPA</strong>). Firms use <strong>zero-, first-, second-, and third-party data</strong> to target them.</li>
+          <li><strong>Cookies, tracking pixels, and fingerprinting</strong> follow you around the web. <strong>Ad networks</strong> use that tracking to serve ads across many sites.</li>
+          <li>Apple's <strong>App Tracking Transparency</strong> made app tracking opt-in, which cost Meta and others billions in ad revenue.</li>
+          <li>Privacy laws like <strong>GDPR</strong> keep changing. Smart firms build strong <strong>data governance</strong> instead of waiting to be fined.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== LEARNING GOALS ===== -->
+      <section id="goals" aria-labelledby="goals-h">
+        <span class="eyebrow">Your goals</span>
+        <h2 id="goals-h">What You’ll Learn</h2>
+        <p>By the end of this module, you should be able to:</p>
+        <ul class="goals">
+          <li>Explain why online advertising has grown and describe common ad formats.</li>
+          <li>Define CPM, CPC, and CPA, and explain zero-, first-, second-, and third-party data.</li>
+          <li>Explain cookies (first- and third-party), tracking pixels, retargeting, fingerprinting, and ad networks.</li>
+          <li>Describe Apple's ATT change, opt-in vs. opt-out, and why Meta objected.</li>
+          <li>Explain how devices are located (IP address, Wi-Fi, cell towers, GPS) and how smart TVs profile viewers.</li>
+          <li>Describe major privacy regulations and the elements of good data governance.</li>
+        </ul>
+      </section>
+
+      <!-- ===== LESSON SECTION: Online Advertising 101 ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Online Advertising 101, region". -->
+      <section id="online-ads" aria-labelledby="online-ads-h">
+        <span class="eyebrow">Section 13.1</span>
+        <h2 id="online-ads-h">Understanding Online Advertising</h2>
+<p>People spend more and more time on phones, streaming, and social media, and advertising follows them. Online ads can be
+          targeted to specific people, measured precisely, and changed instantly. Generative AI can even create custom ad
+          <strong>creative</strong> (the design and content of an ad) for different audiences.</p>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Format</span><h3>Display ads</h3><p>Image-based banner ads.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Format</span><h3>Rich media</h3><p>Ads with animation, audio, or video.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Format</span><h3>Interstitials</h3><p>Ads that appear <em>before</em> you reach the page or app screen you wanted.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Format</span><h3>Text &amp; search ads</h3><p>Short text ads, often tied to what you search for.</p></article>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <caption>How online ads are priced</caption>
+            <thead><tr><th scope="col">Model</th><th scope="col">Advertiser pays when…</th><th scope="col">Best for</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">CPM (cost per mille)</th><td>The ad is shown 1,000 times (1,000 <strong>impressions</strong>)</td><td>Brand awareness</td></tr>
+              <tr><th scope="row">CPC (cost per click)</th><td>Someone clicks the ad</td><td>Driving traffic to a site</td></tr>
+              <tr><th scope="row">CPA (cost per action)</th><td>Someone takes an action, like buying or signing up</td><td>Sales. <strong>Affiliate programs</strong> use this model.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>The four kinds of customer data</h3>
+        <ol class="steps">
+          <li><strong>Zero-party data</strong>Info you <em>deliberately</em> give a firm, like your preferences when you sign up.</li>
+          <li><strong>First-party data</strong>What a firm observes from your interactions with <em>it</em>, like your browsing and purchases on its site.</li>
+          <li><strong>Second-party data</strong>Another firm's first-party data, shared with a partner.</li>
+          <li><strong>Third-party data</strong>Data gathered by a company with no direct relationship to you, often bought from aggregators.</li>
+        </ol>
+      </section>
+      <!-- ===== LESSON SECTION: Web Tracking ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Web Tracking, region". -->
+      <section id="tracking" aria-labelledby="tracking-h">
+        <span class="eyebrow">Section 13.2</span>
+        <h2 id="tracking-h">Web Tracking: How Ads Follow You</h2>
+<p>A <strong>cookie</strong> is a small piece of identifying text that a website stores in your browser. Only the server that set a
+          cookie can read it back.</p>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Cookie</span><h3>First-party cookie</h3><p>Set by the site you're visiting. It remembers your login, cart, and preferences.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Cookie</span><h3>Third-party cookie</h3><p>Set by a <em>different</em> company, like an ad network, embedded on many sites, so it can follow you across all of them.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Tracker</span><h3>Tracking pixel</h3><p>An invisible one-pixel image that reports when you view a page or open an email.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Tracker</span><h3>Fingerprinting</h3><p>Identifying your device from details like browser version, fonts, and screen size, with no cookie needed.</p></article>
+        </div>
+
+        <figure class="diagram">
+          <svg viewBox="0 0 760 270" role="img" aria-labelledby="rt-title rt-desc">
+            <title id="rt-title">How retargeting works</title>
+            <desc id="rt-desc">Step one: you view sneakers on a shoe store's site, and an ad network sets a third-party cookie.
+              Step two: you visit a news site that also shows ads from the same network. Step three: the network reads its
+              cookie and shows you the sneakers again.</desc>
+            <defs><marker id="rt-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#0a6a9c"/></marker></defs>
+            <g text-anchor="middle">
+              <rect x="20" y="40" width="200" height="110" rx="12" fill="#0b2f5b"/><text x="120" y="80" class="svg-label" style="fill:#fbc04a">1. Shoe store site</text><text x="120" y="105" class="svg-small" style="fill:#fff">You look at sneakers.</text><text x="120" y="125" class="svg-small" style="fill:#fff">Ad network sets a cookie.</text>
+              <rect x="280" y="40" width="200" height="110" rx="12" fill="#0b2f5b"/><text x="380" y="80" class="svg-label" style="fill:#fbc04a">2. News site</text><text x="380" y="105" class="svg-small" style="fill:#fff">Same ad network</text><text x="380" y="125" class="svg-small" style="fill:#fff">reads its cookie.</text>
+              <rect x="540" y="40" width="200" height="110" rx="12" fill="#fbc04a"/><text x="640" y="80" class="svg-label">3. Sneaker ad!</text><text x="640" y="105" class="svg-small">The ad “follows”</text><text x="640" y="125" class="svg-small" style="fill:#1a2433">you around.</text>
+            </g>
+            <g stroke="#0a6a9c" stroke-width="3" marker-end="url(#rt-arrow)"><line x1="224" y1="95" x2="276" y2="95"/><line x1="484" y1="95" x2="536" y2="95"/></g>
+            <text x="380" y="200" text-anchor="middle" class="svg-label">This is called retargeting (or remarketing).</text>
+            <text x="380" y="225" text-anchor="middle" class="svg-small">An ad network links advertisers with thousands of sites willing to show ads.</text>
+          </svg>
+          <figcaption>Third-party cookies let ad networks recognize you across different websites.</figcaption>
+        </figure>
+
+        <aside class="callout callout--example" aria-label="Ad tech in flux">
+          <span class="callout__title">Ad tech in flux · Is the third-party cookie dead?</span>
+          <p>Safari and Firefox block third-party cookies by default. Google spent years planning to phase them out of Chrome, then
+            reversed course and kept them. Advertisers are shifting toward first-party data, contextual ads (matching ads
+            to page content), and other tracking methods, each with its own privacy concerns.</p>
+        </aside>
+        <aside class="callout callout--why" aria-label="Try it">
+          <span class="callout__title">Try it yourself</span>
+          <p>Open your browser's Developer Tools (F12), then go to Application (or Storage) and Cookies to see the cookies a site stores. Or look
+            at your browser's privacy settings to see which trackers it blocks.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Apple vs. Facebook ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Apple vs. Facebook, region". -->
+      <section id="app-tracking" aria-labelledby="app-tracking-h">
+        <span class="eyebrow">Section 13.3</span>
+        <h2 id="app-tracking-h">App Tracking: Apple and Facebook Go to War</h2>
+<p>iPhone apps used a device ID called the <strong>IDFA</strong> to track users across apps. In 2021 (iOS 14.5), Apple launched
+          <strong>App Tracking Transparency (ATT)</strong>: every app must <em>ask permission</em> before tracking you.</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Opt-in vs. opt-out</caption>
+            <thead><tr><th scope="col"></th><th scope="col">Opt-out (before ATT)</th><th scope="col">Opt-in (after ATT)</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Default</th><td>Tracking is ON unless you turn it off</td><td>Tracking is OFF unless you say yes</td></tr>
+              <tr><th scope="row">Result</th><td>Most users are tracked</td><td>Most users decline tracking</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="callout callout--example" aria-label="Both sides">
+          <span class="callout__title">Two sides of the fight</span>
+          <p><strong>Apple says:</strong> privacy is a human right, and users deserve a choice. <strong>Meta says:</strong> ATT hurts small
+            businesses that rely on targeted ads, and Apple's own ad business benefits. Meta said the change would cost it about
+            $10 billion in a year. Regulators are examining both firms' claims.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Device Profiling ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Device Profiling, region". -->
+      <section id="device-profiling" aria-labelledby="device-profiling-h">
+        <span class="eyebrow">Section 13.4</span>
+        <h2 id="device-profiling-h">Device Profiling: Where Are You, and What Are You Watching?</h2>
+<p><strong>Geotargeting</strong> shows ads or content based on your location. <strong>Geofencing</strong> triggers an action when a device
+          enters a defined area, like a coupon when you walk near a store.</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Ways to locate a device</caption>
+            <thead><tr><th scope="col">Method</th><th scope="col">How it works</th><th scope="col">Accuracy</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">IP address</th><td>Looks up the region assigned to your Internet address. <strong>VPNs</strong> and <strong>proxy servers</strong> can hide it.</td><td>Rough, usually city level</td></tr>
+              <tr><th scope="row">Wi-Fi</th><td>Matches nearby Wi-Fi networks against a database of known locations</td><td>Good, especially indoors</td></tr>
+              <tr><th scope="row">Cell towers</th><td>Measures signals from several towers (triangulation)</td><td>Moderate</td></tr>
+              <tr><th scope="row">GPS</th><td>Satellite signals. Needs a clear view of the sky (<strong>line-of-sight</strong>).</td><td>Very precise outdoors</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · Your TV is watching you</span>
+          <p>Many smart TVs use <strong>ACR</strong> (automated content recognition) to identify everything on screen, even from cable or a game
+            console, and sell that viewing data to advertisers. <strong>DAI</strong> (dynamic ad insertion) then swaps in ads targeted to your
+            household. You can usually turn ACR off in the TV's settings.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Privacy Laws &amp;amp; Governance ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Privacy Laws &amp;amp; Governance, region". -->
+      <section id="regulation" aria-labelledby="regulation-h">
+        <span class="eyebrow">Sections 13.5–13.6</span>
+        <h2 id="regulation-h">Privacy Regulation and Data Governance</h2>
+<p>Privacy law is a moving target that changes by country and even by state.</p>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">EU</span><h3>GDPR</h3><p>Europe's sweeping privacy law requires consent and lets people see or delete their data. Fines can reach 4% of global revenue. Meta was fined a record €1.2 billion in 2023.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">U.S.</span><h3>State laws</h3><p>There's no single federal privacy law. California's CCPA/CPRA led the way, and other states have followed with their own rules.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Side effect</span><h3>Cookie banner fatigue</h3><p>GDPR's consent pop-ups are everywhere, and most people click “accept” without reading. Rules don't always work as intended.</p></article>
+        </div>
+        <h3>Building good data governance</h3>
+        <p><strong>Governance</strong> means monitoring and controlling how an organization uses its information systems. <strong>Data compliance</strong>
+          means following the laws and standards that apply. Strong policies:</p>
+        <ul class="goals">
+          <li>Involve many groups: IT, legal, security, marketing, HR, and executives.</li>
+          <li>Define what data is collected, why, who can access it, how long it's kept, and how it's protected.</li>
+          <li>Work with regulators and industry groups (like the <strong>IAB</strong>) <em>proactively</em> instead of waiting for fines.</li>
+          <li>Get audited regularly and are enforced with real consequences.</li>
+        </ul>
+      </section>
+
+      <!-- ===== KEY TERMS =====
+           A <dl> (description list) is the right HTML element for
+           term + definition pairs: <dt> = term, <dd> = definition. -->
+      <section id="key-terms" aria-labelledby="key-terms-h">
+        <span class="eyebrow">Vocabulary</span>
+        <h2 id="key-terms-h">Key Terms</h2>
+        <p>Want every term from every module in one place? Try the <a href="../glossary.html">searchable glossary</a>.</p>
+        <dl class="terms">
+          <div>
+            <dt>Impression</dt>
+            <dd>One time an ad is shown to a user.</dd>
+          </div>
+          <div>
+            <dt>Display ad</dt>
+            <dd>A graphical (image-based) online ad.</dd>
+          </div>
+          <div>
+            <dt>Rich media ad</dt>
+            <dd>An online ad with animation, audio, or video.</dd>
+          </div>
+          <div>
+            <dt>Interstitial</dt>
+            <dd>An ad shown before a user reaches the page or screen they wanted.</dd>
+          </div>
+          <div>
+            <dt>Creative</dt>
+            <dd>The design and content of an advertisement.</dd>
+          </div>
+          <div>
+            <dt>CPM</dt>
+            <dd>Cost per mille: what an advertiser pays each time an ad is shown 1,000 times.</dd>
+          </div>
+          <div>
+            <dt>Cost-per-click (CPC)</dt>
+            <dd>A pricing model where advertisers pay only when someone clicks the ad.</dd>
+          </div>
+          <div>
+            <dt>Cost-per-action (CPA)</dt>
+            <dd>A pricing model where advertisers pay only when a user takes a specific action, like buying.</dd>
+          </div>
+          <div>
+            <dt>Affiliate program</dt>
+            <dd>A cost-per-action program that pays referring sites a share of the sales they bring in.</dd>
+          </div>
+          <div>
+            <dt>Zero-party data</dt>
+            <dd>Data a customer intentionally shares with a firm.</dd>
+          </div>
+          <div>
+            <dt>First-party data</dt>
+            <dd>Data a firm collects from customers' interactions with it.</dd>
+          </div>
+          <div>
+            <dt>Second-party data</dt>
+            <dd>One firm's customer data shared with a partner.</dd>
+          </div>
+          <div>
+            <dt>Third-party data</dt>
+            <dd>Data collected by a firm with no direct relationship to the customer.</dd>
+          </div>
+          <div>
+            <dt>Cookie</dt>
+            <dd>A small piece of identifying text a website stores in your browser.</dd>
+          </div>
+          <div>
+            <dt>Third-party cookie</dt>
+            <dd>A cookie set by a company other than the site you're visiting, often to track you across sites.</dd>
+          </div>
+          <div>
+            <dt>Tracking pixel</dt>
+            <dd>An invisible image that reports when a page or email is viewed.</dd>
+          </div>
+          <div>
+            <dt>Retargeting</dt>
+            <dd>Showing ads on other sites to people who already visited an advertiser's site.</dd>
+          </div>
+          <div>
+            <dt>Fingerprinting</dt>
+            <dd>Identifying a device from its unique combination of settings and characteristics.</dd>
+          </div>
+          <div>
+            <dt>Ad network</dt>
+            <dd>A service connecting advertisers with many websites and apps that host ads.</dd>
+          </div>
+          <div>
+            <dt>IDFA</dt>
+            <dd>Apple's device identifier that apps used to track user activity.</dd>
+          </div>
+          <div>
+            <dt>ATT</dt>
+            <dd>App Tracking Transparency: Apple's rule that apps must ask permission before tracking users.</dd>
+          </div>
+          <div>
+            <dt>Geotargeting</dt>
+            <dd>Delivering content or ads based on a user's location.</dd>
+          </div>
+          <div>
+            <dt>Geofencing</dt>
+            <dd>Using a virtual boundary to trigger an action when a device enters or leaves an area.</dd>
+          </div>
+          <div>
+            <dt>VPN</dt>
+            <dd>Virtual private network: an encrypted connection that hides your real location and traffic.</dd>
+          </div>
+          <div>
+            <dt>ACR</dt>
+            <dd>Automated content recognition: technology that identifies what's playing on a screen.</dd>
+          </div>
+          <div>
+            <dt>DAI</dt>
+            <dd>Dynamic ad insertion: inserting targeted ads into video or TV streams.</dd>
+          </div>
+          <div>
+            <dt>GDPR</dt>
+            <dd>The EU's General Data Protection Regulation, a strict privacy law with large fines.</dd>
+          </div>
+          <div>
+            <dt>Governance</dt>
+            <dd>Monitoring and controlling how an organization uses its technology and data.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- ===== FLASHCARDS =====
+           Each card is a <button>, so it works with a mouse, a touch
+           screen, AND a keyboard. main.js flips it (section 3). -->
+      <section id="flashcards" aria-labelledby="flashcards-h">
+        <span class="eyebrow">Practice</span>
+        <h2 id="flashcards-h">Flashcards</h2>
+        <p>Say the definition out loud, then flip the card to check yourself. Testing yourself like this
+          (called <strong>retrieval practice</strong>) helps you remember more than rereading does.</p>
+        <button class="btn btn--ghost" type="button" data-shuffle>Shuffle cards</button>
+        <ul class="flashcards">
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Impression<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">One time an ad is shown to a user.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Display ad<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A graphical (image-based) online ad.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Rich media ad<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">An online ad with animation, audio, or video.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Interstitial<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">An ad shown before a user reaches the page or screen they wanted.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Creative<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The design and content of an advertisement.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">CPM<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Cost per mille: what an advertiser pays each time an ad is shown 1,000 times.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Cost-per-click (CPC)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A pricing model where advertisers pay only when someone clicks the ad.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Cost-per-action (CPA)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A pricing model where advertisers pay only when a user takes a specific action, like buying.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Affiliate program<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A cost-per-action program that pays referring sites a share of the sales they bring in.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Zero-party data<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Data a customer intentionally shares with a firm.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">First-party data<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Data a firm collects from customers' interactions with it.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Second-party data<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">One firm's customer data shared with a partner.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Third-party data<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Data collected by a firm with no direct relationship to the customer.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Cookie<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A small piece of identifying text a website stores in your browser.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Third-party cookie<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A cookie set by a company other than the site you're visiting, often to track you across sites.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Tracking pixel<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">An invisible image that reports when a page or email is viewed.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Retargeting<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Showing ads on other sites to people who already visited an advertiser's site.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Fingerprinting<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Identifying a device from its unique combination of settings and characteristics.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Ad network<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A service connecting advertisers with many websites and apps that host ads.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">IDFA<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Apple's device identifier that apps used to track user activity.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">ATT<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">App Tracking Transparency: Apple's rule that apps must ask permission before tracking users.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Geotargeting<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Delivering content or ads based on a user's location.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Geofencing<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Using a virtual boundary to trigger an action when a device enters or leaves an area.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">VPN<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Virtual private network: an encrypted connection that hides your real location and traffic.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">ACR<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Automated content recognition: technology that identifies what's playing on a screen.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">DAI<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Dynamic ad insertion: inserting targeted ads into video or TV streams.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">GDPR<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The EU's General Data Protection Regulation, a strict privacy law with large fines.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Governance<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Monitoring and controlling how an organization uses its technology and data.</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===== QUICK CHECK QUIZ =====
+           A <form> with <fieldset>/<legend> groups each question with
+           its choices — screen readers read the question with each option.
+           main.js grades it (section 4). Practice only — not graded. -->
+      <section id="quick-check" aria-labelledby="quick-check-h">
+        <span class="eyebrow">Self-check · Not graded</span>
+        <h2 id="quick-check-h">Quick Check</h2>
+        <form class="quiz" data-quiz>
+          <fieldset data-answer="c" data-explain="Cost per action charges only when the user completes a specified action, like a purchase.">
+            <legend>1. An advertiser pays only when a shopper actually buys something after clicking the ad. This is…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="a">
+              <span>CPM</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="b">
+              <span>CPC</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="c">
+              <span>CPA</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="d">
+              <span>DAI</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="a" data-explain="Zero-party data is information the customer intentionally shares.">
+            <legend>2. A customer fills out a style quiz telling a clothing brand her favorite colors. This is…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="a">
+              <span>Zero-party data</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="b">
+              <span>Second-party data</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="c">
+              <span>Third-party data</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="d">
+              <span>Fingerprinting</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Third-party cookies are set by the ad network itself and read on every site that uses that network.">
+            <legend>3. What lets an ad network recognize you on many different websites?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="a">
+              <span>A first-party cookie</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="b">
+              <span>A third-party cookie</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="c">
+              <span>A canned report</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="d">
+              <span>A primary key</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Apps now must ask first, and tracking is off unless the user agrees.">
+            <legend>4. Apple's ATT changed app tracking from…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="a">
+              <span>Opt-in to opt-out</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="b">
+              <span>Opt-out to opt-in</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="c">
+              <span>Free to paid</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="d">
+              <span>Legal to illegal</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="c" data-explain="GPS relies on line-of-sight satellite signals, so it works poorly indoors.">
+            <legend>5. Which location method needs a clear view of the sky to be accurate?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="a">
+              <span>IP address</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="b">
+              <span>Wi-Fi</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="c">
+              <span>GPS</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="d">
+              <span>ACR</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <div class="quiz__actions">
+            <button class="btn" type="submit">Check my answers</button>
+            <button class="btn btn--ghost" type="reset">Try again</button>
+            <p class="quiz__score" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+
+      <!-- ===== MARK COMPLETE (saved in your browser by main.js, section 5) ===== -->
+      <div class="complete-panel">
+        <div>
+          <h2>Finished Module 13?</h2>
+          <p>Track your progress — it shows up on the home page.</p>
+        </div>
+        <!-- aria-pressed makes this a "toggle button" for screen readers -->
+        <button class="btn btn--gold" type="button" data-complete="13" aria-pressed="false">Mark module complete</button>
+      </div>
+
+      <!-- ===== PREVIOUS / NEXT ===== -->
+      <nav class="pager" aria-label="Module navigation">
+        <a href="module-12.html" rel="prev"><span class="pager__dir">← Previous</span>Module 12: Artificial Intelligence in Business</a>
+        <a class="pager__next" href="module-14.html" rel="next"><span class="pager__dir">Next →</span>Module 14: Internet &amp; Telecommunications</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p><strong>CTS 115: Information Systems Business Concepts</strong> — a student study companion.</p>
+      <p>This site summarizes key ideas in plain language. It does not replace your textbook,
+        <em>Information Systems: A Manager’s Guide to Harnessing Technology</em> (FlatWorld),
+        which has the full readings, cases, and videos. Always check Blackboard for due dates and assignments.</p>
+      <p>Built with plain HTML, CSS, and JavaScript. Curious how it works? Right-click anywhere and choose
+        “View Page Source” — the code is full of comments written for learners.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts go at the END of the body so the HTML loads first.
+       (You could also use the "defer" attribute in the <head>.) -->
+  <script src="../js/main.js"></script>
+</body>
+</html>

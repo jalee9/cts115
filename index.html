@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<!-- The DOCTYPE tells the browser this is a modern HTML5 document. -->
+<!-- lang="en" helps screen readers pronounce words correctly. -->
+<html lang="en">
+<head>
+  <!-- charset: lets the page show any character (é, —, “ ”) correctly -->
+  <meta charset="UTF-8">
+  <!-- viewport: makes the page fit phone screens instead of zooming out -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The description often appears under the link in search results -->
+  <meta name="description" content="A visual, student-friendly study guide for CTS 115: Information Systems Business Concepts.">
+  <title>CTS 115 Study Guide | Information Systems Business Concepts</title>
+
+  <!-- Google Fonts: "preconnect" starts the connection early so the font loads faster -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Our one stylesheet. "" moves up a folder when needed. -->
+  <link rel="stylesheet" href="css/styles.css">
+</head><body>
+  <!-- Skip link: the first thing a keyboard user reaches with Tab -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- <header> is a "landmark": screen readers can jump straight to it -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="index.html">CTS <span>115</span> Study Guide</a>
+
+      <!-- aria-label names this navigation for screen-reader users -->
+      <nav class="site-nav" aria-label="Main">
+        <!-- aria-expanded tells assistive tech whether the menu is open.
+             aria-controls points to the id of the list it opens. -->
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <ul id="nav-links">
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="index.html#modules">Modules</a></li>
+          <li><a href="glossary.html">Glossary</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HOME HERO (recreates the CTS 115 course banner in CSS) ===== -->
+  <div class="hero hero--home">
+    <div class="hero__inner">
+      <h1 class="hero__title">CTS <span>115</span></h1>
+      <p class="hero__kicker">Information Systems</p>
+      <p class="hero__kicker hero__kicker--soft">Business Concepts</p>
+      <!-- <hr> is a thematic break; here it's styled as the gold line -->
+      <hr class="hero__rule">
+      <p class="hero__lead">The big ideas from every chapter: short, visual, and built for studying.</p>
+    </div>
+  </div>
+
+  <div class="page page--single">
+    <main id="main" class="content" tabindex="-1">
+
+      <!-- ===== HOW TO USE THIS SITE ===== -->
+      <section aria-labelledby="how-h">
+        <h2 id="how-h">How to use this guide</h2>
+        <p>Each module matches a chapter in your textbook. Use this site to <strong>preview</strong> a chapter
+          before you read, to <strong>review</strong> after, or to <strong>study</strong> before a knowledge check.</p>
+        <ul class="features">
+        <li>
+          <svg class="" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17 29a11 11 0 1 1 14 0c-2 2-3 4-3 6H20c0-2-1-4-3-6z"/><path d="M20 39h8M21 43h6M24 3v3M8 10l2 2M40 10l-2 2M4 22h3M41 22h3"/></svg>
+          <h3>Big Picture first</h3>
+          <p>Every module opens with the main ideas in a few bullets. Start there.</p>
+        </li>
+        <li>
+          <svg class="" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 40h32"/><rect x="11" y="28" width="6" height="10"/><rect x="21" y="21" width="6" height="17"/><rect x="31" y="14" width="6" height="24"/><path d="M10 22l10-9 7 5 12-10M33 8h6v6"/></svg>
+          <h3>Visual diagrams</h3>
+          <p>Frameworks like the Hype Cycle and Five Forces, drawn out and labeled.</p>
+        </li>
+        <li>
+          <svg class="" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="18"/><ellipse cx="24" cy="24" rx="8" ry="18"/><path d="M6 24h36M9 15h30M9 33h30"/></svg>
+          <h3>Real-world examples</h3>
+          <p>See how real companies used (or misused) technology.</p>
+        </li>
+        <li>
+          <svg class="" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="28" cy="19" r="12"/><path d="M19 28L6 41"/></svg>
+          <h3>Searchable glossary</h3>
+          <p>Look up any key term from any module in seconds.</p>
+        </li>
+        <li>
+          <svg class="" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 8a6 6 0 0 0-11 3 6 6 0 0 0-4 10 6 6 0 0 0 2 10 6 6 0 0 0 6 8 6 6 0 0 0 7 1zM26 8a6 6 0 0 1 11 3 6 6 0 0 1 4 10 6 6 0 0 1-2 10 6 6 0 0 1-6 8 6 6 0 0 1-7 1z"/><path d="M22 8v32M26 8v32M14 18h5M29 30h5M15 30l4-3M33 18l-4 3"/></svg>
+          <h3>Flashcards &amp; self-checks</h3>
+          <p>Test yourself. It's practice only, and nothing is graded.</p>
+        </li>
+        </ul>
+      </section>
+
+      <!-- ===== MODULE LIST ===== -->
+      <section id="modules" aria-labelledby="modules-h">
+        <h2 id="modules-h">Modules</h2>
+
+        <!-- Progress bar. role="progressbar" + aria-value* attributes let
+             screen readers announce it ("25 percent"). main.js fills it in. -->
+        <div class="progress">
+          <p class="progress__label">0 of 16 modules complete (0%)</p>
+          <div class="progress__track" role="progressbar" aria-label="Course progress"
+               aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="progress__fill"></div>
+          </div>
+        </div>
+
+        <!-- A list of cards: using <ul> tells screen readers "16 items" -->
+        <ul class="module-grid">
+        <li>
+          <a class="module-card" href="modules/module-01.html" data-module="1">
+            <span class="module-card__num" aria-hidden="true">1</span>
+            <span>
+              <span class="visually-hidden">Module 1: </span>
+              <span class="module-card__title">Technology &amp; the Modern Enterprise</span>
+              <span class="module-card__sub">Setting the Stage: Technology and the Modern Enterprise</span>
+            </span>
+            <svg class="module-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="18"/><ellipse cx="24" cy="24" rx="8" ry="18"/><path d="M6 24h36M9 15h30M9 33h30"/></svg>
+            <span class="module-card__done" hidden>✓ Done</span>
+          </a>
+        </li>
+        <li>
+          <a class="module-card" href="modules/module-02.html" data-module="2">
+            <span class="module-card__num" aria-hidden="true">2</span>
+            <span>
+              <span class="visually-hidden">Module 2: </span>
+              <span class="module-card__title">Technology &amp; Business Strategy</span>
+              <span class="module-card__sub">Strategy and Technology: Concepts and Frameworks for Achieving Success</span>
+            </span>
+            <svg class="module-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 40h32"/><rect x="11" y="28" width="6" height="10"/><rect x="21" y="21" width="6" height="17"/><rect x="31" y="14" width="6" height="24"/><path d="M10 22l10-9 7 5 12-10M33 8h6v6"/></svg>
+            <span class="module-card__done" hidden>✓ Done</span>
+          </a>
+        </li>
+        <li>
+          <a class="module-card" href="modules/module-03.html" data-module="3">
+            <span class="module-card__num" aria-hidden="true">3</span>
+            <span>
+              <span class="visually-hidden">Module 3: </span>
+              <span class="module-card__title">Computing Power &amp; Innovation</span>
+              <span class="module-card__sub">Moore’s Law and More: Fast/Cheap Computing and What This Means for the Manager</span>
+            </span>
+            <svg class="module-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="13" y="13" width="22" height="22" rx="3"/><rect x="19" y="19" width="10" height="10"/><path d="M19 6v7M24 6v7M29 6v7M19 35v7M24 35v7M29 35v7M6 19h7M6 24h7M6 29h7M35 19h7M35 24h7M35 29h7"/></svg>
+            <span class="module-card__done" hidden>✓ Done</span>
+          </a>
+        </li>
+        <li>
+          <a class="module-card" href="modules/module-04.html" data-module="4">
+            <span class="module-card__num" aria-hidden="true">4</span>
+            <span>
+              <span class="visually-hidden">Module 4: </span>
+              <span class="module-card__title">Disruptive Technology</span>
+              <span class="module-card__sub">Understanding Giant Killers and Tactics to Avoid Extinction</span>
+            </span>
+            <svg class="module-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17 29a11 11 0 1 1 14 0c-2 2-3 4-3 6H20c0-2-1-4-3-6z"/><path d="M20 39h8M21 43h6M24 3v3M8 10l2 2M40 10l-2 2M4 22h3M41 22h3"/></svg>
+            <span class="module-card__done" hidden>✓ Done</span>
+          </a>
+        </li>
+        <li>
+          <a class="module-card" href="modules/module-05.html" data-module="5">
+            <span class="module-card__num" aria-hidden="true">5</span>
+            <span>
+              <span class="visually-hidden">Module 5: </span>
+              <span class="module-card__title">Amazon &amp; Digital Business</span>
+              <span class="module-card__sub">Amazon: An Empire Stretching from Cardboard Box to Kindle to Cloud</span>
+            </span>
+            <svg class="module-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 8h6l5 22h21l5-15H12"/><circle cx="18" cy="38" r="3"/><circle cx="33" cy="38" r="3"/></svg>
+            <span class="module-card__done" hidden>✓ Done</span>
+          </a>
+        </li>
+        <li>
+          <a class="module-card" href="modules/module-06.html" data-module="6">
+            <span class="module-card__num" aria-hidden="true">6</span>
+            <span>
+              <span class="visually-hidden">Module 6: </span>
+              <span class="module-card__title">Global E-Commerce</span>
+              <span class="module-card__sub">Shein and Temu: E-commerce Giants from Asia Grow Globally</span>
+            </span>
+            <svg class="module-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="20" cy="27" r="15"/><ellipse cx="20" cy="27" rx="6" ry="15"/><path d="M5 27h30"/><path d="M36 20s-7-7-7-12a7 7 0 0 1 14 0c0 5-7 12-7 12z"/><circle cx="36" cy="8" r="2.2"/></svg>
+            <span class="module-card__done" hidden>✓ Done</span>
+          </a>
+        </li>
+        <li>
+          <a class="module-card" href="modules/module-07.html" data-module="7">
+            <span class="module-card__num" aria-hidden="true">7</span>
+            <span>
+              <span class="visually-hidden">Module 7: </span>
+              <span class="module-card__title">Platforms &amp; Network Effects</span>
+              <span class="module-card__sub">Platforms, Network Effects, and Competing in a Winner-Take-All World</span>
+            </span>
+            <svg class="module-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="24" cy="10" r="5"/><circle cx="9" cy="36" r="5"/><circle cx="39" cy="36" r="5"/><path d="M21 15l-9 16M27 15l9 16M14 36h20"/></svg>
+            <span class="module-card__done" hidden>✓ Done</span>
+          </a>
+        </li>
+        <li>
+          <a class="module-card" href="modules/module-08.html" data-module="8">
+            <span class="module-card__num" aria-hidden="true">8</span>
+            <span>
+              <span class="visually-hidden">Module 8: </span>
+              <span class="module-card__title">Social Platforms &amp; Privacy</span>
+              <span class="module-card__sub">From Facebook to Meta: Platforms, Privacy, and Big Business from the Social Graph</span>
+            </span>
+            <svg class="module-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="24" cy="15" r="6"/><circle cx="11" cy="19" r="4.5"/><circle cx="37" cy="19" r="4.5"/><path d="M14 40c0-7 4-13 10-13s10 6 10 13M3 38c0-5 3-10 8-10M45 38c0-5-3-10-8-10"/></svg>
+            <span class="module-card__done" hidden>✓ Done</span>
+          </a>
+        </li>
+        <li>
+          <a class="module-card" href="modules/module-09.html" data-module="9">
+            <span class="module-card__num" aria-hidden="true">9</span>
+            <span>
+              <span class="visually-hidden">Module 9: </span>
+              <span class="module-card__title">Understanding Software</span>
+              <span class="module-card__sub">Understanding Software: A Primer for Managers</span>
+            </span>
+            <svg class="module-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 14L6 24l10 10M32 14l10 10-10 10M28 8l-8 32"/></svg>
+            <span class="module-card__done" hidden>✓ Done</span>
+          </a>
+        </li>
+        <li>
+          <a class="module-card" href="modules/module-10.html" data-module="10">
+            <span class="module-card__num" aria-hidden="true">10</span>
+            <span>
+              <span class="visually-hidden">Module 10: </span>
+              <span class="module-card__title">The Changing Software Landscape</span>
+              <span class="module-card__sub">Software in Flux: Open Source, Cloud, Virtualized, and App-Driven Shifts</span>
+            </span>
+            <svg class="module-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 36a9 9 0 0 1-1-18 12 12 0 0 1 23 2 8 8 0 0 1-1 16z"/><path d="M24 40V24M18 30l6-6 6 6"/></svg>
+            <span class="module-card__done" hidden>✓ Done</span>
+          </a>
+        </li>
+        <li>
+          <a class="module-card" href="modules/module-11.html" data-module="11">
+            <span class="module-card__num" aria-hidden="true">11</span>
+            <span>
+              <span class="visually-hidden">Module 11: </span>
+              <span class="module-card__title">Data &amp; Competitive Advantage</span>
+              <span class="module-card__sub">Data and Competitive Advantage: Databases, Analytics, and Prepping Data for Use with AI</span>
+            </span>
+            <svg class="module-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="24" cy="10" rx="15" ry="5"/><path d="M9 10v28c0 3 7 5 15 5s15-2 15-5V10M9 19c0 3 7 5 15 5s15-2 15-5M9 28c0 3 7 5 15 5s15-2 15-5"/></svg>
+            <span class="module-card__done" hidden>✓ Done</span>
+          </a>
+        </li>
+        <li>
+          <a class="module-card" href="modules/module-12.html" data-module="12">
+            <span class="module-card__num" aria-hidden="true">12</span>
+            <span>
+              <span class="visually-hidden">Module 12: </span>
+              <span class="module-card__title">Artificial Intelligence in Business</span>
+              <span class="module-card__sub">AI—The Tech Impacting Nearly Every Industry</span>
+            </span>
+            <svg class="module-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 8a6 6 0 0 0-11 3 6 6 0 0 0-4 10 6 6 0 0 0 2 10 6 6 0 0 0 6 8 6 6 0 0 0 7 1zM26 8a6 6 0 0 1 11 3 6 6 0 0 1 4 10 6 6 0 0 1-2 10 6 6 0 0 1-6 8 6 6 0 0 1-7 1z"/><path d="M22 8v32M26 8v32M14 18h5M29 30h5M15 30l4-3M33 18l-4 3"/></svg>
+            <span class="module-card__done" hidden>✓ Done</span>
+          </a>
+        </li>
+        <li>
+          <a class="module-card" href="modules/module-13.html" data-module="13">
+            <span class="module-card__num" aria-hidden="true">13</span>
+            <span>
+              <span class="visually-hidden">Module 13: </span>
+              <span class="module-card__title">Digital Advertising &amp; Privacy</span>
+              <span class="module-card__sub">Advertising Technologies: Balancing Personalization with Privacy as Technology and Regulation Evolve</span>
+            </span>
+            <svg class="module-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 20v8h6l18 10V10L12 20z"/><path d="M12 28l3 12h5l-3-11M36 18a7 7 0 0 1 0 12M40 13l4-3M40 35l4 3"/></svg>
+            <span class="module-card__done" hidden>✓ Done</span>
+          </a>
+        </li>
+        <li>
+          <a class="module-card" href="modules/module-14.html" data-module="14">
+            <span class="module-card__num" aria-hidden="true">14</span>
+            <span>
+              <span class="visually-hidden">Module 14: </span>
+              <span class="module-card__title">Internet &amp; Telecommunications</span>
+              <span class="module-card__sub">A Manager’s Guide to the Internet and Telecommunications</span>
+            </span>
+            <svg class="module-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M24 18l-8 26M24 18l8 26M19 32h10M17 40h14"/><circle cx="24" cy="15" r="3"/><path d="M16 8a12 12 0 0 0 0 14M32 8a12 12 0 0 1 0 14M11 4a18 18 0 0 0 0 22M37 4a18 18 0 0 1 0 22"/></svg>
+            <span class="module-card__done" hidden>✓ Done</span>
+          </a>
+        </li>
+        <li>
+          <a class="module-card" href="modules/module-15.html" data-module="15">
+            <span class="module-card__num" aria-hidden="true">15</span>
+            <span>
+              <span class="visually-hidden">Module 15: </span>
+              <span class="module-card__title">Information Security</span>
+              <span class="module-card__sub">Barbarians at the Gateway (and Just About Everywhere Else)</span>
+            </span>
+            <svg class="module-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M24 4l16 6v12c0 10-7 18-16 22C15 40 8 32 8 22V10z"/><rect x="18" y="22" width="12" height="9" rx="1.5"/><path d="M20 22v-3a4 4 0 0 1 8 0v3"/></svg>
+            <span class="module-card__done" hidden>✓ Done</span>
+          </a>
+        </li>
+        <li>
+          <a class="module-card" href="modules/module-16.html" data-module="16">
+            <span class="module-card__num" aria-hidden="true">16</span>
+            <span>
+              <span class="visually-hidden">Module 16: </span>
+              <span class="module-card__title">Google &amp; the Digital Economy</span>
+              <span class="module-card__sub">Google in Three Parts: Search, Online Advertising, and an Alphabet of Opportunity</span>
+            </span>
+            <svg class="module-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="28" cy="19" r="12"/><path d="M19 28L6 41"/></svg>
+            <span class="module-card__done" hidden>✓ Done</span>
+          </a>
+        </li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p><strong>CTS 115: Information Systems Business Concepts</strong> — a student study companion.</p>
+      <p>This site summarizes key ideas in plain language. It does not replace your textbook,
+        <em>Information Systems: A Manager’s Guide to Harnessing Technology</em> (FlatWorld),
+        which has the full readings, cases, and videos. Always check Blackboard for due dates and assignments.</p>
+      <p>Built with plain HTML, CSS, and JavaScript. Curious how it works? Right-click anywhere and choose
+        “View Page Source” — the code is full of comments written for learners.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts go at the END of the body so the HTML loads first.
+       (You could also use the "defer" attribute in the <head>.) -->
+  <script src="js/main.js"></script>
+</body>
+</html>

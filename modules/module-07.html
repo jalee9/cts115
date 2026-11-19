@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<!-- The DOCTYPE tells the browser this is a modern HTML5 document. -->
+<!-- lang="en" helps screen readers pronounce words correctly. -->
+<html lang="en">
+<head>
+  <!-- charset: lets the page show any character (é, —, “ ”) correctly -->
+  <meta charset="UTF-8">
+  <!-- viewport: makes the page fit phone screens instead of zooming out -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The description often appears under the link in search results -->
+  <meta name="description" content="Module 7: Network effects, platforms, one- and two-sided markets, and strategies for winner-take-all competition.">
+  <title>Module 7: Platforms & Network Effects | CTS 115 Study Guide</title>
+
+  <!-- Google Fonts: "preconnect" starts the connection early so the font loads faster -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Our one stylesheet. "../" moves up a folder when needed. -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head><body>
+  <!-- Skip link: the first thing a keyboard user reaches with Tab -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- <header> is a "landmark": screen readers can jump straight to it -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../index.html">CTS <span>115</span> Study Guide</a>
+
+      <!-- aria-label names this navigation for screen-reader users -->
+      <nav class="site-nav" aria-label="Main">
+        <!-- aria-expanded tells assistive tech whether the menu is open.
+             aria-controls points to the id of the list it opens. -->
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <ul id="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#modules" aria-current="page">Modules</a></li>
+          <li><a href="../glossary.html">Glossary</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== MODULE BANNER =====
+       Same look as the course banners, built with HTML + CSS
+       (see section 5 of styles.css). -->
+  <div class="hero hero--module">
+    <div class="hero__inner">
+      <p class="module-badge">
+        <span class="module-badge__label">MODULE</span>
+        <span class="module-badge__num">7</span>
+      </p>
+      <div>
+        <!-- Each page has exactly ONE <h1>: the main topic of the page -->
+        <h1>Platforms &amp; Network Effects</h1>
+        <p class="hero__subtitle">Chapter 7: Platforms, Network Effects, and Competing in a Winner-Take-All World</p>
+        <ul class="chips" aria-label="About this module">
+          <li>≈ 25 min read</li>
+          <li>20 key terms</li>
+          <li>5-question self-check</li>
+        </ul>
+      </div>
+      <svg class="hero__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="24" cy="10" r="5"/><circle cx="9" cy="36" r="5"/><circle cx="39" cy="36" r="5"/><path d="M21 15l-9 16M27 15l9 16M14 36h20"/></svg>
+    </div>
+  </div>
+
+  <!-- ===== PAGE LAYOUT: sidebar + content (CSS Grid, section 6) ===== -->
+  <div class="page">
+
+    <!-- "On this page" sidebar. It's a <nav> because it's a set of links. -->
+    <nav class="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <ol>
+          <li><a href="#big-picture">The Big Picture</a></li>
+          <li><a href="#goals">What You’ll Learn</a></li>
+          <li><a href="#network-effects">What Are Network Effects?</a></li>
+          <li><a href="#sided-markets">One- vs. Two-Sided</a></li>
+          <li><a href="#winner-take-all">Winner-Take-All</a></li>
+          <li><a href="#competing">Competing Strategies</a></li>
+          <li><a href="#cases">Apple Banking &amp; Zoom</a></li>
+          <li><a href="#key-terms">Key Terms</a></li>
+          <li><a href="#flashcards">Flashcards</a></li>
+          <li><a href="#quick-check">Quick Check</a></li>
+      </ol>
+    </nav>
+
+    <!-- <main> holds the page's unique content. id="main" is where the
+         skip link jumps to. tabindex="-1" lets it receive that focus. -->
+    <main id="main" class="content" tabindex="-1">
+
+      <!-- ===== THE BIG PICTURE: the whole module in a few bullets ===== -->
+      <section id="big-picture" aria-labelledby="big-picture-h">
+        <span class="eyebrow">Start here</span>
+        <h2 id="big-picture-h">The Big Picture</h2>
+        <div class="big-picture">
+          <ul>
+          <li><strong>Network effects</strong>: a product gets more valuable as more people use it. Think messaging apps, game consoles, and marketplaces.</li>
+          <li>Network value comes from three sources: <strong>exchange, staying power, and complementary benefits</strong>.</li>
+          <li>Markets can be <strong>one-sided</strong> (users benefit from other users) or <strong>two-sided</strong> (two groups, like buyers and sellers, need each other).</li>
+          <li>Strong network effects often create <strong>winner-take-all</strong> markets where a late, incompatible rival struggles to compete.</li>
+          <li>Firms compete by moving early, subsidizing adoption, going viral, building alliances, and encouraging complementary products, or by leapfrogging with something far better.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== LEARNING GOALS ===== -->
+      <section id="goals" aria-labelledby="goals-h">
+        <span class="eyebrow">Your goals</span>
+        <h2 id="goals-h">What You’ll Learn</h2>
+        <p>By the end of this module, you should be able to:</p>
+        <ul class="goals">
+          <li>Define network effects and recognize products that have them.</li>
+          <li>Identify the three main sources of value in network effects.</li>
+          <li>Tell the difference between one-sided and two-sided markets, and same-side vs. cross-side benefits.</li>
+          <li>Explain why markets with network effects often tip toward one winner.</li>
+          <li>Describe strategies for both incumbents and new entrants when network effects matter.</li>
+          <li>Explain how Zoom beat larger rivals using a better product and freemium pricing.</li>
+        </ul>
+      </section>
+
+      <!-- ===== LESSON SECTION: What Are Network Effects? ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "What Are Network Effects?, region". -->
+      <section id="network-effects" aria-labelledby="network-effects-h">
+        <span class="eyebrow">Section 7.1</span>
+        <h2 id="network-effects-h">What Are Network Effects?</h2>
+<p>A phone is useless if you're the only person who has one. With every new user, each phone becomes more valuable.
+          That's a <strong>network effect</strong>, also called <strong>Metcalfe's Law</strong>. A product with network effects
+          can become a <strong>platform</strong>: a base that others build products and services on, like Windows, iOS, or a game console.</p>
+
+        <figure class="diagram">
+          <svg viewBox="0 0 760 260" role="img" aria-labelledby="mc-title mc-desc">
+            <title id="mc-title">Connections grow faster than users</title>
+            <desc id="mc-desc">Three networks. Two users have 1 possible connection. Four users have 6 connections. Six
+              users have 15 connections. As users grow, possible connections grow much faster.</desc>
+            <g stroke="#29a9e0" stroke-width="2">
+              <line x1="70" y1="120" x2="170" y2="120"/>
+              <!-- 4 nodes, all connected -->
+              <line x1="320" y1="70" x2="420" y2="70"/><line x1="320" y1="70" x2="320" y2="170"/><line x1="320" y1="70" x2="420" y2="170"/>
+              <line x1="420" y1="70" x2="320" y2="170"/><line x1="420" y1="70" x2="420" y2="170"/><line x1="320" y1="170" x2="420" y2="170"/>
+              <!-- 6 nodes, all connected (hexagon) -->
+              <g>
+                <line x1="620" y1="50" x2="680" y2="85"/><line x1="620" y1="50" x2="680" y2="155"/><line x1="620" y1="50" x2="620" y2="190"/><line x1="620" y1="50" x2="560" y2="155"/><line x1="620" y1="50" x2="560" y2="85"/>
+                <line x1="680" y1="85" x2="680" y2="155"/><line x1="680" y1="85" x2="620" y2="190"/><line x1="680" y1="85" x2="560" y2="155"/><line x1="680" y1="85" x2="560" y2="85"/>
+                <line x1="680" y1="155" x2="620" y2="190"/><line x1="680" y1="155" x2="560" y2="155"/><line x1="680" y1="155" x2="560" y2="85"/>
+                <line x1="620" y1="190" x2="560" y2="155"/><line x1="620" y1="190" x2="560" y2="85"/>
+                <line x1="560" y1="155" x2="560" y2="85"/>
+              </g>
+            </g>
+            <g fill="#0b2f5b">
+              <circle cx="70" cy="120" r="12"/><circle cx="170" cy="120" r="12"/>
+              <circle cx="320" cy="70" r="12"/><circle cx="420" cy="70" r="12"/><circle cx="320" cy="170" r="12"/><circle cx="420" cy="170" r="12"/>
+              <circle cx="620" cy="50" r="12"/><circle cx="680" cy="85" r="12"/><circle cx="680" cy="155" r="12"/><circle cx="620" cy="190" r="12"/><circle cx="560" cy="155" r="12"/><circle cx="560" cy="85" r="12"/>
+            </g>
+            <g text-anchor="middle">
+              <text x="120" y="235" class="svg-label">2 users → 1 link</text>
+              <text x="370" y="235" class="svg-label">4 users → 6 links</text>
+              <text x="620" y="235" class="svg-label">6 users → 15 links</text>
+            </g>
+          </svg>
+          <figcaption>Each new user can connect with everyone already there, so a network's value grows much faster than its user count.</figcaption>
+        </figure>
+
+        <h3>Three sources of network value</h3>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">1</span><h3>Exchange</h3><p>More people to message, trade with, play with, or share files with.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">2</span><h3>Staying power</h3><p>Users trust a big network to last, so they invest in it. High <strong>switching costs</strong> keep them there.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">3</span><h3>Complementary benefits</h3><p>Popular platforms attract apps, accessories, and services built for them, which makes the platform even more useful.</p></article>
+        </div>
+
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · Roblox</span>
+          <p>Roblox gives users tools to build their own games, many of them created by teens. More creators make more games, more
+            games attract more players, and more players attract more creators. The players are also the platform builders.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: One- vs. Two-Sided ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "One- vs. Two-Sided, region". -->
+      <section id="sided-markets" aria-labelledby="sided-markets-h">
+        <span class="eyebrow">Section 7.3</span>
+        <h2 id="sided-markets-h">One-Sided or Two-Sided Markets?</h2>
+<div class="table-wrap">
+          <table>
+            <caption>Comparing network structures</caption>
+            <thead><tr><th scope="col"></th><th scope="col">One-sided market</th><th scope="col">Two-sided market</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Who's in it?</th><td>One kind of user</td><td>Two distinct groups who need each other</td></tr>
+              <tr><th scope="row">Benefit type</th><td><strong>Same-side</strong>: users gain from more users like them</td><td><strong>Cross-side</strong>: growth on one side attracts the other side</td></tr>
+              <tr><th scope="row">Examples</th><td>Messaging apps, phone networks</td><td>Game consoles (players and game makers), Uber (riders and drivers), app stores</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <figure class="diagram">
+          <svg viewBox="0 0 760 220" role="img" aria-labelledby="ts-title ts-desc">
+            <title id="ts-title">The two-sided feedback loop</title>
+            <desc id="ts-desc">Console owners on the left and game developers on the right. An arrow from owners to
+              developers reads "more players attract developers." An arrow back reads "more games attract players."</desc>
+            <defs><marker id="ts-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#0a6a9c"/></marker></defs>
+            <g text-anchor="middle">
+              <rect x="40" y="60" width="220" height="100" rx="14" fill="#0b2f5b"/><text x="150" y="105" class="svg-label" style="fill:#fbc04a">Console owners</text><text x="150" y="128" class="svg-small" style="fill:#fff">(side 1)</text>
+              <rect x="500" y="60" width="220" height="100" rx="14" fill="#0b2f5b"/><text x="610" y="105" class="svg-label" style="fill:#fbc04a">Game developers</text><text x="610" y="128" class="svg-small" style="fill:#fff">(side 2)</text>
+            </g>
+            <g stroke="#0a6a9c" stroke-width="3" fill="none" marker-end="url(#ts-arrow)">
+              <path d="M265 80 C340 30 420 30 495 80"/><path d="M495 140 C420 190 340 190 265 140"/>
+            </g>
+            <text x="380" y="35" text-anchor="middle" class="svg-label">More players attract developers</text>
+            <text x="380" y="205" text-anchor="middle" class="svg-label">More games attract players</text>
+          </svg>
+          <figcaption>Cross-side benefits create a positive feedback loop. Each side's growth fuels the other's.</figcaption>
+        </figure>
+
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · EV charging: everyone vs. Tesla</span>
+          <p>Electric cars and charging stations form a two-sided market. Tesla built the largest, most reliable fast-charging
+            network with its own plug. Most major automakers have since agreed to adopt Tesla's plug standard (now called
+            NACS) so their drivers can use it. It's a striking example of a network becoming the standard.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Winner-Take-All ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Winner-Take-All, region". -->
+      <section id="winner-take-all" aria-labelledby="winner-take-all-h">
+        <span class="eyebrow">Section 7.4</span>
+        <h2 id="winner-take-all-h">How These Markets Are Different: Winner-Take-All</h2>
+<p>In markets with strong network effects, customers flock to the biggest network, so markets “tip” toward a single
+          winner (a <strong>monopoly</strong>) or a few (an <strong>oligopoly</strong>). A late rival with an incompatible product
+          must overcome the leader's exchange value, switching costs, <em>and</em> library of complementary products.</p>
+        <aside class="callout callout--why" aria-label="Key idea">
+          <span class="callout__title">The one big exception · Leapfrogging</span>
+          <p><strong>Technological leapfrogging</strong> means offering something so much better that it overcomes all of
+            the leader's network advantages. The iPhone leapfrogged older phones. ChatGPT leapfrogged traditional chatbots.</p>
+        </aside>
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · Too big?</span>
+          <p>Winner-take-all markets create very powerful firms. That raises questions about fair competition and
+            corporate responsibility, and regulators are paying close attention.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Competing Strategies ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Competing Strategies, region". -->
+      <section id="competing" aria-labelledby="competing-h">
+        <span class="eyebrow">Section 7.5</span>
+        <h2 id="competing-h">Competing When Network Effects Matter</h2>
+<div class="table-wrap">
+          <table>
+            <caption>Strategy playbook</caption>
+            <thead><tr><th scope="col">Strategy</th><th scope="col">What it means</th><th scope="col">Example</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Move early</th><td>Build the network before rivals do</td><td>eBay in online auctions</td></tr>
+              <tr><th scope="row">Subsidize adoption</th><td>Make it cheap or free to grow users fast</td><td>Game consoles sold at a loss</td></tr>
+              <tr><th scope="row">Go viral</th><td>Let users recruit users, using <strong>social proof</strong></td><td>“Join your friends on…” invites</td></tr>
+              <tr><th scope="row">Redefine the market</th><td>Pursue a fresh, uncontested space (a <strong>blue ocean</strong>)</td><td>Nintendo Wii's motion gaming for casual players</td></tr>
+              <tr><th scope="row">Envelop</th><td>Add a rival's product as a feature of yours (<strong>envelopment</strong>)</td><td>Instagram adding Stories</td></tr>
+              <tr><th scope="row">Seed complements</th><td>Fund or build apps and content for your platform</td><td>Console makers' own game studios</td></tr>
+              <tr><th scope="row">Be compatible</th><td>Use <strong>backward compatibility</strong> or <strong>adaptors</strong> to tap an existing network</td><td>New consoles that play older games</td></tr>
+              <tr><th scope="row">Use distribution</th><td>Ship your product where users already are</td><td>Microsoft putting AI into Windows and Bing</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · The Osborne effect</span>
+          <p>Announcing a great new product too early can backfire. Customers stop buying today's version and wait.
+            It's named after Osborne Computer, which reportedly sank after preannouncing its next model.</p>
+        </aside>
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · Congestion effects</span>
+          <p>Sometimes more users make things <em>worse</em>, like clogged networks, spam, or crowded marketplaces. That's a
+            <strong>congestion effect</strong>.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Apple Banking &amp;amp; Zoom ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Apple Banking &amp;amp; Zoom, region". -->
+      <section id="cases" aria-labelledby="cases-h">
+        <span class="eyebrow">Sections 7.6–7.7 · Cases</span>
+        <h2 id="cases-h">Cases: Apple’s Platform Banks, and the Zoom Boom</h2>
+<aside class="callout callout--example" aria-label="Case">
+          <span class="callout__title">Case · Apple cashes in on banking</span>
+          <p>Apple uses its huge iPhone platform to offer Apple Pay, Apple Cash, Apple Card, and savings accounts. Every
+            iPhone owner is already in the network, so Apple can reach customers that banks spend heavily to win (high
+            <strong>customer acquisition costs</strong>). Banks have pushed back with their own digital wallets, but
+            competing with a platform already on billions of devices is hard.</p>
+        </aside>
+        <aside class="callout callout--example" aria-label="Case">
+          <span class="callout__title">Case · Zoom beats the big guys</span>
+          <p>Eric Yuan was an engineering leader at Cisco's WebEx. When Cisco wouldn't rebuild it, he left and
+            founded Zoom. Zoom won with a <strong>simpler, more reliable product</strong>, a generous
+            <strong>freemium</strong> version, easy pricing, and no account required to join. When COVID-19 hit, Zoom became
+            a verb, beating giants like Cisco, Microsoft, and Google.</p>
+        </aside>
+        <aside class="callout callout--why" aria-label="Takeaway">
+          <span class="callout__title">Takeaway</span>
+          <p>Video calling has weak network effects (anyone can join any meeting with a link). That's why a better
+            product could win. Where network effects are strong, product quality alone usually isn't enough.</p>
+        </aside>
+      </section>
+
+      <!-- ===== KEY TERMS =====
+           A <dl> (description list) is the right HTML element for
+           term + definition pairs: <dt> = term, <dd> = definition. -->
+      <section id="key-terms" aria-labelledby="key-terms-h">
+        <span class="eyebrow">Vocabulary</span>
+        <h2 id="key-terms-h">Key Terms</h2>
+        <p>Want every term from every module in one place? Try the <a href="../glossary.html">searchable glossary</a>.</p>
+        <dl class="terms">
+          <div>
+            <dt>Network effects</dt>
+            <dd>When a product or service becomes more valuable as more people use it. Also called Metcalfe's Law.</dd>
+          </div>
+          <div>
+            <dt>Platform</dt>
+            <dd>A product or service that others can build on, creating an ecosystem of add-ons. Examples: Windows, iOS, and game consoles.</dd>
+          </div>
+          <div>
+            <dt>Staying power</dt>
+            <dd>A product's long-term viability. Users stick with networks they believe will last.</dd>
+          </div>
+          <div>
+            <dt>Complementary benefits</dt>
+            <dd>Extra value from add-on products and services built for a platform.</dd>
+          </div>
+          <div>
+            <dt>Total cost of ownership (TCO)</dt>
+            <dd>The full cost of owning a product, including purchase price plus training, support, and maintenance.</dd>
+          </div>
+          <div>
+            <dt>Daily active users (DAU)</dt>
+            <dd>The average number of unique people who use a product each day.</dd>
+          </div>
+          <div>
+            <dt>Customer acquisition cost</dt>
+            <dd>How much a firm spends to win one new customer.</dd>
+          </div>
+          <div>
+            <dt>One-sided market</dt>
+            <dd>A network where value comes mostly from one type of user, like a messaging app.</dd>
+          </div>
+          <div>
+            <dt>Two-sided market</dt>
+            <dd>A network with two distinct groups that need each other, like players and game developers.</dd>
+          </div>
+          <div>
+            <dt>Same-side exchange benefit</dt>
+            <dd>Value users get from more users of the same type joining.</dd>
+          </div>
+          <div>
+            <dt>Cross-side exchange benefit</dt>
+            <dd>When growth on one side of a market attracts more participants on the other side.</dd>
+          </div>
+          <div>
+            <dt>Technological leapfrogging</dt>
+            <dd>Beating an established network with a product so superior that it outweighs the leader's advantages.</dd>
+          </div>
+          <div>
+            <dt>Social proof</dt>
+            <dd>The influence people feel when they see others doing something.</dd>
+          </div>
+          <div>
+            <dt>Envelopment</dt>
+            <dd>Taking over a market by making a rival's product a feature of your own.</dd>
+          </div>
+          <div>
+            <dt>Blue ocean strategy</dt>
+            <dd>Creating and competing in a new, uncontested market space instead of fighting crowded rivals.</dd>
+          </div>
+          <div>
+            <dt>Backward compatibility</dt>
+            <dd>When a new product can use the complements (apps, games, files) made for an older version.</dd>
+          </div>
+          <div>
+            <dt>Osborne effect</dt>
+            <dd>When announcing a future product causes sales of current products to drop as customers wait.</dd>
+          </div>
+          <div>
+            <dt>Congestion effect</dt>
+            <dd>When more users lower a product's value, for example through spam or crowding.</dd>
+          </div>
+          <div>
+            <dt>Freemium</dt>
+            <dd>Offering a free version of a product to attract users, then charging for premium features.</dd>
+          </div>
+          <div>
+            <dt>Metaverse</dt>
+            <dd>Immersive, shared digital worlds where people interact through avatars.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- ===== FLASHCARDS =====
+           Each card is a <button>, so it works with a mouse, a touch
+           screen, AND a keyboard. main.js flips it (section 3). -->
+      <section id="flashcards" aria-labelledby="flashcards-h">
+        <span class="eyebrow">Practice</span>
+        <h2 id="flashcards-h">Flashcards</h2>
+        <p>Say the definition out loud, then flip the card to check yourself. Testing yourself like this
+          (called <strong>retrieval practice</strong>) helps you remember more than rereading does.</p>
+        <button class="btn btn--ghost" type="button" data-shuffle>Shuffle cards</button>
+        <ul class="flashcards">
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Network effects<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">When a product or service becomes more valuable as more people use it. Also called Metcalfe's Law.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Platform<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A product or service that others can build on, creating an ecosystem of add-ons. Examples: Windows, iOS, and game consoles.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Staying power<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A product's long-term viability. Users stick with networks they believe will last.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Complementary benefits<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Extra value from add-on products and services built for a platform.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Total cost of ownership (TCO)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The full cost of owning a product, including purchase price plus training, support, and maintenance.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Daily active users (DAU)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The average number of unique people who use a product each day.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Customer acquisition cost<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">How much a firm spends to win one new customer.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">One-sided market<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A network where value comes mostly from one type of user, like a messaging app.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Two-sided market<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A network with two distinct groups that need each other, like players and game developers.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Same-side exchange benefit<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Value users get from more users of the same type joining.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Cross-side exchange benefit<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">When growth on one side of a market attracts more participants on the other side.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Technological leapfrogging<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Beating an established network with a product so superior that it outweighs the leader's advantages.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Social proof<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The influence people feel when they see others doing something.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Envelopment<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Taking over a market by making a rival's product a feature of your own.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Blue ocean strategy<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Creating and competing in a new, uncontested market space instead of fighting crowded rivals.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Backward compatibility<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">When a new product can use the complements (apps, games, files) made for an older version.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Osborne effect<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">When announcing a future product causes sales of current products to drop as customers wait.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Congestion effect<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">When more users lower a product's value, for example through spam or crowding.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Freemium<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Offering a free version of a product to attract users, then charging for premium features.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Metaverse<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Immersive, shared digital worlds where people interact through avatars.</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===== QUICK CHECK QUIZ =====
+           A <form> with <fieldset>/<legend> groups each question with
+           its choices — screen readers read the question with each option.
+           main.js grades it (section 4). Practice only — not graded. -->
+      <section id="quick-check" aria-labelledby="quick-check-h">
+        <span class="eyebrow">Self-check · Not graded</span>
+        <h2 id="quick-check-h">Quick Check</h2>
+        <form class="quiz" data-quiz>
+          <fieldset data-answer="b" data-explain="App stores have two distinct groups, users and developers, and each attracts the other.">
+            <legend>1. Which of these is the BEST example of a two-sided market?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="a">
+              <span>A calculator app</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="b">
+              <span>An app store connecting phone users and app developers</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="c">
+              <span>A text-messaging app</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="d">
+              <span>A word processor</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="c" data-explain="Add-on products built for a platform are complementary benefits.">
+            <legend>2. Thousands of apps and accessories made for a popular phone platform are an example of which source of network value?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="a">
+              <span>Exchange</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="b">
+              <span>Staying power</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="c">
+              <span>Complementary benefits</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="d">
+              <span>Congestion</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="a" data-explain="Preannouncing a product can make customers delay purchases. That&#x27;s the Osborne effect.">
+            <legend>3. A company announces its amazing next-gen laptop six months early, and current laptop sales collapse. This is…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="a">
+              <span>The Osborne effect</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="b">
+              <span>Envelopment</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="c">
+              <span>Social proof</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="d">
+              <span>Leapfrogging</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Technological leapfrogging offers enough extra value to overcome the leader&#x27;s network advantages.">
+            <legend>4. How can a late entrant beat a dominant network?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="a">
+              <span>Offer an incompatible product at the same price</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="b">
+              <span>Leapfrog with a dramatically superior technology</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="c">
+              <span>Wait for the leader to give up</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="d">
+              <span>Raise prices</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Freemium gives away a basic version to attract users who may later pay for more.">
+            <legend>5. Zoom's no-cost basic version that lets users try the product is called…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="a">
+              <span>Bundling</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="b">
+              <span>Freemium</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="c">
+              <span>Drop shipping</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="d">
+              <span>A blue ocean</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <div class="quiz__actions">
+            <button class="btn" type="submit">Check my answers</button>
+            <button class="btn btn--ghost" type="reset">Try again</button>
+            <p class="quiz__score" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+
+      <!-- ===== MARK COMPLETE (saved in your browser by main.js, section 5) ===== -->
+      <div class="complete-panel">
+        <div>
+          <h2>Finished Module 7?</h2>
+          <p>Track your progress — it shows up on the home page.</p>
+        </div>
+        <!-- aria-pressed makes this a "toggle button" for screen readers -->
+        <button class="btn btn--gold" type="button" data-complete="7" aria-pressed="false">Mark module complete</button>
+      </div>
+
+      <!-- ===== PREVIOUS / NEXT ===== -->
+      <nav class="pager" aria-label="Module navigation">
+        <a href="module-06.html" rel="prev"><span class="pager__dir">← Previous</span>Module 6: Global E-Commerce</a>
+        <a class="pager__next" href="module-08.html" rel="next"><span class="pager__dir">Next →</span>Module 8: Social Platforms &amp; Privacy</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p><strong>CTS 115: Information Systems Business Concepts</strong> — a student study companion.</p>
+      <p>This site summarizes key ideas in plain language. It does not replace your textbook,
+        <em>Information Systems: A Manager’s Guide to Harnessing Technology</em> (FlatWorld),
+        which has the full readings, cases, and videos. Always check Blackboard for due dates and assignments.</p>
+      <p>Built with plain HTML, CSS, and JavaScript. Curious how it works? Right-click anywhere and choose
+        “View Page Source” — the code is full of comments written for learners.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts go at the END of the body so the HTML loads first.
+       (You could also use the "defer" attribute in the <head>.) -->
+  <script src="../js/main.js"></script>
+</body>
+</html>

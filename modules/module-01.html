@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<!-- The DOCTYPE tells the browser this is a modern HTML5 document. -->
+<!-- lang="en" helps screen readers pronounce words correctly. -->
+<html lang="en">
+<head>
+  <!-- charset: lets the page show any character (é, —, “ ”) correctly -->
+  <meta charset="UTF-8">
+  <!-- viewport: makes the page fit phone screens instead of zooming out -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The description often appears under the link in search results -->
+  <meta name="description" content="Module 1: How technology is reshaping business, careers, and society — plus the Hype Cycle.">
+  <title>Module 1: Technology & the Modern Enterprise | CTS 115 Study Guide</title>
+
+  <!-- Google Fonts: "preconnect" starts the connection early so the font loads faster -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Our one stylesheet. "../" moves up a folder when needed. -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head><body>
+  <!-- Skip link: the first thing a keyboard user reaches with Tab -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- <header> is a "landmark": screen readers can jump straight to it -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../index.html">CTS <span>115</span> Study Guide</a>
+
+      <!-- aria-label names this navigation for screen-reader users -->
+      <nav class="site-nav" aria-label="Main">
+        <!-- aria-expanded tells assistive tech whether the menu is open.
+             aria-controls points to the id of the list it opens. -->
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <ul id="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#modules" aria-current="page">Modules</a></li>
+          <li><a href="../glossary.html">Glossary</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== MODULE BANNER =====
+       Same look as the course banners, built with HTML + CSS
+       (see section 5 of styles.css). -->
+  <div class="hero hero--module">
+    <div class="hero__inner">
+      <p class="module-badge">
+        <span class="module-badge__label">MODULE</span>
+        <span class="module-badge__num">1</span>
+      </p>
+      <div>
+        <!-- Each page has exactly ONE <h1>: the main topic of the page -->
+        <h1>Technology &amp; the Modern Enterprise</h1>
+        <p class="hero__subtitle">Chapter 1: Setting the Stage: Technology and the Modern Enterprise</p>
+        <ul class="chips" aria-label="About this module">
+          <li>≈ 20 min read</li>
+          <li>12 key terms</li>
+          <li>5-question self-check</li>
+        </ul>
+      </div>
+      <svg class="hero__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="18"/><ellipse cx="24" cy="24" rx="8" ry="18"/><path d="M6 24h36M9 15h30M9 33h30"/></svg>
+    </div>
+  </div>
+
+  <!-- ===== PAGE LAYOUT: sidebar + content (CSS Grid, section 6) ===== -->
+  <div class="page">
+
+    <!-- "On this page" sidebar. It's a <nav> because it's a set of links. -->
+    <nav class="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <ol>
+          <li><a href="#big-picture">The Big Picture</a></li>
+          <li><a href="#goals">What You’ll Learn</a></li>
+          <li><a href="#tectonic-shift">Tech’s Tectonic Shift</a></li>
+          <li><a href="#your-revolution">It’s Your Revolution</a></li>
+          <li><a href="#tech-everywhere">Tech Is Everywhere</a></li>
+          <li><a href="#hype-cycle">The Hype Cycle</a></li>
+          <li><a href="#road-ahead">The Road Ahead</a></li>
+          <li><a href="#key-terms">Key Terms</a></li>
+          <li><a href="#flashcards">Flashcards</a></li>
+          <li><a href="#quick-check">Quick Check</a></li>
+      </ol>
+    </nav>
+
+    <!-- <main> holds the page's unique content. id="main" is where the
+         skip link jumps to. tabindex="-1" lets it receive that focus. -->
+    <main id="main" class="content" tabindex="-1">
+
+      <!-- ===== THE BIG PICTURE: the whole module in a few bullets ===== -->
+      <section id="big-picture" aria-labelledby="big-picture-h">
+        <span class="eyebrow">Start here</span>
+        <h2 id="big-picture-h">The Big Picture</h2>
+        <div class="big-picture">
+          <ul>
+          <li>Technology isn't just an IT topic. It's changing <strong>every industry, every job, and every career</strong>, including yours.</li>
+          <li>Fast tech change brings <strong>promise and peril</strong>: new opportunities, and also job disruption, misinformation, and privacy risks.</li>
+          <li>Tech giants have created enormous wealth, so <strong>regulators around the world</strong> are now working to limit their power.</li>
+          <li>Many of the biggest tech firms were started by people <strong>in their twenties</strong>, and starting a business is cheaper than ever.</li>
+          <li>The <strong>Hype Cycle</strong> helps managers avoid jumping on a new technology too early or giving up on it too soon.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== LEARNING GOALS ===== -->
+      <section id="goals" aria-labelledby="goals-h">
+        <span class="eyebrow">Your goals</span>
+        <h2 id="goals-h">What You’ll Learn</h2>
+        <p>By the end of this module, you should be able to:</p>
+        <ul class="goals">
+          <li>Describe how technology has driven radical change across industries and society.</li>
+          <li>Explain why the fast pace of tech change creates both opportunities and risks.</li>
+          <li>Give examples of major tech firms founded by young entrepreneurs, and explain what a startup accelerator does.</li>
+          <li>Explain how technology shows up in every business discipline, from finance to HR.</li>
+          <li>Draw the Hype Cycle, name its five stages, and explain why it is a judgment call, not a measurement.</li>
+        </ul>
+      </section>
+
+      <!-- ===== LESSON SECTION: Tech’s Tectonic Shift ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Tech’s Tectonic Shift, region". -->
+      <section id="tectonic-shift" aria-labelledby="tectonic-shift-h">
+        <span class="eyebrow">Section 1.1</span>
+        <h2 id="tectonic-shift-h">Tech’s Tectonic Shift: Business Is Changing Fast</h2>
+<p>A tectonic shift is a change so big it moves the ground under everyone’s feet. That’s what technology
+          is doing to business. Some of the world’s most valuable companies are tech firms, and even “non-tech”
+          businesses like banks, retailers, and hospitals now compete on how well they use technology.</p>
+
+        <!-- Key idea cards: a grid that rearranges itself on small screens -->
+        <div class="idea-grid">
+          <article class="idea-card">
+            <span class="idea-card__tag">Key idea</span>
+            <h3>Tech firms are giants</h3>
+            <p>Investors measure a company’s value with its <strong>market capitalization</strong>: the number of
+              shares times the share price. Many of the largest companies by market cap are tech firms.</p>
+          </article>
+          <article class="idea-card">
+            <span class="idea-card__tag">Key idea</span>
+            <h3>AI is the hottest topic</h3>
+            <p>AI runs on powerful <strong>microprocessors</strong> (chips) housed in huge <strong>server farms</strong>.
+              That’s why chipmakers like Nvidia have become so important.</p>
+          </article>
+          <article class="idea-card">
+            <span class="idea-card__tag">Key idea</span>
+            <h3>Promise <em>and</em> peril</h3>
+            <p>The same tech that cures diseases and cuts costs can also eliminate jobs, spread misinformation,
+              and create new security and privacy threats.</p>
+          </article>
+          <article class="idea-card">
+            <span class="idea-card__tag">Key idea</span>
+            <h3>Regulators are pushing back</h3>
+            <p>Governments are writing new rules to limit Big Tech’s power, and those rules can erase
+              advantages that firms used to rely on.</p>
+          </article>
+        </div>
+
+        <!-- A callout: an <aside> holds content related to, but separate from, the main text -->
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · Drones that save lives</span>
+          <p>The company <strong>Zipline</strong> uses small, self-flying drones to deliver blood to hospitals
+            in Rwanda, reaching places that are slow to get to by road. Drones like these are electric and
+            autonomous, so each light delivery can be faster and use less energy than sending a car.</p>
+        </aside>
+
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · Europe’s “gatekeeper” rules</span>
+          <p>The European Union named six companies <strong>gatekeepers</strong>: Alphabet, Amazon, Apple,
+            ByteDance, Meta, and Microsoft. These firms now face extra rules. For example, they can’t favor
+            their own services over rivals on their platforms, and they may have to make their messaging apps
+            work with competitors’ apps. Their products in Europe may end up working differently than
+            everywhere else.</p>
+        </aside>
+
+        <aside class="callout callout--why" aria-label="Why it matters to you">
+          <span class="callout__title">Why it matters to you</span>
+          <p>Your career will be full of constant change, much of it caused by technology. Learning new tech
+            and judging its impact isn’t a one-time class. It’s a <strong>lifelong habit</strong>.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: It’s Your Revolution ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "It’s Your Revolution, region". -->
+      <section id="your-revolution" aria-labelledby="your-revolution-h">
+        <span class="eyebrow">Section 1.2</span>
+        <h2 id="your-revolution-h">It’s Your Revolution: Young Founders &amp; Startups</h2>
+<p>Many of the most influential tech firms were started by people in their twenties or younger, often
+          while still in school. Facebook, Google, Dell, and Microsoft all began this way. Cloud computing,
+          open-source software, and online tools have made it cheaper than ever to launch a business.</p>
+
+        <!-- An ordered list styled as a numbered timeline (see .steps in styles.css) -->
+        <h3>A typical startup journey</h3>
+        <ol class="steps">
+          <li><strong>Spot a problem</strong>Find a need people will pay to solve. Often it’s one you have yourself.</li>
+          <li><strong>Build &amp; test</strong>Launch a simple version quickly and learn from real users.</li>
+          <li><strong>Pivot if needed</strong>If it isn’t working, <em>pivot</em>: significantly change the product, market, or business model.</li>
+          <li><strong>Get support</strong>Join a <em>startup accelerator</em> like Y Combinator for mentoring, connections, and early funding.</li>
+          <li><strong>Raise money</strong>Investors and founders sign a <em>term sheet</em> that spells out how much is invested and who owns what.</li>
+        </ol>
+
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · Y Combinator alumni</span>
+          <p>Y Combinator is one of the best-known startup accelerators. Firms that went through it include
+            <strong>Airbnb, Dropbox, Stripe, and Reddit</strong>. In return for funding and coaching, startups give
+            the accelerator a small ownership stake.</p>
+        </aside>
+
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · Canva</span>
+          <p>Canva set out to make graphic design simple for non-designers. It now builds AI throughout its
+            tools, so users can edit photos and create designs with generative AI, which pushes that
+            “easy design” mission even further.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Tech Is Everywhere ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Tech Is Everywhere, region". -->
+      <section id="tech-everywhere" aria-labelledby="tech-everywhere-h">
+        <span class="eyebrow">Section 1.3</span>
+        <h2 id="tech-everywhere-h">Geek Up: Tech Is in Every Career</h2>
+<p>No matter your major, technology will shape your job. Every business discipline now depends on data,
+          software, and increasingly AI. Tech-focused careers are also varied, well paid, and growing.</p>
+
+        <!-- A data table: <caption> titles it; <th scope="col"> marks column headers
+             so screen readers can say which column each cell belongs to. -->
+        <div class="table-wrap">
+          <table>
+            <caption>How technology shows up across business disciplines</caption>
+            <thead>
+              <tr>
+                <th scope="col">Discipline</th>
+                <th scope="col">How tech is changing it</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Finance</th><td>AI spots fraud, runs trading, and personalizes banking. Big banks treat AI as a core strategy.</td></tr>
+              <tr><th scope="row">Accounting</th><td>Automation and AI handle routine work like auditing and data entry, so accountants focus on analysis and advice.</td></tr>
+              <tr><th scope="row">Marketing</th><td>Data drives targeting and measurement. Brands even use computer-generated “virtual influencers.”</td></tr>
+              <tr><th scope="row">Operations</th><td>Sensors and AI predict machine breakdowns, check quality automatically, and flag problems in real time.</td></tr>
+              <tr><th scope="row">Human Resources</th><td>Many employers use AI to screen job applicants. New laws require them to check those tools for bias.</td></tr>
+              <tr><th scope="row">Law</th><td>AI legal assistants review documents, do research, and summarize long contracts.</td></tr>
+              <tr><th scope="row">Information Systems</th><td>AI now helps programmers write code, and tech careers keep growing.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · AI can be biased</span>
+          <p>An AI hiring tool learns from past data. If that data reflects past bias (for example, by race or
+            gender), the AI can repeat it at scale. That’s why places like New York City now require employers
+            to audit AI hiring tools and be open about using them.</p>
+        </aside>
+
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Fun concept · The “uncanny valley”</span>
+          <p>As computer-generated faces look more human, people like them more, until they look <em>almost</em>
+            real. Then people suddenly feel uneasy. That “cute to creepy” dip is called the <strong>uncanny
+            valley</strong>, and marketers using virtual influencers have to work around it.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: The Hype Cycle ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "The Hype Cycle, region". -->
+      <section id="hype-cycle" aria-labelledby="hype-cycle-h">
+        <span class="eyebrow">Section 1.4</span>
+        <h2 id="hype-cycle-h">See Beyond the Hype: The Hype Cycle</h2>
+<p>New technologies usually arrive with a burst of excitement. Then reality hits. The <strong>Hype Cycle</strong>,
+          popularized by the research firm Gartner, is a picture of that pattern. Managers use it to ask,
+          “Is this tech overhyped right now, or is it ready to deliver real value?”</p>
+
+        <!-- ===== DIAGRAM: an inline SVG =====
+             role="img" + aria-labelledby gives screen readers the title
+             and a full text description of the chart. -->
+        <figure class="diagram">
+          <svg viewBox="0 0 760 400" role="img" aria-labelledby="hype-title hype-desc">
+            <title id="hype-title">The Hype Cycle</title>
+            <desc id="hype-desc">A curve of expectations over time. It rises sharply from the Innovation Trigger
+              to the Peak of Inflated Expectations, falls into the Trough of Disillusionment, then climbs
+              gradually along the Slope of Enlightenment to level off at the Plateau of Productivity.</desc>
+
+            <!-- Axes: two lines with arrowheads -->
+            <defs>
+              <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                <path d="M0 0L10 5L0 10z" fill="#4a5568"/>
+              </marker>
+            </defs>
+            <line x1="50" y1="350" x2="740" y2="350" stroke="#4a5568" stroke-width="2" marker-end="url(#arrow)"/>
+            <line x1="50" y1="350" x2="50" y2="25" stroke="#4a5568" stroke-width="2" marker-end="url(#arrow)"/>
+            <text class="svg-small" x="700" y="375">Time</text>
+            <text class="svg-small" x="30" y="200" transform="rotate(-90 30 200)" text-anchor="middle">Expectations</text>
+
+            <!-- The curve itself: a cubic Bézier path (C = curve, S = smooth curve) -->
+            <path d="M60 335 C130 320 160 70 205 70 C255 70 280 300 345 300 C420 300 470 215 560 200 S680 185 725 185"
+                  fill="none" stroke="#0b2f5b" stroke-width="5" stroke-linecap="round"/>
+
+            <!-- Numbered stage markers: a gold circle with a number on top -->
+            <g text-anchor="middle">
+              <circle cx="95" cy="315" r="15" fill="#fbc04a"/><text x="95" y="320" class="svg-label">1</text>
+              <circle cx="205" cy="70" r="15" fill="#fbc04a"/><text x="205" y="75" class="svg-label">2</text>
+              <circle cx="345" cy="300" r="15" fill="#fbc04a"/><text x="345" y="305" class="svg-label">3</text>
+              <circle cx="480" cy="226" r="15" fill="#fbc04a"/><text x="480" y="231" class="svg-label">4</text>
+              <circle cx="700" cy="186" r="15" fill="#fbc04a"/><text x="700" y="191" class="svg-label">5</text>
+            </g>
+
+            <!-- Stage labels -->
+            <text class="svg-label" x="120" y="300">Innovation Trigger</text>
+            <text class="svg-label" x="230" y="55">Peak of Inflated Expectations</text>
+            <text class="svg-label" x="285" y="335">Trough of Disillusionment</text>
+            <text class="svg-label" x="440" y="285">Slope of Enlightenment</text>
+            <text class="svg-label" x="725" y="160" text-anchor="end">Plateau of Productivity</text>
+          </svg>
+          <figcaption>The Hype Cycle: excitement races ahead of reality, crashes, then recovers as real, practical uses emerge.</figcaption>
+        </figure>
+
+        <ol class="steps">
+          <li><strong>Innovation Trigger</strong>A breakthrough, demo, or launch gets people talking. There are few real products yet.</li>
+          <li><strong>Peak of Inflated Expectations</strong>Media buzz and investment explode. Expectations get way ahead of what the tech can actually do.</li>
+          <li><strong>Trough of Disillusionment</strong>Early projects disappoint, interest crashes, and weak firms fail.</li>
+          <li><strong>Slope of Enlightenment</strong>People figure out where the tech truly works. Better versions appear.</li>
+          <li><strong>Plateau of Productivity</strong>The tech goes mainstream and delivers dependable value.</li>
+        </ol>
+
+        <aside class="callout callout--why" aria-label="Why it matters to you">
+          <span class="callout__title">Why it matters to a manager</span>
+          <p>The Hype Cycle helps you avoid four costly mistakes: buying in <strong>too early</strong>, buying in
+            <strong>too late</strong>, giving up <strong>too soon</strong>, or hanging on <strong>too long</strong>.</p>
+        </aside>
+
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · It’s a guess, not a measurement</span>
+          <p>The Hype Cycle isn’t based on hard data or math. It’s an educated judgment. Placing a technology on
+            the curve takes research and reasoning, and the frameworks in the rest of this course will help you
+            do that.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: The Road Ahead ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "The Road Ahead, region". -->
+      <section id="road-ahead" aria-labelledby="road-ahead-h">
+        <span class="eyebrow">Section 1.5</span>
+        <h2 id="road-ahead-h">The Road Ahead in CTS 115</h2>
+<p>The rest of the course follows three threads. Watch for them in every module:</p>
+        <div class="idea-grid">
+          <article class="idea-card">
+            <span class="idea-card__tag">Frameworks</span>
+            <h3>How to think about strategy</h3>
+            <p>Tools for judging whether technology creates a lasting advantage: competitive advantage, Five Forces,
+              disruptive innovation, and network effects. <em>(Modules 2, 4, 7)</em></p>
+          </article>
+          <article class="idea-card">
+            <span class="idea-card__tag">Case studies</span>
+            <h3>How real firms win (and stumble)</h3>
+            <p>Deep dives on Amazon, Shein and Temu, Meta, and Google show the frameworks in action.
+              <em>(Modules 5, 6, 8, 16)</em></p>
+          </article>
+          <article class="idea-card">
+            <span class="idea-card__tag">Foundations</span>
+            <h3>How the technology works</h3>
+            <p>Hardware, software, the cloud, data, AI, the Internet, advertising tech, and security, all
+              explained for future managers. <em>(Modules 3, 9–15)</em></p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===== KEY TERMS =====
+           A <dl> (description list) is the right HTML element for
+           term + definition pairs: <dt> = term, <dd> = definition. -->
+      <section id="key-terms" aria-labelledby="key-terms-h">
+        <span class="eyebrow">Vocabulary</span>
+        <h2 id="key-terms-h">Key Terms</h2>
+        <p>Want every term from every module in one place? Try the <a href="../glossary.html">searchable glossary</a>.</p>
+        <dl class="terms">
+          <div>
+            <dt>Market capitalization (market cap)</dt>
+            <dd>A public company’s total value, found by multiplying its number of shares by the current share price.</dd>
+          </div>
+          <div>
+            <dt>R&amp;D</dt>
+            <dd>Research and development: the part of a company focused on inventing new products and technologies.</dd>
+          </div>
+          <div>
+            <dt>Microprocessor</dt>
+            <dd>The chip that carries out a computer program’s instructions. It’s the computer’s “brain.”</dd>
+          </div>
+          <div>
+            <dt>Server farm</dt>
+            <dd>A huge collection of networked servers working together. Server farms power cloud services and large websites.</dd>
+          </div>
+          <div>
+            <dt>Pivot</dt>
+            <dd>When a startup significantly changes its product, market, or business model because the original plan isn’t working.</dd>
+          </div>
+          <div>
+            <dt>Term sheet</dt>
+            <dd>A document between a startup and its investors that lays out the investment terms, such as how much ownership the investors get.</dd>
+          </div>
+          <div>
+            <dt>Startup accelerator</dt>
+            <dd>A program (like Y Combinator) that gives young startups mentoring, connections, and seed money, usually in exchange for a small ownership stake.</dd>
+          </div>
+          <div>
+            <dt>Gatekeeper (EU)</dt>
+            <dd>The EU’s label for a few giant tech platforms that must follow extra competition rules, such as not favoring their own services.</dd>
+          </div>
+          <div>
+            <dt>Hype Cycle</dt>
+            <dd>A curve that shows how excitement about a new technology rises, crashes, and then recovers as real uses emerge.</dd>
+          </div>
+          <div>
+            <dt>Peak of Inflated Expectations</dt>
+            <dd>The Hype Cycle stage where buzz and investment are highest and expectations outrun what the tech can actually do.</dd>
+          </div>
+          <div>
+            <dt>Trough of Disillusionment</dt>
+            <dd>The Hype Cycle stage where early results disappoint, interest drops, and weaker firms fail.</dd>
+          </div>
+          <div>
+            <dt>Uncanny valley</dt>
+            <dd>The uneasy feeling people get when a computer-generated face looks almost, but not quite, human.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- ===== FLASHCARDS =====
+           Each card is a <button>, so it works with a mouse, a touch
+           screen, AND a keyboard. main.js flips it (section 3). -->
+      <section id="flashcards" aria-labelledby="flashcards-h">
+        <span class="eyebrow">Practice</span>
+        <h2 id="flashcards-h">Flashcards</h2>
+        <p>Say the definition out loud, then flip the card to check yourself. Testing yourself like this
+          (called <strong>retrieval practice</strong>) helps you remember more than rereading does.</p>
+        <button class="btn btn--ghost" type="button" data-shuffle>Shuffle cards</button>
+        <ul class="flashcards">
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Market capitalization (market cap)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A public company’s total value, found by multiplying its number of shares by the current share price.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">R&amp;D<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Research and development: the part of a company focused on inventing new products and technologies.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Microprocessor<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The chip that carries out a computer program’s instructions. It’s the computer’s “brain.”</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Server farm<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A huge collection of networked servers working together. Server farms power cloud services and large websites.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Pivot<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">When a startup significantly changes its product, market, or business model because the original plan isn’t working.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Term sheet<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A document between a startup and its investors that lays out the investment terms, such as how much ownership the investors get.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Startup accelerator<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A program (like Y Combinator) that gives young startups mentoring, connections, and seed money, usually in exchange for a small ownership stake.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Gatekeeper (EU)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The EU’s label for a few giant tech platforms that must follow extra competition rules, such as not favoring their own services.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Hype Cycle<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A curve that shows how excitement about a new technology rises, crashes, and then recovers as real uses emerge.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Peak of Inflated Expectations<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The Hype Cycle stage where buzz and investment are highest and expectations outrun what the tech can actually do.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Trough of Disillusionment<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The Hype Cycle stage where early results disappoint, interest drops, and weaker firms fail.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Uncanny valley<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The uneasy feeling people get when a computer-generated face looks almost, but not quite, human.</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===== QUICK CHECK QUIZ =====
+           A <form> with <fieldset>/<legend> groups each question with
+           its choices — screen readers read the question with each option.
+           main.js grades it (section 4). Practice only — not graded. -->
+      <section id="quick-check" aria-labelledby="quick-check-h">
+        <span class="eyebrow">Self-check · Not graded</span>
+        <h2 id="quick-check-h">Quick Check</h2>
+        <form class="quiz" data-quiz>
+          <fieldset data-answer="c" data-explain="Market cap = number of shares × share price, so 1 billion × $50 = $50 billion.">
+            <legend>1. A company has 1 billion shares that trade at $50 each. What is its market capitalization?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="a">
+              <span>$50 million</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="b">
+              <span>$1 billion</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="c">
+              <span>$50 billion</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="d">
+              <span>It can’t be calculated from this</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="A pivot means significantly changing the product, market, or business model.">
+            <legend>2. A startup’s app isn’t catching on, so the founders switch to selling the same technology to businesses instead of consumers. This is called…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="a">
+              <span>A term sheet</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="b">
+              <span>A pivot</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="c">
+              <span>An accelerator</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="d">
+              <span>The Trough of Disillusionment</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="At the Peak of Inflated Expectations, excitement outruns reality, and that sets up the crash that follows.">
+            <legend>3. In which Hype Cycle stage do media buzz and investment run far ahead of what the technology can actually do?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="a">
+              <span>Innovation Trigger</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="b">
+              <span>Peak of Inflated Expectations</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="c">
+              <span>Slope of Enlightenment</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="d">
+              <span>Plateau of Productivity</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="c" data-explain="The Hype Cycle is a useful mental model, but placing a technology on it is a judgment call, not math.">
+            <legend>4. Which statement about the Hype Cycle is TRUE?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="a">
+              <span>It is calculated from sales data</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="b">
+              <span>Every technology reaches the Plateau of Productivity</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="c">
+              <span>It’s an educated judgment, not a scientific measurement</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="d">
+              <span>It only applies to AI</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="If past hiring data contains bias, an AI trained on it can repeat that bias at scale, so audits check for it.">
+            <legend>5. Why do new laws require employers to audit AI hiring tools?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="a">
+              <span>AI tools are too slow</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="b">
+              <span>AI can repeat bias found in the data it learned from</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="c">
+              <span>AI tools are illegal in most states</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="d">
+              <span>To reduce the number of job applicants</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <div class="quiz__actions">
+            <button class="btn" type="submit">Check my answers</button>
+            <button class="btn btn--ghost" type="reset">Try again</button>
+            <p class="quiz__score" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+
+      <!-- ===== MARK COMPLETE (saved in your browser by main.js, section 5) ===== -->
+      <div class="complete-panel">
+        <div>
+          <h2>Finished Module 1?</h2>
+          <p>Track your progress — it shows up on the home page.</p>
+        </div>
+        <!-- aria-pressed makes this a "toggle button" for screen readers -->
+        <button class="btn btn--gold" type="button" data-complete="1" aria-pressed="false">Mark module complete</button>
+      </div>
+
+      <!-- ===== PREVIOUS / NEXT ===== -->
+      <nav class="pager" aria-label="Module navigation">
+        
+        <a class="pager__next" href="module-02.html" rel="next"><span class="pager__dir">Next →</span>Module 2: Technology &amp; Business Strategy</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p><strong>CTS 115: Information Systems Business Concepts</strong> — a student study companion.</p>
+      <p>This site summarizes key ideas in plain language. It does not replace your textbook,
+        <em>Information Systems: A Manager’s Guide to Harnessing Technology</em> (FlatWorld),
+        which has the full readings, cases, and videos. Always check Blackboard for due dates and assignments.</p>
+      <p>Built with plain HTML, CSS, and JavaScript. Curious how it works? Right-click anywhere and choose
+        “View Page Source” — the code is full of comments written for learners.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts go at the END of the body so the HTML loads first.
+       (You could also use the "defer" attribute in the <head>.) -->
+  <script src="../js/main.js"></script>
+</body>
+</html>

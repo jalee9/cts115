@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<!-- The DOCTYPE tells the browser this is a modern HTML5 document. -->
+<!-- lang="en" helps screen readers pronounce words correctly. -->
+<html lang="en">
+<head>
+  <!-- charset: lets the page show any character (é, —, “ ”) correctly -->
+  <meta charset="UTF-8">
+  <!-- viewport: makes the page fit phone screens instead of zooming out -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The description often appears under the link in search results -->
+  <meta name="description" content="Module 4: Disruptive innovation, why big firms fail, 3D printing, and crypto and blockchain.">
+  <title>Module 4: Disruptive Technology | CTS 115 Study Guide</title>
+
+  <!-- Google Fonts: "preconnect" starts the connection early so the font loads faster -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Our one stylesheet. "../" moves up a folder when needed. -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head><body>
+  <!-- Skip link: the first thing a keyboard user reaches with Tab -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- <header> is a "landmark": screen readers can jump straight to it -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../index.html">CTS <span>115</span> Study Guide</a>
+
+      <!-- aria-label names this navigation for screen-reader users -->
+      <nav class="site-nav" aria-label="Main">
+        <!-- aria-expanded tells assistive tech whether the menu is open.
+             aria-controls points to the id of the list it opens. -->
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <ul id="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#modules" aria-current="page">Modules</a></li>
+          <li><a href="../glossary.html">Glossary</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== MODULE BANNER =====
+       Same look as the course banners, built with HTML + CSS
+       (see section 5 of styles.css). -->
+  <div class="hero hero--module">
+    <div class="hero__inner">
+      <p class="module-badge">
+        <span class="module-badge__label">MODULE</span>
+        <span class="module-badge__num">4</span>
+      </p>
+      <div>
+        <!-- Each page has exactly ONE <h1>: the main topic of the page -->
+        <h1>Disruptive Technology</h1>
+        <p class="hero__subtitle">Chapter 4: Understanding Giant Killers and Tactics to Avoid Extinction</p>
+        <ul class="chips" aria-label="About this module">
+          <li>≈ 25 min read</li>
+          <li>12 key terms</li>
+          <li>5-question self-check</li>
+        </ul>
+      </div>
+      <svg class="hero__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17 29a11 11 0 1 1 14 0c-2 2-3 4-3 6H20c0-2-1-4-3-6z"/><path d="M20 39h8M21 43h6M24 3v3M8 10l2 2M40 10l-2 2M4 22h3M41 22h3"/></svg>
+    </div>
+  </div>
+
+  <!-- ===== PAGE LAYOUT: sidebar + content (CSS Grid, section 6) ===== -->
+  <div class="page">
+
+    <!-- "On this page" sidebar. It's a <nav> because it's a set of links. -->
+    <nav class="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <ol>
+          <li><a href="#big-picture">The Big Picture</a></li>
+          <li><a href="#goals">What You’ll Learn</a></li>
+          <li><a href="#disruption">What Is Disruption?</a></li>
+          <li><a href="#respond">Spotting &amp; Responding</a></li>
+          <li><a href="#3d-printing">3D Printing</a></li>
+          <li><a href="#crypto">Crypto &amp; Blockchain</a></li>
+          <li><a href="#key-terms">Key Terms</a></li>
+          <li><a href="#flashcards">Flashcards</a></li>
+          <li><a href="#quick-check">Quick Check</a></li>
+      </ol>
+    </nav>
+
+    <!-- <main> holds the page's unique content. id="main" is where the
+         skip link jumps to. tabindex="-1" lets it receive that focus. -->
+    <main id="main" class="content" tabindex="-1">
+
+      <!-- ===== THE BIG PICTURE: the whole module in a few bullets ===== -->
+      <section id="big-picture" aria-labelledby="big-picture-h">
+        <span class="eyebrow">Start here</span>
+        <h2 id="big-picture-h">The Big Picture</h2>
+        <div class="big-picture">
+          <ul>
+          <li><strong>Disruptive technologies</strong> start out worse at what current customers care about, then improve until they take over the market.</li>
+          <li>Big, successful firms often miss disruption because they <strong>listen to their best customers</strong> and chase their most profitable products.</li>
+          <li>To survive, firms should watch for disruptors, <strong>experiment in small, separate teams</strong>, and avoid judging new ideas only by old numbers.</li>
+          <li><strong>3D printing</strong> (additive manufacturing) didn't take over homes, but it's disrupting areas like construction, medical implants, and aerospace parts.</li>
+          <li><strong>Crypto and blockchain</strong> show real promise and also massive hype, scams, and collapses like FTX.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== LEARNING GOALS ===== -->
+      <section id="goals" aria-labelledby="goals-h">
+        <span class="eyebrow">Your goals</span>
+        <h2 id="goals-h">What You’ll Learn</h2>
+        <p>By the end of this module, you should be able to:</p>
+        <ul class="goals">
+          <li>Identify the two characteristics of a disruptive innovation.</li>
+          <li>Explain why dominant firms often fail to respond to disruption.</li>
+          <li>Describe techniques firms can use to spot and nurture disruptive technologies.</li>
+          <li>Explain when additive manufacturing makes sense and when it doesn't.</li>
+          <li>Explain what Bitcoin, blockchain, DeFi, stablecoins, CBDCs, and NFTs are, along with their strengths and risks.</li>
+        </ul>
+      </section>
+
+      <!-- ===== LESSON SECTION: What Is Disruption? ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "What Is Disruption?, region". -->
+      <section id="disruption" aria-labelledby="disruption-h">
+        <span class="eyebrow">Section 4.1</span>
+        <h2 id="disruption-h">Understanding Truly Disruptive Innovation</h2>
+<p>Harvard professor Clayton Christensen studied why industry giants get toppled. He found that
+          <strong>disruptive technologies</strong> share two traits:</p>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Trait 1</span><h3>They start out “worse”</h3>
+            <p>They come to market with features that current mainstream customers <em>don't</em> value, so leaders ignore them.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Trait 2</span><h3>They get better fast</h3>
+            <p>Their performance improves until they're good enough to invade the established market and win.</p></article>
+        </div>
+
+        <figure class="diagram">
+          <svg viewBox="0 0 760 360" role="img" aria-labelledby="dis-title dis-desc">
+            <title id="dis-title">How disruption happens</title>
+            <desc id="dis-desc">Performance over time. A dashed band shows what mainstream customers need. The
+              established technology climbs above what customers need. The disruptive technology starts far below
+              customer needs but climbs steeply until it crosses into the mainstream market.</desc>
+            <defs>
+              <marker id="d-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#4a5568"/></marker>
+            </defs>
+            <line x1="60" y1="310" x2="730" y2="310" stroke="#4a5568" stroke-width="2" marker-end="url(#d-arrow)"/>
+            <line x1="60" y1="310" x2="60" y2="25" stroke="#4a5568" stroke-width="2" marker-end="url(#d-arrow)"/>
+            <text x="690" y="335" class="svg-small">Time</text>
+            <text x="35" y="170" transform="rotate(-90 35 170)" text-anchor="middle" class="svg-small">Performance</text>
+            <!-- customer needs band -->
+            <path d="M70 175 L720 135" stroke="#fbc04a" stroke-width="18" stroke-opacity="0.5" fill="none"/>
+            <text x="160" y="198" class="svg-label">What mainstream customers need</text>
+            <!-- established tech -->
+            <path d="M70 140 C250 110 450 70 720 40" stroke="#0b2f5b" stroke-width="5" fill="none"/>
+            <text x="90" y="86" class="svg-label">Established technology</text>
+            <!-- disruptive tech -->
+            <path d="M70 290 C300 280 420 210 720 70" stroke="#29a9e0" stroke-width="5" fill="none"/>
+            <text x="100" y="244" class="svg-label">Disruptive technology</text>
+            <circle cx="556" cy="150" r="10" fill="#b42318"/>
+            <text x="575" y="185" class="svg-label" style="fill:#b42318">Disruption!</text>
+          </svg>
+          <figcaption>The disruptor starts below what customers need, then improves fast enough to cross into the mainstream market.</figcaption>
+        </figure>
+
+        <h3>Why big firms fail</h3>
+        <p>Leaders aren't lazy. They make <em>sensible</em> choices: they listen to their best customers, protect
+          high-profit products, and skip small, low-margin markets. Those sensible choices are exactly why they miss
+          the disruptor.</p>
+
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · Kodak</span>
+          <p>Kodak engineers built one of the first digital cameras, but the company's profits came from selling film.
+            Early digital photos looked worse, and Kodak's customers wanted film. Digital kept improving, then
+            smartphones arrived, and Kodak ended up in bankruptcy.</p>
+        </aside>
+
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Disruption in progress · Intel, ARM &amp; Nvidia</span>
+          <p>Intel dominated PC chips. But ARM's low-power chip <em>designs</em> took over phones, and now Apple and others
+            use them in laptops too. Meanwhile, Nvidia's graphics chips, first built for video games, turned out
+            to be ideal for AI, and Nvidia became one of the world's most valuable companies. That's disruption
+            from two directions.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Spotting &amp;amp; Responding ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Spotting &amp;amp; Responding, region". -->
+      <section id="respond" aria-labelledby="respond-h">
+        <span class="eyebrow">Section 4.2</span>
+        <h2 id="respond-h">Recognizing and Responding to Disruption</h2>
+<ol class="steps">
+          <li><strong>Improve your radar</strong>Track startups, research labs, and fringe customers. Ask what's “not good enough yet” but improving fast.</li>
+          <li><strong>Don't judge only by old numbers</strong>Beware the <strong>McNamara fallacy</strong>: deciding based only on past, measurable data when the market itself is changing.</li>
+          <li><strong>Experiment in a separate unit</strong>Give new ideas a small team with its own goals and <strong>KPIs</strong>, so they aren't crushed by the main business's profit targets.</li>
+          <li><strong>Be willing to cannibalize yourself</strong>It's better to replace your own product than to let a rival do it.</li>
+        </ol>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Missed it</span><h3>Yahoo!</h3>
+            <p>Yahoo! was an early web giant but was slow to commit to mobile. Rivals that put mobile first captured the next generation of users.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Got it</span><h3>Intuit</h3>
+            <p>The maker of TurboTax and QuickBooks runs lots of small, fast experiments and backs the winners, which helped it move to cloud and mobile.</p></article>
+        </div>
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · Robot kitchens</span>
+          <p>Salad chain sweetgreen bought Spyce, a robotics startup, and now runs automated “Infinite Kitchens” that
+            assemble bowls with machines. Could robots disrupt restaurant labor? It's worth watching.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: 3D Printing ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "3D Printing, region". -->
+      <section id="3d-printing" aria-labelledby="3d-printing-h">
+        <span class="eyebrow">Section 4.3</span>
+        <h2 id="3d-printing-h">Tech to Consider: Additive Manufacturing (3D Printing)</h2>
+<p>Traditional manufacturing carves or molds parts from a block of material. <strong>Additive manufacturing</strong>
+          builds parts <em>layer by layer</em>, adding material only where it's needed. Predictions of a 3D printer in every home
+          didn't come true, but industrial uses are growing.</p>
+        <div class="table-wrap">
+          <table>
+            <caption>When does additive manufacturing make sense?</caption>
+            <thead><tr><th scope="col">Good fit</th><th scope="col">Weaker fit</th></tr></thead>
+            <tbody>
+              <tr><td>Custom, one-off parts (like a hip implant shaped for one patient)</td><td>Making millions of identical items cheaply</td></tr>
+              <tr><td>Complex shapes that are impossible to machine</td><td>Simple parts that molding already makes fast</td></tr>
+              <tr><td>Prototypes and design testing</td><td>Materials that printers can't handle well</td></tr>
+              <tr><td>Making parts on-site (no shipping or inventory)</td><td>Jobs where speed per unit matters most</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · 3D-printed houses</span>
+          <p>Companies like SQ4D print the concrete walls of a home on-site in days, with less waste and labor. If it
+            scales, it could disrupt home building and help with housing shortages. Firms like VulcanForms also
+            print precision metal parts for aerospace and medical customers.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Crypto &amp;amp; Blockchain ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Crypto &amp;amp; Blockchain, region". -->
+      <section id="crypto" aria-labelledby="crypto-h">
+        <span class="eyebrow">Section 4.4</span>
+        <h2 id="crypto-h">Tech to Consider: Crypto, Blockchain &amp; DeFi</h2>
+<p>A <strong>blockchain</strong> is a shared digital ledger copied across many computers. Each new “block” of records
+          is linked to the one before, so changing old records is extremely hard. That's why people call a blockchain
+          <strong>immutable</strong>.</p>
+
+        <figure class="diagram">
+          <svg viewBox="0 0 760 170" role="img" aria-labelledby="bc-title bc-desc">
+            <title id="bc-title">A chain of blocks</title>
+            <desc id="bc-desc">Four blocks linked left to right. Each block holds transactions and the fingerprint of
+              the previous block, so tampering with one block breaks every link after it.</desc>
+            <defs><marker id="bc-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#0a6a9c"/></marker></defs>
+            <g text-anchor="middle">
+              <rect x="10" y="30" width="150" height="100" rx="10" fill="#0b2f5b"/><text x="85" y="62" class="svg-label" style="fill:#fbc04a">Block 1</text><text x="85" y="88" class="svg-small" style="fill:#fff">transactions</text><text x="85" y="108" class="svg-small" style="fill:#fff">fingerprint #A1</text>
+              <rect x="205" y="30" width="150" height="100" rx="10" fill="#0b2f5b"/><text x="280" y="62" class="svg-label" style="fill:#fbc04a">Block 2</text><text x="280" y="88" class="svg-small" style="fill:#fff">links to #A1</text><text x="280" y="108" class="svg-small" style="fill:#fff">fingerprint #B7</text>
+              <rect x="400" y="30" width="150" height="100" rx="10" fill="#0b2f5b"/><text x="475" y="62" class="svg-label" style="fill:#fbc04a">Block 3</text><text x="475" y="88" class="svg-small" style="fill:#fff">links to #B7</text><text x="475" y="108" class="svg-small" style="fill:#fff">fingerprint #C3</text>
+              <rect x="595" y="30" width="150" height="100" rx="10" fill="#0b2f5b"/><text x="670" y="62" class="svg-label" style="fill:#fbc04a">Block 4</text><text x="670" y="88" class="svg-small" style="fill:#fff">links to #C3</text><text x="670" y="108" class="svg-small" style="fill:#fff">fingerprint #D9</text>
+            </g>
+            <g stroke="#0a6a9c" stroke-width="3" marker-end="url(#bc-arrow)">
+              <line x1="162" y1="80" x2="201" y2="80"/><line x1="357" y1="80" x2="396" y2="80"/><line x1="552" y1="80" x2="591" y2="80"/>
+            </g>
+          </svg>
+          <figcaption>Each block stores the previous block's fingerprint. Change one block, and every link after it breaks.</figcaption>
+        </figure>
+
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Crypto</span><h3>Bitcoin</h3><p>A decentralized digital payment system with no bank or government in charge, running on a blockchain.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Crypto</span><h3>Stablecoins</h3><p>Cryptocurrencies whose value is pegged to a currency like the U.S. dollar, so they don't swing wildly in price.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Government</span><h3>CBDCs</h3><p>Central bank digital currencies, like China's e-CNY: digital versions of official government money.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Finance</span><h3>DeFi</h3><p>Decentralized finance: lending, trading, and other services run on blockchains without a bank in the middle.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Ownership</span><h3>NFTs</h3><p>Non-fungible tokens record ownership of a digital item on a blockchain. They create scarcity, like owning the one original painting.</p></article>
+        </div>
+
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Promising uses · Tracking food</span>
+          <p>Some companies use blockchains to track food from farm to store. If there's a contamination outbreak,
+            they can trace the source in seconds instead of days.</p>
+        </aside>
+
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · The FTX collapse</span>
+          <p>FTX was one of the biggest crypto exchanges until it collapsed in 2022, the largest crypto bankruptcy
+            at the time. Its founder was later convicted of fraud for misusing customer money. The scandal
+            helped trigger a “crypto winter” and shows how little protection crypto users can have compared
+            with regulated banks.</p>
+        </aside>
+
+        <aside class="callout callout--why" aria-label="Why it matters to you">
+          <span class="callout__title">Think like a manager</span>
+          <p>Ask the disruption questions: Who is this for? What problem does it solve better than today's options?
+            Is it improving fast? Hype isn't the same thing as value.</p>
+        </aside>
+      </section>
+
+      <!-- ===== KEY TERMS =====
+           A <dl> (description list) is the right HTML element for
+           term + definition pairs: <dt> = term, <dd> = definition. -->
+      <section id="key-terms" aria-labelledby="key-terms-h">
+        <span class="eyebrow">Vocabulary</span>
+        <h2 id="key-terms-h">Key Terms</h2>
+        <p>Want every term from every module in one place? Try the <a href="../glossary.html">searchable glossary</a>.</p>
+        <dl class="terms">
+          <div>
+            <dt>Disruptive technology</dt>
+            <dd>An innovation that starts out with features mainstream customers don't value, then improves until it takes over the market.</dd>
+          </div>
+          <div>
+            <dt>McNamara fallacy</dt>
+            <dd>Making decisions based only on past, measurable data and ignoring changes the numbers don't capture yet.</dd>
+          </div>
+          <div>
+            <dt>KPI</dt>
+            <dd>Key performance indicator: a measurable value a firm uses to track progress toward a goal.</dd>
+          </div>
+          <div>
+            <dt>Cannibalize</dt>
+            <dd>When a firm's new product takes sales from its own existing product.</dd>
+          </div>
+          <div>
+            <dt>Additive manufacturing</dt>
+            <dd>Industrial 3D printing that builds an object layer by layer, adding material only where needed.</dd>
+          </div>
+          <div>
+            <dt>Bitcoin</dt>
+            <dd>A decentralized, peer-to-peer digital payment system that runs without a bank or central authority.</dd>
+          </div>
+          <div>
+            <dt>Cryptocurrency</dt>
+            <dd>A digital asset that uses cryptography (secure math) to verify transactions and control the creation of new units.</dd>
+          </div>
+          <div>
+            <dt>Blockchain</dt>
+            <dd>A decentralized digital ledger, copied across many computers, that records transactions and is very hard to tamper with.</dd>
+          </div>
+          <div>
+            <dt>DeFi</dt>
+            <dd>Decentralized finance: financial services built on blockchains that work without a bank or government in the middle.</dd>
+          </div>
+          <div>
+            <dt>Stablecoin</dt>
+            <dd>A cryptocurrency whose value is pegged to a currency or commodity, like the U.S. dollar.</dd>
+          </div>
+          <div>
+            <dt>CBDC</dt>
+            <dd>Central bank digital currency: a digital form of a government-issued currency.</dd>
+          </div>
+          <div>
+            <dt>NFT</dt>
+            <dd>Non-fungible token: a blockchain record that proves ownership of a unique digital item.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- ===== FLASHCARDS =====
+           Each card is a <button>, so it works with a mouse, a touch
+           screen, AND a keyboard. main.js flips it (section 3). -->
+      <section id="flashcards" aria-labelledby="flashcards-h">
+        <span class="eyebrow">Practice</span>
+        <h2 id="flashcards-h">Flashcards</h2>
+        <p>Say the definition out loud, then flip the card to check yourself. Testing yourself like this
+          (called <strong>retrieval practice</strong>) helps you remember more than rereading does.</p>
+        <button class="btn btn--ghost" type="button" data-shuffle>Shuffle cards</button>
+        <ul class="flashcards">
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Disruptive technology<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">An innovation that starts out with features mainstream customers don't value, then improves until it takes over the market.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">McNamara fallacy<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Making decisions based only on past, measurable data and ignoring changes the numbers don't capture yet.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">KPI<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Key performance indicator: a measurable value a firm uses to track progress toward a goal.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Cannibalize<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">When a firm's new product takes sales from its own existing product.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Additive manufacturing<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Industrial 3D printing that builds an object layer by layer, adding material only where needed.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Bitcoin<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A decentralized, peer-to-peer digital payment system that runs without a bank or central authority.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Cryptocurrency<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A digital asset that uses cryptography (secure math) to verify transactions and control the creation of new units.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Blockchain<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A decentralized digital ledger, copied across many computers, that records transactions and is very hard to tamper with.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">DeFi<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Decentralized finance: financial services built on blockchains that work without a bank or government in the middle.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Stablecoin<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A cryptocurrency whose value is pegged to a currency or commodity, like the U.S. dollar.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">CBDC<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Central bank digital currency: a digital form of a government-issued currency.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">NFT<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Non-fungible token: a blockchain record that proves ownership of a unique digital item.</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===== QUICK CHECK QUIZ =====
+           A <form> with <fieldset>/<legend> groups each question with
+           its choices — screen readers read the question with each option.
+           main.js grades it (section 4). Practice only — not graded. -->
+      <section id="quick-check" aria-labelledby="quick-check-h">
+        <span class="eyebrow">Self-check · Not graded</span>
+        <h2 id="quick-check-h">Quick Check</h2>
+        <form class="quiz" data-quiz>
+          <fieldset data-answer="b" data-explain="Disruptors start out underperforming on what mainstream customers care about, so leaders tend to ignore them.">
+            <legend>1. Which describes a disruptive technology when it first appears?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="a">
+              <span>It beats current products at everything</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="b">
+              <span>It has features mainstream customers don't value yet</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="c">
+              <span>It's always more expensive</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="d">
+              <span>It's only made by big firms</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Kodak made sensible short-term choices that protected film profits, which is the classic reason incumbents miss disruption.">
+            <legend>2. Why did Kodak struggle even though it helped invent the digital camera?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="a">
+              <span>It had no engineers</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="b">
+              <span>Digital threatened its profitable film business and early quality was poor</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="c">
+              <span>The government banned digital cameras</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="d">
+              <span>It was a fast follower</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="a" data-explain="The McNamara fallacy is relying only on past measurable data when the market is changing.">
+            <legend>3. A manager rejects a new product idea because last year's sales data shows no demand for it. This risks…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="a">
+              <span>The McNamara fallacy</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="b">
+              <span>Network effects</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="c">
+              <span>Price elasticity</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="d">
+              <span>Straddling</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="3D printing shines for custom, complex, one-off parts. Mass-producing identical items is usually cheaper with traditional methods.">
+            <legend>4. In which case does additive manufacturing make the MOST sense?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="a">
+              <span>Producing 10 million identical plastic bottle caps</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="b">
+              <span>A custom hip implant shaped for one patient</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="c">
+              <span>Printing newspapers</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="d">
+              <span>Bottling soda</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Linked blocks plus many distributed copies mean changing one record would break the chain and be noticed.">
+            <legend>5. What makes a blockchain hard to tamper with?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="a">
+              <span>A bank checks every entry</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="b">
+              <span>Each block is linked to the one before it, and copies exist on many computers</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="c">
+              <span>It's stored on a single secure server</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="d">
+              <span>It's printed on paper</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <div class="quiz__actions">
+            <button class="btn" type="submit">Check my answers</button>
+            <button class="btn btn--ghost" type="reset">Try again</button>
+            <p class="quiz__score" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+
+      <!-- ===== MARK COMPLETE (saved in your browser by main.js, section 5) ===== -->
+      <div class="complete-panel">
+        <div>
+          <h2>Finished Module 4?</h2>
+          <p>Track your progress — it shows up on the home page.</p>
+        </div>
+        <!-- aria-pressed makes this a "toggle button" for screen readers -->
+        <button class="btn btn--gold" type="button" data-complete="4" aria-pressed="false">Mark module complete</button>
+      </div>
+
+      <!-- ===== PREVIOUS / NEXT ===== -->
+      <nav class="pager" aria-label="Module navigation">
+        <a href="module-03.html" rel="prev"><span class="pager__dir">← Previous</span>Module 3: Computing Power &amp; Innovation</a>
+        <a class="pager__next" href="module-05.html" rel="next"><span class="pager__dir">Next →</span>Module 5: Amazon &amp; Digital Business</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p><strong>CTS 115: Information Systems Business Concepts</strong> — a student study companion.</p>
+      <p>This site summarizes key ideas in plain language. It does not replace your textbook,
+        <em>Information Systems: A Manager’s Guide to Harnessing Technology</em> (FlatWorld),
+        which has the full readings, cases, and videos. Always check Blackboard for due dates and assignments.</p>
+      <p>Built with plain HTML, CSS, and JavaScript. Curious how it works? Right-click anywhere and choose
+        “View Page Source” — the code is full of comments written for learners.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts go at the END of the body so the HTML loads first.
+       (You could also use the "defer" attribute in the <head>.) -->
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,1101 @@
+/* =====================================================================
+   CTS 115 Study Guide — Main Stylesheet
+   ---------------------------------------------------------------------
+   HOW THIS FILE IS ORGANIZED (read top to bottom):
+     1. Design tokens (CSS custom properties / "variables")
+     2. Reset & base styles (the defaults for every page)
+     3. Accessibility helpers (skip link, focus rings, screen-reader text)
+     4. Site header & navigation
+     5. Hero banners (home page + module pages)
+     6. Page layout (content column + "On this page" sidebar)
+     7. Content components (cards, callouts, diagrams, tables)
+     8. Interactive components (flashcards, quiz, glossary)
+     9. Footer
+    10. Responsive tweaks (media queries)
+    11. Reduced motion & print
+
+   TIP FOR STUDENTS: Open your browser's Developer Tools (F12, or
+   right-click > Inspect) and click any element on the page. You'll see
+   which rules below are styling it — and you can edit them live!
+   ===================================================================== */
+
+
+/* ---------------------------------------------------------------------
+   1. DESIGN TOKENS
+   Custom properties (they start with --) store values we reuse.
+   Change a color here and it updates everywhere it's used.
+   :root means "the whole document," so these are available on every page.
+   --------------------------------------------------------------------- */
+:root {
+  /* Brand colors taken from the CTS 115 course banner */
+  --navy:        #0b2f5b;   /* main background of banners */
+  --navy-dark:   #071f3d;   /* deeper navy for the header/footer */
+  --gold:        #fbc04a;   /* accent: module numbers, underlines */
+  --gold-dark:   #8a5a00;   /* darker gold for TEXT on white (better contrast) */
+  --sky:         #29a9e0;   /* bright blue used for icons and arcs */
+  --sky-dark:    #0a6a9c;   /* darker blue for links on white backgrounds */
+
+  /* Neutral colors for text and surfaces */
+  --ink:         #1a2433;   /* main body text — nearly black, easier on eyes */
+  --ink-soft:    #4a5568;   /* secondary text */
+  --bg:          #f4f7fb;   /* page background — a very light blue-gray */
+  --surface:     #ffffff;   /* cards and panels */
+  --border:      #dbe3ee;
+
+  /* Feedback colors for the quiz (each passes WCAG AA contrast on white) */
+  --correct:     #1d7a3a;
+  --correct-bg:  #e7f6ec;
+  --wrong:       #b42318;
+  --wrong-bg:    #fdecea;
+
+  /* Typography */
+  --font: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --text-base: 1.0625rem;   /* 17px — slightly larger than default for readability */
+  --leading: 1.7;           /* line-height: space between lines of text */
+
+  /* Spacing scale — using the same few sizes keeps the design consistent */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2.5rem;
+  --space-6: 4rem;
+
+  /* Rounded corners and shadows */
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 2px 6px rgba(11, 47, 91, 0.06), 0 10px 24px rgba(11, 47, 91, 0.07);
+
+  /* The widest our reading column gets (long lines are hard to read) */
+  --measure: 72ch;
+}
+
+
+/* ---------------------------------------------------------------------
+   2. RESET & BASE STYLES
+   --------------------------------------------------------------------- */
+
+/* box-sizing: border-box makes width include padding and border.
+   This makes layout math MUCH easier. The * selector means "everything." */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Smooth scrolling when you click an "On this page" link */
+html {
+  scroll-behavior: smooth;
+  /* Leaves room so headings aren't hidden under the sticky header */
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);           /* var() reads a custom property */
+  font-size: var(--text-base);
+  line-height: var(--leading);
+  color: var(--ink);
+  background: var(--bg);
+}
+
+/* Images and SVGs never overflow their container */
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.25;
+  color: var(--navy);
+  margin: 0 0 var(--space-3);
+}
+
+h2 { font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); }
+/* clamp(MIN, PREFERRED, MAX) = fluid type that grows with the screen */
+h3 { font-size: 1.2rem; }
+
+p { margin: 0 0 var(--space-3); }
+
+a {
+  color: var(--sky-dark);
+  text-underline-offset: 3px;   /* puts a little space under the underline */
+}
+a:hover { color: var(--navy); }
+
+strong { font-weight: 600; }
+
+
+/* ---------------------------------------------------------------------
+   3. ACCESSIBILITY HELPERS
+   --------------------------------------------------------------------- */
+
+/* "Skip to main content" link — hidden until a keyboard user presses Tab.
+   It lets them jump past the navigation straight to the lesson. */
+.skip-link {
+  position: absolute;
+  left: var(--space-3);
+  top: -100px;                /* parked off-screen */
+  z-index: 100;
+  padding: var(--space-2) var(--space-3);
+  background: var(--gold);
+  color: var(--navy-dark);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+}
+.skip-link:focus { top: var(--space-3); }   /* slides into view on focus */
+
+/* A clear, high-contrast outline for keyboard users.
+   :focus-visible only shows it for keyboard focus, not mouse clicks. */
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Text that screen readers announce but sighted users don't see */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+
+/* ---------------------------------------------------------------------
+   4. SITE HEADER & NAVIGATION
+   --------------------------------------------------------------------- */
+.site-header {
+  position: sticky;         /* stays at the top while you scroll */
+  top: 0;
+  z-index: 50;
+  background: var(--navy-dark);
+  border-bottom: 3px solid var(--gold);
+}
+
+.site-header__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-2) var(--space-3);
+  display: flex;            /* Flexbox lines items up in a row */
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.brand {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+}
+.brand span { color: var(--gold); }   /* the "115" in gold, like the banner */
+.brand:hover { color: #fff; }
+
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--space-1);
+}
+
+.site-nav a {
+  display: block;
+  padding: var(--space-2) var(--space-3);
+  color: #e6eef8;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+}
+.site-nav a:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+
+/* aria-current="page" marks the link for the page you're on.
+   We style it using an ATTRIBUTE SELECTOR: [attribute="value"] */
+.site-nav a[aria-current="page"] {
+  color: var(--navy-dark);
+  background: var(--gold);
+}
+
+/* The "Menu" button only appears on small screens (see section 10) */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: var(--radius-sm);
+  padding: var(--space-1) var(--space-3);
+  font: inherit;
+  cursor: pointer;
+}
+
+
+/* ---------------------------------------------------------------------
+   5. HERO BANNERS
+   These recreate the course banner look in pure CSS — no image needed,
+   so the text stays sharp, searchable, and readable by screen readers.
+   --------------------------------------------------------------------- */
+.hero {
+  position: relative;       /* lets us position the decorative arcs inside */
+  overflow: hidden;         /* hides the parts of the arcs that stick out */
+  background:
+    radial-gradient(circle at 85% 50%, rgba(41, 169, 224, 0.18), transparent 45%),
+    var(--navy);
+  color: #fff;
+}
+
+/* Decorative arcs: ::before and ::after are "pseudo-elements" — extra
+   boxes CSS creates without adding any HTML. A border on a circle,
+   showing only one side, makes an arc. */
+.hero::before,
+.hero::after {
+  content: "";              /* required for pseudo-elements to appear */
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;     /* clicks pass through the decoration */
+}
+.hero::before {
+  width: 520px;
+  height: 520px;
+  right: -140px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-left-color: var(--gold);
+}
+.hero::after {
+  width: 600px;
+  height: 600px;
+  right: -230px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 40px solid rgba(41, 169, 224, 0.12);
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 1;               /* keeps text above the arcs */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-3);
+}
+
+/* --- Home page hero --- */
+.hero--home .hero__inner { text-align: center; }
+
+.hero__title {
+  font-size: clamp(2.6rem, 2rem + 4vw, 5rem);
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.hero__title span { color: var(--gold); }
+
+.hero__kicker {
+  margin: var(--space-2) 0 0;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: clamp(0.9rem, 0.8rem + 0.6vw, 1.3rem);
+}
+.hero__kicker--soft { color: #c9d6e6; letter-spacing: 0.25em; }
+
+.hero__rule {
+  width: 140px;
+  height: 4px;
+  margin: var(--space-4) auto;
+  background: var(--gold);
+  border: 0;
+  border-radius: 2px;
+}
+
+.hero__lead {
+  max-width: 46ch;
+  margin: 0 auto;
+  color: #e6eef8;
+  font-size: 1.1rem;
+}
+
+/* --- Module page banner (matches the module banners from the course) --- */
+.hero--module .hero__inner {
+  display: grid;             /* CSS Grid: number | divider | text | icon */
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-4);
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-5);
+}
+
+.module-badge {
+  text-align: center;
+  padding-right: var(--space-4);
+  border-right: 3px solid var(--gold);   /* the gold divider line */
+  line-height: 1;
+}
+.module-badge__label {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  color: var(--gold);
+}
+.module-badge__num {
+  display: block;
+  font-size: clamp(3rem, 2.4rem + 3vw, 5rem);
+  font-weight: 800;
+  color: var(--gold);
+}
+
+.hero--module h1 {
+  color: #fff;
+  font-size: clamp(1.8rem, 1.4rem + 2vw, 2.8rem);
+  margin-bottom: var(--space-2);
+}
+.hero__subtitle {
+  color: #d5e2f1;
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.hero__icon {
+  width: 110px;
+  height: 110px;
+  color: var(--sky);         /* the SVG uses currentColor, so this colors it */
+}
+
+/* Little "meta" chips under the module title (reading time, etc.) */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  padding: 0;
+  list-style: none;
+}
+.chips li {
+  font-size: 0.85rem;
+  padding: 0.2rem 0.75rem;
+  border-radius: 999px;      /* a huge radius makes a "pill" shape */
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+
+/* ---------------------------------------------------------------------
+   6. PAGE LAYOUT
+   On wide screens: a sidebar ("On this page") + the reading column.
+   On small screens it stacks (see section 10).
+   --------------------------------------------------------------------- */
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-3);
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);   /* minmax(0,1fr) prevents overflow */
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.page--single {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 1000px;
+}
+
+.toc {
+  position: sticky;
+  top: 5.5rem;
+  font-size: 0.92rem;
+}
+.toc h2 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+}
+.toc ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 2px solid var(--border);
+}
+.toc a {
+  display: block;
+  padding: 0.35rem 0 0.35rem var(--space-3);
+  margin-left: -2px;                 /* overlaps the border so the active bar lines up */
+  border-left: 2px solid transparent;
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+.toc a:hover { color: var(--navy); }
+/* JavaScript adds .is-active to the section you're currently reading */
+.toc a.is-active {
+  color: var(--navy);
+  font-weight: 600;
+  border-left-color: var(--gold);
+}
+
+.content > section {
+  margin-bottom: var(--space-6);
+}
+
+/* Keep paragraphs at a comfortable reading width */
+.content p,
+.content li {
+  max-width: var(--measure);
+}
+
+/* Small gold label above a section heading, e.g. "Section 1.4" */
+.eyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: var(--space-1);
+}
+
+
+/* ---------------------------------------------------------------------
+   7. CONTENT COMPONENTS
+   --------------------------------------------------------------------- */
+
+/* --- "The Big Picture" summary panel --- */
+.big-picture {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--space-4);
+  border-top: 5px solid var(--gold);
+}
+.big-picture ul { margin: 0; padding-left: 1.2rem; }
+.big-picture li { margin-bottom: var(--space-2); }
+.big-picture li::marker { color: var(--gold-dark); }   /* colors the bullet */
+
+/* --- Learning goals checklist --- */
+.goals {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+.goals li {
+  position: relative;
+  padding: var(--space-2) var(--space-3) var(--space-2) 2.6rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+/* A checkmark drawn with CSS: a rotated box with two borders */
+.goals li::before {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  top: 0.95rem;
+  width: 0.5rem;
+  height: 0.9rem;
+  border: solid var(--sky-dark);
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+/* --- Key idea cards (auto-fitting grid) --- */
+/* repeat(auto-fit, minmax(240px, 1fr)) = "fit as many 240px+ columns as
+   possible, then stretch them to fill the row." No media query needed! */
+.idea-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+}
+.idea-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease;   /* animates the hover lift below */
+}
+.idea-card:hover { transform: translateY(-3px); }
+.idea-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: var(--space-2);
+}
+.idea-card p { margin: 0; font-size: 0.97rem; }
+.idea-card__tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--navy);
+  background: var(--gold);
+  border-radius: 999px;
+  padding: 0.1rem 0.6rem;
+  margin-bottom: var(--space-2);
+}
+
+/* --- Callout boxes --- */
+/* One base class (.callout) plus "modifier" classes for each type.
+   This naming style is called BEM: block__element--modifier. */
+.callout {
+  margin: var(--space-4) 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  border-left: 6px solid;
+  background: var(--surface);
+}
+.callout__title {
+  display: block;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-1);
+}
+.callout p:last-child { margin-bottom: 0; }
+
+.callout--example { border-color: var(--sky);  background: #eef8fd; }
+.callout--example .callout__title { color: var(--sky-dark); }
+
+.callout--why     { border-color: var(--gold); background: #fff8e8; }
+.callout--why .callout__title { color: var(--gold-dark); }
+
+.callout--watch   { border-color: var(--wrong); background: #fff3f1; }
+.callout--watch .callout__title { color: var(--wrong); }
+
+/* --- Diagrams (inline SVG inside a <figure>) --- */
+.diagram {
+  margin: var(--space-4) 0;
+  padding: var(--space-4);
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.diagram svg { display: block; width: 100%; height: auto; }
+.diagram figcaption {
+  margin-top: var(--space-3);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+/* Shared text styles used INSIDE the SVG diagrams */
+.diagram text { font-family: var(--font); fill: var(--ink); }
+.diagram .svg-label { font-size: 15px; font-weight: 600; }
+.diagram .svg-small { font-size: 13px; fill: var(--ink-soft); }
+.diagram .svg-title { font-size: 17px; font-weight: 700; fill: var(--navy); }
+
+/* --- Step-by-step timeline (an ordered list styled with counters) --- */
+.steps {
+  list-style: none;
+  counter-reset: step;        /* creates a counter named "step" */
+  padding: 0;
+  margin: var(--space-4) 0;
+}
+.steps li {
+  counter-increment: step;    /* adds 1 for each list item */
+  position: relative;
+  padding: 0 0 var(--space-4) 3.5rem;
+  border-left: 2px solid var(--border);
+  margin-left: 1.2rem;
+}
+.steps li:last-child { border-left-color: transparent; }
+.steps li::before {
+  content: counter(step);     /* prints the counter's current number */
+  position: absolute;
+  left: -1.25rem;
+  top: -0.2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: grid;
+  place-items: center;        /* centers the number both ways */
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--gold);
+  font-weight: 700;
+}
+.steps strong { display: block; color: var(--navy); }
+
+/* --- Comparison tables --- */
+.table-wrap {
+  overflow-x: auto;           /* lets wide tables scroll on phones */
+  margin: var(--space-4) 0;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  font-size: 0.95rem;
+}
+caption {
+  text-align: left;
+  font-weight: 600;
+  padding: var(--space-3);
+  color: var(--navy);
+}
+th, td {
+  padding: var(--space-3);
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+}
+thead th {
+  background: var(--navy);
+  color: #fff;
+}
+tbody tr:nth-child(even) { background: #f8fafd; }  /* "zebra" stripes */
+
+/* --- Code samples (JSON, SQL, etc.) ---
+   <pre> keeps line breaks and spaces exactly as written.
+   A monospace font gives every character the same width. */
+pre {
+  margin: var(--space-3) 0;
+  padding: var(--space-3) var(--space-4);
+  background: var(--navy-dark);
+  color: #e6eef8;
+  border-radius: var(--radius-sm);
+  overflow-x: auto;            /* long lines scroll instead of breaking the layout */
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+code {
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+/* Inline code (inside a sentence, not in a <pre> block) */
+:not(pre) > code {
+  background: #e3edf8;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.92em;
+}
+
+/* --- Key terms list (a <dl> = description list) --- */
+.terms {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+}
+.terms div {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+}
+.terms dt { font-weight: 700; color: var(--navy); }
+.terms dd { margin: var(--space-1) 0 0; font-size: 0.95rem; }
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.65rem 1.3rem;
+  font: inherit;
+  font-weight: 600;
+  border-radius: 999px;
+  border: 2px solid var(--navy);
+  background: var(--navy);
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.btn:hover { background: var(--navy-dark); color: #fff; }
+.btn--ghost { background: transparent; color: var(--navy); }
+.btn--ghost:hover { background: var(--navy); color: #fff; }
+.btn--gold { background: var(--gold); border-color: var(--gold); color: var(--navy-dark); }
+.btn--gold:hover { background: #ffd47a; color: var(--navy-dark); }
+.btn[disabled] { opacity: 0.5; cursor: not-allowed; }
+
+/* --- Module cards on the home page --- */
+.module-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--space-3);
+}
+.module-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-3);
+  height: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: var(--navy);
+  color: #fff;
+  border-radius: var(--radius);
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.module-card:hover {
+  color: #fff;
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(7, 31, 61, 0.3);
+}
+.module-card__num {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1;
+  padding-right: var(--space-3);
+  border-right: 2px solid var(--gold);
+  min-width: 3.4rem;
+  text-align: center;
+}
+.module-card__title { display: block; font-weight: 600; line-height: 1.3; }
+.module-card__sub { display: block; font-size: 0.82rem; color: #c9d6e6; margin-top: 0.2rem; }
+.module-card__icon { width: 44px; height: 44px; color: var(--sky); }
+/* Green "done" badge — shown by JavaScript when a module is marked complete */
+.module-card__done {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: var(--gold);
+  color: var(--navy-dark);
+  border-radius: 999px;
+  padding: 0 0.5rem;
+}
+.module-card__done[hidden] { display: none; }
+
+/* --- Progress bar on the home page --- */
+.progress {
+  margin: var(--space-3) 0 var(--space-4);
+}
+.progress__track {
+  height: 12px;
+  background: var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progress__fill {
+  height: 100%;
+  width: 0;                    /* JavaScript sets the real width */
+  background: linear-gradient(90deg, var(--sky), var(--gold));
+  border-radius: 999px;
+  transition: width 0.6s ease;
+}
+
+/* --- "How to use this site" feature row --- */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: var(--space-3);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.features li {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  box-shadow: var(--shadow);
+}
+.features svg { width: 36px; height: 36px; color: var(--sky-dark); }
+.features h3 { margin: var(--space-2) 0 var(--space-1); font-size: 1.05rem; }
+.features p { margin: 0; font-size: 0.95rem; color: var(--ink-soft); }
+
+/* --- Previous / next module navigation --- */
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-4);
+}
+.pager a {
+  flex: 1 1 220px;
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--navy);
+}
+.pager a:hover { border-color: var(--navy); }
+.pager__dir { display: block; font-size: 0.8rem; color: var(--ink-soft); }
+.pager__next { text-align: right; }
+
+
+/* ---------------------------------------------------------------------
+   8. INTERACTIVE COMPONENTS
+   --------------------------------------------------------------------- */
+
+/* --- Flashcards ---
+   Each card is a <button>. Clicking it toggles aria-pressed, and CSS
+   flips the card using a 3D rotation. */
+.flashcards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: var(--space-3);
+  list-style: none;
+  padding: 0;
+  margin: var(--space-4) 0 0;
+}
+.flashcard {
+  perspective: 1000px;        /* gives the flip its 3D depth */
+  width: 100%;
+  min-height: 190px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  text-align: center;
+}
+.flashcard__inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 190px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+/* When the button is "pressed," rotate the card to show the back */
+.flashcard[aria-pressed="true"] .flashcard__inner { transform: rotateY(180deg); }
+
+.flashcard__face {
+  position: absolute;
+  inset: 0;                   /* shorthand for top/right/bottom/left: 0 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3);
+  border-radius: var(--radius);
+  backface-visibility: hidden; /* hides the side facing away from you */
+}
+.flashcard__front {
+  background: var(--navy);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.flashcard__front small {
+  margin-top: var(--space-2);
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: var(--gold);
+}
+.flashcard__back {
+  background: var(--surface);
+  color: var(--ink);
+  border: 2px solid var(--gold);
+  font-size: 0.93rem;
+  transform: rotateY(180deg);  /* starts already flipped, facing away */
+}
+
+/* --- Quiz --- */
+.quiz {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--space-4);
+}
+.quiz fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0 0 var(--space-4);
+}
+.quiz legend {
+  overflow-wrap: anywhere;   /* lets long URLs wrap on small screens */
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+  color: var(--navy);
+}
+.quiz__option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  margin-bottom: var(--space-2);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.quiz__option:hover { border-color: var(--sky); }
+.quiz__option input { margin-top: 0.4rem; accent-color: var(--navy); }
+/* :has() lets a parent react to its child — here, the checked radio */
+.quiz__option:has(input:checked) { border-color: var(--navy); background: #f2f6fb; }
+.quiz__option.is-correct { border-color: var(--correct); background: var(--correct-bg); }
+.quiz__option.is-wrong   { border-color: var(--wrong);   background: var(--wrong-bg); }
+
+.quiz__feedback {
+  margin-top: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+}
+.quiz__feedback:empty { display: none; }   /* hide until there's a message */
+.quiz__feedback.is-correct { background: var(--correct-bg); color: var(--correct); }
+.quiz__feedback.is-wrong   { background: var(--wrong-bg);   color: var(--wrong); }
+
+.quiz__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+.quiz__score { font-weight: 600; color: var(--navy); }
+
+/* --- Glossary page --- */
+.glossary-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: end;
+  margin-bottom: var(--space-4);
+}
+.field { display: flex; flex-direction: column; gap: var(--space-1); flex: 1 1 260px; min-width: 0; }
+.field label { font-weight: 600; font-size: 0.9rem; }
+.field input,
+.field select {
+  width: 100%;              /* fill the field, but never wider than the screen */
+  font: inherit;
+  padding: 0.65rem 0.9rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+.field input:focus,
+.field select:focus { border-color: var(--navy); }
+
+.glossary-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+.glossary-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-4);
+}
+.glossary-item h3 { font-size: 1.05rem; margin: 0 0 var(--space-1); }
+.glossary-item p { margin: 0; }
+.glossary-item a { font-size: 0.82rem; font-weight: 600; }
+/* <mark> highlights the search match */
+mark { background: #ffe39b; color: inherit; padding: 0 2px; border-radius: 3px; }
+
+.result-count { color: var(--ink-soft); font-size: 0.95rem; }
+
+/* --- "Mark as complete" panel --- */
+.complete-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--navy);
+  color: #fff;
+  border-radius: var(--radius);
+  margin-bottom: var(--space-5);
+}
+.complete-panel h2 { color: #fff; font-size: 1.3rem; margin: 0; }
+.complete-panel p { margin: 0; color: #d5e2f1; }
+
+
+/* ---------------------------------------------------------------------
+   9. FOOTER
+   --------------------------------------------------------------------- */
+.site-footer {
+  background: var(--navy-dark);
+  color: #c9d6e6;
+  font-size: 0.9rem;
+  margin-top: var(--space-6);
+}
+.site-footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-3);
+}
+.site-footer a { color: var(--gold); }
+.site-footer p { max-width: 80ch; }
+
+
+/* ---------------------------------------------------------------------
+   10. RESPONSIVE TWEAKS
+   A media query applies rules only when the condition is true.
+   max-width: 900px means "screens 900px wide or narrower."
+   --------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  /* Stack the sidebar above the content */
+  .page { grid-template-columns: minmax(0, 1fr); }
+  .toc { position: static; }
+  .toc ol { columns: 2; }      /* two short columns instead of one long one */
+
+  .hero__icon { display: none; }
+  .hero--module .hero__inner { grid-template-columns: auto 1fr; }
+}
+
+@media (max-width: 640px) {
+  /* Show the Menu button and hide the links until it's pressed */
+  .nav-toggle { display: inline-block; }
+  .site-nav ul {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    flex-direction: column;
+    padding: var(--space-2) var(--space-3) var(--space-3);
+    background: var(--navy-dark);
+    border-bottom: 3px solid var(--gold);
+  }
+  /* JavaScript sets aria-expanded="true" on the button when it opens.
+     The ~ is the "general sibling" selector: the list after the button. */
+  .nav-toggle[aria-expanded="true"] ~ ul { display: flex; }
+
+  .hero--module .hero__inner { grid-template-columns: 1fr; }
+  .module-badge {
+    border-right: 0;
+    border-bottom: 3px solid var(--gold);
+    padding: 0 0 var(--space-2);
+    text-align: left;
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+  }
+  .toc ol { columns: 1; }
+  .hero::before, .hero::after { opacity: 0.4; }
+}
+
+
+/* ---------------------------------------------------------------------
+   11. REDUCED MOTION & PRINT
+   Some people get motion sickness from animation. Their operating system
+   can tell the browser "prefers-reduced-motion," and we respect it.
+   --------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* When printing, hide navigation and interactive bits; keep the lesson */
+@media print {
+  .site-header, .toc, .pager, .complete-panel, .site-footer, .skip-link { display: none; }
+  .page { display: block; }
+  .hero { background: none; color: #000; }
+  .hero::before, .hero::after { display: none; }
+  .hero--module h1, .hero__subtitle { color: #000; }
+}

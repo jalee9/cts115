@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<!-- The DOCTYPE tells the browser this is a modern HTML5 document. -->
+<!-- lang="en" helps screen readers pronounce words correctly. -->
+<html lang="en">
+<head>
+  <!-- charset: lets the page show any character (é, —, “ ”) correctly -->
+  <meta charset="UTF-8">
+  <!-- viewport: makes the page fit phone screens instead of zooming out -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The description often appears under the link in search results -->
+  <meta name="description" content="Module 5: How Amazon uses technology, data, logistics, AI, and the cloud to dominate — plus Shopify.">
+  <title>Module 5: Amazon & Digital Business | CTS 115 Study Guide</title>
+
+  <!-- Google Fonts: "preconnect" starts the connection early so the font loads faster -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Our one stylesheet. "../" moves up a folder when needed. -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head><body>
+  <!-- Skip link: the first thing a keyboard user reaches with Tab -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- <header> is a "landmark": screen readers can jump straight to it -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../index.html">CTS <span>115</span> Study Guide</a>
+
+      <!-- aria-label names this navigation for screen-reader users -->
+      <nav class="site-nav" aria-label="Main">
+        <!-- aria-expanded tells assistive tech whether the menu is open.
+             aria-controls points to the id of the list it opens. -->
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <ul id="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#modules" aria-current="page">Modules</a></li>
+          <li><a href="../glossary.html">Glossary</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== MODULE BANNER =====
+       Same look as the course banners, built with HTML + CSS
+       (see section 5 of styles.css). -->
+  <div class="hero hero--module">
+    <div class="hero__inner">
+      <p class="module-badge">
+        <span class="module-badge__label">MODULE</span>
+        <span class="module-badge__num">5</span>
+      </p>
+      <div>
+        <!-- Each page has exactly ONE <h1>: the main topic of the page -->
+        <h1>Amazon &amp; Digital Business</h1>
+        <p class="hero__subtitle">Chapter 5: Amazon: An Empire Stretching from Cardboard Box to Kindle to Cloud</p>
+        <ul class="chips" aria-label="About this module">
+          <li>≈ 30 min read</li>
+          <li>21 key terms</li>
+          <li>5-question self-check</li>
+        </ul>
+      </div>
+      <svg class="hero__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 8h6l5 22h21l5-15H12"/><circle cx="18" cy="38" r="3"/><circle cx="33" cy="38" r="3"/></svg>
+    </div>
+  </div>
+
+  <!-- ===== PAGE LAYOUT: sidebar + content (CSS Grid, section 6) ===== -->
+  <div class="page">
+
+    <!-- "On this page" sidebar. It's a <nav> because it's a set of links. -->
+    <nav class="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <ol>
+          <li><a href="#big-picture">The Big Picture</a></li>
+          <li><a href="#goals">What You’ll Learn</a></li>
+          <li><a href="#why-amazon">Why Study Amazon?</a></li>
+          <li><a href="#e-commerce">Emperor of E-commerce</a></li>
+          <li><a href="#logistics">Lord of Logistics</a></li>
+          <li><a href="#physical-retail">Stores &amp; Devices</a></li>
+          <li><a href="#aws">AWS &amp; the Cloud</a></li>
+          <li><a href="#too-big">Too Big? &amp; Shopify</a></li>
+          <li><a href="#key-terms">Key Terms</a></li>
+          <li><a href="#flashcards">Flashcards</a></li>
+          <li><a href="#quick-check">Quick Check</a></li>
+      </ol>
+    </nav>
+
+    <!-- <main> holds the page's unique content. id="main" is where the
+         skip link jumps to. tabindex="-1" lets it receive that focus. -->
+    <main id="main" class="content" tabindex="-1">
+
+      <!-- ===== THE BIG PICTURE: the whole module in a few bullets ===== -->
+      <section id="big-picture" aria-labelledby="big-picture-h">
+        <span class="eyebrow">Start here</span>
+        <h2 id="big-picture-h">The Big Picture</h2>
+        <div class="big-picture">
+          <ul>
+          <li>Amazon competes in retail, logistics, devices, media, advertising, AI, and cloud computing. It's an empire built on <strong>long-term thinking and constant experimentation</strong>.</li>
+          <li>Robots, AI, and data make Amazon's warehouses fast and cheap. Selling goods before it pays suppliers gives it a <strong>negative cash conversion cycle</strong>.</li>
+          <li>Huge selection, a two-sided <strong>Marketplace</strong>, and Prime create network effects and switching costs.</li>
+          <li><strong>AWS</strong>, Amazon's cloud business, is the leading cloud provider and earns a large share of Amazon's profits.</li>
+          <li>Amazon's size draws government scrutiny. <strong>Shopify</strong> shows a different model: helping merchants sell on their own.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== LEARNING GOALS ===== -->
+      <section id="goals" aria-labelledby="goals-h">
+        <span class="eyebrow">Your goals</span>
+        <h2 id="goals-h">What You’ll Learn</h2>
+        <p>By the end of this module, you should be able to:</p>
+        <ul class="goals">
+          <li>Describe how warehouse robotics and AI help Amazon get products to customers quickly and cheaply.</li>
+          <li>Explain inventory turns, accounts payable, and why a negative cash conversion cycle is good.</li>
+          <li>Explain how data (A/B tests, personalization, advertising) and the long tail strengthen Amazon.</li>
+          <li>Identify the two sides of the Amazon Marketplace network effect.</li>
+          <li>Explain why Amazon builds its own logistics, devices, and media businesses, and what channel conflict is.</li>
+          <li>Describe AWS, key cloud terms, and how Amazon sells AI to other firms.</li>
+          <li>Compare Amazon's model with Shopify's, including drop shipping.</li>
+        </ul>
+      </section>
+
+      <!-- ===== LESSON SECTION: Why Study Amazon? ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Why Study Amazon?, region". -->
+      <section id="why-amazon" aria-labelledby="why-amazon-h">
+        <span class="eyebrow">Section 5.1</span>
+        <h2 id="why-amazon-h">Why Study Amazon?</h2>
+<p>Amazon started in 1994 as an online bookstore in Jeff Bezos's garage. Today it's one of the world's most valuable
+          companies. Andy Jassy, who built Amazon Web Services (AWS), replaced Bezos as CEO in 2021. Amazon's profits have swung up and down
+          over the years because the firm repeatedly sacrifices short-term profit for <strong>long-term growth</strong>.</p>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Mindset</span><h3>Think long-term</h3><p>Bezos told investors to expect years of heavy investment before payoffs. Most rivals answer to quarterly results.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Mindset</span><h3>Customer obsession</h3><p>Low prices, huge selection, and fast delivery come first. Amazon assumes profit follows loyal customers.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Mindset</span><h3>Experiment constantly</h3><p>Small <strong>“two-pizza teams”</strong> (small enough to feed with two pizzas) test ideas quickly, so the giant can still act like a startup.</p></article>
+        </div>
+      </section>
+      <!-- ===== LESSON SECTION: Emperor of E-commerce ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Emperor of E-commerce, region". -->
+      <section id="e-commerce" aria-labelledby="e-commerce-h">
+        <span class="eyebrow">Section 5.2</span>
+        <h2 id="e-commerce-h">The Emperor of E-commerce: Robots, Cash, and Data</h2>
+<h3>Robots and AI in the warehouse</h3>
+        <p>Amazon's fulfillment centers use robots that carry entire shelves to human pickers (originally made by Kiva, a company Amazon bought), fully
+          autonomous robots like <strong>Proteus</strong> that move safely among workers, and robotic arms like <strong>Sparrow</strong> that
+          grab individual items. Computer vision checks that items go in the right bins. Amazon also experiments with
+          <strong>gamification</strong>, turning work tasks into games to boost engagement.</p>
+
+        <h3>The cash conversion cycle: getting paid first</h3>
+        <figure class="diagram">
+          <svg viewBox="0 0 760 250" role="img" aria-labelledby="ccc-title ccc-desc">
+            <title id="ccc-title">Amazon's negative cash conversion cycle</title>
+            <desc id="ccc-desc">A timeline. Day 0: Amazon receives products from a supplier. Around day 20: a customer
+              buys and pays Amazon. Around day 60: Amazon pays the supplier. Amazon holds the customer's cash for weeks
+              before paying the supplier.</desc>
+            <line x1="40" y1="120" x2="720" y2="120" stroke="#0b2f5b" stroke-width="4"/>
+            <rect x="200" y="100" width="420" height="40" rx="6" fill="#fde3a7"/>
+            <text x="410" y="125" text-anchor="middle" class="svg-label">Amazon holds customers' cash</text>
+            <g text-anchor="middle">
+              <circle cx="60" cy="120" r="12" fill="#0b2f5b"/><text x="60" y="80" class="svg-label">Day 0</text><text x="60" y="170" class="svg-small">Products arrive</text><text x="60" y="188" class="svg-small">from supplier</text>
+              <circle cx="200" cy="120" r="12" fill="#29a9e0"/><text x="200" y="80" class="svg-label">≈ Day 20</text><text x="200" y="170" class="svg-small">Customer buys</text><text x="200" y="188" class="svg-small">and pays Amazon</text>
+              <circle cx="620" cy="120" r="12" fill="#0b2f5b"/><text x="620" y="80" class="svg-label">≈ Day 60</text><text x="620" y="170" class="svg-small">Amazon pays</text><text x="620" y="188" class="svg-small">the supplier</text>
+            </g>
+            <text x="40" y="232" class="svg-small">Days are illustrative. The point is the order: collect first, pay later.</text>
+          </svg>
+          <figcaption>Fast-selling inventory (high <strong>inventory turns</strong>) plus slow supplier payments (long <strong>accounts payable</strong>) means Amazon gets cash before it has to pay.</figcaption>
+        </figure>
+        <p>Many retailers pay suppliers <em>before</em> products sell, so they need loans and can run into
+          <strong>liquidity problems</strong>. Amazon's <strong>negative cash conversion cycle</strong> works like an interest-free loan
+          from its suppliers, and AI demand forecasting keeps inventory moving even faster.</p>
+
+        <h3>Data is a superpower</h3>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Data</span><h3>A/B testing</h3><p>Show two versions of a page to random groups and keep the one that performs better. It's easy to do online and nearly impossible in a physical store.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Data</span><h3>Personalization</h3><p><strong>Collaborative filtering</strong> powers “customers who bought this also bought…” recommendations.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Data</span><h3>Ad business</h3><p>Amazon knows what people actually <em>buy</em>, so brands pay for ads there. Its ad business ranks behind only Google and Meta.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Data</span><h3>Dynamic pricing</h3><p>Prices shift automatically as demand, competition, and supply change.</p></article>
+        </div>
+
+        <h3>Selection and network effects</h3>
+        <p>The <strong>Amazon Marketplace</strong> lets outside sellers list products next to Amazon's own. More buyers attract
+          more sellers, and more sellers attract more buyers. That's a <strong>two-sided network effect</strong>. The result is a nearly
+          endless selection, called the <strong>long tail</strong>: lots of niche products that each sell a little but add up to a lot.</p>
+      </section>
+      <!-- ===== LESSON SECTION: Lord of Logistics ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Lord of Logistics, region". -->
+      <section id="logistics" aria-labelledby="logistics-h">
+        <span class="eyebrow">Section 5.3</span>
+        <h2 id="logistics-h">The Lord of Logistics</h2>
+<p><strong>Logistics</strong> is how goods are acquired, stored, and moved. Amazon used to rely on UPS, FedEx, and USPS.
+          Now it owns much of the chain itself, including cargo planes, ships, trucks, and local delivery partners.
+          Owning more steps of the chain like this is called <strong>vertical integration</strong>.</p>
+        <ol class="steps">
+          <li><strong>First mile</strong>Data predicts what will sell where. Amazon orders in bulk and ships it across oceans in its own containers.</li>
+          <li><strong>Middle mile</strong>Its own planes and trucks move goods between fulfillment and sorting centers.</li>
+          <li><strong>Last mile</strong>Smaller same-day sites, delivery vans, lockers, and AI-planned routes get packages to doorsteps faster.</li>
+        </ol>
+        <aside class="callout callout--why" aria-label="Why it matters">
+          <span class="callout__title">Why it matters</span>
+          <p>Controlling logistics lowers <strong>fulfillment costs</strong>, speeds delivery, and protects Amazon during
+            supply-chain crises. It could even make Amazon a delivery rival to UPS and FedEx.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Stores &amp;amp; Devices ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Stores &amp;amp; Devices, region". -->
+      <section id="physical-retail" aria-labelledby="physical-retail-h">
+        <span class="eyebrow">Sections 5.4–5.5</span>
+        <h2 id="physical-retail-h">Physical Stores, Devices, and Media</h2>
+<p>Not every experiment works. Amazon has closed several store concepts, including bookstores and
+          4-star shops. But it keeps testing AI-powered retail:</p>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Grocery</span><h3>Whole Foods</h3><p>Amazon bought Whole Foods in 2017, lowered prices, and added Prime perks and pay-with-your-palm checkout.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">AI</span><h3>Just Walk Out</h3><p>Cameras and weight sensors track what you take, so you leave without a checkout line. Amazon sells this tech to other retailers.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Devices</span><h3>Kindle, Fire, Alexa</h3><p>Devices are often sold near cost. They pull customers into Amazon's ecosystem of books, video, and shopping. Alexa is popular but has lost a lot of money.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Media</span><h3>Twitch, Prime Video &amp; publishing</h3><p>Amazon is now a major content publisher and is adding ads to Prime Video.</p></article>
+        </div>
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · The Fire Phone flop</span>
+          <p>Amazon's Fire Phone arrived years after the iPhone and Android, without enough apps or a reason to switch.
+            It shows that <strong>late movers</strong> need a real advantage, not just a famous brand.</p>
+        </aside>
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Key concept · Channel conflict</span>
+          <p><strong>Channel conflict</strong> happens when a firm's partners see it as a threat. Publishers sell books
+            through Amazon, but Amazon also publishes its own books and pushes for lower e-book prices. Partners
+            depend on Amazon while competing with it.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: AWS &amp;amp; the Cloud ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "AWS &amp;amp; the Cloud, region". -->
+      <section id="aws" aria-labelledby="aws-h">
+        <span class="eyebrow">Section 5.6</span>
+        <h2 id="aws-h">Amazon and the Cloud: AWS</h2>
+<p>Amazon Web Services rents computing power, storage, databases, and AI tools over the Internet. It's the
+          market leader in cloud computing and one of Amazon's most profitable businesses. Netflix, NASA, and countless
+          startups run on it.</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Cloud vocabulary you'll hear</caption>
+            <thead><tr><th scope="col">Term</th><th scope="col">Plain-English meaning</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Virtual machine / instance</th><td>A software “computer” running in the cloud that acts just like a physical one</td></tr>
+              <tr><th scope="row">Bursting</th><td>Renting extra cloud capacity during busy times, like Black Friday</td></tr>
+              <tr><th scope="row">Hybrid cloud</th><td>Combining a firm's own servers with public cloud services</td></tr>
+              <tr><th scope="row">Serverless</th><td>Developers just write code. The provider handles all the servers.</td></tr>
+              <tr><th scope="row">Thin device</th><td>A device with little power of its own that relies on the cloud, like a smart speaker</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>AI at Amazon, and AI for sale</h3>
+        <p>Amazon uses AI everywhere, from forecasting and delivery routes to recommendations. Through AWS, it sells AI to
+          other firms: <strong>Bedrock</strong> (build with many AI <strong>foundation models</strong> while keeping data private),
+          <strong>SageMaker</strong> (train your own models), and <strong>Amazon Q</strong> (a secure chatbot for businesses). It designs its
+          own AI chips and has invested billions in the AI firm Anthropic.</p>
+      </section>
+      <!-- ===== LESSON SECTION: Too Big? &amp;amp; Shopify ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Too Big? &amp;amp; Shopify, region". -->
+      <section id="too-big" aria-labelledby="too-big-h">
+        <span class="eyebrow">Sections 5.8–5.9</span>
+        <h2 id="too-big-h">Is Amazon Too Big? And a Different Model: Shopify</h2>
+<p>In 2023, the U.S. Federal Trade Commission (FTC) sued Amazon. It argued that Amazon uses its power to hurt both shoppers and
+          the outside sellers who depend on its marketplace. Regulators worldwide are watching how Amazon treats
+          sellers that are also its competitors.</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Amazon vs. Shopify</caption>
+            <thead><tr><th scope="col"></th><th scope="col">Amazon</th><th scope="col">Shopify</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Model</th><td>One giant store where many sellers list products</td><td>Tools for merchants to build their <em>own</em> online stores</td></tr>
+              <tr><th scope="row">Who owns the customer?</th><td>Amazon</td><td>The merchant</td></tr>
+              <tr><th scope="row">How it earns</th><td>Sales, seller fees, Prime, ads, AWS</td><td>Subscriptions and payment fees</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="callout callout--example" aria-label="Key concept">
+          <span class="callout__title">Key concept · Drop shipping</span>
+          <p>Many Shopify stores use <strong>drop shipping</strong>: the store takes the order, and a supplier ships the
+            product directly to the customer. The seller never touches inventory. It's easy to start, but margins are thin,
+            and most new stores quit quickly. Shopify grew fast during the pandemic, then had to cut back.</p>
+        </aside>
+      </section>
+
+      <!-- ===== KEY TERMS =====
+           A <dl> (description list) is the right HTML element for
+           term + definition pairs: <dt> = term, <dd> = definition. -->
+      <section id="key-terms" aria-labelledby="key-terms-h">
+        <span class="eyebrow">Vocabulary</span>
+        <h2 id="key-terms-h">Key Terms</h2>
+        <p>Want every term from every module in one place? Try the <a href="../glossary.html">searchable glossary</a>.</p>
+        <dl class="terms">
+          <div>
+            <dt>Inventory turns</dt>
+            <dd>How many times a firm sells through its inventory in a period. Higher means products sell quickly.</dd>
+          </div>
+          <div>
+            <dt>Accounts payable</dt>
+            <dd>Money a firm owes for goods or services it bought on credit.</dd>
+          </div>
+          <div>
+            <dt>Cash conversion cycle</dt>
+            <dd>The time between paying out cash for goods and collecting cash from selling them. Negative means you're paid before you pay.</dd>
+          </div>
+          <div>
+            <dt>Liquidity problems</dt>
+            <dd>Trouble turning assets into cash quickly enough to pay bills.</dd>
+          </div>
+          <div>
+            <dt>Deep learning</dt>
+            <dd>A type of machine learning that uses many layers of connections (neural networks) to find patterns and make predictions.</dd>
+          </div>
+          <div>
+            <dt>Dynamic pricing</dt>
+            <dd>Prices that change over time based on demand, supply, or competition.</dd>
+          </div>
+          <div>
+            <dt>A/B test</dt>
+            <dd>An experiment that randomly shows two versions to different groups and compares which performs better.</dd>
+          </div>
+          <div>
+            <dt>Collaborative filtering</dt>
+            <dd>Software that uses patterns across many customers to personalize recommendations.</dd>
+          </div>
+          <div>
+            <dt>Two-sided network effect</dt>
+            <dd>When a service gets more valuable as two different groups grow, such as buyers and sellers.</dd>
+          </div>
+          <div>
+            <dt>Long tail</dt>
+            <dd>Making money by offering a huge selection of niche products that each sell in small amounts.</dd>
+          </div>
+          <div>
+            <dt>Gamification</dt>
+            <dd>Adding game elements like points, levels, or challenges to tasks to boost engagement.</dd>
+          </div>
+          <div>
+            <dt>Logistics</dt>
+            <dd>Managing how goods are acquired, stored, and moved to their final destination.</dd>
+          </div>
+          <div>
+            <dt>Fulfillment costs</dt>
+            <dd>The costs to receive, pack, and ship orders.</dd>
+          </div>
+          <div>
+            <dt>Channel conflict</dt>
+            <dd>When a firm's partners see it as a threat because it competes with them.</dd>
+          </div>
+          <div>
+            <dt>Thin device</dt>
+            <dd>A device with little computing power that relies on the cloud for most of its work.</dd>
+          </div>
+          <div>
+            <dt>Virtual machine</dt>
+            <dd>A software-based computer that runs like a physical one, often in the cloud.</dd>
+          </div>
+          <div>
+            <dt>Bursting</dt>
+            <dd>Using extra cloud capacity during periods of high demand.</dd>
+          </div>
+          <div>
+            <dt>Hybrid cloud</dt>
+            <dd>A setup that combines a firm's own servers with public cloud services.</dd>
+          </div>
+          <div>
+            <dt>Serverless</dt>
+            <dd>A cloud model where developers just write code and the provider manages all the servers.</dd>
+          </div>
+          <div>
+            <dt>Foundation model</dt>
+            <dd>A general-purpose AI model that can be adapted for many specific tasks.</dd>
+          </div>
+          <div>
+            <dt>Drop shipping</dt>
+            <dd>Selling products that a supplier ships directly to the customer, so the seller never holds inventory.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- ===== FLASHCARDS =====
+           Each card is a <button>, so it works with a mouse, a touch
+           screen, AND a keyboard. main.js flips it (section 3). -->
+      <section id="flashcards" aria-labelledby="flashcards-h">
+        <span class="eyebrow">Practice</span>
+        <h2 id="flashcards-h">Flashcards</h2>
+        <p>Say the definition out loud, then flip the card to check yourself. Testing yourself like this
+          (called <strong>retrieval practice</strong>) helps you remember more than rereading does.</p>
+        <button class="btn btn--ghost" type="button" data-shuffle>Shuffle cards</button>
+        <ul class="flashcards">
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Inventory turns<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">How many times a firm sells through its inventory in a period. Higher means products sell quickly.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Accounts payable<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Money a firm owes for goods or services it bought on credit.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Cash conversion cycle<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The time between paying out cash for goods and collecting cash from selling them. Negative means you're paid before you pay.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Liquidity problems<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Trouble turning assets into cash quickly enough to pay bills.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Deep learning<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A type of machine learning that uses many layers of connections (neural networks) to find patterns and make predictions.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Dynamic pricing<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Prices that change over time based on demand, supply, or competition.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">A/B test<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">An experiment that randomly shows two versions to different groups and compares which performs better.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Collaborative filtering<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Software that uses patterns across many customers to personalize recommendations.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Two-sided network effect<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">When a service gets more valuable as two different groups grow, such as buyers and sellers.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Long tail<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Making money by offering a huge selection of niche products that each sell in small amounts.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Gamification<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Adding game elements like points, levels, or challenges to tasks to boost engagement.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Logistics<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Managing how goods are acquired, stored, and moved to their final destination.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Fulfillment costs<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The costs to receive, pack, and ship orders.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Channel conflict<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">When a firm's partners see it as a threat because it competes with them.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Thin device<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A device with little computing power that relies on the cloud for most of its work.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Virtual machine<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A software-based computer that runs like a physical one, often in the cloud.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Bursting<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Using extra cloud capacity during periods of high demand.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Hybrid cloud<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A setup that combines a firm's own servers with public cloud services.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Serverless<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A cloud model where developers just write code and the provider manages all the servers.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Foundation model<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A general-purpose AI model that can be adapted for many specific tasks.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Drop shipping<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Selling products that a supplier ships directly to the customer, so the seller never holds inventory.</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===== QUICK CHECK QUIZ =====
+           A <form> with <fieldset>/<legend> groups each question with
+           its choices — screen readers read the question with each option.
+           main.js grades it (section 4). Practice only — not graded. -->
+      <section id="quick-check" aria-labelledby="quick-check-h">
+        <span class="eyebrow">Self-check · Not graded</span>
+        <h2 id="quick-check-h">Quick Check</h2>
+        <form class="quiz" data-quiz>
+          <fieldset data-answer="b" data-explain="Collecting before paying works like an interest-free loan and helps Amazon avoid liquidity problems.">
+            <legend>1. Why is Amazon's negative cash conversion cycle an advantage?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="a">
+              <span>It means Amazon loses money on each sale</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="b">
+              <span>Amazon collects from customers before paying suppliers, so it has cash to use</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="c">
+              <span>It lets Amazon avoid paying suppliers</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="d">
+              <span>It lowers shipping times</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Two distinct groups (buyers and sellers) each make the platform more valuable for the other.">
+            <legend>2. More shoppers attract more sellers to Amazon Marketplace, which attracts more shoppers. This is a…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="a">
+              <span>Long tail</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="b">
+              <span>Two-sided network effect</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="c">
+              <span>Channel conflict</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="d">
+              <span>Dynamic price</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="An A/B test randomly compares two versions to see which performs better.">
+            <legend>3. Amazon shows half its visitors a green “Buy” button and half a yellow one to see which sells more. This is…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="a">
+              <span>Collaborative filtering</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="b">
+              <span>An A/B test</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="c">
+              <span>Bursting</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="d">
+              <span>Gamification</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="a" data-explain="Bursting means shifting extra demand to a cloud provider during peak periods.">
+            <legend>4. A retailer rents extra AWS servers only during the holiday rush. This is called…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="a">
+              <span>Bursting</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="b">
+              <span>Drop shipping</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="c">
+              <span>Serverless</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="d">
+              <span>Vertical integration</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Shopify provides tools for merchants to build their own branded stores, so the merchant keeps the customer.">
+            <legend>5. A key difference between Shopify and Amazon is that with Shopify…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="a">
+              <span>Shopify owns the customer relationship</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="b">
+              <span>The merchant runs its own store and owns the customer relationship</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="c">
+              <span>Customers can only pay in cash</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="d">
+              <span>There are no fees</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <div class="quiz__actions">
+            <button class="btn" type="submit">Check my answers</button>
+            <button class="btn btn--ghost" type="reset">Try again</button>
+            <p class="quiz__score" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+
+      <!-- ===== MARK COMPLETE (saved in your browser by main.js, section 5) ===== -->
+      <div class="complete-panel">
+        <div>
+          <h2>Finished Module 5?</h2>
+          <p>Track your progress — it shows up on the home page.</p>
+        </div>
+        <!-- aria-pressed makes this a "toggle button" for screen readers -->
+        <button class="btn btn--gold" type="button" data-complete="5" aria-pressed="false">Mark module complete</button>
+      </div>
+
+      <!-- ===== PREVIOUS / NEXT ===== -->
+      <nav class="pager" aria-label="Module navigation">
+        <a href="module-04.html" rel="prev"><span class="pager__dir">← Previous</span>Module 4: Disruptive Technology</a>
+        <a class="pager__next" href="module-06.html" rel="next"><span class="pager__dir">Next →</span>Module 6: Global E-Commerce</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p><strong>CTS 115: Information Systems Business Concepts</strong> — a student study companion.</p>
+      <p>This site summarizes key ideas in plain language. It does not replace your textbook,
+        <em>Information Systems: A Manager’s Guide to Harnessing Technology</em> (FlatWorld),
+        which has the full readings, cases, and videos. Always check Blackboard for due dates and assignments.</p>
+      <p>Built with plain HTML, CSS, and JavaScript. Curious how it works? Right-click anywhere and choose
+        “View Page Source” — the code is full of comments written for learners.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts go at the END of the body so the HTML loads first.
+       (You could also use the "defer" attribute in the <head>.) -->
+  <script src="../js/main.js"></script>
+</body>
+</html>

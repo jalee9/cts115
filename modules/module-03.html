@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<!-- The DOCTYPE tells the browser this is a modern HTML5 document. -->
+<!-- lang="en" helps screen readers pronounce words correctly. -->
+<html lang="en">
+<head>
+  <!-- charset: lets the page show any character (é, —, “ ”) correctly -->
+  <meta charset="UTF-8">
+  <!-- viewport: makes the page fit phone screens instead of zooming out -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The description often appears under the link in search results -->
+  <meta name="description" content="Module 3: Moore&#x27;s Law, fast and cheap computing, parallel and cloud computing, e-waste, and Disney&#x27;s MagicBand.">
+  <title>Module 3: Computing Power & Innovation | CTS 115 Study Guide</title>
+
+  <!-- Google Fonts: "preconnect" starts the connection early so the font loads faster -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Our one stylesheet. "../" moves up a folder when needed. -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head><body>
+  <!-- Skip link: the first thing a keyboard user reaches with Tab -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- <header> is a "landmark": screen readers can jump straight to it -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../index.html">CTS <span>115</span> Study Guide</a>
+
+      <!-- aria-label names this navigation for screen-reader users -->
+      <nav class="site-nav" aria-label="Main">
+        <!-- aria-expanded tells assistive tech whether the menu is open.
+             aria-controls points to the id of the list it opens. -->
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <ul id="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#modules" aria-current="page">Modules</a></li>
+          <li><a href="../glossary.html">Glossary</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== MODULE BANNER =====
+       Same look as the course banners, built with HTML + CSS
+       (see section 5 of styles.css). -->
+  <div class="hero hero--module">
+    <div class="hero__inner">
+      <p class="module-badge">
+        <span class="module-badge__label">MODULE</span>
+        <span class="module-badge__num">3</span>
+      </p>
+      <div>
+        <!-- Each page has exactly ONE <h1>: the main topic of the page -->
+        <h1>Computing Power &amp; Innovation</h1>
+        <p class="hero__subtitle">Chapter 3: Moore’s Law and More: Fast/Cheap Computing and What This Means for the Manager</p>
+        <ul class="chips" aria-label="About this module">
+          <li>≈ 25 min read</li>
+          <li>19 key terms</li>
+          <li>5-question self-check</li>
+        </ul>
+      </div>
+      <svg class="hero__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="13" y="13" width="22" height="22" rx="3"/><rect x="19" y="19" width="10" height="10"/><path d="M19 6v7M24 6v7M29 6v7M19 35v7M24 35v7M29 35v7M6 19h7M6 24h7M6 29h7M35 19h7M35 24h7M35 29h7"/></svg>
+    </div>
+  </div>
+
+  <!-- ===== PAGE LAYOUT: sidebar + content (CSS Grid, section 6) ===== -->
+  <div class="page">
+
+    <!-- "On this page" sidebar. It's a <nav> because it's a set of links. -->
+    <nav class="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <ol>
+          <li><a href="#big-picture">The Big Picture</a></li>
+          <li><a href="#goals">What You’ll Learn</a></li>
+          <li><a href="#moores-law">Moore’s Law</a></li>
+          <li><a href="#data-terms">Speaking Tech</a></li>
+          <li><a href="#end-of-moore">Limits of Moore’s Law</a></li>
+          <li><a href="#parallel">The Power of Parallel</a></li>
+          <li><a href="#e-waste">E-Waste</a></li>
+          <li><a href="#magicband">Disney’s MagicBand</a></li>
+          <li><a href="#key-terms">Key Terms</a></li>
+          <li><a href="#flashcards">Flashcards</a></li>
+          <li><a href="#quick-check">Quick Check</a></li>
+      </ol>
+    </nav>
+
+    <!-- <main> holds the page's unique content. id="main" is where the
+         skip link jumps to. tabindex="-1" lets it receive that focus. -->
+    <main id="main" class="content" tabindex="-1">
+
+      <!-- ===== THE BIG PICTURE: the whole module in a few bullets ===== -->
+      <section id="big-picture" aria-labelledby="big-picture-h">
+        <span class="eyebrow">Start here</span>
+        <h2 id="big-picture-h">The Big Picture</h2>
+        <div class="big-picture">
+          <ul>
+          <li><strong>Moore's Law</strong>: chip performance per dollar doubles about every 18 months. Computing keeps getting faster and cheaper.</li>
+          <li>As tech gets cheaper, demand explodes (<strong>price elasticity</strong>). That opens new markets and can disrupt whole industries.</li>
+          <li>Chips are hitting physical limits, so engineers keep computing fast and cheap other ways: <strong>multicore chips, parallel computing, and the cloud</strong>.</li>
+          <li>Fast, cheap tech puts smarts into everyday objects. That's the <strong>Internet of Things</strong>.</li>
+          <li>The dark side: rapid upgrades create mountains of <strong>e-waste</strong>, and firms are responsible for their products' whole lifecycle.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== LEARNING GOALS ===== -->
+      <section id="goals" aria-labelledby="goals-h">
+        <span class="eyebrow">Your goals</span>
+        <h2 id="goals-h">What You’ll Learn</h2>
+        <p>By the end of this module, you should be able to:</p>
+        <ul class="goals">
+          <li>Define Moore's Law and explain what it means for managers.</li>
+          <li>Explain how price elasticity lets cheaper tech open new markets.</li>
+          <li>Use the right terms for data capacity, from bits and bytes to terabytes and beyond.</li>
+          <li>Describe the limits of Moore's Law and how multicore chips and parallel computing extend fast, cheap computing.</li>
+          <li>Tell the difference between supercomputers, grid computing, cluster computing, and cloud computing.</li>
+          <li>Explain the e-waste problem and why firms must consider a product's full lifecycle.</li>
+        </ul>
+      </section>
+
+      <!-- ===== LESSON SECTION: Moore’s Law ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Moore’s Law, region". -->
+      <section id="moores-law" aria-labelledby="moores-law-h">
+        <span class="eyebrow">Section 3.1</span>
+        <h2 id="moores-law-h">Moore’s Law: Faster, Cheaper, Every Year</h2>
+<p>In 1965, Intel co-founder Gordon Moore noticed that the number of transistors on a chip kept doubling.
+          Today, managers use <strong>Moore's Law</strong> to mean that <strong>chip performance per dollar doubles about every
+          18 months</strong>. Other tech moves fast too, including storage (hard drives and flash memory) and
+          fiber-optic network speeds.</p>
+
+        <figure class="diagram">
+          <svg viewBox="0 0 760 330" role="img" aria-labelledby="ml-title ml-desc">
+            <title id="ml-title">Doubling every 18 months</title>
+            <desc id="ml-desc">A bar chart of computing power per dollar. Starting at 1 unit, it doubles every 18
+              months: 2 after 1.5 years, 4 after 3 years, 8 after 4.5 years, 16 after 6 years, 32 after 7.5 years,
+              and 64 after 9 years.</desc>
+            <line x1="60" y1="280" x2="740" y2="280" stroke="#4a5568" stroke-width="2"/>
+            <!-- Each bar is twice as tall as the one before (scaled: 1 unit = 3.6px) -->
+            <g fill="#29a9e0">
+              <rect x="80"  y="276.4" width="60" height="3.6"/>
+              <rect x="175" y="272.8" width="60" height="7.2"/>
+              <rect x="270" y="265.6" width="60" height="14.4"/>
+              <rect x="365" y="251.2" width="60" height="28.8"/>
+              <rect x="460" y="222.4" width="60" height="57.6"/>
+              <rect x="555" y="164.8" width="60" height="115.2"/>
+              <rect x="650" y="49.6"  width="60" height="230.4" fill="#0b2f5b"/>
+            </g>
+            <g text-anchor="middle" class="svg-label">
+              <text x="110" y="268">1×</text><text x="205" y="264">2×</text><text x="300" y="257">4×</text>
+              <text x="395" y="243">8×</text><text x="490" y="214">16×</text><text x="585" y="156">32×</text><text x="680" y="41">64×</text>
+            </g>
+            <g text-anchor="middle" class="svg-small">
+              <text x="110" y="302">Today</text><text x="205" y="302">1.5 yrs</text><text x="300" y="302">3 yrs</text>
+              <text x="395" y="302">4.5 yrs</text><text x="490" y="302">6 yrs</text><text x="585" y="302">7.5 yrs</text><text x="680" y="302">9 yrs</text>
+            </g>
+            <text x="60" y="30" class="svg-title">Computing power per dollar</text>
+          </svg>
+          <figcaption>Doubling adds up fast: in about nine years, the same money buys roughly 64 times the computing power.</figcaption>
+        </figure>
+
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Key idea</span><h3>Price elasticity</h3>
+            <p>When prices fall, demand for <strong>price-elastic</strong> products like electronics shoots up. Cheaper chips mean
+              smartphones for billions, not just thousands.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Key idea</span><h3>Plan for change</h3>
+            <p>Expensive tech today will be cheap tomorrow. Managers must plan inventory, pricing, and strategy knowing
+              their gear will lose value quickly.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Key idea</span><h3>Disruption ahead</h3>
+            <p>Products that once needed special hardware (cameras, GPS, music players) collapsed into one cheap phone.</p></article>
+        </div>
+
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · Mobile money in Somaliland</span>
+          <p>Cheap mobile phones turned Somaliland into a largely cashless economy. Farmers, small shops, and large
+            businesses buy and sell with phone-based payments, which makes daily life easier and helps connect
+            the economy to the rest of the world.</p>
+        </aside>
+
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · A smart pill bottle</span>
+          <p>The Internet of Things reaches the medicine cabinet. AdhereTech's smart bottle has sensors that record
+            when it's opened and sends reminders if a patient misses a dose. The patient doesn't have to learn
+            anything new to use it.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Speaking Tech ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Speaking Tech, region". -->
+      <section id="data-terms" aria-labelledby="data-terms-h">
+        <span class="eyebrow">Section 3.1</span>
+        <h2 id="data-terms-h">Speaking Tech: Memory, Storage, and Data Sizes</h2>
+<p>A few terms come up again and again. Knowing them helps you talk confidently with tech teams.</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Memory vs. storage</caption>
+            <thead><tr><th scope="col">Term</th><th scope="col">What it is</th><th scope="col">Loses data when power is off?</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">RAM</th><td>Fast chip-based memory the computer uses while it works</td><td>Yes (<strong>volatile</strong>)</td></tr>
+              <tr><th scope="row">Flash memory / SSD</th><td>Chip-based storage in phones, laptops, and USB drives. It has no moving parts (<strong>solid state</strong>).</td><td>No (<strong>nonvolatile</strong>)</td></tr>
+              <tr><th scope="row">Hard disk</th><td>Spinning magnetic storage. It's cheap per gigabyte but slower and more fragile.</td><td>No (nonvolatile)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>How big is that? Data size units</h3>
+        <ol class="steps">
+          <li><strong>Bit</strong>A single 1 or 0, the smallest piece of digital data.</li>
+          <li><strong>Byte = 8 bits</strong>About one typed character.</li>
+          <li><strong>Kilobyte (KB) ≈ a thousand bytes</strong>A short text email.</li>
+          <li><strong>Megabyte (MB) ≈ a million bytes</strong>A phone photo or a song.</li>
+          <li><strong>Gigabyte (GB) ≈ a billion bytes</strong>A movie.</li>
+          <li><strong>Terabyte (TB) ≈ a trillion bytes</strong>A large laptop drive.</li>
+          <li><strong>Petabyte (PB), Exabyte (EB), Zettabyte (ZB)</strong>Each is about 1,000 times bigger than the last. This is “big data” and global Internet scale.</li>
+        </ol>
+
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · Bits vs. bytes</span>
+          <p>Internet speeds are measured in <strong>bits</strong> per second (Mbps), but file sizes are in
+            <strong>bytes</strong> (MB). A lowercase “b” means bits; an uppercase “B” means bytes. Mixing them up makes
+            downloads look eight times faster than they are.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Limits of Moore’s Law ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Limits of Moore’s Law, region". -->
+      <section id="end-of-moore" aria-labelledby="end-of-moore-h">
+        <span class="eyebrow">Section 3.2</span>
+        <h2 id="end-of-moore-h">The End of Moore’s Law? Not the End of Fast, Cheap Computing</h2>
+<p>Chips are made of <strong>semiconductors</strong> (mostly silicon) in multibillion-dollar factories called
+          <strong>fabs</strong>, where hundreds of chips are etched onto each <strong>silicon wafer</strong>. As transistors shrink
+          toward the size of atoms, two problems grow: <strong>heat</strong> and physical <strong>size limits</strong>.</p>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Workaround</span><h3>Multicore chips</h3>
+            <p>Put two or more lower-power processor “cores” on one chip. But software must be written to use all of the cores at once.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Workaround</span><h3>Specialized chips</h3>
+            <p>Chips built for one job, like Nvidia's GPUs for AI, can beat general-purpose chips by a wide margin.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Future</span><h3>Quantum computing</h3>
+            <p>Quantum computers use “qubits” instead of plain 1s and 0s. They're promising for chemistry and medicine, but still experimental and years away.</p></article>
+        </div>
+        <aside class="callout callout--why" aria-label="Why it matters to you">
+          <span class="callout__title">Why it matters</span>
+          <p>Progress in AI is moving even faster than Moore's Law, driven by specialized chips and huge data
+            centers. Firms that can access that computing power gain a big edge.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: The Power of Parallel ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "The Power of Parallel, region". -->
+      <section id="parallel" aria-labelledby="parallel-h">
+        <span class="eyebrow">Section 3.3</span>
+        <h2 id="parallel-h">The Power of Parallel: Supercomputers, Grids, Clusters &amp; Clouds</h2>
+<p>Instead of making one chip faster, connect <em>many</em> processors and split the work. This is called
+          <strong>massively parallel</strong> computing.</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Four ways to combine computing power</caption>
+            <thead><tr><th scope="col">Approach</th><th scope="col">How it works</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Supercomputer</th><td>One of the world's fastest computers when it's built, with thousands of processors working together.</td></tr>
+              <tr><th scope="row">Grid computing</th><td>Software links many (often idle) computers so they act like one giant machine.</td></tr>
+              <tr><th scope="row">Cluster computing</th><td>Servers connected by software and networking to share work, often in racks of thin “blade” servers.</td></tr>
+              <tr><th scope="row">Cloud computing</th><td>Renting computing power or software over the Internet from huge <strong>server farms</strong>, like Software as a Service (<strong>SaaS</strong>).</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · Not every job splits nicely</span>
+          <p>Parallel computing works best when a problem can be divided into independent pieces. Tasks where each
+            step depends on the last, or where moving data across a network adds delay (<strong>latency</strong>),
+            don't speed up as much.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: E-Waste ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "E-Waste, region". -->
+      <section id="e-waste" aria-labelledby="e-waste-h">
+        <span class="eyebrow">Section 3.4</span>
+        <h2 id="e-waste-h">E-Waste: The Dark Side of Moore’s Law</h2>
+<p>Fast, cheap tech means we replace devices quickly. Discarded electronics (<strong>e-waste</strong>) contain toxic
+          materials like lead and mercury. Much of it ends up in landfills or is shipped to poorer countries, where
+          workers may strip it without protection.</p>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Problem</span><h3>Hard to recycle</h3>
+            <p>Devices are built small, light, and glued together. That's great for buyers and terrible for recyclers.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Progress</span><h3>Recycling robots</h3>
+            <p>Apple built a robot named Daisy that takes apart its own iPhones to recover valuable materials.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Responsibility</span><h3>Know your partners</h3>
+            <p>A firm's reputation can suffer if its e-waste is found dumped overseas. Managers should vet recyclers and ask hard ethical questions.</p></article>
+        </div>
+      </section>
+      <!-- ===== LESSON SECTION: Disney’s MagicBand ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Disney’s MagicBand, region". -->
+      <section id="magicband" aria-labelledby="magicband-h">
+        <span class="eyebrow">Section 3.5 · Case</span>
+        <h2 id="magicband-h">Case: Disney’s MagicBand</h2>
+<p>Disney World turned a simple wristband into a powerful information system. The <strong>MagicBand</strong> uses
+          wireless chips to serve as a guest's park ticket, hotel room key, ride reservation, and payment method.
+          Newer versions add lights and <strong>haptic</strong> (vibration) feedback.</p>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">For guests</span><h3>Less friction</h3><p>Fewer lines, no wallet, and personalized surprises like characters greeting kids by name.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">For Disney</span><h3>Big data</h3><p>Disney sees how guests move through the park, so it can staff better, shorten waits, and encourage spending.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">The catch</span><h3>Big cost, big coordination</h3><p>The system reportedly cost around a billion dollars and required many departments to work together.</p></article>
+        </div>
+        <aside class="callout callout--why" aria-label="Why it matters to you">
+          <span class="callout__title">Takeaway</span>
+          <p>Cheap chips let firms embed technology into experiences that used to be manual. The payoff can be huge,
+            but large systems are expensive, complex, and only work if the whole organization gets behind them.</p>
+        </aside>
+      </section>
+
+      <!-- ===== KEY TERMS =====
+           A <dl> (description list) is the right HTML element for
+           term + definition pairs: <dt> = term, <dd> = definition. -->
+      <section id="key-terms" aria-labelledby="key-terms-h">
+        <span class="eyebrow">Vocabulary</span>
+        <h2 id="key-terms-h">Key Terms</h2>
+        <p>Want every term from every module in one place? Try the <a href="../glossary.html">searchable glossary</a>.</p>
+        <dl class="terms">
+          <div>
+            <dt>Moore's Law</dt>
+            <dd>The observation that chip performance per dollar doubles about every 18 months.</dd>
+          </div>
+          <div>
+            <dt>Semiconductor</dt>
+            <dd>A material, usually silicon, that can allow or block electricity. It's what computer chips are made of.</dd>
+          </div>
+          <div>
+            <dt>Price elasticity</dt>
+            <dd>How much demand changes when price changes. Demand for price-elastic goods like electronics jumps when prices fall.</dd>
+          </div>
+          <div>
+            <dt>RAM</dt>
+            <dd>Fast, chip-based working memory. It's volatile, so it's wiped when power is cut.</dd>
+          </div>
+          <div>
+            <dt>Volatile memory</dt>
+            <dd>Storage that loses its data when the power goes off, like RAM.</dd>
+          </div>
+          <div>
+            <dt>Nonvolatile memory</dt>
+            <dd>Storage that keeps data without power, like flash memory or a hard disk.</dd>
+          </div>
+          <div>
+            <dt>Flash memory</dt>
+            <dd>Chip-based, nonvolatile storage used in phones, cameras, and USB drives.</dd>
+          </div>
+          <div>
+            <dt>SSD</dt>
+            <dd>Solid state drive: chip-based nonvolatile storage with no moving parts.</dd>
+          </div>
+          <div>
+            <dt>Solid state</dt>
+            <dd>Electronics with no moving parts. They usually fail less and use less energy.</dd>
+          </div>
+          <div>
+            <dt>Latency</dt>
+            <dd>Delay. Low-latency systems respond faster.</dd>
+          </div>
+          <div>
+            <dt>Internet of Things (IoT)</dt>
+            <dd>Low-cost sensors, chips, and network connections built into everyday products so they can collect data and act automatically.</dd>
+          </div>
+          <div>
+            <dt>Fab</dt>
+            <dd>A semiconductor fabrication plant: a multibillion-dollar factory that makes chips.</dd>
+          </div>
+          <div>
+            <dt>Multicore processor</dt>
+            <dd>A chip with two or more processor cores working side by side.</dd>
+          </div>
+          <div>
+            <dt>Grid computing</dt>
+            <dd>Software that links many, often idle, computers so they work together like one supercomputer.</dd>
+          </div>
+          <div>
+            <dt>Cluster computing</dt>
+            <dd>Servers connected by software and networking to tackle computing tasks together.</dd>
+          </div>
+          <div>
+            <dt>Cloud computing</dt>
+            <dd>Using hardware or software delivered as a service over the Internet instead of owning it.</dd>
+          </div>
+          <div>
+            <dt>Software as a Service (SaaS)</dt>
+            <dd>Software a firm subscribes to and uses online instead of installing it.</dd>
+          </div>
+          <div>
+            <dt>E-waste</dt>
+            <dd>Discarded electronic devices, which often contain toxic materials.</dd>
+          </div>
+          <div>
+            <dt>Haptic</dt>
+            <dd>Related to touch, like the vibration your phone or watch gives as feedback.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- ===== FLASHCARDS =====
+           Each card is a <button>, so it works with a mouse, a touch
+           screen, AND a keyboard. main.js flips it (section 3). -->
+      <section id="flashcards" aria-labelledby="flashcards-h">
+        <span class="eyebrow">Practice</span>
+        <h2 id="flashcards-h">Flashcards</h2>
+        <p>Say the definition out loud, then flip the card to check yourself. Testing yourself like this
+          (called <strong>retrieval practice</strong>) helps you remember more than rereading does.</p>
+        <button class="btn btn--ghost" type="button" data-shuffle>Shuffle cards</button>
+        <ul class="flashcards">
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Moore's Law<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The observation that chip performance per dollar doubles about every 18 months.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Semiconductor<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A material, usually silicon, that can allow or block electricity. It's what computer chips are made of.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Price elasticity<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">How much demand changes when price changes. Demand for price-elastic goods like electronics jumps when prices fall.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">RAM<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Fast, chip-based working memory. It's volatile, so it's wiped when power is cut.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Volatile memory<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Storage that loses its data when the power goes off, like RAM.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Nonvolatile memory<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Storage that keeps data without power, like flash memory or a hard disk.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Flash memory<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Chip-based, nonvolatile storage used in phones, cameras, and USB drives.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">SSD<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Solid state drive: chip-based nonvolatile storage with no moving parts.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Solid state<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Electronics with no moving parts. They usually fail less and use less energy.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Latency<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Delay. Low-latency systems respond faster.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Internet of Things (IoT)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Low-cost sensors, chips, and network connections built into everyday products so they can collect data and act automatically.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Fab<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A semiconductor fabrication plant: a multibillion-dollar factory that makes chips.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Multicore processor<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A chip with two or more processor cores working side by side.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Grid computing<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Software that links many, often idle, computers so they work together like one supercomputer.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Cluster computing<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Servers connected by software and networking to tackle computing tasks together.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Cloud computing<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Using hardware or software delivered as a service over the Internet instead of owning it.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Software as a Service (SaaS)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Software a firm subscribes to and uses online instead of installing it.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">E-waste<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Discarded electronic devices, which often contain toxic materials.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Haptic<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Related to touch, like the vibration your phone or watch gives as feedback.</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===== QUICK CHECK QUIZ =====
+           A <form> with <fieldset>/<legend> groups each question with
+           its choices — screen readers read the question with each option.
+           main.js grades it (section 4). Practice only — not graded. -->
+      <section id="quick-check" aria-labelledby="quick-check-h">
+        <span class="eyebrow">Self-check · Not graded</span>
+        <h2 id="quick-check-h">Quick Check</h2>
+        <form class="quiz" data-quiz>
+          <fieldset data-answer="b" data-explain="The common managerial definition is roughly every 18 months.">
+            <legend>1. According to Moore's Law, about how often does chip performance per dollar double?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="a">
+              <span>Every 6 months</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="b">
+              <span>Every 18 months</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="c">
+              <span>Every 5 years</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="d">
+              <span>Every decade</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="c" data-explain="RAM is volatile, so anything only in RAM disappears when the power is lost.">
+            <legend>2. Your laptop crashes before you save your work, and the unsaved essay is gone. Where was it stored?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="a">
+              <span>The SSD</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="b">
+              <span>Flash memory</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="c">
+              <span>RAM</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="d">
+              <span>The cloud</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="c" data-explain="There are 8 bits in a byte, so 8 MB × 8 = 64 megabits.">
+            <legend>3. A file is 8 megabytes (MB). About how many megabits (Mb) is that?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="a">
+              <span>1 Mb</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="b">
+              <span>8 Mb</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="c">
+              <span>64 Mb</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="d">
+              <span>800 Mb</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="a" data-explain="Grid computing harnesses many separate computers to work on a common problem.">
+            <legend>4. Which approach links many ordinary, often idle computers through software so they act like one supercomputer?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="a">
+              <span>Grid computing</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="b">
+              <span>Multicore processing</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="c">
+              <span>Flash memory</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="d">
+              <span>E-waste recycling</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Price-elastic products see demand jump as prices fall, and that opens new markets.">
+            <legend>5. When prices for consumer electronics drop, demand rises sharply. This is because electronics are…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="a">
+              <span>Volatile</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="b">
+              <span>Price elastic</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="c">
+              <span>Commodities</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="d">
+              <span>Nonvolatile</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <div class="quiz__actions">
+            <button class="btn" type="submit">Check my answers</button>
+            <button class="btn btn--ghost" type="reset">Try again</button>
+            <p class="quiz__score" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+
+      <!-- ===== MARK COMPLETE (saved in your browser by main.js, section 5) ===== -->
+      <div class="complete-panel">
+        <div>
+          <h2>Finished Module 3?</h2>
+          <p>Track your progress — it shows up on the home page.</p>
+        </div>
+        <!-- aria-pressed makes this a "toggle button" for screen readers -->
+        <button class="btn btn--gold" type="button" data-complete="3" aria-pressed="false">Mark module complete</button>
+      </div>
+
+      <!-- ===== PREVIOUS / NEXT ===== -->
+      <nav class="pager" aria-label="Module navigation">
+        <a href="module-02.html" rel="prev"><span class="pager__dir">← Previous</span>Module 2: Technology &amp; Business Strategy</a>
+        <a class="pager__next" href="module-04.html" rel="next"><span class="pager__dir">Next →</span>Module 4: Disruptive Technology</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p><strong>CTS 115: Information Systems Business Concepts</strong> — a student study companion.</p>
+      <p>This site summarizes key ideas in plain language. It does not replace your textbook,
+        <em>Information Systems: A Manager’s Guide to Harnessing Technology</em> (FlatWorld),
+        which has the full readings, cases, and videos. Always check Blackboard for due dates and assignments.</p>
+      <p>Built with plain HTML, CSS, and JavaScript. Curious how it works? Right-click anywhere and choose
+        “View Page Source” — the code is full of comments written for learners.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts go at the END of the body so the HTML loads first.
+       (You could also use the "defer" attribute in the <head>.) -->
+  <script src="../js/main.js"></script>
+</body>
+</html>

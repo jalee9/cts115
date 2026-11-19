@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<!-- The DOCTYPE tells the browser this is a modern HTML5 document. -->
+<!-- lang="en" helps screen readers pronounce words correctly. -->
+<html lang="en">
+<head>
+  <!-- charset: lets the page show any character (é, —, “ ”) correctly -->
+  <meta charset="UTF-8">
+  <!-- viewport: makes the page fit phone screens instead of zooming out -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The description often appears under the link in search results -->
+  <meta name="description" content="Module 9: Operating systems, enterprise software, APIs, programming, agile vs. waterfall, and total cost of ownership.">
+  <title>Module 9: Understanding Software | CTS 115 Study Guide</title>
+
+  <!-- Google Fonts: "preconnect" starts the connection early so the font loads faster -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Our one stylesheet. "../" moves up a folder when needed. -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head><body>
+  <!-- Skip link: the first thing a keyboard user reaches with Tab -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- <header> is a "landmark": screen readers can jump straight to it -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../index.html">CTS <span>115</span> Study Guide</a>
+
+      <!-- aria-label names this navigation for screen-reader users -->
+      <nav class="site-nav" aria-label="Main">
+        <!-- aria-expanded tells assistive tech whether the menu is open.
+             aria-controls points to the id of the list it opens. -->
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <ul id="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#modules" aria-current="page">Modules</a></li>
+          <li><a href="../glossary.html">Glossary</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== MODULE BANNER =====
+       Same look as the course banners, built with HTML + CSS
+       (see section 5 of styles.css). -->
+  <div class="hero hero--module">
+    <div class="hero__inner">
+      <p class="module-badge">
+        <span class="module-badge__label">MODULE</span>
+        <span class="module-badge__num">9</span>
+      </p>
+      <div>
+        <!-- Each page has exactly ONE <h1>: the main topic of the page -->
+        <h1>Understanding Software</h1>
+        <p class="hero__subtitle">Chapter 9: Understanding Software: A Primer for Managers</p>
+        <ul class="chips" aria-label="About this module">
+          <li>≈ 25 min read</li>
+          <li>24 key terms</li>
+          <li>5-question self-check</li>
+        </ul>
+      </div>
+      <svg class="hero__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 14L6 24l10 10M32 14l10 10-10 10M28 8l-8 32"/></svg>
+    </div>
+  </div>
+
+  <!-- ===== PAGE LAYOUT: sidebar + content (CSS Grid, section 6) ===== -->
+  <div class="page">
+
+    <!-- "On this page" sidebar. It's a <nav> because it's a set of links. -->
+    <nav class="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <ol>
+          <li><a href="#big-picture">The Big Picture</a></li>
+          <li><a href="#goals">What You’ll Learn</a></li>
+          <li><a href="#layers">Hardware vs. Software</a></li>
+          <li><a href="#enterprise">Enterprise Software</a></li>
+          <li><a href="#apis">APIs &amp; Web Services</a></li>
+          <li><a href="#writing">Writing Software</a></li>
+          <li><a href="#methods">Waterfall vs. Agile</a></li>
+          <li><a href="#tco">TCO &amp; Failure</a></li>
+          <li><a href="#key-terms">Key Terms</a></li>
+          <li><a href="#flashcards">Flashcards</a></li>
+          <li><a href="#quick-check">Quick Check</a></li>
+      </ol>
+    </nav>
+
+    <!-- <main> holds the page's unique content. id="main" is where the
+         skip link jumps to. tabindex="-1" lets it receive that focus. -->
+    <main id="main" class="content" tabindex="-1">
+
+      <!-- ===== THE BIG PICTURE: the whole module in a few bullets ===== -->
+      <section id="big-picture" aria-labelledby="big-picture-h">
+        <span class="eyebrow">Start here</span>
+        <h2 id="big-picture-h">The Big Picture</h2>
+        <div class="big-picture">
+          <ul>
+          <li><strong>Software</strong> is a set of instructions that tells hardware what to do. It's in phones, cars, appliances, and nearly everything else.</li>
+          <li>The <strong>operating system</strong> manages hardware and runs <strong>applications</strong>. <strong>Embedded systems</strong> make everyday products “smart.”</li>
+          <li><strong>Enterprise software</strong> like ERP, CRM, and SCM runs whole organizations. It's powerful, but big rollouts are risky.</li>
+          <li><strong>APIs and web services</strong> let systems talk to each other, often by exchanging data formatted as <strong>JSON</strong>.</li>
+          <li>AI is changing how code gets written. Methods like <strong>agile and scrum</strong> help teams deliver, and the real cost of software is its <strong>total cost of ownership</strong>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== LEARNING GOALS ===== -->
+      <section id="goals" aria-labelledby="goals-h">
+        <span class="eyebrow">Your goals</span>
+        <h2 id="goals-h">What You’ll Learn</h2>
+        <p>By the end of this module, you should be able to:</p>
+        <ul class="goals">
+          <li>Tell hardware from software, and name the major categories of software.</li>
+          <li>Explain what an operating system does, and define firmware and embedded systems.</li>
+          <li>Compare desktop and enterprise software, and describe ERP, CRM, SCM, BI, and DBMS.</li>
+          <li>Explain client-server computing, web services, and APIs, and why data standards like JSON matter.</li>
+          <li>Describe how software is written, including compiled vs. interpreted code, AI coding tools, and low code/no code.</li>
+          <li>Compare waterfall and agile development, and explain scrum.</li>
+          <li>List the parts of total cost of ownership and the common reasons tech projects fail.</li>
+        </ul>
+      </section>
+
+      <!-- ===== LESSON SECTION: Hardware vs. Software ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Hardware vs. Software, region". -->
+      <section id="layers" aria-labelledby="layers-h">
+        <span class="eyebrow">Sections 9.1–9.2</span>
+        <h2 id="layers-h">Hardware, Operating Systems &amp; Apps</h2>
+<p><strong>Hardware</strong> is the physical stuff: chips, screens, keyboards, and storage. <strong>Software</strong> is the
+          set of instructions that tells the hardware what to do. Think of it as layers:</p>
+
+        <figure class="diagram">
+          <svg viewBox="0 0 760 300" role="img" aria-labelledby="ly-title ly-desc">
+            <title id="ly-title">The layers of a computing system</title>
+            <desc id="ly-desc">Four stacked layers from bottom to top: hardware; operating system; application
+              software; and users. Each layer relies on the one beneath it.</desc>
+            <g text-anchor="middle">
+              <rect x="120" y="20"  width="520" height="56" rx="10" fill="#fbc04a"/><text x="380" y="54" class="svg-label">Users: you, your coworkers, customers</text>
+              <rect x="120" y="86"  width="520" height="56" rx="10" fill="#29a9e0"/><text x="380" y="120" class="svg-label">Applications: Word, Excel, Instagram, ERP</text>
+              <rect x="120" y="152" width="520" height="56" rx="10" fill="#0a6a9c"/><text x="380" y="186" class="svg-label" style="fill:#fff">Operating system: Windows, macOS, iOS, Android, Linux</text>
+              <rect x="120" y="218" width="520" height="56" rx="10" fill="#0b2f5b"/><text x="380" y="252" class="svg-label" style="fill:#fff">Hardware: processor, memory, storage, screen</text>
+            </g>
+          </svg>
+          <figcaption>Each layer relies on the one below. Apps ask the operating system, and the operating system controls the hardware.</figcaption>
+        </figure>
+
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Key idea</span><h3>Operating system (OS)</h3><p>Controls the hardware, provides the <strong>user interface</strong>, and sets the standards apps must follow. That makes it a <strong>platform</strong>.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Key idea</span><h3>Firmware</h3><p>Software stored on chips inside a device, like the <strong>BIOS</strong> that starts up a PC. It can often be updated.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Key idea</span><h3>Embedded systems</h3><p>Special-purpose software inside products like cars, thermostats, and TVs that makes them “smart” and lets them report problems.</p></article>
+        </div>
+      </section>
+      <!-- ===== LESSON SECTION: Enterprise Software ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Enterprise Software, region". -->
+      <section id="enterprise" aria-labelledby="enterprise-h">
+        <span class="eyebrow">Section 9.3</span>
+        <h2 id="enterprise-h">Application Software: Desktop vs. Enterprise</h2>
+<p><strong>Desktop software</strong> (like a word processor) usually serves one user. <strong>Enterprise software</strong>
+          serves many users across an organization. Many firms buy a <strong>software package</strong> from a vendor like SAP,
+          Oracle, Salesforce, or Microsoft instead of building their own.</p>
+        <div class="table-wrap">
+          <table>
+            <caption>The big enterprise systems</caption>
+            <thead><tr><th scope="col">System</th><th scope="col">What it does</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">ERP (enterprise resource planning)</th><td>Integrates accounting, finance, inventory, HR, and more into one system and one database</td></tr>
+              <tr><th scope="row">CRM (customer relationship management)</th><td>Supports sales, marketing, and customer service</td></tr>
+              <tr><th scope="row">SCM (supply chain management)</th><td>Manages the flow from raw materials to delivered products</td></tr>
+              <tr><th scope="row">BI (business intelligence)</th><td>Uses data from other systems for reporting and analysis</td></tr>
+              <tr><th scope="row">DBMS (database management system)</th><td>Creates, stores, and manages the data all of these systems depend on</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · Packaged systems: rewards and risks</span>
+          <p>Packaged software spreads “best practices” and lets departments share data. But rollouts can be expensive,
+            take years, and force a firm to change how it works. If the system doesn't fit the business, the results can be
+            disastrous. Hershey's ERP problems famously disrupted its Halloween candy shipments.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: APIs &amp;amp; Web Services ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "APIs &amp;amp; Web Services, region". -->
+      <section id="apis" aria-labelledby="apis-h">
+        <span class="eyebrow">Section 9.4</span>
+        <h2 id="apis-h">Distributed Computing, Web Services &amp; APIs</h2>
+<p>In <strong>distributed computing</strong>, systems in different places work together. The most common setup is
+          <strong>client-server</strong>: a <strong>client</strong> (like your browser or phone app) makes requests, and a
+          <strong>server</strong> program answers them.</p>
+        <p><strong>APIs</strong> (application programming interfaces) and <strong>web services</strong> let one program ask another to
+          do something, like "check this payment," "get this weather forecast," or "show this map." That's how a ride-sharing app
+          uses Google Maps or a store's checkout uses Stripe.</p>
+
+        <!-- <pre> keeps spacing exactly as typed; <code> marks it as code -->
+        <aside class="callout callout--example" aria-label="Example">
+          <span class="callout__title">What API data looks like · JSON</span>
+          <p>Most APIs send data as <strong>JSON</strong> (JavaScript Object Notation): labeled values in a format both people and programs can read.</p>
+<pre><code>{
+  "city": "Raleigh",
+  "tempF": 72,
+  "conditions": "Sunny"
+}</code></pre>
+          <p>Older systems often use <strong>XML</strong> or <strong>EDI</strong> standards. Agreeing on a format is what lets machines from different companies understand each other.</p>
+        </aside>
+        <aside class="callout callout--why" aria-label="Why it matters">
+          <span class="callout__title">Why it matters</span>
+          <p>APIs turn products into <strong>platforms</strong>. When outside developers can build on your service, you get
+            complementary benefits and network effects (remember Module 7).</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Writing Software ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Writing Software, region". -->
+      <section id="writing" aria-labelledby="writing-h">
+        <span class="eyebrow">Section 9.5</span>
+        <h2 id="writing-h">Writing Software (Now with an AI Co-Pilot)</h2>
+<p>Developers write code in a <strong>programming language</strong> using an <strong>IDE</strong> (a programmer's word
+          processor, debugger, and more). Then that code has to become something a computer can run:</p>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Compiled</span><h3>Translated ahead of time</h3><p>Code is <strong>compiled</strong> into machine instructions for a specific processor and OS. It runs fast, but each platform needs its own version.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Interpreted</span><h3>Translated as it runs</h3><p><strong>Scripting languages</strong> like JavaScript and Python are <strong>interpreted</strong> line by line. They're flexible and quick to write.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Java</span><h3>“Write once, run anywhere”</h3><p>Java was designed to run on any device that has a Java virtual machine.</p></article>
+        </div>
+        <aside class="callout callout--why" aria-label="Why it matters">
+          <span class="callout__title">AI is changing programming</span>
+          <p>Large language model tools can suggest, explain, and write code. They're not the “death of programming.” Instead,
+            more people will write code, and developers will spend more time designing, reviewing, and testing. AI-written code
+            can still contain bugs and security holes.</p>
+        </aside>
+        <aside class="callout callout--example" aria-label="Key concept">
+          <span class="callout__title">Key concept · Low code / no code (LCNC)</span>
+          <p>Visual, drag-and-drop tools let non-programmers build simple apps and workflows. They're great for quick fixes,
+            but apps built without IT's knowledge can create security, quality, and maintenance problems.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Waterfall vs. Agile ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Waterfall vs. Agile, region". -->
+      <section id="methods" aria-labelledby="methods-h">
+        <span class="eyebrow">Section 9.6</span>
+        <h2 id="methods-h">Waterfall vs. Agile (and a Sprint through Scrum)</h2>
+<p>The <strong>software development lifecycle (SDLC)</strong> moves through planning, analysis, design, building,
+          testing, deployment, and maintenance. Teams organize these steps in different ways:</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Two development methodologies</caption>
+            <thead><tr><th scope="col"></th><th scope="col">Waterfall</th><th scope="col">Agile</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Approach</th><td>Do each step fully, in order, one time</td><td>Build in small pieces and improve continuously</td></tr>
+              <tr><th scope="row">Strengths</th><td>Clear requirements and a blueprint up front</td><td>Frequent releases and fast reaction to feedback</td></tr>
+              <tr><th scope="row">Weaknesses</th><td>Slow. Hard to change course. Problems surface late.</td><td>Less up-front predictability. Needs disciplined teams.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Scrum in a nutshell</h3>
+        <ol class="steps">
+          <li><strong>Product backlog</strong>A prioritized wish list of features, owned by the <em>product owner</em>.</li>
+          <li><strong>Sprint</strong>A small team (fewer than 10 people) builds a chunk of work in a short cycle, usually one to six weeks.</li>
+          <li><strong>Daily stand-up</strong>A quick check-in: what I did, what I'll do, and what's blocking me. A <em>scrum master</em> removes obstacles.</li>
+          <li><strong>Review &amp; retrospective</strong>Show what was built, gather feedback, improve the process, and start the next sprint.</li>
+        </ol>
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · Feature creep</span>
+          <p>Adding “just one more feature” again and again expands a project's scope, delays it, and raises costs.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: TCO &amp;amp; Failure ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "TCO &amp;amp; Failure, region". -->
+      <section id="tco" aria-labelledby="tco-h">
+        <span class="eyebrow">Sections 9.7–9.8</span>
+        <h2 id="tco-h">Beyond the Price Tag: TCO and Tech Failure</h2>
+<p>The purchase price is just the start. <strong>Total cost of ownership (TCO)</strong> includes:</p>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Cost</span><h3>Buying &amp; building</h3><p>Software licenses, hardware, development, and integration with other systems.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Cost</span><h3>People</h3><p>Training, support staff, and consultants.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Cost</span><h3>Keeping it running</h3><p>Maintenance, upgrades, security, and <strong>compliance</strong> with laws and regulations.</p></article>
+        </div>
+        <p>Projects fail for familiar reasons: unclear goals, weak leadership support, unrealistic deadlines, poor testing,
+          and ignoring users. Frameworks like <strong>CMMI</strong> help firms judge how mature their development
+          processes are.</p>
+        <aside class="callout callout--example" aria-label="Case">
+          <span class="callout__title">Case · HealthCare.gov</span>
+          <p>The U.S. health insurance website crashed at launch in 2013. Many contractors had little coordination, there was too little
+            end-to-end testing, and no one had clear authority. A small “tech surge” team using modern, agile practices
+            stabilized the site within weeks.</p>
+        </aside>
+        <aside class="callout callout--example" aria-label="Case">
+          <span class="callout__title">Case · Volkswagen's software struggles</span>
+          <p>VW made great cars but struggled to become a software company. Its early electric vehicles, like the ID.4, had
+            buggy, slow software, and its in-house software unit fell behind schedule. Adding code to a product doesn't make a firm a
+            digital enterprise. That takes new skills, culture, and processes.</p>
+        </aside>
+      </section>
+
+      <!-- ===== KEY TERMS =====
+           A <dl> (description list) is the right HTML element for
+           term + definition pairs: <dt> = term, <dd> = definition. -->
+      <section id="key-terms" aria-labelledby="key-terms-h">
+        <span class="eyebrow">Vocabulary</span>
+        <h2 id="key-terms-h">Key Terms</h2>
+        <p>Want every term from every module in one place? Try the <a href="../glossary.html">searchable glossary</a>.</p>
+        <dl class="terms">
+          <div>
+            <dt>Hardware</dt>
+            <dd>The physical parts of a computing system: processors, memory, storage, screens, keyboards, and so on.</dd>
+          </div>
+          <div>
+            <dt>Software</dt>
+            <dd>A program or set of programs: precise instructions that tell hardware what to do.</dd>
+          </div>
+          <div>
+            <dt>Operating system</dt>
+            <dd>Software that controls the hardware and sets the standards that apps use to run.</dd>
+          </div>
+          <div>
+            <dt>User interface (UI)</dt>
+            <dd>How people interact with a device, such as windows, buttons, menus, and touch gestures.</dd>
+          </div>
+          <div>
+            <dt>Firmware</dt>
+            <dd>Software stored on nonvolatile chips inside a device. It can often be updated.</dd>
+          </div>
+          <div>
+            <dt>Embedded system</dt>
+            <dd>Special-purpose software built into a physical product to make it smarter.</dd>
+          </div>
+          <div>
+            <dt>Enterprise software</dt>
+            <dd>Applications that serve many users across an organization.</dd>
+          </div>
+          <div>
+            <dt>ERP</dt>
+            <dd>Enterprise resource planning: a software package that ties together a firm's major functions, like accounting, HR, and inventory.</dd>
+          </div>
+          <div>
+            <dt>CRM</dt>
+            <dd>Customer relationship management: systems that support sales, marketing, and customer service.</dd>
+          </div>
+          <div>
+            <dt>SCM</dt>
+            <dd>Supply chain management: systems that manage the flow of materials and products from suppliers to customers.</dd>
+          </div>
+          <div>
+            <dt>Business intelligence (BI)</dt>
+            <dd>Systems that use data from other systems for reporting and analysis.</dd>
+          </div>
+          <div>
+            <dt>DBMS</dt>
+            <dd>Database management system: software for creating, maintaining, and using data.</dd>
+          </div>
+          <div>
+            <dt>Client-server</dt>
+            <dd>A setup where client programs make requests and server programs fulfill them.</dd>
+          </div>
+          <div>
+            <dt>Web services</dt>
+            <dd>Small pieces of code that let machines interact over a network.</dd>
+          </div>
+          <div>
+            <dt>JSON</dt>
+            <dd>JavaScript Object Notation: a popular, readable format for sending data between programs.</dd>
+          </div>
+          <div>
+            <dt>Compile</dt>
+            <dd>To convert human-written code into machine instructions a processor can run.</dd>
+          </div>
+          <div>
+            <dt>Scripting language</dt>
+            <dd>A language that's interpreted line by line as it runs, like JavaScript or Python.</dd>
+          </div>
+          <div>
+            <dt>Low code/no code</dt>
+            <dd>Visual tools that let people build apps with little or no programming.</dd>
+          </div>
+          <div>
+            <dt>SDLC</dt>
+            <dd>Software development lifecycle: the stages of planning, building, testing, and maintaining a system.</dd>
+          </div>
+          <div>
+            <dt>Waterfall</dt>
+            <dd>A step-by-step development method that completes each phase in order.</dd>
+          </div>
+          <div>
+            <dt>Agile</dt>
+            <dd>A development approach that delivers work in small, frequent pieces and improves continuously.</dd>
+          </div>
+          <div>
+            <dt>Scrum</dt>
+            <dd>An agile framework where small teams deliver work in short sprints with defined roles.</dd>
+          </div>
+          <div>
+            <dt>Feature creep</dt>
+            <dd>When a project's scope keeps expanding with new features.</dd>
+          </div>
+          <div>
+            <dt>Total cost of ownership (TCO)</dt>
+            <dd>The full cost of a system, including purchase, training, support, maintenance, and upgrades.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- ===== FLASHCARDS =====
+           Each card is a <button>, so it works with a mouse, a touch
+           screen, AND a keyboard. main.js flips it (section 3). -->
+      <section id="flashcards" aria-labelledby="flashcards-h">
+        <span class="eyebrow">Practice</span>
+        <h2 id="flashcards-h">Flashcards</h2>
+        <p>Say the definition out loud, then flip the card to check yourself. Testing yourself like this
+          (called <strong>retrieval practice</strong>) helps you remember more than rereading does.</p>
+        <button class="btn btn--ghost" type="button" data-shuffle>Shuffle cards</button>
+        <ul class="flashcards">
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Hardware<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The physical parts of a computing system: processors, memory, storage, screens, keyboards, and so on.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Software<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A program or set of programs: precise instructions that tell hardware what to do.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Operating system<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Software that controls the hardware and sets the standards that apps use to run.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">User interface (UI)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">How people interact with a device, such as windows, buttons, menus, and touch gestures.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Firmware<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Software stored on nonvolatile chips inside a device. It can often be updated.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Embedded system<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Special-purpose software built into a physical product to make it smarter.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Enterprise software<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Applications that serve many users across an organization.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">ERP<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Enterprise resource planning: a software package that ties together a firm's major functions, like accounting, HR, and inventory.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">CRM<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Customer relationship management: systems that support sales, marketing, and customer service.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">SCM<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Supply chain management: systems that manage the flow of materials and products from suppliers to customers.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Business intelligence (BI)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Systems that use data from other systems for reporting and analysis.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">DBMS<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Database management system: software for creating, maintaining, and using data.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Client-server<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A setup where client programs make requests and server programs fulfill them.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Web services<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Small pieces of code that let machines interact over a network.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">JSON<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">JavaScript Object Notation: a popular, readable format for sending data between programs.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Compile<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">To convert human-written code into machine instructions a processor can run.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Scripting language<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A language that's interpreted line by line as it runs, like JavaScript or Python.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Low code/no code<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Visual tools that let people build apps with little or no programming.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">SDLC<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Software development lifecycle: the stages of planning, building, testing, and maintaining a system.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Waterfall<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A step-by-step development method that completes each phase in order.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Agile<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A development approach that delivers work in small, frequent pieces and improves continuously.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Scrum<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">An agile framework where small teams deliver work in short sprints with defined roles.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Feature creep<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">When a project's scope keeps expanding with new features.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Total cost of ownership (TCO)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The full cost of a system, including purchase, training, support, maintenance, and upgrades.</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===== QUICK CHECK QUIZ =====
+           A <form> with <fieldset>/<legend> groups each question with
+           its choices — screen readers read the question with each option.
+           main.js grades it (section 4). Practice only — not graded. -->
+      <section id="quick-check" aria-labelledby="quick-check-h">
+        <span class="eyebrow">Self-check · Not graded</span>
+        <h2 id="quick-check-h">Quick Check</h2>
+        <form class="quiz" data-quiz>
+          <fieldset data-answer="b" data-explain="Embedded systems are special-purpose software built into physical products.">
+            <legend>1. The software built into a smart thermostat that lets it learn your schedule is an example of…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="a">
+              <span>An ERP system</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="b">
+              <span>An embedded system</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="c">
+              <span>A CRM</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="d">
+              <span>Low code</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="c" data-explain="ERP (enterprise resource planning) ties a firm&#x27;s major functions together around a shared database.">
+            <legend>2. Which system integrates accounting, HR, inventory, and finance into one package?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="a">
+              <span>CRM</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="b">
+              <span>SCM</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="c">
+              <span>ERP</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="d">
+              <span>BI</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="APIs and web services let different firms&#x27; systems request and exchange data.">
+            <legend>3. A travel site shows hotel prices pulled live from dozens of hotel chains' systems. What makes this possible?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="a">
+              <span>Firmware</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="b">
+              <span>APIs and web services</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="c">
+              <span>Waterfall development</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="d">
+              <span>The BIOS</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Agile builds iteratively in short cycles and adjusts as it learns.">
+            <legend>4. Which BEST describes agile development?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="a">
+              <span>Finish all the planning before writing any code</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="b">
+              <span>Deliver small pieces often and improve based on feedback</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="c">
+              <span>Never test until the end</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="d">
+              <span>Avoid teams</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="a" data-explain="TCO adds ongoing costs like training, support, maintenance, and upgrades to the purchase price.">
+            <legend>5. Which cost is NOT usually included in the purchase price but IS part of TCO?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="a">
+              <span>Training and support</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="b">
+              <span>The software license</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="c">
+              <span>Nothing; they're the same</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="d">
+              <span>Sales tax</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <div class="quiz__actions">
+            <button class="btn" type="submit">Check my answers</button>
+            <button class="btn btn--ghost" type="reset">Try again</button>
+            <p class="quiz__score" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+
+      <!-- ===== MARK COMPLETE (saved in your browser by main.js, section 5) ===== -->
+      <div class="complete-panel">
+        <div>
+          <h2>Finished Module 9?</h2>
+          <p>Track your progress — it shows up on the home page.</p>
+        </div>
+        <!-- aria-pressed makes this a "toggle button" for screen readers -->
+        <button class="btn btn--gold" type="button" data-complete="9" aria-pressed="false">Mark module complete</button>
+      </div>
+
+      <!-- ===== PREVIOUS / NEXT ===== -->
+      <nav class="pager" aria-label="Module navigation">
+        <a href="module-08.html" rel="prev"><span class="pager__dir">← Previous</span>Module 8: Social Platforms &amp; Privacy</a>
+        <a class="pager__next" href="module-10.html" rel="next"><span class="pager__dir">Next →</span>Module 10: The Changing Software Landscape</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p><strong>CTS 115: Information Systems Business Concepts</strong> — a student study companion.</p>
+      <p>This site summarizes key ideas in plain language. It does not replace your textbook,
+        <em>Information Systems: A Manager’s Guide to Harnessing Technology</em> (FlatWorld),
+        which has the full readings, cases, and videos. Always check Blackboard for due dates and assignments.</p>
+      <p>Built with plain HTML, CSS, and JavaScript. Curious how it works? Right-click anywhere and choose
+        “View Page Source” — the code is full of comments written for learners.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts go at the END of the body so the HTML loads first.
+       (You could also use the "defer" attribute in the <head>.) -->
+  <script src="../js/main.js"></script>
+</body>
+</html>

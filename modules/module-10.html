@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<!-- The DOCTYPE tells the browser this is a modern HTML5 document. -->
+<!-- lang="en" helps screen readers pronounce words correctly. -->
+<html lang="en">
+<head>
+  <!-- charset: lets the page show any character (é, —, “ ”) correctly -->
+  <meta charset="UTF-8">
+  <!-- viewport: makes the page fit phone screens instead of zooming out -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The description often appears under the link in search results -->
+  <meta name="description" content="Module 10: Open source, cloud computing (SaaS, PaaS, IaaS), virtualization, app stores, and make/buy/rent decisions.">
+  <title>Module 10: The Changing Software Landscape | CTS 115 Study Guide</title>
+
+  <!-- Google Fonts: "preconnect" starts the connection early so the font loads faster -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Our one stylesheet. "../" moves up a folder when needed. -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head><body>
+  <!-- Skip link: the first thing a keyboard user reaches with Tab -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- <header> is a "landmark": screen readers can jump straight to it -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../index.html">CTS <span>115</span> Study Guide</a>
+
+      <!-- aria-label names this navigation for screen-reader users -->
+      <nav class="site-nav" aria-label="Main">
+        <!-- aria-expanded tells assistive tech whether the menu is open.
+             aria-controls points to the id of the list it opens. -->
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <ul id="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#modules" aria-current="page">Modules</a></li>
+          <li><a href="../glossary.html">Glossary</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== MODULE BANNER =====
+       Same look as the course banners, built with HTML + CSS
+       (see section 5 of styles.css). -->
+  <div class="hero hero--module">
+    <div class="hero__inner">
+      <p class="module-badge">
+        <span class="module-badge__label">MODULE</span>
+        <span class="module-badge__num">10</span>
+      </p>
+      <div>
+        <!-- Each page has exactly ONE <h1>: the main topic of the page -->
+        <h1>The Changing Software Landscape</h1>
+        <p class="hero__subtitle">Chapter 10: Software in Flux: Open Source, Cloud, Virtualized, and App-Driven Shifts</p>
+        <ul class="chips" aria-label="About this module">
+          <li>≈ 25 min read</li>
+          <li>21 key terms</li>
+          <li>5-question self-check</li>
+        </ul>
+      </div>
+      <svg class="hero__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 36a9 9 0 0 1-1-18 12 12 0 0 1 23 2 8 8 0 0 1-1 16z"/><path d="M24 40V24M18 30l6-6 6 6"/></svg>
+    </div>
+  </div>
+
+  <!-- ===== PAGE LAYOUT: sidebar + content (CSS Grid, section 6) ===== -->
+  <div class="page">
+
+    <!-- "On this page" sidebar. It's a <nav> because it's a set of links. -->
+    <nav class="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <ol>
+          <li><a href="#big-picture">The Big Picture</a></li>
+          <li><a href="#goals">What You’ll Learn</a></li>
+          <li><a href="#industry">A Software Industry in Flux</a></li>
+          <li><a href="#open-source">Open Source</a></li>
+          <li><a href="#cloud">Cloud Computing</a></li>
+          <li><a href="#virtualization">Virtualization</a></li>
+          <li><a href="#make-buy-rent">Apps &amp; Make/Buy/Rent</a></li>
+          <li><a href="#key-terms">Key Terms</a></li>
+          <li><a href="#flashcards">Flashcards</a></li>
+          <li><a href="#quick-check">Quick Check</a></li>
+      </ol>
+    </nav>
+
+    <!-- <main> holds the page's unique content. id="main" is where the
+         skip link jumps to. tabindex="-1" lets it receive that focus. -->
+    <main id="main" class="content" tabindex="-1">
+
+      <!-- ===== THE BIG PICTURE: the whole module in a few bullets ===== -->
+      <section id="big-picture" aria-labelledby="big-picture-h">
+        <span class="eyebrow">Start here</span>
+        <h2 id="big-picture-h">The Big Picture</h2>
+        <div class="big-picture">
+          <ul>
+          <li>Software has <strong>near-zero marginal cost</strong>: once it's built, each extra copy costs almost nothing. Add network effects and switching costs, and you get a huge industry.</li>
+          <li><strong>Open source software</strong> is free and anyone can modify it. It powers much of the Internet, and firms still find ways to make money from it.</li>
+          <li><strong>Cloud computing</strong> lets firms rent software (SaaS), platforms (PaaS), or infrastructure (IaaS) instead of owning it.</li>
+          <li><strong>Virtualization</strong> makes one computer act like many, which is the technology that makes the cloud efficient.</li>
+          <li>Every software need comes down to a choice: <strong>make, buy, or rent</strong>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== LEARNING GOALS ===== -->
+      <section id="goals" aria-labelledby="goals-h">
+        <span class="eyebrow">Your goals</span>
+        <h2 id="goals-h">What You’ll Learn</h2>
+        <p>By the end of this module, you should be able to:</p>
+        <ul class="goals">
+          <li>Explain how marginal costs, network effects, and switching costs shaped the software industry.</li>
+          <li>Define open source software, give examples, and explain why firms use it and how vendors profit from it.</li>
+          <li>Describe the benefits and risks of SaaS.</li>
+          <li>Tell the difference between SaaS, PaaS, and IaaS, and between public, private, and hybrid clouds.</li>
+          <li>Explain virtualization and containers.</li>
+          <li>Weigh the factors in a make, buy, or rent decision.</li>
+        </ul>
+      </section>
+
+      <!-- ===== LESSON SECTION: A Software Industry in Flux ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "A Software Industry in Flux, region". -->
+      <section id="industry" aria-labelledby="industry-h">
+        <span class="eyebrow">Section 10.1</span>
+        <h2 id="industry-h">A Software Industry in Flux</h2>
+<p>Software is a great business: building the first copy is expensive, but each additional copy has almost no
+          <strong>marginal cost</strong>. Combine that with network effects and switching costs, and firms like Microsoft became
+          giants. Now four shifts are shaking up the industry: <strong>open source, cloud computing, virtualization, and app stores</strong>.</p>
+      </section>
+      <!-- ===== LESSON SECTION: Open Source ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Open Source, region". -->
+      <section id="open-source" aria-labelledby="open-source-h">
+        <span class="eyebrow">Sections 10.2–10.5</span>
+        <h2 id="open-source-h">Open Source: Free Software That Runs the World</h2>
+<p><strong>Open source software (OSS)</strong> is free, and its code is public, so anyone can inspect, use, or improve it.
+          Volunteers and paid developers around the world build it together. Examples include <strong>Linux</strong> (an operating
+          system), Firefox, Android's core, and Python.</p>
+
+        <aside class="callout callout--example" aria-label="Key concept">
+          <span class="callout__title">Key concept · Software stacks: LAMP and MEAN</span>
+          <p>A <strong>stack</strong> is the set of software used to build a system, from the <strong>front-end</strong> (what users see)
+            to the <strong>back-end</strong> (server code). Two popular all-open-source stacks:</p>
+          <p><strong>LAMP</strong> = Linux + Apache web server + MySQL database + PHP/Python/Perl.<br>
+            <strong>MEAN</strong> = MongoDB + Express.js + Angular + Node.js (all JavaScript-based).</p>
+        </aside>
+
+        <h3>Why firms choose open source</h3>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Benefit</span><h3>Cost</h3><p>No license fees. That's especially valuable when running thousands of servers.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Benefit</span><h3>Reliability &amp; security</h3><p>Many eyes reviewing the code can find and fix bugs quickly. Some versions are <strong>security-focused</strong> (“hardened”).</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Benefit</span><h3>Scalability</h3><p>Proven to handle huge workloads at firms like Google and Meta.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Benefit</span><h3>No lock-in</h3><p>Firms can modify the code and aren't stuck with one vendor.</p></article>
+        </div>
+
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · Heartbleed</span>
+          <p>In 2014, a serious bug was found in OpenSSL, open source encryption software used by much of the web. It had
+            gone unnoticed for about two years, and the project was maintained by just a handful of people with little funding. “Many eyes” only
+            help if people actually look. Open source also carries legal risks if license rules aren't followed.</p>
+        </aside>
+
+        <h3>How do you make money on free software?</h3>
+        <p>Firms like Red Hat sell support, training, and certified versions. Others sell hosted (cloud) versions,
+          premium add-ons, or hardware. Contributing to open source also helps firms like IBM and Google shape industry standards.</p>
+      </section>
+      <!-- ===== LESSON SECTION: Cloud Computing ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Cloud Computing, region". -->
+      <section id="cloud" aria-labelledby="cloud-h">
+        <span class="eyebrow">Sections 10.6–10.9</span>
+        <h2 id="cloud-h">Cloud Computing: Why Buy When You Can Rent?</h2>
+<p><strong>Cloud computing</strong> replaces hardware or software you own with services delivered over the Internet. The three
+          main <strong>service models</strong> differ in how much the provider manages for you:</p>
+
+        <figure class="diagram">
+          <svg viewBox="0 0 760 380" role="img" aria-labelledby="cl-title cl-desc">
+            <title id="cl-title">Who manages what: IaaS, PaaS, and SaaS</title>
+            <desc id="cl-desc">Three columns of stacked layers: hardware, operating system, development platform,
+              application. In IaaS, the provider manages hardware and the customer manages the rest. In PaaS, the
+              provider manages hardware, operating system, and development platform, and the customer manages the
+              application. In SaaS, the provider manages everything.</desc>
+            <g text-anchor="middle">
+              <text x="130" y="30" class="svg-title">IaaS</text><text x="380" y="30" class="svg-title">PaaS</text><text x="630" y="30" class="svg-title">SaaS</text>
+              <text x="130" y="50" class="svg-small">Rent the infrastructure</text><text x="380" y="50" class="svg-small">Rent a place to build</text><text x="630" y="50" class="svg-small">Rent the finished software</text>
+            </g>
+            <!-- Column 1: IaaS -->
+            <g text-anchor="middle">
+              <rect x="30" y="70" width="200" height="60" rx="8" fill="#e3edf8"/><text x="130" y="106" class="svg-label">Application</text>
+              <rect x="30" y="140" width="200" height="60" rx="8" fill="#e3edf8"/><text x="130" y="176" class="svg-label">Dev platform</text>
+              <rect x="30" y="210" width="200" height="60" rx="8" fill="#e3edf8"/><text x="130" y="246" class="svg-label">Operating system</text>
+              <rect x="30" y="280" width="200" height="60" rx="8" fill="#0b2f5b"/><text x="130" y="316" class="svg-label" style="fill:#fff">Hardware</text>
+            </g>
+            <!-- Column 2: PaaS -->
+            <g text-anchor="middle">
+              <rect x="280" y="70" width="200" height="60" rx="8" fill="#e3edf8"/><text x="380" y="106" class="svg-label">Application</text>
+              <rect x="280" y="140" width="200" height="60" rx="8" fill="#0b2f5b"/><text x="380" y="176" class="svg-label" style="fill:#fff">Dev platform</text>
+              <rect x="280" y="210" width="200" height="60" rx="8" fill="#0b2f5b"/><text x="380" y="246" class="svg-label" style="fill:#fff">Operating system</text>
+              <rect x="280" y="280" width="200" height="60" rx="8" fill="#0b2f5b"/><text x="380" y="316" class="svg-label" style="fill:#fff">Hardware</text>
+            </g>
+            <!-- Column 3: SaaS -->
+            <g text-anchor="middle">
+              <rect x="530" y="70" width="200" height="60" rx="8" fill="#0b2f5b"/><text x="630" y="106" class="svg-label" style="fill:#fff">Application</text>
+              <rect x="530" y="140" width="200" height="60" rx="8" fill="#0b2f5b"/><text x="630" y="176" class="svg-label" style="fill:#fff">Dev platform</text>
+              <rect x="530" y="210" width="200" height="60" rx="8" fill="#0b2f5b"/><text x="630" y="246" class="svg-label" style="fill:#fff">Operating system</text>
+              <rect x="530" y="280" width="200" height="60" rx="8" fill="#0b2f5b"/><text x="630" y="316" class="svg-label" style="fill:#fff">Hardware</text>
+            </g>
+            <!-- Legend -->
+            <rect x="200" y="352" width="18" height="18" fill="#0b2f5b"/><text x="225" y="366" class="svg-small">Managed by the cloud provider</text>
+            <rect x="450" y="352" width="18" height="18" fill="#e3edf8" stroke="#dbe3ee"/><text x="475" y="366" class="svg-small">Managed by you</text>
+          </svg>
+          <figcaption>Moving from IaaS to SaaS, the provider takes on more of the work. You trade control for convenience.</figcaption>
+        </figure>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Service model examples</caption>
+            <thead><tr><th scope="col">Model</th><th scope="col">You get</th><th scope="col">Examples</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">SaaS</th><td>Ready-to-use software in a browser or app</td><td>Salesforce, Microsoft 365, Gmail, Zoom</td></tr>
+              <tr><th scope="row">PaaS</th><td>Tools and hosting to build and run your own apps</td><td>Google App Engine, Heroku, Azure App Service</td></tr>
+              <tr><th scope="row">IaaS</th><td>Raw servers, storage, and networking you configure</td><td>AWS EC2, Microsoft Azure VMs, Google Compute Engine</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">SaaS upside</span><h3>Lower costs, faster start</h3><p>No servers to buy and no installs. Updates are automatic, and you pay as you go. Vendors get steady subscription revenue and serve <strong>vertical niches</strong> cheaply.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">SaaS risks</span><h3>Less control</h3><p>You depend on the vendor's reliability, security, and survival. Outages, data lock-in, and limited customization are real risks. Negotiate a strong <strong>SLA</strong>.</p></article>
+        </div>
+
+        <h3>Deployment models</h3>
+        <ul class="goals">
+          <li><strong>Public cloud:</strong> shared infrastructure from a provider like AWS, Azure, or Google Cloud.</li>
+          <li><strong>Private cloud:</strong> cloud-style computing that one organization uses alone.</li>
+          <li><strong>Hybrid cloud:</strong> a mix of both. Firms can <strong>cloudburst</strong> into the public cloud when demand spikes, such as during a <strong>black swan</strong> event nobody predicted.</li>
+        </ul>
+        <aside class="callout callout--why" aria-label="Industry impact">
+          <span class="callout__title">Industry impact</span>
+          <p>The cloud lowers barriers to entry (startups rent world-class computing), shifts spending from hardware to
+            services, and changes the IT skills employers want. It also fuels the AI boom, since most AI models run in giant cloud data centers.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Virtualization ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Virtualization, region". -->
+      <section id="virtualization" aria-labelledby="virtualization-h">
+        <span class="eyebrow">Section 10.11</span>
+        <h2 id="virtualization-h">Virtualization: One Computer Acting Like Many</h2>
+<p><strong>Virtualization</strong> software lets one physical computer run several “virtual” computers, each with its own
+          operating system and apps. Servers that once sat mostly idle can now be fully used.</p>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Benefit</span><h3>Fewer machines</h3><p>Lower hardware, energy, and space costs.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Benefit</span><h3>Flexibility</h3><p>New “servers” can be created in minutes and moved between machines.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Variation</span><h3>Containers</h3><p>Lighter-weight virtualization that shares one OS while keeping apps isolated. Tools like Kubernetes manage them.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Variation</span><h3>Virtual desktops</h3><p>Your “PC” runs on a server, and your device just shows the screen.</p></article>
+        </div>
+      </section>
+      <!-- ===== LESSON SECTION: Apps &amp;amp; Make/Buy/Rent ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Apps &amp;amp; Make/Buy/Rent, region". -->
+      <section id="make-buy-rent" aria-labelledby="make-buy-rent-h">
+        <span class="eyebrow">Sections 10.12–10.13</span>
+        <h2 id="make-buy-rent-h">App Stores, and the Make, Buy, or Rent Decision</h2>
+<p><strong>App stores</strong> transformed software distribution. Developers reach billions of users instantly, and platform owners
+          like Apple and Google take a cut (and set the rules). For any software need, managers face a key choice:</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Make, buy, or rent?</caption>
+            <thead><tr><th scope="col">Option</th><th scope="col">Best when…</th><th scope="col">Watch out for…</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Make (build it)</th><td>The software is a source of competitive advantage and needs to be unique</td><td>High cost, long timelines, and the need for skilled staff</td></tr>
+              <tr><th scope="row">Buy (packaged software)</th><td>A proven product fits your needs</td><td>Rivals can buy it too, plus customization and licensing costs</td></tr>
+              <tr><th scope="row">Rent (SaaS or cloud)</th><td>Speed, low upfront cost, and flexibility matter most</td><td>Vendor dependence, security, and long-term subscription costs</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="callout callout--why" aria-label="Think like a manager">
+          <span class="callout__title">Think like a manager</span>
+          <p>Ask: Does this software create our competitive advantage, or is it just a cost of doing business? Build what makes you
+            different. Buy or rent the rest. Always compare <strong>total cost of ownership</strong>, not just the sticker price.</p>
+        </aside>
+      </section>
+
+      <!-- ===== KEY TERMS =====
+           A <dl> (description list) is the right HTML element for
+           term + definition pairs: <dt> = term, <dd> = definition. -->
+      <section id="key-terms" aria-labelledby="key-terms-h">
+        <span class="eyebrow">Vocabulary</span>
+        <h2 id="key-terms-h">Key Terms</h2>
+        <p>Want every term from every module in one place? Try the <a href="../glossary.html">searchable glossary</a>.</p>
+        <dl class="terms">
+          <div>
+            <dt>Marginal cost</dt>
+            <dd>The cost of producing one more unit. For software, it's close to zero.</dd>
+          </div>
+          <div>
+            <dt>Open source software (OSS)</dt>
+            <dd>Free software whose code anyone can view, use, and modify.</dd>
+          </div>
+          <div>
+            <dt>Linux</dt>
+            <dd>A popular open source operating system that runs many servers and devices.</dd>
+          </div>
+          <div>
+            <dt>Software stack</dt>
+            <dd>The set of software components used to build an information system.</dd>
+          </div>
+          <div>
+            <dt>LAMP</dt>
+            <dd>An open source stack: Linux, Apache, MySQL, and PHP/Python/Perl.</dd>
+          </div>
+          <div>
+            <dt>MEAN</dt>
+            <dd>A JavaScript-based open source stack: MongoDB, Express.js, Angular, and Node.js.</dd>
+          </div>
+          <div>
+            <dt>Front-end</dt>
+            <dd>The client-side code users see and interact with, like a website or app interface.</dd>
+          </div>
+          <div>
+            <dt>Back-end</dt>
+            <dd>Server-side code and data that users don't see directly.</dd>
+          </div>
+          <div>
+            <dt>Framework</dt>
+            <dd>Pre-written software components that speed up development.</dd>
+          </div>
+          <div>
+            <dt>Scalability</dt>
+            <dd>The ability to handle growing workloads without a major rewrite.</dd>
+          </div>
+          <div>
+            <dt>Service level agreement (SLA)</dt>
+            <dd>A contract that sets a vendor's commitments for uptime, performance, and support.</dd>
+          </div>
+          <div>
+            <dt>Vertical niche</dt>
+            <dd>A market focused on one specific industry, like legal or healthcare.</dd>
+          </div>
+          <div>
+            <dt>SaaS</dt>
+            <dd>Software as a service: finished software delivered online by subscription.</dd>
+          </div>
+          <div>
+            <dt>PaaS</dt>
+            <dd>Platform as a service: cloud tools and hosting for building and running your own apps.</dd>
+          </div>
+          <div>
+            <dt>IaaS</dt>
+            <dd>Infrastructure as a service: rented servers, storage, and networking that you configure.</dd>
+          </div>
+          <div>
+            <dt>Public cloud</dt>
+            <dd>Cloud services from a provider's shared infrastructure.</dd>
+          </div>
+          <div>
+            <dt>Private cloud</dt>
+            <dd>Cloud-style computing resources used by only one organization.</dd>
+          </div>
+          <div>
+            <dt>Cloudbursting</dt>
+            <dd>Using public cloud capacity to handle sudden spikes in demand.</dd>
+          </div>
+          <div>
+            <dt>Black swan</dt>
+            <dd>A rare, unpredicted event with a huge impact.</dd>
+          </div>
+          <div>
+            <dt>Virtualization</dt>
+            <dd>Software that lets one physical computer act like several separate computers.</dd>
+          </div>
+          <div>
+            <dt>Containers</dt>
+            <dd>Lightweight virtualization that shares an operating system while keeping apps isolated.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- ===== FLASHCARDS =====
+           Each card is a <button>, so it works with a mouse, a touch
+           screen, AND a keyboard. main.js flips it (section 3). -->
+      <section id="flashcards" aria-labelledby="flashcards-h">
+        <span class="eyebrow">Practice</span>
+        <h2 id="flashcards-h">Flashcards</h2>
+        <p>Say the definition out loud, then flip the card to check yourself. Testing yourself like this
+          (called <strong>retrieval practice</strong>) helps you remember more than rereading does.</p>
+        <button class="btn btn--ghost" type="button" data-shuffle>Shuffle cards</button>
+        <ul class="flashcards">
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Marginal cost<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The cost of producing one more unit. For software, it's close to zero.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Open source software (OSS)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Free software whose code anyone can view, use, and modify.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Linux<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A popular open source operating system that runs many servers and devices.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Software stack<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The set of software components used to build an information system.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">LAMP<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">An open source stack: Linux, Apache, MySQL, and PHP/Python/Perl.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">MEAN<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A JavaScript-based open source stack: MongoDB, Express.js, Angular, and Node.js.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Front-end<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The client-side code users see and interact with, like a website or app interface.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Back-end<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Server-side code and data that users don't see directly.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Framework<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Pre-written software components that speed up development.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Scalability<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The ability to handle growing workloads without a major rewrite.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Service level agreement (SLA)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A contract that sets a vendor's commitments for uptime, performance, and support.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Vertical niche<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A market focused on one specific industry, like legal or healthcare.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">SaaS<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Software as a service: finished software delivered online by subscription.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">PaaS<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Platform as a service: cloud tools and hosting for building and running your own apps.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">IaaS<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Infrastructure as a service: rented servers, storage, and networking that you configure.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Public cloud<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Cloud services from a provider's shared infrastructure.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Private cloud<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Cloud-style computing resources used by only one organization.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Cloudbursting<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Using public cloud capacity to handle sudden spikes in demand.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Black swan<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A rare, unpredicted event with a huge impact.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Virtualization<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Software that lets one physical computer act like several separate computers.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Containers<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Lightweight virtualization that shares an operating system while keeping apps isolated.</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===== QUICK CHECK QUIZ =====
+           A <form> with <fieldset>/<legend> groups each question with
+           its choices — screen readers read the question with each option.
+           main.js grades it (section 4). Practice only — not graded. -->
+      <section id="quick-check" aria-labelledby="quick-check-h">
+        <span class="eyebrow">Self-check · Not graded</span>
+        <h2 id="quick-check-h">Quick Check</h2>
+        <form class="quiz" data-quiz>
+          <fieldset data-answer="c" data-explain="Ready-to-use software delivered online by subscription is SaaS.">
+            <legend>1. A startup uses Gmail and Salesforce through a browser with no installation. That's…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="a">
+              <span>IaaS</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="b">
+              <span>PaaS</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="c">
+              <span>SaaS</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="d">
+              <span>A private cloud</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="a" data-explain="Infrastructure as a service provides raw computing resources that the customer configures.">
+            <legend>2. A developer rents raw virtual servers from AWS and installs their own operating system and software. That's…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="a">
+              <span>IaaS</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="b">
+              <span>SaaS</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="c">
+              <span>Open source</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="d">
+              <span>Firmware</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="OpenSSL was widely used but maintained by very few people, so a serious bug went unnoticed for years.">
+            <legend>3. What does the Heartbleed bug teach about open source?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="a">
+              <span>Open source is always insecure</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="b">
+              <span>“Many eyes” only help if people actually review and fund the code</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="c">
+              <span>Open source can't be used by businesses</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="d">
+              <span>Bugs never happen in commercial software</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="a" data-explain="Virtualization runs multiple virtual machines on a single physical machine.">
+            <legend>4. Which technology lets one physical server act like several separate computers?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="a">
+              <span>Virtualization</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="b">
+              <span>EDI</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="c">
+              <span>An SLA</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="d">
+              <span>Cloudbursting</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Build what differentiates you. Buy or rent commodity functions.">
+            <legend>5. When should a firm most likely BUILD its own software?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="a">
+              <span>When it's a commodity like email</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="b">
+              <span>When the software is a key source of competitive advantage</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="c">
+              <span>When it wants the lowest upfront cost</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="d">
+              <span>Never</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <div class="quiz__actions">
+            <button class="btn" type="submit">Check my answers</button>
+            <button class="btn btn--ghost" type="reset">Try again</button>
+            <p class="quiz__score" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+
+      <!-- ===== MARK COMPLETE (saved in your browser by main.js, section 5) ===== -->
+      <div class="complete-panel">
+        <div>
+          <h2>Finished Module 10?</h2>
+          <p>Track your progress — it shows up on the home page.</p>
+        </div>
+        <!-- aria-pressed makes this a "toggle button" for screen readers -->
+        <button class="btn btn--gold" type="button" data-complete="10" aria-pressed="false">Mark module complete</button>
+      </div>
+
+      <!-- ===== PREVIOUS / NEXT ===== -->
+      <nav class="pager" aria-label="Module navigation">
+        <a href="module-09.html" rel="prev"><span class="pager__dir">← Previous</span>Module 9: Understanding Software</a>
+        <a class="pager__next" href="module-11.html" rel="next"><span class="pager__dir">Next →</span>Module 11: Data &amp; Competitive Advantage</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p><strong>CTS 115: Information Systems Business Concepts</strong> — a student study companion.</p>
+      <p>This site summarizes key ideas in plain language. It does not replace your textbook,
+        <em>Information Systems: A Manager’s Guide to Harnessing Technology</em> (FlatWorld),
+        which has the full readings, cases, and videos. Always check Blackboard for due dates and assignments.</p>
+      <p>Built with plain HTML, CSS, and JavaScript. Curious how it works? Right-click anywhere and choose
+        “View Page Source” — the code is full of comments written for learners.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts go at the END of the body so the HTML loads first.
+       (You could also use the "defer" attribute in the <head>.) -->
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<!-- The DOCTYPE tells the browser this is a modern HTML5 document. -->
+<!-- lang="en" helps screen readers pronounce words correctly. -->
+<html lang="en">
+<head>
+  <!-- charset: lets the page show any character (é, —, “ ”) correctly -->
+  <meta charset="UTF-8">
+  <!-- viewport: makes the page fit phone screens instead of zooming out -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The description often appears under the link in search results -->
+  <meta name="description" content="Module 15: Who attacks and why, social engineering, phishing, passwords, malware, SQL injection, and how users and firms can protect themselves.">
+  <title>Module 15: Information Security | CTS 115 Study Guide</title>
+
+  <!-- Google Fonts: "preconnect" starts the connection early so the font loads faster -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Our one stylesheet. "../" moves up a folder when needed. -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head><body>
+  <!-- Skip link: the first thing a keyboard user reaches with Tab -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- <header> is a "landmark": screen readers can jump straight to it -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../index.html">CTS <span>115</span> Study Guide</a>
+
+      <!-- aria-label names this navigation for screen-reader users -->
+      <nav class="site-nav" aria-label="Main">
+        <!-- aria-expanded tells assistive tech whether the menu is open.
+             aria-controls points to the id of the list it opens. -->
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <ul id="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#modules" aria-current="page">Modules</a></li>
+          <li><a href="../glossary.html">Glossary</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== MODULE BANNER =====
+       Same look as the course banners, built with HTML + CSS
+       (see section 5 of styles.css). -->
+  <div class="hero hero--module">
+    <div class="hero__inner">
+      <p class="module-badge">
+        <span class="module-badge__label">MODULE</span>
+        <span class="module-badge__num">15</span>
+      </p>
+      <div>
+        <!-- Each page has exactly ONE <h1>: the main topic of the page -->
+        <h1>Information Security</h1>
+        <p class="hero__subtitle">Chapter 15: Barbarians at the Gateway (and Just About Everywhere Else)</p>
+        <ul class="chips" aria-label="About this module">
+          <li>≈ 30 min read</li>
+          <li>29 key terms</li>
+          <li>5-question self-check</li>
+        </ul>
+      </div>
+      <svg class="hero__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M24 4l16 6v12c0 10-7 18-16 22C15 40 8 32 8 22V10z"/><rect x="18" y="22" width="12" height="9" rx="1.5"/><path d="M20 22v-3a4 4 0 0 1 8 0v3"/></svg>
+    </div>
+  </div>
+
+  <!-- ===== PAGE LAYOUT: sidebar + content (CSS Grid, section 6) ===== -->
+  <div class="page">
+
+    <!-- "On this page" sidebar. It's a <nav> because it's a set of links. -->
+    <nav class="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <ol>
+          <li><a href="#big-picture">The Big Picture</a></li>
+          <li><a href="#goals">What You’ll Learn</a></li>
+          <li><a href="#breaches">Breaches Are Rising</a></li>
+          <li><a href="#who">Who &amp; Why</a></li>
+          <li><a href="#people">People: The Weakest Link</a></li>
+          <li><a href="#tech-threats">Technology Threats</a></li>
+          <li><a href="#action">Taking Action</a></li>
+          <li><a href="#key-terms">Key Terms</a></li>
+          <li><a href="#flashcards">Flashcards</a></li>
+          <li><a href="#quick-check">Quick Check</a></li>
+      </ol>
+    </nav>
+
+    <!-- <main> holds the page's unique content. id="main" is where the
+         skip link jumps to. tabindex="-1" lets it receive that focus. -->
+    <main id="main" class="content" tabindex="-1">
+
+      <!-- ===== THE BIG PICTURE: the whole module in a few bullets ===== -->
+      <section id="big-picture" aria-labelledby="big-picture-h">
+        <span class="eyebrow">Start here</span>
+        <h2 id="big-picture-h">The Big Picture</h2>
+        <div class="big-picture">
+          <ul>
+          <li>Security breaches are rising and can be devastating. Security has to be a <strong>top priority for the whole organization</strong>, not just IT.</li>
+          <li>Attackers range from <strong>organized criminals</strong> and <strong>nation-states</strong> to <strong>hacktivists</strong> and unhappy insiders, with motives like money, espionage, politics, and revenge.</li>
+          <li>The weakest link is often <strong>people</strong>. <strong>Social engineering and phishing</strong> trick users into handing over access, and AI deepfakes make scams more convincing.</li>
+          <li>Technical threats include <strong>malware, zero-day exploits, SQL injection, botnets, and insecure IoT devices</strong>.</li>
+          <li>Defense takes layers: <strong>strong passwords or passkeys, multi-factor authentication, encryption, patching, firewalls</strong>, training, audits, and constant vigilance.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== LEARNING GOALS ===== -->
+      <section id="goals" aria-labelledby="goals-h">
+        <span class="eyebrow">Your goals</span>
+        <h2 id="goals-h">What You’ll Learn</h2>
+        <p>By the end of this module, you should be able to:</p>
+        <ul class="goals">
+          <li>Explain why information security must be a top organizational priority.</li>
+          <li>Identify who launches attacks and what motivates them.</li>
+          <li>Recognize social engineering, phishing, and spear phishing, and the role of AI in scams.</li>
+          <li>Describe technical threats like malware, zero-day exploits, SQL injection, and DDoS attacks.</li>
+          <li>Explain encryption, multi-factor authentication, biometrics, and passkeys.</li>
+          <li>List key steps that individuals and organizations can take to improve security.</li>
+        </ul>
+      </section>
+
+      <!-- ===== LESSON SECTION: Breaches Are Rising ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Breaches Are Rising, region". -->
+      <section id="breaches" aria-labelledby="breaches-h">
+        <span class="eyebrow">Section 15.1</span>
+        <h2 id="breaches-h">You’ve Probably Already Been Hacked</h2>
+<p>If you have a bank account, a credit card, or an online account, your data has very likely been exposed in at least one breach.
+          Attacks cost firms money, customers, reputation, and sometimes their executives' jobs.</p>
+        <aside class="callout callout--example" aria-label="Case">
+          <span class="callout__title">Case · The Target hack</span>
+          <p>Attackers got into Target's network using login credentials stolen from a heating-and-air-conditioning <em>vendor</em>, then
+            installed malware on checkout terminals. They stole data from about 40 million payment cards during the 2013
+            holiday season. Target's security tools raised alerts, but staff didn't act on them in time. The CEO later resigned.</p>
+        </aside>
+        <aside class="callout callout--example" aria-label="Case">
+          <span class="callout__title">Case · Log4j</span>
+          <p>In late 2021, a flaw was found in Log4j, a free, open source logging tool hidden inside millions of systems. It let attackers
+            take over computers remotely. Organizations scrambled to find every place they used it, a reminder that software you
+            don't even know you have can put you at risk.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Who &amp;amp; Why ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Who &amp;amp; Why, region". -->
+      <section id="who" aria-labelledby="who-h">
+        <span class="eyebrow">Section 15.2</span>
+        <h2 id="who-h">Who Is Doing It, and Why?</h2>
+<div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Money</span><h3>Cybercriminals</h3><p><strong>Data harvesters</strong> steal data and sell it. <strong>Cash-out fraudsters</strong> buy it and use it to make purchases, open fake accounts, or empty bank accounts.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Power</span><h3>Nation-states</h3><p>Governments use cyberattacks for spying, sabotage, and election interference. That's called cyberwarfare.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Politics</span><h3>Hacktivists</h3><p>Protesters who break into or deface systems to make a political point.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Inside</span><h3>Bad apples</h3><p>Employees or contractors who misuse their access, whether on purpose or by accident.</p></article>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <caption>Hacker vocabulary</caption>
+            <thead><tr><th scope="col">Term</th><th scope="col">Meaning</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">White hat</th><td>Finds weaknesses to help <em>fix</em> them (ethical hacker)</td></tr>
+              <tr><th scope="row">Black hat</th><td>A computer criminal</td></tr>
+              <tr><th scope="row">Red team / Blue team</th><td>Red team plays the attacker. Blue team defends.</td></tr>
+              <tr><th scope="row">Script kiddie</th><td>An unskilled attacker using ready-made hacking tools</td></tr>
+              <tr><th scope="row">Botnet</th><td>An army of infected “zombie” computers controlled remotely, often used for <strong>DDoS</strong> attacks that flood a site with traffic until it crashes</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · Stuxnet</span>
+          <p>Stuxnet, discovered in 2010, was malware widely believed to have been built by the U.S. and Israel. It secretly damaged centrifuges at an
+            Iranian nuclear facility. It showed that code could cause <em>physical</em> destruction and started a new era of cyberwarfare.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: People: The Weakest Link ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "People: The Weakest Link, region". -->
+      <section id="people" aria-labelledby="people-h">
+        <span class="eyebrow">Section 15.3</span>
+        <h2 id="people-h">Vulnerabilities, Part 1: People</h2>
+<p><strong>Social engineering</strong> means tricking people instead of hacking machines. Common tricks include pretending to be the IT help desk, creating
+          fake urgency, <strong>dumpster diving</strong> through trash, and <strong>shoulder surfing</strong> to see someone type a password.</p>
+        <h3>Spot the phish</h3>
+        <p><strong>Phishing</strong> uses fake emails, texts, or sites to steal information or install malware. <strong>Spear phishing</strong> targets a specific
+          person or organization using personal details to look believable. Messages are often <strong>spoofed</strong> to look like they come from someone you trust.</p>
+        <ol class="steps">
+          <li><strong>Urgency or fear</strong>“Your account will be closed in 24 hours!”</li>
+          <li><strong>Mismatched links</strong>Hover over a link. Does the real address match the company?</li>
+          <li><strong>Requests for credentials</strong>Real companies rarely ask for your password by email or text.</li>
+          <li><strong>Too good to be true</strong>Prizes, refunds, or “gift card” requests from the boss.</li>
+        </ol>
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · AI supercharges scams</span>
+          <p>AI writes flawless phishing emails in any language, and <strong>deepfakes</strong> can clone a voice or face. Scammers have used fake
+            video calls of executives to trick employees into wiring millions. If a request involves money or access, verify it through a separate channel.</p>
+        </aside>
+
+        <h3>Passwords, MFA, and passkeys</h3>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Do</span><h3>Long and unique</h3><p>Use a long passphrase and a different password for every site, kept in a password manager. Short passwords fall quickly to <strong>brute-force attacks</strong>.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Do</span><h3>Turn on MFA</h3><p><strong>Multi-factor authentication</strong> (like <strong>2FA</strong>) requires something you know plus something you have or are, like a phone code or a fingerprint.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Better</span><h3>Passkeys</h3><p>Passkeys replace passwords with cryptographic keys stored on your device and unlocked with your face, fingerprint, or PIN. They're very hard to phish.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Also</span><h3>Biometrics</h3><p>Fingerprints, face scans, and <strong>voice-prints</strong> identify you by your body. They're convenient, but you can't change your face if the data leaks.</p></article>
+        </div>
+      </section>
+      <!-- ===== LESSON SECTION: Technology Threats ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Technology Threats, region". -->
+      <section id="tech-threats" aria-labelledby="tech-threats-h">
+        <span class="eyebrow">Section 15.3</span>
+        <h2 id="tech-threats-h">Vulnerabilities, Part 2: Technology</h2>
+<div class="table-wrap">
+          <table>
+            <caption>Types of malware and attacks</caption>
+            <thead><tr><th scope="col">Threat</th><th scope="col">What it does</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Virus</th><td>Malicious code that attaches to a program or file and spreads when it runs</td></tr>
+              <tr><th scope="row">Worm</th><td>Spreads on its own across networks, with no user action needed</td></tr>
+              <tr><th scope="row">Trojan</th><td>Pretends to be something useful while hiding a malicious purpose</td></tr>
+              <tr><th scope="row">Ransomware</th><td>Encrypts your files and demands payment to unlock them</td></tr>
+              <tr><th scope="row">Spyware / keylogger</th><td>Secretly watches activity or records keystrokes</td></tr>
+              <tr><th scope="row">Zero-day exploit</th><td>Attacks a flaw so new that no fix or detection exists yet</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <aside class="callout callout--example" aria-label="For web dev students">
+          <span class="callout__title">For web developers · How SQL injection works</span>
+          <p>A poorly coded login form might paste whatever you type directly into a database query. An attacker types this as their password:</p>
+<pre><code>' OR '1'='1</code></pre>
+          <p>The query becomes “...WHERE password = '' OR '1'='1'”. Since '1'='1' is always true, the attacker gets in.
+            <strong>The fix:</strong> never trust user input. Use parameterized queries (prepared statements) and validate everything.</p>
+        </aside>
+
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Supply chain</span><h3>SolarWinds</h3><p>In 2020, hackers slipped malicious code into a trusted software update from the IT company SolarWinds and used it to get into thousands of organizations, including U.S. government agencies.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">IoT</span><h3>Swiss cheese security</h3><p>Cameras, smart speakers, and appliances often ship with weak default passwords and are rarely updated, which makes them easy targets for botnets.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">AI</span><h3>Push-button hacking</h3><p>Criminal AI tools like “WormGPT” help unskilled attackers write malware and scams.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Physical</span><h3>Don't forget the hardware</h3><p>Stolen laptops, unlocked server rooms, and plug-in devices are threats too.</p></article>
+        </div>
+
+        <aside class="callout callout--why" aria-label="Key idea">
+          <span class="callout__title">Key idea · Encryption</span>
+          <p><strong>Encryption</strong> scrambles data so only someone with the <strong>key</strong> can read it. <strong>Public-key cryptography</strong>
+            uses a key pair: a public key locks the data, and only the matching private key unlocks it. It's what secures HTTPS, and it's why a stolen
+            encrypted phone is mostly useless to a thief.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Taking Action ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Taking Action, region". -->
+      <section id="action" aria-labelledby="action-h">
+        <span class="eyebrow">Section 15.4</span>
+        <h2 id="action-h">Taking Action</h2>
+<h3>As a user</h3>
+        <ul class="goals">
+          <li>Use a password manager, unique passphrases, and MFA or passkeys everywhere you can.</li>
+          <li>Install updates promptly. Most attacks use flaws that already have fixes.</li>
+          <li>Think before you click. Verify unusual requests through another channel.</li>
+          <li>Back up important files, encrypt your devices, and be careful on public Wi-Fi.</li>
+          <li>Limit what you share on social media. Attackers use it to craft believable scams.</li>
+        </ul>
+        <h3>As an organization</h3>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Tech</span><h3>Layered defenses</h3><p><strong>Firewalls</strong>, <strong>intrusion detection systems</strong>, <strong>honeypots</strong> (decoy targets), <strong>blacklists</strong> (block known bad senders), and <strong>whitelists</strong> (allow only approved ones).</p></article>
+          <article class="idea-card"><span class="idea-card__tag">People</span><h3>Education</h3><p>Regular training and practice phishing tests. Everyone, including executives, is a target.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Process</span><h3>Audit &amp; enforce</h3><p>Follow security frameworks and standards. Have red teams probe your defenses, and use AI to spot unusual activity.</p></article>
+        </div>
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · Compliance ≠ security</span>
+          <p>Payment processor Heartland had passed an industry security audit, yet it suffered one of the largest card breaches ever. Checking the
+            boxes on a standard isn't the same as being secure. Security is an ongoing process, not a certificate.</p>
+        </aside>
+      </section>
+
+      <!-- ===== KEY TERMS =====
+           A <dl> (description list) is the right HTML element for
+           term + definition pairs: <dt> = term, <dd> = definition. -->
+      <section id="key-terms" aria-labelledby="key-terms-h">
+        <span class="eyebrow">Vocabulary</span>
+        <h2 id="key-terms-h">Key Terms</h2>
+        <p>Want every term from every module in one place? Try the <a href="../glossary.html">searchable glossary</a>.</p>
+        <dl class="terms">
+          <div>
+            <dt>Data harvesters</dt>
+            <dd>Cybercriminals who break into systems to steal data and resell it.</dd>
+          </div>
+          <div>
+            <dt>Cash-out fraudsters</dt>
+            <dd>Criminals who buy stolen data and use it for financial gain.</dd>
+          </div>
+          <div>
+            <dt>Botnet</dt>
+            <dd>A network of infected computers secretly controlled by an attacker. Also called a zombie network.</dd>
+          </div>
+          <div>
+            <dt>DDoS attack</dt>
+            <dd>Distributed denial of service: flooding a system with traffic until it slows down or crashes.</dd>
+          </div>
+          <div>
+            <dt>Hacktivist</dt>
+            <dd>Someone who uses hacking to make a political point.</dd>
+          </div>
+          <div>
+            <dt>White hat hacker</dt>
+            <dd>An ethical hacker who finds security weaknesses so they can be fixed.</dd>
+          </div>
+          <div>
+            <dt>Black hat hacker</dt>
+            <dd>A computer criminal.</dd>
+          </div>
+          <div>
+            <dt>Red team</dt>
+            <dd>An approved group that plays the attacker to find weaknesses.</dd>
+          </div>
+          <div>
+            <dt>Blue team</dt>
+            <dd>Defensive security staff who protect an organization's systems.</dd>
+          </div>
+          <div>
+            <dt>Social engineering</dt>
+            <dd>Manipulating people into revealing information or granting access.</dd>
+          </div>
+          <div>
+            <dt>Phishing</dt>
+            <dd>A con using fake emails, texts, or sites to steal information or install malware.</dd>
+          </div>
+          <div>
+            <dt>Spear phishing</dt>
+            <dd>Phishing that targets a specific person or organization.</dd>
+          </div>
+          <div>
+            <dt>Spoofing</dt>
+            <dd>Faking the origin of an email or data so it looks like it came from someone else.</dd>
+          </div>
+          <div>
+            <dt>Zero-day exploit</dt>
+            <dd>An attack on a flaw so new that no fix or detection exists yet.</dd>
+          </div>
+          <div>
+            <dt>Malware</dt>
+            <dd>Malicious software such as viruses, worms, trojans, ransomware, and spyware.</dd>
+          </div>
+          <div>
+            <dt>Ransomware</dt>
+            <dd>Malware that encrypts a victim's files and demands payment to unlock them.</dd>
+          </div>
+          <div>
+            <dt>SQL injection</dt>
+            <dd>An attack that sneaks database commands through a website's input fields.</dd>
+          </div>
+          <div>
+            <dt>Script kiddie</dt>
+            <dd>An unskilled attacker who uses ready-made hacking tools.</dd>
+          </div>
+          <div>
+            <dt>Brute-force attack</dt>
+            <dd>Trying every possible password combination until one works.</dd>
+          </div>
+          <div>
+            <dt>Multi-factor authentication (MFA)</dt>
+            <dd>Proving your identity with more than one factor, like a password plus a phone code.</dd>
+          </div>
+          <div>
+            <dt>Passkey</dt>
+            <dd>A password replacement that uses cryptographic keys on your device, unlocked with a biometric or PIN.</dd>
+          </div>
+          <div>
+            <dt>Biometrics</dt>
+            <dd>Identifying people by body characteristics like fingerprints, faces, or voices.</dd>
+          </div>
+          <div>
+            <dt>Encryption</dt>
+            <dd>Scrambling data so only someone with the right key can read it.</dd>
+          </div>
+          <div>
+            <dt>Public-key cryptography</dt>
+            <dd>Encryption that uses a public key to lock data and a matching private key to unlock it.</dd>
+          </div>
+          <div>
+            <dt>Firewall</dt>
+            <dd>A system that blocks unauthorized network traffic while allowing approved traffic.</dd>
+          </div>
+          <div>
+            <dt>Intrusion detection system</dt>
+            <dd>A system that monitors network activity for signs of attack.</dd>
+          </div>
+          <div>
+            <dt>Honeypot</dt>
+            <dd>A fake, tempting target used to lure attackers and study their methods.</dd>
+          </div>
+          <div>
+            <dt>Dumpster diving</dt>
+            <dd>Searching through trash for valuable information.</dd>
+          </div>
+          <div>
+            <dt>Shoulder surfing</dt>
+            <dd>Watching someone, for example over their shoulder, to steal information like a password.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- ===== FLASHCARDS =====
+           Each card is a <button>, so it works with a mouse, a touch
+           screen, AND a keyboard. main.js flips it (section 3). -->
+      <section id="flashcards" aria-labelledby="flashcards-h">
+        <span class="eyebrow">Practice</span>
+        <h2 id="flashcards-h">Flashcards</h2>
+        <p>Say the definition out loud, then flip the card to check yourself. Testing yourself like this
+          (called <strong>retrieval practice</strong>) helps you remember more than rereading does.</p>
+        <button class="btn btn--ghost" type="button" data-shuffle>Shuffle cards</button>
+        <ul class="flashcards">
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Data harvesters<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Cybercriminals who break into systems to steal data and resell it.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Cash-out fraudsters<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Criminals who buy stolen data and use it for financial gain.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Botnet<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A network of infected computers secretly controlled by an attacker. Also called a zombie network.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">DDoS attack<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Distributed denial of service: flooding a system with traffic until it slows down or crashes.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Hacktivist<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Someone who uses hacking to make a political point.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">White hat hacker<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">An ethical hacker who finds security weaknesses so they can be fixed.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Black hat hacker<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A computer criminal.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Red team<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">An approved group that plays the attacker to find weaknesses.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Blue team<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Defensive security staff who protect an organization's systems.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Social engineering<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Manipulating people into revealing information or granting access.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Phishing<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A con using fake emails, texts, or sites to steal information or install malware.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Spear phishing<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Phishing that targets a specific person or organization.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Spoofing<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Faking the origin of an email or data so it looks like it came from someone else.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Zero-day exploit<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">An attack on a flaw so new that no fix or detection exists yet.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Malware<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Malicious software such as viruses, worms, trojans, ransomware, and spyware.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Ransomware<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Malware that encrypts a victim's files and demands payment to unlock them.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">SQL injection<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">An attack that sneaks database commands through a website's input fields.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Script kiddie<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">An unskilled attacker who uses ready-made hacking tools.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Brute-force attack<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Trying every possible password combination until one works.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Multi-factor authentication (MFA)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Proving your identity with more than one factor, like a password plus a phone code.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Passkey<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A password replacement that uses cryptographic keys on your device, unlocked with a biometric or PIN.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Biometrics<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Identifying people by body characteristics like fingerprints, faces, or voices.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Encryption<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Scrambling data so only someone with the right key can read it.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Public-key cryptography<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Encryption that uses a public key to lock data and a matching private key to unlock it.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Firewall<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A system that blocks unauthorized network traffic while allowing approved traffic.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Intrusion detection system<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A system that monitors network activity for signs of attack.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Honeypot<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A fake, tempting target used to lure attackers and study their methods.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Dumpster diving<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Searching through trash for valuable information.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Shoulder surfing<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Watching someone, for example over their shoulder, to steal information like a password.</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===== QUICK CHECK QUIZ =====
+           A <form> with <fieldset>/<legend> groups each question with
+           its choices — screen readers read the question with each option.
+           main.js grades it (section 4). Practice only — not graded. -->
+      <section id="quick-check" aria-labelledby="quick-check-h">
+        <span class="eyebrow">Self-check · Not graded</span>
+        <h2 id="quick-check-h">Quick Check</h2>
+        <form class="quiz" data-quiz>
+          <fieldset data-answer="b" data-explain="Urgency plus a request to log in through a link is a classic phishing pattern.">
+            <legend>1. An email that looks like it's from your college's IT department says your account will be deleted unless you log in through a link right away. This is most likely…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="a">
+              <span>A DDoS attack</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="b">
+              <span>Phishing</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="c">
+              <span>A honeypot</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="d">
+              <span>Encryption</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="The breach began with a third-party heating and air-conditioning vendor&#x27;s stolen login.">
+            <legend>2. Attackers broke into Target's network by first stealing credentials from…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="a">
+              <span>Target's CEO</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="b">
+              <span>An HVAC vendor</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="c">
+              <span>A bank</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="d">
+              <span>A government agency</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Never trust user input. Prepared statements keep input from being treated as database commands.">
+            <legend>3. What's the BEST defense against SQL injection?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="a">
+              <span>Longer passwords</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="b">
+              <span>Parameterized queries and input validation</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="c">
+              <span>Turning off the firewall</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="d">
+              <span>Using a bigger server</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="a" data-explain="It combines something you know (the password) with something you have (the phone).">
+            <legend>4. Logging in with a password plus a code from your phone is an example of…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="a">
+              <span>Multi-factor authentication</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="b">
+              <span>A brute-force attack</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="c">
+              <span>Spoofing</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="d">
+              <span>A zero-day</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Heartland passed an audit and was still breached. Security needs continuous vigilance.">
+            <legend>5. Why doesn't passing a compliance audit guarantee security?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="a">
+              <span>Audits are illegal</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="b">
+              <span>Threats change constantly, so security has to be ongoing, not a one-time checkbox</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="c">
+              <span>Audits only check hardware</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="d">
+              <span>Compliance makes systems slower</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <div class="quiz__actions">
+            <button class="btn" type="submit">Check my answers</button>
+            <button class="btn btn--ghost" type="reset">Try again</button>
+            <p class="quiz__score" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+
+      <!-- ===== MARK COMPLETE (saved in your browser by main.js, section 5) ===== -->
+      <div class="complete-panel">
+        <div>
+          <h2>Finished Module 15?</h2>
+          <p>Track your progress — it shows up on the home page.</p>
+        </div>
+        <!-- aria-pressed makes this a "toggle button" for screen readers -->
+        <button class="btn btn--gold" type="button" data-complete="15" aria-pressed="false">Mark module complete</button>
+      </div>
+
+      <!-- ===== PREVIOUS / NEXT ===== -->
+      <nav class="pager" aria-label="Module navigation">
+        <a href="module-14.html" rel="prev"><span class="pager__dir">← Previous</span>Module 14: Internet &amp; Telecommunications</a>
+        <a class="pager__next" href="module-16.html" rel="next"><span class="pager__dir">Next →</span>Module 16: Google &amp; the Digital Economy</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p><strong>CTS 115: Information Systems Business Concepts</strong> — a student study companion.</p>
+      <p>This site summarizes key ideas in plain language. It does not replace your textbook,
+        <em>Information Systems: A Manager’s Guide to Harnessing Technology</em> (FlatWorld),
+        which has the full readings, cases, and videos. Always check Blackboard for due dates and assignments.</p>
+      <p>Built with plain HTML, CSS, and JavaScript. Curious how it works? Right-click anywhere and choose
+        “View Page Source” — the code is full of comments written for learners.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts go at the END of the body so the HTML loads first.
+       (You could also use the "defer" attribute in the <head>.) -->
+  <script src="../js/main.js"></script>
+</body>
+</html>

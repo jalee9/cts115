@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<!-- The DOCTYPE tells the browser this is a modern HTML5 document. -->
+<!-- lang="en" helps screen readers pronounce words correctly. -->
+<html lang="en">
+<head>
+  <!-- charset: lets the page show any character (é, —, “ ”) correctly -->
+  <meta charset="UTF-8">
+  <!-- viewport: makes the page fit phone screens instead of zooming out -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The description often appears under the link in search results -->
+  <meta name="description" content="Module 14: How the Internet works: URLs, domains, IP addresses, DNS, TCP/IP, routers, broadband, 5G, net neutrality, and Starlink.">
+  <title>Module 14: Internet & Telecommunications | CTS 115 Study Guide</title>
+
+  <!-- Google Fonts: "preconnect" starts the connection early so the font loads faster -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Our one stylesheet. "../" moves up a folder when needed. -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head><body>
+  <!-- Skip link: the first thing a keyboard user reaches with Tab -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- <header> is a "landmark": screen readers can jump straight to it -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../index.html">CTS <span>115</span> Study Guide</a>
+
+      <!-- aria-label names this navigation for screen-reader users -->
+      <nav class="site-nav" aria-label="Main">
+        <!-- aria-expanded tells assistive tech whether the menu is open.
+             aria-controls points to the id of the list it opens. -->
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <ul id="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#modules" aria-current="page">Modules</a></li>
+          <li><a href="../glossary.html">Glossary</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== MODULE BANNER =====
+       Same look as the course banners, built with HTML + CSS
+       (see section 5 of styles.css). -->
+  <div class="hero hero--module">
+    <div class="hero__inner">
+      <p class="module-badge">
+        <span class="module-badge__label">MODULE</span>
+        <span class="module-badge__num">14</span>
+      </p>
+      <div>
+        <!-- Each page has exactly ONE <h1>: the main topic of the page -->
+        <h1>Internet &amp; Telecommunications</h1>
+        <p class="hero__subtitle">Chapter 14: A Manager’s Guide to the Internet and Telecommunications</p>
+        <ul class="chips" aria-label="About this module">
+          <li>≈ 25 min read</li>
+          <li>30 key terms</li>
+          <li>5-question self-check</li>
+        </ul>
+      </div>
+      <svg class="hero__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M24 18l-8 26M24 18l8 26M19 32h10M17 40h14"/><circle cx="24" cy="15" r="3"/><path d="M16 8a12 12 0 0 0 0 14M32 8a12 12 0 0 1 0 14M11 4a18 18 0 0 0 0 22M37 4a18 18 0 0 1 0 22"/></svg>
+    </div>
+  </div>
+
+  <!-- ===== PAGE LAYOUT: sidebar + content (CSS Grid, section 6) ===== -->
+  <div class="page">
+
+    <!-- "On this page" sidebar. It's a <nav> because it's a set of links. -->
+    <nav class="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <ol>
+          <li><a href="#big-picture">The Big Picture</a></li>
+          <li><a href="#goals">What You’ll Learn</a></li>
+          <li><a href="#url">What Are You Looking For?</a></li>
+          <li><a href="#ip-dns">IP Addresses &amp; DNS</a></li>
+          <li><a href="#tcp-ip">TCP/IP &amp; Routers</a></li>
+          <li><a href="#last-mile">The Last Mile</a></li>
+          <li><a href="#starlink">Starlink &amp; LEO</a></li>
+          <li><a href="#key-terms">Key Terms</a></li>
+          <li><a href="#flashcards">Flashcards</a></li>
+          <li><a href="#quick-check">Quick Check</a></li>
+      </ol>
+    </nav>
+
+    <!-- <main> holds the page's unique content. id="main" is where the
+         skip link jumps to. tabindex="-1" lets it receive that focus. -->
+    <main id="main" class="content" tabindex="-1">
+
+      <!-- ===== THE BIG PICTURE: the whole module in a few bullets ===== -->
+      <section id="big-picture" aria-labelledby="big-picture-h">
+        <span class="eyebrow">Start here</span>
+        <h2 id="big-picture-h">The Big Picture</h2>
+        <div class="big-picture">
+          <ul>
+          <li>Every web request answers three questions: <strong>What are you looking for</strong> (the URL)? <strong>Where is it</strong> (the IP address, found through DNS)? <strong>How do we get there</strong> (TCP/IP and routers)?</li>
+          <li>Data travels in small <strong>packets</strong> that can take different routes and are reassembled at the end. That design makes the Internet <strong>fault-tolerant</strong>.</li>
+          <li>The slowest link is usually the <strong>last mile</strong> to your home, whether that's DSL, cable, fiber, 5G, or satellite.</li>
+          <li><strong>Net neutrality</strong> asks whether ISPs should treat all traffic equally. It's still debated.</li>
+          <li>Low-orbit satellite networks like <strong>Starlink</strong> bring Internet access to remote places and concentrate a lot of power in one firm.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== LEARNING GOALS ===== -->
+      <section id="goals" aria-labelledby="goals-h">
+        <span class="eyebrow">Your goals</span>
+        <h2 id="goals-h">What You’ll Learn</h2>
+        <p>By the end of this module, you should be able to:</p>
+        <ul class="goals">
+          <li>Explain how a URL, host, domain, IP address, and DNS work together.</li>
+          <li>Describe domain registration, top-level domains, and cybersquatting.</li>
+          <li>Explain the roles of TCP, IP, UDP, packets, and routers.</li>
+          <li>Contrast circuit switching with packet switching, and explain VoIP.</li>
+          <li>Compare last-mile technologies: DSL, cable, fiber, 5G, Wi-Fi, and satellite.</li>
+          <li>Present arguments for and against net neutrality.</li>
+          <li>Compare LEO, GEO, and terrestrial networks, and discuss Starlink's impact.</li>
+        </ul>
+      </section>
+
+      <!-- ===== LESSON SECTION: What Are You Looking For? ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "What Are You Looking For?, region". -->
+      <section id="url" aria-labelledby="url-h">
+        <span class="eyebrow">Section 14.2</span>
+        <h2 id="url-h">The URL: “What Are You Looking For?”</h2>
+<p>A <strong>URL</strong> (web address) names a resource and the <strong>protocol</strong> used to get it. Here's one taken apart:</p>
+
+        <figure class="diagram">
+          <svg viewBox="0 0 760 210" role="img" aria-labelledby="url-title url-desc">
+            <title id="url-title">Parts of a URL</title>
+            <desc id="url-desc">The URL https://www.waketech.edu/programs/index.html broken into parts: https is the protocol;
+              www is the host; waketech.edu is the domain name, with .edu as the top-level domain; /programs/ is the path; and
+              index.html is the file name.</desc>
+            <g text-anchor="middle">
+              <rect x="20"  y="60" width="110" height="50" rx="8" fill="#0b2f5b"/><text x="75"  y="93" style="font-family:monospace;font-size:20px;fill:#fbc04a">https://</text>
+              <rect x="135" y="60" width="65"  height="50" rx="8" fill="#0a6a9c"/><text x="167" y="93" style="font-family:monospace;font-size:20px;fill:#fff">www.</text>
+              <rect x="205" y="60" width="185" height="50" rx="8" fill="#29a9e0"/><text x="297" y="93" style="font-family:monospace;font-size:20px;fill:#071f3d">waketech.edu</text>
+              <rect x="395" y="60" width="140" height="50" rx="8" fill="#fbc04a"/><text x="465" y="93" style="font-family:monospace;font-size:20px;fill:#071f3d">/programs/</text>
+              <rect x="540" y="60" width="150" height="50" rx="8" fill="#e3edf8"/><text x="615" y="93" style="font-family:monospace;font-size:20px;fill:#071f3d">index.html</text>
+            </g>
+            <g text-anchor="middle">
+              <text x="75" y="145" class="svg-label">Protocol</text><text x="75" y="165" class="svg-small">how to talk</text>
+              <text x="167" y="145" class="svg-label">Host</text><text x="167" y="165" class="svg-small">which server</text>
+              <text x="297" y="145" class="svg-label">Domain name</text><text x="297" y="165" class="svg-small">.edu = top-level domain</text>
+              <text x="465" y="145" class="svg-label">Path</text><text x="465" y="165" class="svg-small">folder</text>
+              <text x="615" y="145" class="svg-label">File name</text><text x="615" y="165" class="svg-small">the page itself</text>
+            </g>
+            <text x="20" y="35" class="svg-title">https://www.waketech.edu/programs/index.html</text>
+          </svg>
+          <figcaption>Every part of a URL tells your browser something about what to fetch and how to fetch it.</figcaption>
+        </figure>
+
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Protocol</span><h3>http vs. https</h3><p><strong>HTTP</strong> lets browsers and servers talk. The “s” in <strong>HTTPS</strong> means the link is encrypted (originally with <strong>SSL</strong>, now its successor, TLS). Look for it before typing a password.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Domains</span><h3>Who's in charge?</h3><p><strong>ICANN</strong> manages domain names. Top-level domains include .com, country codes like .uk (<strong>ccTLDs</strong>), and restricted ones like .edu (<strong>sTLDs</strong>).</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Watch out</span><h3>Cybersquatting</h3><p>Registering a domain that uses someone else's trademark, hoping to profit. It's illegal in many countries.</p></article>
+        </div>
+        <aside class="callout callout--why" aria-label="For web dev students">
+          <span class="callout__title">Connect it to this site</span>
+          <p>This study guide is written in <strong>HTML</strong> (the language of web pages) and hosted by GitHub Pages, a
+            <strong>web hosting service</strong>. Big sites use <strong>load balancing</strong> to spread visitors across many servers.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: IP Addresses &amp;amp; DNS ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "IP Addresses &amp;amp; DNS, region". -->
+      <section id="ip-dns" aria-labelledby="ip-dns-h">
+        <span class="eyebrow">Section 14.2</span>
+        <h2 id="ip-dns-h">IP Addresses and DNS: “Where Is It?”</h2>
+<p>Computers find each other with numeric <strong>IP addresses</strong>, like <code>192.168.10.5</code> (four numbers from 0 to 255).
+          The <strong>DNS</strong> (domain name system) is the Internet's phonebook: it translates <em>waketech.edu</em> into an IP address.</p>
+        <ol class="steps">
+          <li><strong>You type a URL</strong>Your browser first checks its <strong>cache</strong> (temporary memory) to see if it already knows the IP address.</li>
+          <li><strong>Ask DNS</strong>If not, a chain of DNS servers looks up the domain and returns its IP address.</li>
+          <li><strong>Connect</strong>Your browser contacts the server at that IP address and requests the page.</li>
+        </ol>
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">The Internet is full! (sort of)</span>
+          <p>The original IPv4 system has only about 4.3 billion addresses, and we've run out. <strong>NAT</strong> lets many home devices share
+            one public address. The newer <strong>IPv6</strong> system has trillions upon trillions of addresses.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: TCP/IP &amp;amp; Routers ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "TCP/IP &amp;amp; Routers, region". -->
+      <section id="tcp-ip" aria-labelledby="tcp-ip-h">
+        <span class="eyebrow">Section 14.3</span>
+        <h2 id="tcp-ip-h">TCP/IP: “How Do We Get There?”</h2>
+<p>Everything sent online, whether it's a page, an email, or a video, is chopped into small <strong>packets</strong>. Each one is stamped with where it's going.</p>
+
+        <figure class="diagram">
+          <svg viewBox="0 0 760 260" role="img" aria-labelledby="pk-title pk-desc">
+            <title id="pk-title">Packets take different routes</title>
+            <desc id="pk-desc">A message on the left is split into packets 1, 2, and 3. They travel through a mesh of routers
+              by different paths and are reassembled in order on the right. TCP checks that every packet arrived; IP and
+              routers move them.</desc>
+            <g stroke="#dbe3ee" stroke-width="3">
+              <line x1="170" y1="130" x2="300" y2="60"/><line x1="170" y1="130" x2="300" y2="200"/><line x1="300" y1="60" x2="450" y2="60"/>
+              <line x1="300" y1="200" x2="450" y2="200"/><line x1="300" y1="60" x2="450" y2="200"/><line x1="450" y1="60" x2="590" y2="130"/>
+              <line x1="450" y1="200" x2="590" y2="130"/><line x1="300" y1="200" x2="450" y2="60"/>
+            </g>
+            <g fill="#0b2f5b">
+              <circle cx="300" cy="60" r="16"/><circle cx="300" cy="200" r="16"/><circle cx="450" cy="60" r="16"/><circle cx="450" cy="200" r="16"/>
+            </g>
+            <g text-anchor="middle" class="svg-small"><text x="300" y="30">router</text><text x="450" y="30">router</text><text x="300" y="240">router</text><text x="450" y="240">router</text></g>
+            <!-- packets -->
+            <g text-anchor="middle">
+              <rect x="358" y="42" width="34" height="34" rx="5" fill="#fbc04a"/><text x="375" y="65" class="svg-label">1</text>
+              <rect x="358" y="182" width="34" height="34" rx="5" fill="#fbc04a"/><text x="375" y="205" class="svg-label">2</text>
+              <rect x="358" y="112" width="34" height="34" rx="5" fill="#fbc04a"/><text x="375" y="135" class="svg-label">3</text>
+            </g>
+            <rect x="20" y="95" width="150" height="70" rx="10" fill="#29a9e0"/><text x="95" y="127" text-anchor="middle" class="svg-label">Your message</text><text x="95" y="147" text-anchor="middle" class="svg-small" style="fill:#071f3d">split into packets</text>
+            <rect x="590" y="95" width="150" height="70" rx="10" fill="#29a9e0"/><text x="665" y="127" text-anchor="middle" class="svg-label">Reassembled</text><text x="665" y="147" text-anchor="middle" class="svg-small" style="fill:#071f3d">in order: 1, 2, 3</text>
+          </svg>
+          <figcaption>Packets can take different paths. If one route fails, routers send traffic another way.</figcaption>
+        </figure>
+
+        <div class="table-wrap">
+          <table>
+            <caption>The Internet's key protocols</caption>
+            <thead><tr><th scope="col">Protocol</th><th scope="col">Job</th><th scope="col">Used for</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">IP</th><td>Addresses packets and forwards them toward their destination</td><td>Everything</td></tr>
+              <tr><th scope="row">TCP</th><td>Makes sure every packet arrives, in order, with no errors, and resends any that get lost</td><td>Web pages, email, file downloads</td></tr>
+              <tr><th scope="row">UDP</th><td>Sends fast with no delivery guarantees</td><td>Live video calls, gaming, streaming, where speed beats perfection</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Routers</strong> connect networks and pass packets along. Different ISPs swap traffic through <strong>peering</strong>, often in shared
+          buildings called <strong>colocation facilities</strong>. You can watch the path your packets take with a tool called <em>traceroute</em>.</p>
+
+        <aside class="callout callout--example" aria-label="Key concept">
+          <span class="callout__title">Circuit vs. packet switching · VoIP</span>
+          <p>Old phone calls reserved a dedicated circuit for the whole call (<strong>circuit switching</strong>). The Internet shares lines
+            among many users' packets (<strong>packet switching</strong>), which is much more efficient. <strong>VoIP</strong> makes phone calls just another
+            Internet app. That's how WhatsApp and Zoom calls work.</p>
+        </aside>
+        <aside class="callout callout--example" aria-label="Real-world example">
+          <span class="callout__title">Real-world example · Finance needs speed</span>
+          <p>High-frequency traders pay huge sums to put their servers right next to stock exchanges and use the fastest routes,
+            because a few millionths of a second can mean millions of dollars. Automated trading can also cause sudden market crashes.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: The Last Mile ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "The Last Mile, region". -->
+      <section id="last-mile" aria-labelledby="last-mile-h">
+        <span class="eyebrow">Section 14.4</span>
+        <h2 id="last-mile-h">The Last Mile: Faster Speed, Broader Access</h2>
+<p>The <strong>Internet backbone</strong> (including undersea cables) is incredibly fast. The bottleneck is usually the
+          <strong>last mile</strong> into homes and businesses. <strong>Amdahl's Law</strong> says a system is only as fast as its slowest part.
+          <strong>Bandwidth</strong> (speed) is measured in bits per second.</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Last-mile broadband options</caption>
+            <thead><tr><th scope="col">Technology</th><th scope="col">How it works</th><th scope="col">Trade-offs</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">DSL</th><td>Phone company copper wires</td><td>Widely available but slow, and it slows down with distance</td></tr>
+              <tr><th scope="row">Cable</th><td><strong>Coaxial cable</strong> from TV providers</td><td>Fast, but neighbors share capacity</td></tr>
+              <tr><th scope="row">Fiber (FTTH)</th><td>Light through glass fiber to the home</td><td>Fastest, but expensive to install</td></tr>
+              <tr><th scope="row">5G and mobile</th><td>Cell towers using licensed <strong>wireless spectrum</strong></td><td>Mobile. Speeds vary a lot by type of 5G.</td></tr>
+              <tr><th scope="row">Wi-Fi and Bluetooth</th><td>Short-range wireless on unlicensed spectrum</td><td>Great locally, but not a last-mile solution by itself</td></tr>
+              <tr><th scope="row">Satellite</th><td>GEO (high orbit) or LEO (low orbit) satellites</td><td>Reaches remote areas. GEO has high delay (latency).</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="callout callout--example" aria-label="Debate">
+          <span class="callout__title">Debate · Net neutrality</span>
+          <p><strong>Net neutrality</strong> is the idea that ISPs should treat all traffic equally, without blocking, slowing, or charging extra
+            for certain sites. <strong>Supporters</strong> say it protects free speech, competition, and startups. <strong>Critics</strong> say it
+            discourages ISPs from investing in faster networks. U.S. rules have flipped back and forth with each administration. A federal court struck
+            down the latest federal rules in early 2025, and some states have their own laws.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Starlink &amp;amp; LEO ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Starlink &amp;amp; LEO, region". -->
+      <section id="starlink" aria-labelledby="starlink-h">
+        <span class="eyebrow">Section 14.5</span>
+        <h2 id="starlink-h">To Infinity and Beyond: SpaceX Starlink</h2>
+<div class="table-wrap">
+          <table>
+            <caption>Three ways to deliver connectivity</caption>
+            <thead><tr><th scope="col"></th><th scope="col">Terrestrial</th><th scope="col">GEO satellites</th><th scope="col">LEO satellites</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Where</th><td>On the ground (fiber, cable, cell towers)</td><td>About 22,000 miles up, fixed over one spot</td><td>Under 1,200 miles up (Starlink is about 340 miles)</td></tr>
+              <tr><th scope="row">Delay</th><td>Lowest</td><td>High</td><td>Low</td></tr>
+              <tr><th scope="row">Satellites needed</th><td>None</td><td>A few cover much of the globe</td><td>Thousands, constantly moving</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>SpaceX's reusable rockets made it affordable to launch thousands of Starlink satellites. The service now connects rural homes,
+          ships, planes, disaster zones, and even battlefields.</p>
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · Power and space junk</span>
+          <p>When one company, and one person, controls critical infrastructure used by militaries and governments, it raises serious
+            questions about accountability. Thousands of satellites also raise the risk of the <strong>Kessler effect</strong>: a chain
+            reaction of space-debris collisions.</p>
+        </aside>
+      </section>
+
+      <!-- ===== KEY TERMS =====
+           A <dl> (description list) is the right HTML element for
+           term + definition pairs: <dt> = term, <dd> = definition. -->
+      <section id="key-terms" aria-labelledby="key-terms-h">
+        <span class="eyebrow">Vocabulary</span>
+        <h2 id="key-terms-h">Key Terms</h2>
+        <p>Want every term from every module in one place? Try the <a href="../glossary.html">searchable glossary</a>.</p>
+        <dl class="terms">
+          <div>
+            <dt>ISP</dt>
+            <dd>Internet service provider: a company that provides Internet access.</dd>
+          </div>
+          <div>
+            <dt>URL</dt>
+            <dd>A web address that identifies a resource and the protocol used to retrieve it.</dd>
+          </div>
+          <div>
+            <dt>Protocol</dt>
+            <dd>Agreed-upon rules and formats that let devices communicate.</dd>
+          </div>
+          <div>
+            <dt>HTTP / HTTPS</dt>
+            <dd>The protocol browsers and web servers use to talk. HTTPS adds encryption.</dd>
+          </div>
+          <div>
+            <dt>SSL</dt>
+            <dd>Secure Sockets Layer: a security standard that encrypts the link between a browser and a server. Today's version is called TLS.</dd>
+          </div>
+          <div>
+            <dt>ICANN</dt>
+            <dd>The nonprofit that manages the Internet's domain name and numbering systems.</dd>
+          </div>
+          <div>
+            <dt>Cybersquatting</dt>
+            <dd>Registering a domain using someone else's trademark or name to profit from it.</dd>
+          </div>
+          <div>
+            <dt>HTML</dt>
+            <dd>Hypertext Markup Language: the language used to build web pages.</dd>
+          </div>
+          <div>
+            <dt>IP address</dt>
+            <dd>A numeric address that identifies a device on the Internet.</dd>
+          </div>
+          <div>
+            <dt>DNS</dt>
+            <dd>Domain name system: the Internet's directory, which translates domain names into IP addresses.</dd>
+          </div>
+          <div>
+            <dt>NAT</dt>
+            <dd>Network address translation: lets many devices on a private network share one public IP address.</dd>
+          </div>
+          <div>
+            <dt>Cache</dt>
+            <dd>Temporary storage that speeds up repeated tasks.</dd>
+          </div>
+          <div>
+            <dt>Load balancing</dt>
+            <dd>Spreading work across multiple servers to avoid slowdowns.</dd>
+          </div>
+          <div>
+            <dt>Fault tolerance</dt>
+            <dd>A system's ability to keep working even when a part fails.</dd>
+          </div>
+          <div>
+            <dt>Packet</dt>
+            <dd>A small unit of data sent across a network.</dd>
+          </div>
+          <div>
+            <dt>TCP</dt>
+            <dd>Transmission Control Protocol: makes sure all packets arrive correctly and in order.</dd>
+          </div>
+          <div>
+            <dt>IP (Internet Protocol)</dt>
+            <dd>The protocol that addresses and routes packets across the Internet.</dd>
+          </div>
+          <div>
+            <dt>UDP</dt>
+            <dd>User Datagram Protocol: a faster protocol without delivery guarantees, used for live video and gaming.</dd>
+          </div>
+          <div>
+            <dt>Router</dt>
+            <dd>A device that connects networks and forwards packets between them.</dd>
+          </div>
+          <div>
+            <dt>VoIP</dt>
+            <dd>Voice over IP: phone calls carried over the Internet.</dd>
+          </div>
+          <div>
+            <dt>Peering</dt>
+            <dd>When ISPs connect their networks directly to swap traffic.</dd>
+          </div>
+          <div>
+            <dt>Last mile</dt>
+            <dd>The connection between the Internet and a home or business. It's usually the slowest part.</dd>
+          </div>
+          <div>
+            <dt>Bandwidth</dt>
+            <dd>How much data a connection can carry, measured in bits per second.</dd>
+          </div>
+          <div>
+            <dt>Broadband</dt>
+            <dd>A general term for high-speed Internet connections.</dd>
+          </div>
+          <div>
+            <dt>Fiber to the home (FTTH)</dt>
+            <dd>Broadband delivered over fiber-optic cables to the home.</dd>
+          </div>
+          <div>
+            <dt>Wireless spectrum</dt>
+            <dd>The radio frequencies used for wireless communication.</dd>
+          </div>
+          <div>
+            <dt>Net neutrality</dt>
+            <dd>The principle that ISPs should treat all Internet traffic equally.</dd>
+          </div>
+          <div>
+            <dt>LEO</dt>
+            <dd>Low Earth orbit: satellites under about 1,200 miles up, offering low delay.</dd>
+          </div>
+          <div>
+            <dt>GEO</dt>
+            <dd>Geosynchronous Earth orbit: satellites about 22,000 miles up that stay over one spot.</dd>
+          </div>
+          <div>
+            <dt>Kessler effect</dt>
+            <dd>A feared chain reaction of space-debris collisions creating more debris.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- ===== FLASHCARDS =====
+           Each card is a <button>, so it works with a mouse, a touch
+           screen, AND a keyboard. main.js flips it (section 3). -->
+      <section id="flashcards" aria-labelledby="flashcards-h">
+        <span class="eyebrow">Practice</span>
+        <h2 id="flashcards-h">Flashcards</h2>
+        <p>Say the definition out loud, then flip the card to check yourself. Testing yourself like this
+          (called <strong>retrieval practice</strong>) helps you remember more than rereading does.</p>
+        <button class="btn btn--ghost" type="button" data-shuffle>Shuffle cards</button>
+        <ul class="flashcards">
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">ISP<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Internet service provider: a company that provides Internet access.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">URL<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A web address that identifies a resource and the protocol used to retrieve it.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Protocol<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Agreed-upon rules and formats that let devices communicate.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">HTTP / HTTPS<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The protocol browsers and web servers use to talk. HTTPS adds encryption.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">SSL<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Secure Sockets Layer: a security standard that encrypts the link between a browser and a server. Today's version is called TLS.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">ICANN<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The nonprofit that manages the Internet's domain name and numbering systems.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Cybersquatting<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Registering a domain using someone else's trademark or name to profit from it.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">HTML<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Hypertext Markup Language: the language used to build web pages.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">IP address<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A numeric address that identifies a device on the Internet.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">DNS<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Domain name system: the Internet's directory, which translates domain names into IP addresses.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">NAT<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Network address translation: lets many devices on a private network share one public IP address.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Cache<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Temporary storage that speeds up repeated tasks.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Load balancing<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Spreading work across multiple servers to avoid slowdowns.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Fault tolerance<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A system's ability to keep working even when a part fails.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Packet<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A small unit of data sent across a network.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">TCP<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Transmission Control Protocol: makes sure all packets arrive correctly and in order.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">IP (Internet Protocol)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The protocol that addresses and routes packets across the Internet.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">UDP<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">User Datagram Protocol: a faster protocol without delivery guarantees, used for live video and gaming.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Router<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A device that connects networks and forwards packets between them.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">VoIP<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Voice over IP: phone calls carried over the Internet.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Peering<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">When ISPs connect their networks directly to swap traffic.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Last mile<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The connection between the Internet and a home or business. It's usually the slowest part.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Bandwidth<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">How much data a connection can carry, measured in bits per second.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Broadband<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A general term for high-speed Internet connections.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Fiber to the home (FTTH)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Broadband delivered over fiber-optic cables to the home.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Wireless spectrum<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The radio frequencies used for wireless communication.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Net neutrality<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The principle that ISPs should treat all Internet traffic equally.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">LEO<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Low Earth orbit: satellites under about 1,200 miles up, offering low delay.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">GEO<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Geosynchronous Earth orbit: satellites about 22,000 miles up that stay over one spot.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Kessler effect<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A feared chain reaction of space-debris collisions creating more debris.</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===== QUICK CHECK QUIZ =====
+           A <form> with <fieldset>/<legend> groups each question with
+           its choices — screen readers read the question with each option.
+           main.js grades it (section 4). Practice only — not graded. -->
+      <section id="quick-check" aria-labelledby="quick-check-h">
+        <span class="eyebrow">Self-check · Not graded</span>
+        <h2 id="quick-check-h">Quick Check</h2>
+        <form class="quiz" data-quiz>
+          <fieldset data-answer="b" data-explain="DNS works like a phonebook, matching domain names to IP addresses.">
+            <legend>1. Which system translates “amazon.com” into an IP address?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="a">
+              <span>TCP</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="b">
+              <span>DNS</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="c">
+              <span>HTML</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="d">
+              <span>NAT</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="UDP favors speed over guaranteed delivery, which suits live audio and video.">
+            <legend>2. During a video call, a few lost packets are better than a delay. Which protocol fits best?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="a">
+              <span>TCP</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="b">
+              <span>UDP</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="c">
+              <span>FTP</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="d">
+              <span>SSL</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="c" data-explain="The path is the folder location on the server, between the domain and the file name.">
+            <legend>3. In https://www.example.com/shop/cart.html, what is “/shop/”?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="a">
+              <span>The protocol</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="b">
+              <span>The domain</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="c">
+              <span>The path</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="d">
+              <span>The top-level domain</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="The last mile into homes is usually the bottleneck. Amdahl&#x27;s Law says the slowest part limits the whole system.">
+            <legend>4. Your home connection is often the slowest part of your Internet experience. This is the…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="a">
+              <span>Backbone problem</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="b">
+              <span>Last-mile problem</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="c">
+              <span>Kessler effect</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="d">
+              <span>Peering problem</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Signals travel a much shorter distance to satellites a few hundred miles up than to ones about 22,000 miles up.">
+            <legend>5. Why do LEO satellites like Starlink have lower delay than GEO satellites?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="a">
+              <span>They use fiber</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="b">
+              <span>They orbit much closer to Earth</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="c">
+              <span>They're stationary</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="d">
+              <span>They use DSL</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <div class="quiz__actions">
+            <button class="btn" type="submit">Check my answers</button>
+            <button class="btn btn--ghost" type="reset">Try again</button>
+            <p class="quiz__score" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+
+      <!-- ===== MARK COMPLETE (saved in your browser by main.js, section 5) ===== -->
+      <div class="complete-panel">
+        <div>
+          <h2>Finished Module 14?</h2>
+          <p>Track your progress — it shows up on the home page.</p>
+        </div>
+        <!-- aria-pressed makes this a "toggle button" for screen readers -->
+        <button class="btn btn--gold" type="button" data-complete="14" aria-pressed="false">Mark module complete</button>
+      </div>
+
+      <!-- ===== PREVIOUS / NEXT ===== -->
+      <nav class="pager" aria-label="Module navigation">
+        <a href="module-13.html" rel="prev"><span class="pager__dir">← Previous</span>Module 13: Digital Advertising &amp; Privacy</a>
+        <a class="pager__next" href="module-15.html" rel="next"><span class="pager__dir">Next →</span>Module 15: Information Security</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p><strong>CTS 115: Information Systems Business Concepts</strong> — a student study companion.</p>
+      <p>This site summarizes key ideas in plain language. It does not replace your textbook,
+        <em>Information Systems: A Manager’s Guide to Harnessing Technology</em> (FlatWorld),
+        which has the full readings, cases, and videos. Always check Blackboard for due dates and assignments.</p>
+      <p>Built with plain HTML, CSS, and JavaScript. Curious how it works? Right-click anywhere and choose
+        “View Page Source” — the code is full of comments written for learners.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts go at the END of the body so the HTML loads first.
+       (You could also use the "defer" attribute in the <head>.) -->
+  <script src="../js/main.js"></script>
+</body>
+</html>

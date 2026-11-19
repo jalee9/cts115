@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<!-- The DOCTYPE tells the browser this is a modern HTML5 document. -->
+<!-- lang="en" helps screen readers pronounce words correctly. -->
+<html lang="en">
+<head>
+  <!-- charset: lets the page show any character (é, —, “ ”) correctly -->
+  <meta charset="UTF-8">
+  <!-- viewport: makes the page fit phone screens instead of zooming out -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The description often appears under the link in search results -->
+  <meta name="description" content="Module 16: How Google search, PageRank, and SEO work; the search ad auction; ad networks; AI&#x27;s threat to search; and Alphabet&#x27;s many fronts.">
+  <title>Module 16: Google & the Digital Economy | CTS 115 Study Guide</title>
+
+  <!-- Google Fonts: "preconnect" starts the connection early so the font loads faster -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Our one stylesheet. "../" moves up a folder when needed. -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head><body>
+  <!-- Skip link: the first thing a keyboard user reaches with Tab -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- <header> is a "landmark": screen readers can jump straight to it -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../index.html">CTS <span>115</span> Study Guide</a>
+
+      <!-- aria-label names this navigation for screen-reader users -->
+      <nav class="site-nav" aria-label="Main">
+        <!-- aria-expanded tells assistive tech whether the menu is open.
+             aria-controls points to the id of the list it opens. -->
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <ul id="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#modules" aria-current="page">Modules</a></li>
+          <li><a href="../glossary.html">Glossary</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== MODULE BANNER =====
+       Same look as the course banners, built with HTML + CSS
+       (see section 5 of styles.css). -->
+  <div class="hero hero--module">
+    <div class="hero__inner">
+      <p class="module-badge">
+        <span class="module-badge__label">MODULE</span>
+        <span class="module-badge__num">16</span>
+      </p>
+      <div>
+        <!-- Each page has exactly ONE <h1>: the main topic of the page -->
+        <h1>Google &amp; the Digital Economy</h1>
+        <p class="hero__subtitle">Chapter 16: Google in Three Parts: Search, Online Advertising, and an Alphabet of Opportunity</p>
+        <ul class="chips" aria-label="About this module">
+          <li>≈ 25 min read</li>
+          <li>18 key terms</li>
+          <li>5-question self-check</li>
+        </ul>
+      </div>
+      <svg class="hero__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="28" cy="19" r="12"/><path d="M19 28L6 41"/></svg>
+    </div>
+  </div>
+
+  <!-- ===== PAGE LAYOUT: sidebar + content (CSS Grid, section 6) ===== -->
+  <div class="page">
+
+    <!-- "On this page" sidebar. It's a <nav> because it's a set of links. -->
+    <nav class="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <ol>
+          <li><a href="#big-picture">The Big Picture</a></li>
+          <li><a href="#goals">What You’ll Learn</a></li>
+          <li><a href="#why-google">Why Study Google?</a></li>
+          <li><a href="#search">How Search Works</a></li>
+          <li><a href="#search-ads">Search Advertising</a></li>
+          <li><a href="#ad-network">The Ad Network</a></li>
+          <li><a href="#genai-search">AI &amp; the Future of Search</a></li>
+          <li><a href="#alphabet">Alphabet’s Many Fronts</a></li>
+          <li><a href="#key-terms">Key Terms</a></li>
+          <li><a href="#flashcards">Flashcards</a></li>
+          <li><a href="#quick-check">Quick Check</a></li>
+      </ol>
+    </nav>
+
+    <!-- <main> holds the page's unique content. id="main" is where the
+         skip link jumps to. tabindex="-1" lets it receive that focus. -->
+    <main id="main" class="content" tabindex="-1">
+
+      <!-- ===== THE BIG PICTURE: the whole module in a few bullets ===== -->
+      <section id="big-picture" aria-labelledby="big-picture-h">
+        <span class="eyebrow">Start here</span>
+        <h2 id="big-picture-h">The Big Picture</h2>
+        <div class="big-picture">
+          <ul>
+          <li>Google turned search into one of the most profitable businesses in history. Its parent company, <strong>Alphabet</strong>, now competes on many fronts.</li>
+          <li>Search works by <strong>crawling</strong> the web, <strong>indexing</strong> pages, and <strong>ranking</strong> them. PageRank treats links as votes. Firms compete for rank with <strong>SEO</strong>.</li>
+          <li>Most of Google's money comes from <strong>search ads</strong> sold in an auction where <strong>quality matters as much as the bid</strong>.</li>
+          <li>Google's <strong>ad network</strong> places ads on millions of other sites using <strong>contextual advertising</strong>.</li>
+          <li><strong>Generative AI</strong> is both Google's biggest opportunity and a threat to its core business, which fits the classic disruption pattern.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== LEARNING GOALS ===== -->
+      <section id="goals" aria-labelledby="goals-h">
+        <span class="eyebrow">Your goals</span>
+        <h2 id="goals-h">What You’ll Learn</h2>
+        <p>By the end of this module, you should be able to:</p>
+        <ul class="goals">
+          <li>Explain how Google crawls, indexes, and ranks web pages, and what SEO is.</li>
+          <li>Explain how Google's search ad auction works, including pay-per-click, quality score, and CTR.</li>
+          <li>Describe how ad networks distribute ads beyond search, and the content adjacency problem.</li>
+          <li>Explain why generative AI threatens Google's search business and how Google is responding.</li>
+          <li>Evaluate Alphabet's other businesses (Android, YouTube, Cloud, Waymo) and the challenges they face.</li>
+        </ul>
+      </section>
+
+      <!-- ===== LESSON SECTION: Why Study Google? ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Why Study Google?, region". -->
+      <section id="why-google" aria-labelledby="why-google-h">
+        <span class="eyebrow">Section 16.1</span>
+        <h2 id="why-google-h">Why Study Google?</h2>
+<p>Founded in 1998 by Stanford grad students Larry Page and Sergey Brin, Google became the world's dominant search engine and one of the
+          most valuable firms by <strong>market cap</strong>. In 2015 it reorganized under a parent company, <strong>Alphabet</strong>, so it could manage
+          “moonshots” like self-driving cars separately from search.</p>
+        <aside class="callout callout--why" aria-label="Key idea">
+          <span class="callout__title">Why it matters</span>
+          <p>Google shows nearly every concept in this course in action: network effects, scale, data as an asset, platforms, the cloud, AI,
+            privacy, regulation, and now the threat of disruption to its own core business.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: How Search Works ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "How Search Works, region". -->
+      <section id="search" aria-labelledby="search-h">
+        <span class="eyebrow">Section 16.2</span>
+        <h2 id="search-h">Understanding Search</h2>
+<ol class="steps">
+          <li><strong>Crawl</strong>Software robots called <strong>spiders</strong> or <strong>web crawlers</strong> follow links from page to page, discovering content.</li>
+          <li><strong>Index</strong>Google stores and organizes what it finds, like a giant book index, in a <strong>cache</strong> across its data centers.</li>
+          <li><strong>Rank</strong>When you search (a <strong>query</strong>), algorithms rank the matching pages. These unpaid results are called <strong>organic</strong> (or natural) search.</li>
+        </ol>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Algorithm</span><h3>PageRank</h3><p>Larry Page's insight: a link to a page is like a vote. Links from important pages count more. Today Google uses hundreds of signals.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Marketing</span><h3>SEO</h3><p><strong>Search engine optimization</strong> means improving a page so it ranks higher in organic results, with useful content, fast pages, and good links.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Watch out</span><h3>Link fraud</h3><p>Fake sites built just to link to each other (“link farms”) to game rankings. Google can punish cheaters by dropping them from results entirely.</p></article>
+        </div>
+        <aside class="callout callout--example" aria-label="Behind the scenes">
+          <span class="callout__title">Behind the scenes · Google's infrastructure</span>
+          <p>Google runs huge, custom-built data centers around the world, designed for <strong>fault tolerance</strong>: when servers fail, others take over
+            instantly. Its scale and engineering are a competitive advantage that's very hard to copy. Some content, in the <strong>deep web</strong>, can't be indexed at all.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Search Advertising ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Search Advertising, region". -->
+      <section id="search-ads" aria-labelledby="search-ads-h">
+        <span class="eyebrow">Section 16.3</span>
+        <h2 id="search-ads-h">Search Advertising: How Google Makes Money</h2>
+<p>The ads above and beside search results are <strong>keyword ads</strong>, matched to what you searched. Advertisers usually pay
+          <strong>per click</strong> (PPC), and designing these campaigns is called <strong>search engine marketing (SEM)</strong>. Ads people are searching for
+          right now are extremely valuable. The searcher is telling Google exactly what they want.</p>
+
+        <h3>The ad auction: it's not just the highest bid</h3>
+        <p>Google ranks ads using the bid <strong>and</strong> a <strong>quality score</strong>. The quality score is based on expected <strong>click-through rate (CTR)</strong>,
+          the ad's relevance, and the <strong>landing page</strong> experience. Here's a simplified example:</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Simplified ad rank = max bid × quality score</caption>
+            <thead><tr><th scope="col">Advertiser</th><th scope="col">Max bid per click</th><th scope="col">Quality score (1–10)</th><th scope="col">Ad rank</th><th scope="col">Position</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Shoe Shop A</th><td>$4.00</td><td>3</td><td>12</td><td>3rd</td></tr>
+              <tr><th scope="row">Shoe Shop B</th><td>$2.00</td><td>9</td><td>18</td><td><strong>1st</strong></td></tr>
+              <tr><th scope="row">Shoe Shop C</th><td>$3.00</td><td>5</td><td>15</td><td>2nd</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="callout callout--why" aria-label="Why it matters">
+          <span class="callout__title">Why this design is smart</span>
+          <p>Shop B wins the top spot while bidding the <em>least</em>, because people actually click its relevant ad. Google earns money only on
+            clicks, so relevant ads mean more revenue for Google <em>and</em> a better experience for searchers.</p>
+        </aside>
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Challenge · Mobile apps</span>
+          <p>On phones, people often skip the search box and go straight to apps like Amazon, TikTok, or Instagram. Content inside apps is harder for
+            Google to crawl, although <strong>deep linking</strong> lets search results open a specific spot inside an app.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: The Ad Network ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "The Ad Network, region". -->
+      <section id="ad-network" aria-labelledby="ad-network-h">
+        <span class="eyebrow">Section 16.4</span>
+        <h2 id="ad-network-h">The Google Ad Network: Beyond Search</h2>
+<p>Google's <strong>ad network</strong> places ads on millions of partner websites, apps, and YouTube videos, and shares the revenue with publishers. It
+          uses <strong>contextual advertising</strong>, matching ads to the content of the page, like camping gear ads on a hiking blog.</p>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Advertisers win</span><h3>Huge reach</h3><p>One campaign can reach people almost anywhere online, and AI tools now help create and target the ads.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Publishers win</span><h3>Easy money</h3><p>Even tiny niche sites can earn ad revenue without a sales team.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Google wins</span><h3>Network effects</h3><p>More advertisers attract more publishers, and more publishers attract more advertisers. That's a two-sided network.</p></article>
+        </div>
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · The content adjacency problem</span>
+          <p>Automated placement can put a brand's ad next to offensive or tragic content, such as an airline ad beside a plane-crash story. Advertisers use
+            <strong>negative keywords</strong> and site exclusions to avoid this.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: AI &amp;amp; the Future of Search ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "AI &amp;amp; the Future of Search, region". -->
+      <section id="genai-search" aria-labelledby="genai-search-h">
+        <span class="eyebrow">Section 16.5</span>
+        <h2 id="genai-search-h">Generative AI and the Future of Search</h2>
+<p>When ChatGPT arrived in late 2022, people suddenly had a new way to get answers, often without clicking a single link or ad.
+          That's a threat to Google's main business.</p>
+        <div class="idea-grid">
+          <article class="idea-card"><span class="idea-card__tag">Irony</span><h3>Google invented the tech</h3><p>Google researchers created the 2017 “Transformer” design behind modern LLMs, but OpenAI turned it into a hit product first.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Disruption?</span><h3>The classic pattern</h3><p>Chatbots began as “worse” at facts but better at conversation, and they're improving fast. Google had a big reason to move cautiously: it didn't want to undercut its search ad profits.</p></article>
+          <article class="idea-card"><span class="idea-card__tag">Response</span><h3>AI everywhere</h3><p>Google launched its Gemini models and AI-generated answers at the top of search, and built AI into Gmail, Docs, Android, and Google Cloud.</p></article>
+        </div>
+        <aside class="callout callout--why" aria-label="Why it matters to you">
+          <span class="callout__title">Why it matters to you · Be a critical AI user</span>
+          <p>AI answers can be wrong, outdated, or biased, and they may not show you where the information came from. Check the sources, compare
+            answers, and use your own judgment, especially for school, health, money, and legal questions.</p>
+        </aside>
+      </section>
+      <!-- ===== LESSON SECTION: Alphabet’s Many Fronts ===== -->
+      <!-- aria-labelledby connects this section to its heading, so
+           screen readers announce "Alphabet’s Many Fronts, region". -->
+      <section id="alphabet" aria-labelledby="alphabet-h">
+        <span class="eyebrow">Section 16.6</span>
+        <h2 id="alphabet-h">Alphabet’s Multi-Front Battle</h2>
+<p>As search matures, Alphabet looks for growth elsewhere. Technology makes industries <strong>converge</strong>, so Google now competes with Apple,
+          Microsoft, Amazon, Meta, and others all at once.</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Alphabet's major bets</caption>
+            <thead><tr><th scope="col">Business</th><th scope="col">What it is</th><th scope="col">Key challenge</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Android</th><td>The world's most-used mobile OS, free to phone makers</td><td>Apple's profitable iPhone ecosystem and antitrust scrutiny</td></tr>
+              <tr><th scope="row">YouTube</th><td>A giant video platform with ads and subscriptions</td><td>TikTok, content moderation, and creator competition</td></tr>
+              <tr><th scope="row">Google Pay</th><td>Mobile payments using <strong>NFC</strong> tap-to-pay</td><td>Apple Pay's lead and the banks</td></tr>
+              <tr><th scope="row">Google Cloud</th><td>Cloud and AI services for businesses</td><td>Trails AWS and Microsoft Azure</td></tr>
+              <tr><th scope="row">Waymo</th><td>Self-driving taxis now operating in several U.S. cities</td><td>Safety, regulation, public trust, and cost</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="callout callout--watch" aria-label="Watch out">
+          <span class="callout__title">Watch out · Regulators and global challenges</span>
+          <p>In 2024, a U.S. federal judge ruled that Google illegally maintained a monopoly in search, partly through deals that made it the default search engine on
+            phones and browsers. Courts have also challenged its ad tech business. Around the world, Google faces privacy rules, censorship demands, and
+            government pressure. Being a giant brings giant scrutiny.</p>
+        </aside>
+      </section>
+
+      <!-- ===== KEY TERMS =====
+           A <dl> (description list) is the right HTML element for
+           term + definition pairs: <dt> = term, <dd> = definition. -->
+      <section id="key-terms" aria-labelledby="key-terms-h">
+        <span class="eyebrow">Vocabulary</span>
+        <h2 id="key-terms-h">Key Terms</h2>
+        <p>Want every term from every module in one place? Try the <a href="../glossary.html">searchable glossary</a>.</p>
+        <dl class="terms">
+          <div>
+            <dt>Query</dt>
+            <dd>A search request.</dd>
+          </div>
+          <div>
+            <dt>Organic (natural) search</dt>
+            <dd>Unpaid search results ranked by relevance.</dd>
+          </div>
+          <div>
+            <dt>PageRank</dt>
+            <dd>Google's original algorithm that ranks pages partly by the number and importance of links pointing to them.</dd>
+          </div>
+          <div>
+            <dt>SEO</dt>
+            <dd>Search engine optimization: improving a page so it ranks higher in organic results.</dd>
+          </div>
+          <div>
+            <dt>Link fraud</dt>
+            <dd>Creating fake sites that link to each other to manipulate search rankings. Also called link farming.</dd>
+          </div>
+          <div>
+            <dt>Spider (web crawler)</dt>
+            <dd>Software that follows links across the web to discover and index pages.</dd>
+          </div>
+          <div>
+            <dt>Search engine marketing (SEM)</dt>
+            <dd>Designing, running, and optimizing search ad campaigns.</dd>
+          </div>
+          <div>
+            <dt>Keyword advertising</dt>
+            <dd>Ads targeted to the words a user searches for.</dd>
+          </div>
+          <div>
+            <dt>Pay-per-click (PPC)</dt>
+            <dd>A model where advertisers pay only when someone clicks their ad.</dd>
+          </div>
+          <div>
+            <dt>Quality score</dt>
+            <dd>Google's rating of an ad's expected click-through rate, relevance, and landing page experience.</dd>
+          </div>
+          <div>
+            <dt>Click-through rate (CTR)</dt>
+            <dd>The percentage of people who click an ad after seeing it: clicks ÷ impressions.</dd>
+          </div>
+          <div>
+            <dt>Landing page</dt>
+            <dd>The web page a user reaches after clicking an ad.</dd>
+          </div>
+          <div>
+            <dt>Deep linking</dt>
+            <dd>A link that opens a specific page or spot inside a site or app instead of its home screen.</dd>
+          </div>
+          <div>
+            <dt>Contextual advertising</dt>
+            <dd>Ads matched to the content of the page where they appear.</dd>
+          </div>
+          <div>
+            <dt>Content adjacency problem</dt>
+            <dd>When an ad appears next to content the advertiser wants to avoid.</dd>
+          </div>
+          <div>
+            <dt>Negative keywords</dt>
+            <dd>Words that stop an ad from showing when they appear.</dd>
+          </div>
+          <div>
+            <dt>Convergence</dt>
+            <dd>When separate markets start offering the same features and begin competing.</dd>
+          </div>
+          <div>
+            <dt>NFC</dt>
+            <dd>Near field communication: short-range wireless used for tap-to-pay.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- ===== FLASHCARDS =====
+           Each card is a <button>, so it works with a mouse, a touch
+           screen, AND a keyboard. main.js flips it (section 3). -->
+      <section id="flashcards" aria-labelledby="flashcards-h">
+        <span class="eyebrow">Practice</span>
+        <h2 id="flashcards-h">Flashcards</h2>
+        <p>Say the definition out loud, then flip the card to check yourself. Testing yourself like this
+          (called <strong>retrieval practice</strong>) helps you remember more than rereading does.</p>
+        <button class="btn btn--ghost" type="button" data-shuffle>Shuffle cards</button>
+        <ul class="flashcards">
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Query<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A search request.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Organic (natural) search<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Unpaid search results ranked by relevance.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">PageRank<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Google's original algorithm that ranks pages partly by the number and importance of links pointing to them.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">SEO<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Search engine optimization: improving a page so it ranks higher in organic results.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Link fraud<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Creating fake sites that link to each other to manipulate search rankings. Also called link farming.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Spider (web crawler)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Software that follows links across the web to discover and index pages.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Search engine marketing (SEM)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Designing, running, and optimizing search ad campaigns.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Keyword advertising<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Ads targeted to the words a user searches for.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Pay-per-click (PPC)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A model where advertisers pay only when someone clicks their ad.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Quality score<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Google's rating of an ad's expected click-through rate, relevance, and landing page experience.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Click-through rate (CTR)<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The percentage of people who click an ad after seeing it: clicks ÷ impressions.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Landing page<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">The web page a user reaches after clicking an ad.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Deep linking<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">A link that opens a specific page or spot inside a site or app instead of its home screen.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Contextual advertising<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Ads matched to the content of the page where they appear.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Content adjacency problem<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">When an ad appears next to content the advertiser wants to avoid.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Negative keywords<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Words that stop an ad from showing when they appear.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">Convergence<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">When separate markets start offering the same features and begin competing.</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="flashcard" type="button" aria-pressed="false" data-flashcard>
+              <span class="flashcard__inner">
+                <span class="flashcard__face flashcard__front">NFC<small>Click to flip</small></span>
+                <span class="flashcard__face flashcard__back">Near field communication: short-range wireless used for tap-to-pay.</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===== QUICK CHECK QUIZ =====
+           A <form> with <fieldset>/<legend> groups each question with
+           its choices — screen readers read the question with each option.
+           main.js grades it (section 4). Practice only — not graded. -->
+      <section id="quick-check" aria-labelledby="quick-check-h">
+        <span class="eyebrow">Self-check · Not graded</span>
+        <h2 id="quick-check-h">Quick Check</h2>
+        <form class="quiz" data-quiz>
+          <fieldset data-answer="b" data-explain="PageRank treats links as votes weighted by the linking page&#x27;s importance.">
+            <legend>1. What is PageRank's core idea?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="a">
+              <span>Pages that pay more rank higher</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="b">
+              <span>Links from other pages act like votes, and votes from important pages count more</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="c">
+              <span>Newer pages always rank first</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q1" value="d">
+              <span>Pages with more ads rank higher</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Ad rank ≈ bid × quality: X = 5 × 2 = 10, and Y = 2 × 8 = 16, so the more relevant ad wins.">
+            <legend>2. Advertiser X bids $5 with a quality score of 2. Advertiser Y bids $2 with a quality score of 8. In the simplified model, who ranks higher?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="a">
+              <span>X (rank 10)</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="b">
+              <span>Y (rank 16)</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="c">
+              <span>They tie</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q2" value="d">
+              <span>Whoever bid first</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="Automated placement can put ads beside content that hurts the brand.">
+            <legend>3. An ad for a cruise line appears next to a news story about a shipwreck. This is…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="a">
+              <span>Link fraud</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="b">
+              <span>The content adjacency problem</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="c">
+              <span>SEO</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q3" value="d">
+              <span>Deep linking</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="If people get answers directly from AI, fewer of them see or click the search ads that fund Google.">
+            <legend>4. Why is generative AI a potential disruptor of Google's search business?</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="a">
+              <span>It makes web pages load slower</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="b">
+              <span>Users may get answers without clicking links or search ads</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="c">
+              <span>It only works on Android</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q4" value="d">
+              <span>It's banned in the U.S.</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <fieldset data-answer="b" data-explain="CTR is the share of people who clicked after seeing the ad.">
+            <legend>5. Click-through rate (CTR) is calculated as…</legend>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="a">
+              <span>Impressions ÷ clicks</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="b">
+              <span>Clicks ÷ impressions</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="c">
+              <span>Bid × quality score</span>
+            </label>
+            <label class="quiz__option">
+              <input type="radio" name="q5" value="d">
+              <span>Revenue ÷ cost</span>
+            </label>
+            <p class="quiz__feedback" aria-live="polite"></p>
+          </fieldset>
+          <div class="quiz__actions">
+            <button class="btn" type="submit">Check my answers</button>
+            <button class="btn btn--ghost" type="reset">Try again</button>
+            <p class="quiz__score" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+
+      <!-- ===== MARK COMPLETE (saved in your browser by main.js, section 5) ===== -->
+      <div class="complete-panel">
+        <div>
+          <h2>Finished Module 16?</h2>
+          <p>Track your progress — it shows up on the home page.</p>
+        </div>
+        <!-- aria-pressed makes this a "toggle button" for screen readers -->
+        <button class="btn btn--gold" type="button" data-complete="16" aria-pressed="false">Mark module complete</button>
+      </div>
+
+      <!-- ===== PREVIOUS / NEXT ===== -->
+      <nav class="pager" aria-label="Module navigation">
+        <a href="module-15.html" rel="prev"><span class="pager__dir">← Previous</span>Module 15: Information Security</a>
+        
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p><strong>CTS 115: Information Systems Business Concepts</strong> — a student study companion.</p>
+      <p>This site summarizes key ideas in plain language. It does not replace your textbook,
+        <em>Information Systems: A Manager’s Guide to Harnessing Technology</em> (FlatWorld),
+        which has the full readings, cases, and videos. Always check Blackboard for due dates and assignments.</p>
+      <p>Built with plain HTML, CSS, and JavaScript. Curious how it works? Right-click anywhere and choose
+        “View Page Source” — the code is full of comments written for learners.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts go at the END of the body so the HTML loads first.
+       (You could also use the "defer" attribute in the <head>.) -->
+  <script src="../js/main.js"></script>
+</body>
+</html>
