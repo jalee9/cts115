@@ -1037,6 +1037,18 @@ mark { background: #ffe39b; color: inherit; padding: 0 2px; border-radius: 3px; 
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 .site-footer__credit strong { color: var(--gold); }
+/* LinkedIn link: a small outlined "pill" button */
+.footer-link {
+  display: inline-block;
+  margin-top: var(--space-2);
+  padding: 0.2rem 0.9rem;
+  border: 2px solid var(--gold);
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.footer-link:hover { background: var(--gold); color: var(--navy-dark); }
 .site-footer__copy { font-size: 0.82rem; color: #9fb3cc; margin-bottom: 0; }
 
 
